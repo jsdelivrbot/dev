@@ -1,0 +1,50 @@
+navigate to your app dir then init npm:
+npm init
+this will then walk you through creawting a package.json file
+
+to start an app with no packages:
+npm install
+
+to install a module. Note that the --save is optional but it importantly 
+saves a reference to the dependancy in the package.json file:
+npm install <packagename> --save
+
+to install a moduel that is only for development 
+npm install <packagename> --save-dev
+
+npm install <packagename>@<version>
+npm install webpack@1.12.9
+
+to globally install a module (not download it to the node_modules folder but install in in
+C:\Users\Ben\AppData\Roaming\npm so all applications can use it)
+npm install -g <packagename>
+
+
+this for example:
+  "dependencies": {
+    "moment": "^2.11.2"
+  }
+  
+  the carat ^ indicates that it will auto update the patches and subversions but not
+  full versions. a tilda ~ only allows patches to update.
+  
+  
+To remove module1 without changing package.json: 
+npm uninstall module1.
+
+To uninstall global modules
+npm uninstall -g <packagename>
+
+To remove module1 with changing package.json, and removing it from the dependencies in package.json:
+npm uninstall --save module1.
+  
+  -----------------------
+  
+  to install express generator:
+  npm install express-generator -g
+
+to start a package:
+npm start
+
+to run a script (located in the scripts area of package.json)
+npm run <scriptname>

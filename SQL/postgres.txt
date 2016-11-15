@@ -1,0 +1,29 @@
+manage postgress with user 'postgres'
+psql -U postgres
+In order for manage.py to work with Postgres you need to set the 
+'DATABASE_URL' environment variable as follows: 
+export DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+Note that you need to set this variable each time you use 'docker exec' because exec does clear the environment.
+Export it:
+pg_dump -U USERNAME DBNAME > dbexport.pgsql
+pg_dump -U postgres demo_schema > app-db-dumps/dbexport.pgsql
+to import:
+psql -U postgres demo_schema3 < app-db-dumps/dbexport.pgsql
+create:
+CREATE DATABASE demo_schema3;
+drop:
+DROP DATABASE demo_schema2;
+
+exit:
+\q
+
+list databases:
+\l
+
+select database:
+\c demo_schema;
+
+list tables:
+\dt
+for system tables too:
+\dt *.*

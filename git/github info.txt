@@ -1,0 +1,144 @@
+login:
+GitHub
+benchung5
+ben@benchung.com
+helicopter1
+
+config username and email if needed:
+git config --global user.email "ben@benchung.com"
+git config --global user.name "benchung5"
+
+The following SSH key was added to your account:
+
+GitHub Desktop - Ben-PC
+d0:0b:54:a9:7a:05:f9:6f:b1:88:33:47:95:01:ae:b9
+
+
+https://github.com/benchung5/newGitTest.git
+
+local storage area for repository:
+C:/Users/Ben/Documents/GitHub
+or
+C:\Users\benja\OneDrive\Documents\GitHub
+
+# see commits
+git log
+
+
+command prompt:
+-----------------------------
+
+# show remotes (created during cloning process on github) that link to your repo:
+git remote -v
+
+#remove origin
+git remote rm origin
+
+# init for new repo files in filesystem
+git init
+
+# pull your reprository into the current  using the repo url:
+git clone repositoryurl
+git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
+
+# shows us the difference between local files and that of the remote repo
+git status
+
+# adds the locally included file to the remote repo
+git add yournewfile.js
+# stage All
+git add -A
+# stage new and modified, without deleted
+git add . 
+# stage modified and deleted, without new
+git add -u
+#add and commit at same time:
+git add -A && git commit -m "resolve merge conflicts"
+
+lock it into the repository:
+git commit -m "commiting message"
+
+submit it to github.com
+git push
+
+get the latest changes:
+git pull
+(go a git pull at the beginning of the day)
+
+if accidentally hit commit and don't know how to get out of the screen it gives you, just do:
+esc :wq
+
+.gitignore file:
+place it in your app dir and here is an example of the contents:
+
+/node_modules
+bundle.js
+
+npm-debug.log
+
+config.json
+
+
+# IntelliJ
+
+*.iml
+
+/.idea
+
+create a new repository on the command line
+------------------------------------
+echo "# test1" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/benchung5/contributors.git
+git push -u origin master
+
+push to an existing repository from the command line
+------------------------------------
+git remote add origin https://github.com/benchung5/test1.git
+git push -u origin master
+
+branch
+------------------------------------
+git branch <branchname>
+create a branch and switch to it at the same time
+$ git checkout -b iss53
+Switched to a new branch "iss53"
+This is shorthand for:
+
+$ git branch iss53
+$ git checkout iss53
+
+checkout
+------------------------------------
+git checkout
+or
+get checkout <branch>
+git checkout master to look at the master branch, 
+or git checkout cats to look at another branch.
+
+after making changes if you need to go back to the master branch:
+git checkout master
+(Switched to branch 'master’)
+
+
+
+git merge
+———————————————
+git merge cats would take all the changes you made to the “cats” branch and add them to the master.
+
+
+when need to start over, use git reset
+—————————————-
+https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting/commit-level-operations
+
+
+
+
+
+
+
+
+
+

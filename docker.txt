@@ -1,0 +1,441 @@
+----------------------
+general info
+----------------------
+
+docker default machine ip:
+192.168.99.100
+(get this through: docker-machine ip MACHINE_VM)
+
+access it on windows:
+/c/Users/benja
+
+cleanup:
+docker stop $(docker ps -a -q)
+docker rm -f $(docker ps -a)
+docker rmi -f $(docker images)
+
+----------------------
+docker hub
+----------------------
+
+https://hub.docker.com/?utm_source=getting_starteGd_guide&utm_medium=embedded_Windows&utm_campaign=create_docker_hub_account
+login to dockerhub:
+docker login --username=yourhubusername
+docker login --username=ben95
+ben95
+ben@benchung.com
+smelephant
+
+----------------------
+containers 
+(copy from images then build ontop and commit to new images)
+----------------------
+
+list your containers:
+docker ps [-a include stopped containers, -q only ids, 
+-l container that was run last, -f forces removal even if it's in use]
+
+remove container:
+(-f to force operation)
+docker rm -f [OPTIONS] [CONTAINER]
+docker rm -f docker-wordpress-nginx
+
+stop all containers
+docker stop $(docker ps -a -q)
+
+remove all containers
+(get the result of docker ps -a and pass as an arg to docker rm)
+(-f to force operation)
+docker rm -f $(docker ps -a)
+
+start a container:
+docker start <name | id>
+docker start docker-wordpress-nginx
+
+starts a container from an image (and downloads it if not installed already).
+Note that every time you call this it creates a new container 
+from that image so you can make multiple ones running this command again. 
+-d runs in background (detached mode)
+-p maps the ports <docker-daemon-port>:<host-port>
+-it runs interactive mode (puts your right into the container root user terminal to build the
+container that way instead of using a dockerfile)
+docker run <image>
+docker run -d -p 80:80 --name nginxcontainer ben95/nginx:v1
+
+run multiple containers from one image (perhaps for load balancing):
+docker run -d --name web1 -p 8081:80 tutum/hello-world
+docker run -d --name web2 -p 8082:80 tutum/hello-world
+docker run -d --name web3 -p 8083:80 tutum/hello-world
+
+take a look at backgrond processes running:
+docker logs <id>
+
+exit out of a foreground running container:
+exit
+
+compare changes from current container to base image
+(in the output - A specifies we've added things)
+docker diff <id>
+
+stop a container (will stop a background container, use docker kill for harsher termination):
+docker stop <name | id>
+
+change docker tag(name) of committed images:
+docker tag [img id] [docker-username]/[image-name]:[version-label-or-tagname]
+exaple:
+docker tag 0a69b6164346 ben95/docker-whale:v1
+
+commit container to image
+(creates a new layer and a new image from a container)
+docker commit [img id] [docker-username]/[image-name]:[version-label-or-tagname]
+docker commit
+or
+docker commit 0a69b6164346 ben95/docker-whale:v1
+
+push container to dockerhub
+login, then:
+docker push [docker-username]/[image-name]
+docker push ben95/docker-whale
+
+
+----------------------
+port mapping containers
+(use these for mapping your container to hosts or other containers)
+----------------------
+
+find the port number of the container:
+docker port <id-of-container>
+
+docker ps also shows the host/container port number
+
+find the private ip address of a container (shouldn't really have to use this)
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' <ContainerID>
+
+lets set up redis to demonstrate communication
+docker pull redis
+
+start up redis server container from redis image
+docker run -d --name redisserver redis
+
+run another container to link to the redis server container
+--link <server-container-name:alias-for-link>
+docker run -it --name redisclient1 --link redisserver:redis redis sh
+cat /etc/hosts
+you'll see:
+172.17.0.3      redis 58048cafe11b redisserver
+ping using alias name for that connection:
+ping redis
+connect to the other container using redis client:
+redis-cli -h redis
+ping
+returns:
+PONG
+set myname Ben
+set mycountry Canada
+get myname
+Ben
+get mycountry
+Canada
+
+run another container in new terminal (redisclient2):
+docker run -it --name redisclient2 --link redisserver:redis redis sh
+redis-cli -h redis
+get myname
+Ben
+
+in new terminal:
+docker ps
+
+----------------------
+images 
+(read-only templates that you copy from to create containers - like instances)
+----------------------
+
+note:
+when inserting image IDs in commands, 
+you can just put in the first three numbers for a shortcut
+
+list images:
+docker images
+list all images used by images too
+docker images -a
+list including all images built to use an image (all RUN commands)
+These are the layers of the onion
+docker history
+
+remove image (-f to force operation):
+docker rmi -f [image-id-or-name]
+docker rmi -f ben95/docker-whale:v1
+
+remove all images
+(get the result of docker ps -a and pass as an arg to docker rm)
+(-f to force operation)
+docker rmi -f $(docker images)
+
+search for docker images:
+docker search <image-name>
+
+download an image without running a container from it
+<imagename:version>
+docker pull <image>
+
+----------------------
+dockerfiles
+----------------------
+
+commands:
+
+FROM [docker-image]
+RUN [commands to run - each command is a layer in the image?]
+EXPOSE [listener port for docher daemon for what it will connect to]
+CMD [can appear on any line in docker file you can only use this once in a dockerfile (or the last one will be used)
+it runs the default command in the terminal when you build your container if no user command is run]
+ENTRYPOINT [CMD gets the user input then inserts it into the entrypoint base command ]
+
+example:
+
+FROM ubuntu:12.04
+MAINTAINER Joe Shmoe "jshmoe@domain.com"
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y nginx
+EXPOSE 80
+CMD ["nginx"]
+
+
+------
+instructions (RUN, CMD and ENTRYPOINT) can be specified in shell form or exec form
+
+shell form:
+<instruction> <command>
+RUN apt-get install python3  
+CMD echo "Hello world"  
+ENTRYPOINT echo "Hello world"  
+
+exec form:
+<instruction> ["executable", "param1", "param2", ...]
+RUN ["apt-get", "install", "python3"]  
+CMD ["/bin/echo", "Hello world"]  
+ENTRYPOINT ["/bin/echo", "Hello world"]  
+
+------
+
+build image from dockerfile
+dockerfile notes:
+https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
+(the . at the end is the build context - our current directory)
+-t is the tag for our image
+docker build -t youruser/sinatra:v2 .
+docker build -t youruser/sinatra:v2 .
+
+docker history
+lists out all the RUN commands the image was built from
+docker history <imagename>
+
+----------------------
+volumes
+----------------------
+
+to a run a container and set a volume to share with host:
+use the path to the current directory on the host (my computer)
+("$PWD" is the current dir)
+-v <hostdir>:<container-dir>:rw
+rw "read-write", so the container can write to the directory
+this creates a "site" folder in our current directory when run.
+Use this dir to store your files/data through your machine:
+docker run -d -p 8080:80 -v "$PWD"/site:/www --name mywww nginxserver
+
+or this is the same as:
+docker run -d -p 8080:80 -v /dockerfiles/docker_nginx/site:/www --name mywww nginxserver
+
+
+--------------------------------
+share volumes between containers
+--------------------------------
+advantages:
+-share data between containers
+-preserve changes to files (creating files in interactive mode are not recorded into comitted containers)
+-writing become much faster because we bypass the copy on write technique docker uses
+because we're using the system's write method
+-even if the host container for the volume isn't running, the volume can still be accessed from other containers
+
+
+create a volume inside the base image like ubuntu for example:
+docker run -it --name alpha -v /var/myvolume ubuntu
+ls /var/myvolume/
+echo "Hello World" > /var/myvolume/myfile.txt
+cat /var/myvolume/myfile.txt
+Hello World
+
+in a new tab, run a new container
+and use the volume from the other one:
+docker run -it --name beta --volumes-from alpha ubuntu
+ls /var/myvolume/
+echo "Hi" >> /var/myvolume/myfile.txt
+cat /var/myvolume/myfile.txt
+Hello World
+Hi
+
+test accessing the volume when volume container isn't running.
+in original tab:
+exit
+
+then into the other tab again:
+echo "Another line" >> /var/myvolume/myfile.txt
+cat /var/myvolume/myfile.txt
+Hello World
+Hi
+Another line
+
+get some information about the containers
+(pipe it to less to look at json file)
+docker inspect alpha | less
+search for mounts:
+/"Mounts"
+you'll see
+"Destination": "/var/myvolume",
+
+----------------------
+docker compose
+----------------------
+
+list of commands:
+https://docs.docker.com/v1.5/compose/cli/
+
+run this, in your proj directory:
+docker-compose up
+
+or detached mode to run in background:
+docker-compose up -d
+
+see what's currently running:
+docker-compose ps
+
+to run one of the existing services in interactive mode
+you can find the service name using 
+docker-compose ps 
+then:
+docker-compose run <service-name>
+(but interactive mode isn't yet supported on windows)
+
+to run bash in a compose container:
+workaround:
+docker exec -i -t <service-name> bash
+docker exec -i -t dockernodenginx_postgres_1 bash
+
+stop the services if you startd them with -d
+docker-compose stop
+
+to restart
+docker-compose restart
+
+interactive bash into one service
+docker exec -it <full-service-name>
+docker exec -it dockerlempdev_nginx_1 bash
+
+ping to test it's connections:
+ping <service-name>
+ping php
+
+----------------------
+publishing docker compose for production
+----------------------
+
+when ready for production, make sure to use a copy of your compose file ready for production
+see info here:
+https://docs.docker.com/compose/production/
+docker-compose -f docker-compose.yml -f production.yml up -d
+
+When you make changes to your app code, you’ll need to rebuild your image and recreate your app’s containers. 
+To redeploy a service called web, you would use the below.
+This will first rebuild the image for web and then stop, destroy, and recreate just the web service. 
+The --no-deps flag prevents Compose from also recreating any services which web depends on.
+$ docker-compose build web
+$ docker-compose up --no-deps -d web
+
+----------------------
+publishing for production
+----------------------
+
+docker-machine ls
+
+----------------------
+misc.
+----------------------
+
+when installing docker careful of security issues:
+https://www.youtube.com/watch?v=Z7ZsdV0I4kE#t=56.047005
+
+list commands just type:
+docker
+
+debugging - get some information about a container/image
+(pipe it to less to look at json file)
+docker inspect container-or-image-name | less
+
+when doing local dev use live-server (while in docker directory)
+live-server
+video here:
+https://www.youtube.com/watch?v=q78u9lBXvj0
+
+install busybox:
+It's a lightweight image - when running a container off that image, when you pass it a command it executes that command
+for you.
+
+docker run busybox echo Hello
+
+
+----------------------
+troubleshooting
+----------------------
+if docker has trouble connecting:
+
+delete all virtual machines in virtualbox (yes to delete vm files)
+
+or try:
+
+docker-machine restart default      # Restart the environment
+eval $(docker-machine env default)  # Refresh your environment settings
+
+or
+service docker restart
+
+stop your Docker Machine and restart it:
+docker-machine restart node-nginx3
+eval $(docker-machine env node-nginx3)
+
+to destroy all containers/images:
+docker rm -f $(docker ps -a)
+docker rmi -f $(docker images)
+
+# Delete all stopped containers
+docker ps -q -f status=exited | xargs --no-run-if-empty docker rm
+# Delete all dangling (unused) images
+docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi
+
+# to stop the machine:
+docker-machine stop node-nginx3
+# remove droplet:
+# If this also produces errors, you can always delete the
+# Droplet using the Digitalocean web console as a fallback.
+docker-machine rm -f node-nginx
+
+stop all docker machines:
+docker-machine stop
+note - to run a script on postgress on startup:
+remove docker machine
+docker-machine rm -f wordpress-machine
+
+init.sql script:
+CREATE USER docker;
+CREATE DATABASE docker;
+GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
+
+dockerfile:
+FROM library/postgres
+ADD init.sql /docker-entrypoint-initdb.d/
+
+
+
+
+

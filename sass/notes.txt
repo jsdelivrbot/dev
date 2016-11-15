@@ -1,0 +1,50 @@
+installation
+----------------------------------
+
+instructions:
+http://compass-style.org/install/
+
+install ruby first:
+http://rubyinstaller.org/downloads/
+
+* make sure to add install extensions when installing:
+http://awordpress.net/blog/ruby-is-not-recognized-as-an-internal-or-external-command-operable-or-batch-file-error/
+
+install:
+gem update --system
+gem install compass
+
+use:
+----------------------------------
+navigate to your folder:
+
+cd C:\Users\benja\dockerfiles\docker_node_nginx\app\public
+
+then have compass autocompile:
+compass watch
+
+
+notes:
+---------------------------------
+install css parser to take advantage of all the features of compass stats which outputs statistics of my Sass stylesheets:
+gem install css_parser
+
+install test project:
+go to the dir you want to install it in then:
+compass create sass-test
+
+
+troubleshooting:
+---------------------------------
+
+source map is:
+style.css.map(for browser edit saving abilities)
+
+problems with source map?
+sass sass/style.scss:style.css --sourcemap --watch
+and
+sourcemap = true
+in your config.rb
+also, try deleting the .map file and restarting compass.
+Note that inspecting elements and updating in dev tools 
+sometime deactivates the sourcemap referencing.

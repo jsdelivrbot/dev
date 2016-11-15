@@ -1,0 +1,8 @@
+move the cursor to the start of the text you want to select, 
+press the Alt-A key combination to mark the start, then move the cursor to the end of 
+the section you want to select. 
+
+
+Cut, copy and paste. 
+Lines can be cut with the shortcut Ctrl + K (copied with Alt + ^ ) and paste with Ctrl + U . 
+To cut or copy multiple lines press the shortcut multiple times.

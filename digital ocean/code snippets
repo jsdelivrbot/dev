@@ -1,0 +1,42 @@
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(8080, '10.137.32.58');
+console.log('Server running at http://10.137.32.58:8080/');
+
+curl http://10.137.32.58:8080
+
+auto eth1
+iface eth1 inet static
+        address 10.137.96.109
+        netmask 255.255.0.0
+        
+ping 10.137.32.58
+
+
+sudo su -c "env PATH=$PATH:/opt/node/bin pm2 startup ubuntu -u ben --hp /home/ben"
+
+pm2 restart hello
+
+sudo nano /etc/nginx/sites-available/default
+
+lsof -i tcp:8080
+
+
+server {
+    listen 80;
+
+    server_name 159.203.63.238;
+
+    location / {
+        proxy_pass http://10.137.32.58:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        # proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+nano /etc/nginx/nginx.conf

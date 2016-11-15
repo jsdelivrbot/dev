@@ -1,0 +1,13 @@
+nodemon: (stands for node monitor)
+notice it has a cli folder in it's install. that means the it interacts with the command line
+simply run:
+nodemon app.js
+and it will watch for any javascript changing in app.js and restart it so we don't
+have to when we use it as a webserver.
+
+install only as dev dependancy:
+npm install nodemon --save-dev
+
+to run nodemon: 
+npm run dev
+(script is located in the scripts area of package.json)

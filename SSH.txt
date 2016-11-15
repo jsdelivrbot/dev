@@ -1,0 +1,77 @@
+SSH------------------------------------
+
+ssh root@<ipaddress> -p 22
+
+enter username:
+<user>
+
+password:
+<password>
+
+or SSH using putty--------------------
+
+-open putty and put in IP address or host name (yourdomain.com)
+23.235.194.187
+or
+vps12396.inmotionhosting.com
+or
+23.235.194.187
+-port 22
+-SSH
+
+generate ssh keys
+------------------------------------
+make sure your .ssh dir is read only
+
+in command prompt:
+ssh-keygen
+you'll see:
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/localuser/.ssh/id_rsa):
+press enter to accept default path or if you are naming it differently, use:
+C:/Users/<user>/.ssh/id_rsa_2
+
+
+good info for logging in:
+----------------
+http://www.inmotionhosting.com/support/website/ssh/how-to-login-ssh
+root access:
+http://www.inmotionhosting.com/support/website/cpanel-account-management/obtain-root-access
+for shared hosting:
+http://www.inmotionhosting.com/support/website/ssh/shared-reseller-ssh
+
+easy manage your vps via ssh:
+http://www.inmotionhosting.com/support/website/linux/easier-site-management-with-ssh
+
+Rsync--------------------
+
+# to rsync directories on the same sytem:
+# both folders will share changes now (contents of dir1 to dir2)
+# -a preserves preserves symbolic links, special and device files, modification times, group, owner, and permissions
+rsync -a dir1/ dir2
+# to do it with output
+rsync -anv dir1/ dir2
+
+#remote rsync
+# rsync -a ~/dir1 username@remote_host:destination_directory
+rsync -a ~/wordpress.sql benc@159.203.37.43:~/
+
+using keys with filezilla------------------------
+
+-use puttygen
+-load your id_rsa file
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
