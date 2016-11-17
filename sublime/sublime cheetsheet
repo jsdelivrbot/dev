@@ -1,0 +1,49 @@
+I once had a small cat. The cat was
+
+
+<div>
+	<p>mon</p>
+	<p>wed</p>
+	<p>thursues</p>
+	<p>thurs sdfsd sdfs sdfds</p>
+</div>
+
+
+
+
+
+
+Sublime cheatsheet:
+
+find/edit
+command + click = insert multiple areas to edit
+command + d (multiple times) = highlight multiple to edit
+
+multiline edit
+command + shift + l = multiline edit
+
+html edit
+control + shift + w = html wrap
+(command + shift + l) + (control + shift + w) = multiline html wrap
+command + shift + v = smart paste (proper code indenting)
+
+move/duplicate/delete lines
+command + ctrl + arrow = move line of text up and down to replace
+command + shift + d = duplicate line
+delete entire line = ctrl + k
+
+working with folders
+search files = command + p
+use the @ symbol when searching to narrow down to text inside the file
+also use @ to navigate functions in a code file if placed without anything
+use the : to jump to a particular line number
+to save a sublime project of folders combinations = project > save project as
+
+helpful for coding
+right click > show unsaved changes
+format code = edit > line > reindent
+open the command pallets = command + shift + p
+comment out code = command + /
+
+
+
