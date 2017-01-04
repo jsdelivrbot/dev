@@ -1,52 +1,55 @@
-practice:
-https://try.github.io/levels/1/challenges/1
+useful urls
+———————————————
+cheatsheet:
+https://gist.github.com/hofmannsven/6814451
 
-login:
-GitHub
-benchung5
-ben@benchung.com
-helicopter1
+sultan’s article:
+http://codeinthehole.com/writing/pull-requests-and-other-good-practices-for-teams-using-github/
 
-config username and email if needed:
-git config --global user.email "ben@benchung.com"
-git config --global user.name "benchung5"
+visual guide:
+http://marklodato.github.io/visual-git-guide/index-en.html
 
-The following SSH key was added to your account:
-
-GitHub Desktop - Ben-PC
-d0:0b:54:a9:7a:05:f9:6f:b1:88:33:47:95:01:ae:b9
-
-
-https://github.com/benchung5/newGitTest.git
-
-local storage area for repository:
-C:/Users/Ben/Documents/GitHub
-or
-C:\Users\benja\OneDrive\Documents\GitHub
-
-# see commits
-git log
-
+workflow, branch naming and pull requests:
+https://lebkowski.name/git-workflow/
 
 commands
 -----------------------------
+-----------------------------
 
-# show remotes (created during cloning process on github) that link to your repo:
+origin/remote
+——————————————
+#(origin is the default remote name Git gives to the server you cloned from)
+
+# -v shows you the URLs that Git has stored for the shortname (origin)
+to be used when reading and writing to that remote
 git remote -v
+
+#add origin (specify the default remote):
+git remote add origin <origin>
 
 #remove origin
 git remote rm origin
+
+#list all remotes
+git show
+
+#to inspect a remote
+git remote show <remotename>
+#for example:
+git remote show origin
+
+init and clone
+—————————————————————
 
 # init for new repo files in filesystem
 git init
 
 # pull your reprository into the current  using the repo url:
 git clone repositoryurl
-git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
 
-# shows us the difference between local files and that of the remote repo
-git status
 
+staging
+———————————————
 # adds the locally included file to the remote repo
 git add yournewfile.js
 # stage All
@@ -58,46 +61,58 @@ git add -u
 #add and commit at same time:
 git add -A && git commit -m "resolve merge conflicts"
 
-lock it into the repository:
+#stage all but one file
+git add -A
+git reset -- main/dontcheckmein.txt
+
+
+untracked files (if you get message of untracked files)
+_________________
+#add all files of the current directory to track (including untracked):
+git add .
+#then to commit all tracked files:
+git commit -a
+
+
+reset
+_________________
+
+#unstage everything
+git reset
+
+#Resets the index and working tree. 
+Any changes to tracked files in the working tree since <commit> are discarded.
+
+
+commit
+——————————
+
+#lock it into the repository:
 git commit -m "commiting message"
 
-submit it to github.com
-git push
+#if using commit with long message:
+git commit 
 
-get the latest changes:
+#To save your work and exit:
+press Esc 
+#then 
+:wq 
+#(w for write and q for quit).
+
+#Alternatively, you could both save and exit by pressing 
+Esc 
+#then 
+:x
+
+pull
+——————————————————
+
+# get the latest changes:
+# (go a git pull at the beginning of the day)
 git pull
-(go a git pull at the beginning of the day)
-
-if accidentally hit commit and don't know how to get out of the screen it gives you, just do:
-esc :wq
-
-.gitignore file:
-place it in your app dir and here is an example of the contents:
-
-/node_modules
-bundle.js
-
-npm-debug.log
-
-config.json
 
 
-# IntelliJ
-
-*.iml
-
-/.idea
-
-create a new repository on the command line
-------------------------------------
-echo "# test1" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/benchung5/contributors.git
-git push -u origin master
-
-push to an existing repository from the command line
+push to an existing repository
 ------------------------------------
 git remote add origin https://github.com/benchung5/test1.git
 git push -u origin master
@@ -105,111 +120,137 @@ git push -u origin master
 branch
 ------------------------------------
 
-https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches
+#list branches
+#The starred branch is your current branch:
+git branch
+to see all branches that exist:
+git branch -a
 
-Create the branch on your local machine and switch in this branch :
-$ git checkout -b [name_of_your_new_branch]
-$ git push origin [name_of_your_new_branch]
-
-When you want to commit something in your branch, be sure to be in your branch.
-You can see all branches created by using :
-$ git branch
-
-$ git remote add [name_of_your_remote] 
-
-Push changes from your commit into your branch :
-$ git push [name_of_your_new_remote] [name_of_your_branch]
-
-Update your branch when the original branch from official repository has been updated :
-$ git fetch [name_of_your_remote]
-
-
-
-git branch <branchname>
-create a branch and switch to it at the same time
-$ git checkout -b iss53
-Switched to a new branch "iss53"
-This is shorthand for:
-
-download a branch:
-git checkout -b benlocalbranch origin/branch-name
-
-git checkout -b benlocalbranch https://benchung5@bitbucket.org/Zensurance/newzen.git/<branchname>
-then these are the branches right?
-https://bitbucket.org/Zensurance/newzen/branches/
-Which one would it be?
-
-let me know if I’m totally off.
-
-
-
-
-https://benchung5@bitbucket.org/Zensurance/newzen.git
-
-
-
-$ git branch iss53
-$ git checkout iss53
-
-
-branch zen
-------------------------------------
-
-so, if I was starting from scratch.... I would
-
-git clone https://benchung5@bitbucket.org/Zensurance/newzen.git
-git branch ben
-git checkout ben
-..work on files
-
-then commit:
-—————
-
-add all but all but:
-
-git add -A
-git reset -- main/dontcheckmein.txt
-
-git push --set-upstream origin ben
-
-
-
-
-clone
-------------------------------------
-git clone <repo>
-
-checkout
-------------------------------------
-git checkout
-or
-get checkout <branch>
-git checkout master to look at the master branch, 
-or git checkout cats to look at another branch.
-
-after making changes if you need to go back to the master branch:
+#to switch to master branch:
 git checkout master
-(Switched to branch 'master’)
+#get latest
+git pull
+
+#whatever branch you’re on when you hit 
+#git branch, it will create a copy of it and call it a new name
+git branch <branchname>
+#or to create a branch and switch to it
+git checkout -b <branchname>
+
+#switch to branch
+git checkout <branchname>
+#..work on files
+#then commit and push
+#(branch doesn’t exist on the remote until you push it)
+git push origin <branchname>
+
+
+#to delete a branch
+git branch -D <branchname>
+
+#download a branch and switch to it:
+git checkout -b <branchname> <origin>
+
+
+branch naming:
+
+#not adding anything, just refactoring
+refactor/feature
+#just a little change to existing feature
+fix/eglebegle
+#unstable branch - only for code review
+rfc/feature
+#combine for nested branchs (using /refactor/ just adds semantics)
+feature/eglebegle/refactor/xyzzy
+
+
+merge
+
+------------------------------------
+
+#to merge another branch into your active branch (e.g. master), use
+git merge <branch-to-merge>
+#manually by editing the files shown by git then after changing, you need to mark them as merged with
+git add <filename>
+#before merging changes, you can also preview them by using
+git diff <source_branch> <target_branch>
 
 
 
-git merge
-———————————————
-git merge cats would take all the changes you made to the “cats” branch and add them to the master.
+replace local changes
+------------------------------------
+In case you did something wrong, which for sure never happens ;), you can replace local changes using the command
+git checkout -- <filename>
+this replaces the changes in your working tree with the last content in HEAD. Changes already added to the index, as well as new files, will be kept.
+
+If you instead want to drop all your local changes and commits, fetch the latest history from the server and point your local master branch at it like this
+git fetch origin
+git reset --hard origin/master
 
 
-when need to start over, use git reset
+stash
+------------------------------------
+#if you need to preserve local changes while getting latest remote update…
+
+#push a new stash onto your stack
+git stash
+
+#list stashes
+git stash list
+
+#apply the first stash in stash list and then 
+#immediately drop it from your stash list
+git stash pop
+#or you can get the name of the stash from git stash list
+#but this doesn’t delete the stash
+git stash apply <nameofstash>
+
+#to apply a stash to a different branch
+git stash
+git checkout branch2
+git stash pop
+
+
+status
+————————————
+
+# shows us the difference between local files 
+# and that of the remote repo
+git status
+
+#show diff for more specifics
+git diff
+#hightlight changes only
+git diff --color-words
+
+log
+—————————
+
+#list all commits
+git log
+
+#list commits only for a certain branch
+git log mybranch --not $(git for-each-ref --format='%(refname)' refs/heads/ | grep -v "refs/heads/mybranch")
+
+
+reset (if need to start over)
 —————————————-
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting/commit-level-operations
 
+misc
+——————
+
+#if accidentally hit commit and don't know how to get out of the screen it gives you, just do:
+esc :wq
 
 
+.gitignore file:
+place it in your app dir and here is an example of the contents:
 
-
-
-
-
-
-
-
-
+/node_modules
+bundle.js
+npm-debug.log
+config.json
+# IntelliJ
+*.iml
+/.idea

@@ -41,7 +41,7 @@ to save a sublime project of folders combinations = project > save project as
 
 helpful for coding
 right click > show unsaved changes
-format code = edit > line > reindent
+format code = edit > line > re-indent
 open the command pallets = command + shift + p
 comment out code = command + /
 

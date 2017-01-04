@@ -100,10 +100,19 @@ propTypes() {
   componentWillUnmount() {
           //do something
   }
-    //fires when the component has been removed from the DOM
+   //fired when component first renders
   componentDidMount() {
           //do something
   }
+
+
+
+  // componentWillMount: function()
+  // componentDidMount: function()
+  // componentWillReceiveProps: function(nextProps)
+  // componentWillUpdate: function(nextProps, nextState)
+  // componentDidUpdate: function(prevProps, prevState)
+  // componentWillUnmount: function()
 
   //custom methods prefixed with an underscore
   _parstData() {}
@@ -160,5 +169,30 @@ function mapStateToProps(state) {
 // }
 // export default connect(null, mapDispatchToProps)(PostsIndex);
 export default connect(mapStateToProps, actions)(ArticlesIndex);
+
+
+
+
+//Dispatching from Events
+//events should be passed down from Container to Presentational Components. 
+//It turns out react-redux helps with that too in cases where an event simply needs to dispatch an action:
+
+///...
+
+const mapDispatchToProps = function(dispatch, ownProps) {
+  return {
+    toggleActive: function() {
+      dispatch({ ... });
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserListContainer);
+
+//In the Presentation Component, we can do onClick={this.props.toggleActive} 
+//just as we did before but this time we didn't have to write the event itself.
 
 

@@ -154,16 +154,89 @@ console.log(max);
 var max2 = Math.max(...arr);
 console.log(max2);
 
-//fill holes in an array
-//can also use _.compact in underscore
-function fillHoles(arr) {
-  var result = [];
-  for(var i=0; i < arr.length; i++) {
-    result[i] = arr[i];
-  }
-  return result;
+
+
+
+
+let professions = []
+for (var i = 0; i <= foundProfessions.length; i++) {
+ //professions.push(foundProfessions[i].body);
+ //console.log(foundProfessions[i].body);
+ professions.push(foundProfessions[i]);
 }
-var holedArray = ["a",,"b"];
-console.log(holedArray);
-console.log(fillHoles(["a",,"b"]));
-//[ 'a', undefined, 'b' ]
+
+//find the body of the profession using the professionId to lookup the reducer data
+let data = _.find(this.props.professions, function(item){ return item.id == professionId; });
+let body = data.body;
+
+//check if the user alreay selected the list item
+var inListAlready = _.some(selectedItemList, function (item) {
+  return item.id === professionId;
+});
+//add if not alreay in list and keep list to 5 items max
+if(!inListAlready && selectedItemList.length <= 4) {
+  //update the button list
+  selectedItemList.push({id: professionId, body: body});
+  //update the currently selected item (stored in the reducer)
+  this.props.dispatch(changeProfession(professionId, true));
+}
+
+//.every
+//(true/false if fined in array)
+//---------------------------------------
+
+//check if any errors in all fields
+let errorSomewhere = this.state.fields.every((item) => {
+    //return true or false
+    return item.error;
+});
+
+//Lodash
+//---------------------------------------
+
+//filter through an array of objects
+_.filter(datastore, function(item){
+  return item.incubatorIdentification.parent === 'Food';
+});
+
+//.some to return some objects from array of objects
+var foundEngagements = _.some(mockDataStore.businessEngagedIn, function (item) {
+  if(item === true) { return item }
+
+});
+
+//.omit return everything but the specified props
+const props = _.omit(this.props, 'todo');
+
+//find and replace
+//-----------------
+//copy the profession object at the incoming index payload
+var data = _.find(INITIAL_STATE, function(item){ return item.id == action.idPayload; });
+//set it to true
+data.isSet = action.isSetPayload;
+//console.log("found data: " + data);
+
+// Find item index using indexOf+find
+// look in to the initial state array to find the id of he passed action payload
+var index = _.indexOf(INITIAL_STATE, _.find(INITIAL_STATE, {id: action.idPayload}));
+//console.log("found index: " + index);
+
+// Replace item at index using native splice
+INITIAL_STATE.splice(index, 1, data);
+
+//-----------------
+
+
+//reset all
+
+for (let i =0; i <= myArray.length; i++ ) {
+  if(myArray[i].isSet === true) {
+    var data = myArray[i];
+    data.isSet = "false";
+    
+    //console.log(data);
+    // Replace item at index using splice
+  myArray.splice(i, 1, data);
+    //console.log(INITIAL_STATE);
+  }
+}

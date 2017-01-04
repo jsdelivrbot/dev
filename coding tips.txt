@@ -1,0 +1,9 @@
+-always get to the root of the problem. The further up the tree you can get the better.
+
+-keep fixed value things to markup (css/html)
+save your logic code for dynamic things
+
+-there should always be a simple way and an advanced way of doing any given task.
+Frameworks, languages and algorithms should also have a way for you to enter them using the “basics” and most problems should be solvable using the basics. Only if you can’t solve them using basics - should you try to solve things using advanced techniques.
+
+-have your mechanics working as console logs before you connect it to the moving parts

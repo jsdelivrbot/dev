@@ -509,20 +509,25 @@ applies to both these
 
 .parent-valign-wrapper {
     display: table;
-	/*    this has to have some height for contents to vertical alin into. Cannot use min-height*/
+	/* this has to have defined height for 
+    contents to vertical alin into. Cannot use min-height*/
     height: 200px;
+    width: 100%;
 }
 
 .parent-valign {
     display: table-cell;
-    width: 50%;
+    width: 100%;
     vertical-align: middle;
 	float: none !important;
 }
+/* heiarchy:
 
-.child-valign {
+parent-valign-wrapper 
+    parent-valign
 
-}
+
+*/
 
 
 /*vertical align technique 3-------------------------------*/
