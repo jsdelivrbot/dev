@@ -1,0 +1,91 @@
+/*@keyframes [name]{
+	from {
+		[styles];
+	}
+	to {
+		[styles];
+	}
+}*/
+
+@keyframes myFrames {
+	from {
+		height: 200px;
+		background: orange; 
+	}
+	to {
+		height: 400px;
+		background: pink;
+	}
+}
+
+/*use percents for multiple tweens*/
+@keyframes myFrames1 {
+	0% {
+		height: 200px;
+		background: orange; 
+	}
+	30% {
+		width: 300px;
+	}
+	100% {
+		height: 400px;
+		background: pink;
+	}
+}
+
+/*make it hang on a value for a period of time*/
+/*can also use this to make it pause*/
+@keyframes myFrames2 {
+	0% {
+		height: 200px;
+		background: orange; 
+	}
+	30%, 70% {
+		width: 300px;
+	}
+	100% {
+		height: 400px;
+		background: pink;
+	}
+}
+
+/*----------*/
+
+body {
+	padding: 50px;
+}
+
+/*animation: [name] [duration] [timming-function] [delay] */
+/*[iteration-count] [direction] [fill-mode] [play-state];*/
+
+.box {
+	display: inline-block;
+	background: pink;
+	width: 200px;
+	height: 200px;
+	position: relative;
+	/*make use of our animation property at the top*/
+	/*automatically starts on page load*/
+	/*animation: myFrames2 2s ease-in-out 0s infinite;*/
+
+	animation-name: myFrames2;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	/*delay before animation starts*/
+	animation-delay: 0s;
+	/*how many times does this animation occur*/
+	animation-iteration-count: infinite;
+	/*forwards/reverse/alternate*/
+	animation-direction: alternate;
+	/*what state the animation resumes in*/
+	animation-fill-mode: forwards;
+	/*running/paused*/
+	/*use with javascript to pause it*/
+	animation-play-state: running;
+
+}
+
+/*pause on click (through javascript)*/
+.box.paused {
+	animation-play-state: paused;
+}

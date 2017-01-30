@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="animation.css">
+	</head>
+	<body>
+		<div class="box"></div>
+		<script type="text/javascript">
+			var box = document.querySelector('.box');
+			box.addEventListener("click", function() {
+				console.log(this);
+				this.classList.toggle('paused');
+			});
+		</script>
+	</body>
+</html>

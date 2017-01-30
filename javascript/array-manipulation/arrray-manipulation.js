@@ -194,6 +194,9 @@ let errorSomewhere = this.state.fields.every((item) => {
 //Lodash
 //---------------------------------------
 
+//deep clone
+_.clone(arrayWithNestedObjects)
+
 //filter through an array of objects
 _.filter(datastore, function(item){
   return item.incubatorIdentification.parent === 'Food';
@@ -225,6 +228,20 @@ var index = _.indexOf(INITIAL_STATE, _.find(INITIAL_STATE, {id: action.idPayload
 INITIAL_STATE.splice(index, 1, data);
 
 //-----------------
+
+
+//foreach
+//itterate over an array of values and execute a function for each one
+//array.forEach(function(currentValue, index, arr), thisValue);
+//*it doesn't execute for blank values
+//is 95% slower than for loop
+//-----------------
+var myArray = [3,5,7];
+myArray.forEach(function(value, index){
+  console.log("index: ", index);
+  console.log("value: ", value);
+});
+
 
 
 //reset all

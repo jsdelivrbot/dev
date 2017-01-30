@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<script type="text/javascript">
+
+    if (typeof window.onpopstate != 'undefined') {
+        window.onpopstate = curHash;
+    } else if (typeof window.onhashchange != 'undefined') {
+        window.onhashchange = curHash;
+    }
+
+    function curHash() {
+        var h = window.location.hash;
+        if (h == '') return; // no hash. this is probably the first load
+        h = h.substr(1); // hash always starts with #
+        alert('hash: ' + h);
+    }
+
+</script>
+</head>
+
+<body>
+<ul style="margin:0; padding:0;">
+    <li><a href="#1">Click here for 1</a></li>
+    <li><a href="#2">Click here for 2</a></li>
+    <li><a href="#3">Click here for 3</a></li>
+    <li><a href="#4">Click here for 4</a></li>
+</ul>
+</body>
+</html>

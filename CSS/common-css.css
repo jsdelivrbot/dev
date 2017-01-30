@@ -489,14 +489,14 @@ applies to both these
 
 /*vertical align technique 1-------------------------------*/
 
-.parent {
+.v-align-parent {
     /*to eliminate blurryness for "half pixel" child element for vertical align*/
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.child {
+.v-align-child {
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -510,7 +510,7 @@ applies to both these
 .parent-valign-wrapper {
     display: table;
 	/* this has to have defined height for 
-    contents to vertical alin into. Cannot use min-height*/
+    contents to vertical align into. Cannot use min-height*/
     height: 200px;
     width: 100%;
 }

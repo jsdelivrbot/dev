@@ -1,0 +1,17 @@
+<html>
+<head>
+<link rel="stylesheet" href="transitions.css">
+</head>
+<body>
+<div class="trigger">
+	<div class="box"></div>
+</div>
+<script>
+	var trigger = document.querySelector('.trigger');
+	trigger.addEventListener("click", function() {
+		//console.log('hovered');
+		trigger.classList.toggle('clicked');
+	});
+</script>
+</body>
+</html>

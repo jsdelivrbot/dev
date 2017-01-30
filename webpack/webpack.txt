@@ -1,0 +1,29 @@
+completed code examples for udemy course:
+https://github.com/StephenGrider/WebpackCasts
+
+starter project:
+https://github.com/StephenGrider/WebpackProject
+
+deploy to github:
+—————————
+in project folder:
+git init 
+
+create repo then
+git remote add origin <your origin>
+
+create a branch (gh-pages):
+git checkout -b <branch-name>
+
+push only the dist directory to my origin to the specific brach of gh-pages (GitHub pages):
+git subtree push --prefix dist origin <branch-name>
+
+to preview:
+https://<github-username>.github.io/<repo-name>
+ex:
+https://benchung5.github.io/WebpackSampleDeploy
+
+
+
+
+

@@ -1,0 +1,18 @@
+from this vid:
+https://www.youtube.com/watch?v=m-NYyst_tiY&index=2&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f
+
+
+good design rules for module pattern:
+
+-self contained module
+	-everything to do with the module is in the module
+	-no global variables
+	-if managing more than one thing, it should be split up
+-separation of concerns
+-DRY code (don’t repeat yourself)
+-efficient DOM usage
+	-very few $(‘selector’) uses (dom caching)
+-no memory leaks
+	-all events can be unbound
+	(if you don’t unbind events, the event listener will stay in memory,
+	this is a problem for large single page apps where the page doesn’t refresh)

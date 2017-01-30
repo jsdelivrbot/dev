@@ -1,49 +1,65 @@
-//basic higher order component example.
-//https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
+//this is a higher order component (HOC) that wraps the incomming component 
+//and attaches additional functionality to it
+export default function (ComposedComponent, compData) {
+    class HOCpage extends Component {
 
-function withSubscription(WrappedComponent) {
-  return React.createClass({
-    getInitialState: function() {
-      return {
-        comments: DataSource.getComments()
-      };
-    },
+      constructor(props) {
 
-    componentDidMount: function() {
-      DataSource.addChangeListener(this.handleChange);
-    },
+        super(props);
+          this.state = {
+            //state props...
+          };
+      }
 
-    componentWillUnmount: function() {
-      DataSource.removeChangeListener(this.handleChange);
-    },
+      render() {
+              //pass this.state and this.props to the composed component
+              //access them both as this.props in the compoesed component
+              return <ComposedComponent ref='composedComponent' {...this.props} {...this.state} />
+              
+          }
+      }
 
-    handleChange: function() {
-      this.setState({
-        comments: DataSource.getComments()
-      });
-    },
-
-    render: function() {
-      // Use JSX spread syntax to pass all props and state down automatically.
-      return <WrappedComponent {...this.props} {...this.state} />;
-    }
-  });
+      function mapStateToProps(state) {
+        return {
+          //redux state
+        }
+      }
+          
+      return connect(mapStateToProps)(HOCpage);
 }
 
-// Optional change: convert CommentList to a functional component
-// because it doesn't use lifecycle hooks or state.
-function CommentList(props) {
-  var comments = props.comments;
-  return (
-    <div>
-      {comments.map(function(comment) {
-        return <Comment comment={comment} key={comment.id} />
-      })}
-    </div>
-  )
-}
 
-// Instead of declaring CommentListWithSubscription,
-// we export the wrapped component right away.
-module.exports = withSubscription(CommentList);
+//to use in our component..
+//optional info to pass onto our Hoc
+
+
+//utilities
+// import HOCpage from './HOCpage';
+
+// class MyComponent extends Component {
+
+//   constructor(props) {
+//     super(props);
+//     this.state ={
+
+//     }
+//   }
+
+//   render() {
+//     return (
+//         <div> 
+//           hello
+//         </div>
+//       )
+//   }
+
+// }
+
+// let compData = {
+
+// };
+
+// export default HocFlowComponent(MyComponent, compData);
