@@ -1,0 +1,296 @@
+good online book for javascript design patterns:
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/#mixinpatternjavascript
+
+sublime text series
+-https://www.youtube.com/watch?v=SVkR1ZkNusI&list=PLpcSpRrAaOaqQMDlCzE_Y6IUUzaSfYocK
+
+
+-good promises tut and explanation:
+https://www.youtube.com/watch?v=104J7_HyaG4
+
+
+-reduxobservable.js, redux
+https://www.youtube.com/watch?v=AslncyG8whg&spfreload=1
+
+good article on iterators:
+http://jsrocks.org/2015/09/javascript-iterables-and-iterators/
+
+react video series:
+https://www.youtube.com/watch?v=_D1JGNidMr4&index=5&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b&spfreload=5
+continue at video 5
+react with bootstrap (video 8)
+https://www.youtube.com/watch?v=XVdwq8W2ZsM&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b&index=8
+
+
+server side rendering with react
+https://www.youtube.com/watch?v=k66bOHX8MnY
+
+server side react router
+https://www.youtube.com/watch?v=Yqnk_kjVPH4
+
+speed up server side rendering in react:
+https://www.youtube.com/watch?v=PnpfGy7q96U
+
+optimize module packing with rollup:
+https://www.youtube.com/watch?v=ICYLOZuFMz8
+
+must reads:
+-high performance web sites
+-even faster web sites
+-browser networking
+
+react on the server:
+https://medium.com/front-end-hacking/server-side-rendering-with-react-and-express-382591bfc77c#.47t7w5b79
+
+
+good setup for nodejs and and ssl on digital ocean
+https://www.youtube.com/watch?v=kR06NoSzAXY
+
+closure:
+https://www.youtube.com/watch?v=71AtaJpJHw0
+
+javascript event loop:
+https://www.youtube.com/watch?v=8aGhZQkoFbQ
+tool:
+http://latentflip.com/loupe
+
+
+terms to look up:
+-interpreted coding language vs. oop
+-lexical
+-canonical
+-substring
+-flexbox
+-react motion
+-es lint setup:
+https://www.youtube.com/playlist?list=PL9f8_QifuTL4CS8-OyA-4WADhkddOnRS4
+
+
+javascript module pattern series:
+https://www.youtube.com/watch?v=HkFlM73G-hk&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f
+
+chrome dev tools profiler, performance:
+https://www.youtube.com/watch?v=w0O2znkSBXA
+
+
+funtional programming in javascript:
+https://www.youtube.com/playlist?list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84
+
+regex in javascript:
+https://www.youtube.com/watch?v=44P2s6bZ8Js
+
+React native book:
+https://www.amazon.com/gp/product/1491929006/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1491929006&linkCode=as2&tag=bonnieisen-20&linkId=IWLKP5BIVDREECM3
+
+ES6 Imports
+https://www.youtube.com/watch?v=szymhanG_WM
+
+events and user input in javascript
+https://www.youtube.com/watch?v=e57ReoUn6kM
+
+event emitter in node
+https://www.udemy.com/understand-nodejs/learn/v4/t/lecture/3566484
+
+using forms:
+https://www.youtube.com/watch?v=1eNIYif69_0
+
+read - react best practices:
+https://blog.risingstack.com/react-js-best-practices-for-2016/
+
+basic react router:
+https://www.udemy.com/react-redux/learn/v4/t/lecture/4419854
+
+codepen shortcuts
+https://www.youtube.com/channel/UCxs_jV7Wq-xCgQ1L7aGT6uQ
+
+------------------
+
+look for:
+-
+43:01 in javascript video to explain react render class
+super is close after that
+
+
+
+
+framework - express with sequelize:
+https://github.com/sequelize/express-example
+
+wireframe software:
+-mockflow
+
+software to expose security issues:
+webgoat
+
+
+react series of many youtube tutorials
+https://www.youtube.com/user/LevelUpTuts/search?query=react
+
+server side javascript using node and react:
+https://www.youtube.com/watch?v=8wfY4TGtMUo
+
+node streams:
+https://www.youtube.com/watch?v=yOSNQZm3Trw
+(good for a blog article on node streams)
+
+react:
+https://www.udemy.com/react-redux/learn
+https://github.com/StephenGrider/ReduxCasts
+
+sass:
+https://www.youtube.com/watch?v=wz3kElLbEHE&spfreload=1#t=194.793401
+code:
+http://www.newthinktank.com/2015/04/sass-video-tutorial/
+
+-complete the sass video and do
+https://www.youtube.com/watch?v=onDepQs4-uk
+also read the printed article
+
+read:
+http://code.tutsplus.com/tutorials/start-using-html5-websockets-today--net-13270
+
+udemy - nodejs tutorials:
+https://www.udemy.com/understand-nodejs/learn
+
+react tutorials (Jesse)
+https://www.youtube.com/watch?v=3B5RDAps9mA
+
+object oriented javascript
+https://www.youtube.com/watch?v=O8wwnhdkPE4#t=418.226893
+
+source code:
+http://www.newthinktank.com/2015/09/object-oriented-javascript/
+
+basic ssh
+https://www.youtube.com/watch?v=DbPDraCYju8
+
+vagrant:
+
+https://www.youtube.com/watch?annotation_id=annotation_2875446895&feature=iv&src_vid=DbPDraCYju8&v=PmOMc4zfCSw
+
+
+
+
+https://www.youtube.com/watch?v=PmOMc4zfCSw#t=353.292766
+https://www.youtube.com/watch?v=ZGUEjZckijA#t=51.479251
+perhaps this will work:
+https://www.youtube.com/watch?v=ZGUEjZckijA
+
+-myql good video on workbench and commandline
+https://www.youtube.com/watch?v=yPu6qV5byu4
+source code:
+http://www.newthinktank.com/2014/08/mysql-video-tutorial/
+normallization:
+https://www.youtube.com/watch?v=UrYLYV7WSHM
+
+-ssh tutorial first
+https://www.youtube.com/watch?v=DbPDraCYju8
+
+-eventually install node on the vps video
+https://www.youtube.com/watch?v=W3rnQbsMb4Q
+
+-jsx/react in node js
+https://www.youtube.com/watch?v=6IJu57l_Wuw
+
+look at the express generator install:
+https://www.udemy.com/understand-nodejs/learn/v4/t/lecture/3658454
+(giving a typical structure)
+
+setting up a vps for node.js (digital ocean)
+1.
+https://www.youtube.com/watch?v=W3rnQbsMb4Q
+2.
+uploading and provisioning it once it's uploaded:
+https://www.youtube.com/watch?annotation_id=annotation_3468417693&feature=iv&src_vid=W3rnQbsMb4Q&v=XxRuW1pfGTI
+3.
+setting node as a service
+
+or
+https://www.youtube.com/watch?v=ypjzi1axH2A
+
+mysql with node:
+https://www.youtube.com/watch?v=hGZX_SA7lYg
+
+twillio with node:
+https://www.youtube.com/watch?v=REyT7DUMMu8
+
+node/react/webpack video:
+https://www.youtube.com/watch?v=4WMD93IKU_Q
+
+setting node environment for production:
+http://www.hacksparrow.com/running-express-js-in-production-mode.html
+
+Build a GraphQL server for Node.js, using PostgreSQL/MySQL:
+https://www.youtube.com/watch?v=DNPVqK_woRQ
+
+Continue sequelize videos:
+https://www.youtube.com/watch?v=JAld7bV5qV8&list=PL5ze0DjYv5DYBDfl0vF_VRxEu8JdTIHlR&index=5#t=728.73607
+
+articles:
+1:
+PostgreSQL and NodeJS
+http://mherman.org/blog/2015/02/12/postgresql-and-nodejs/#.V1AukpErKUl
+
+2:
+Node, Postgres, and Sequelize
+http://mherman.org/blog/2015/10/22/node-postgres-sequelize/#.V097rJErKUk
+
+3:
+An Introduction to Sequelize.Js
+https://milinaudara.wordpress.com/2014/05/24/an-introduction-to-sequelize-js/
+
+Docker wityh node and digital ocean
+1.
+https://www.youtube.com/watch?v=JBtWxj9l7zM
+2.
+https://www.youtube.com/watch?v=K6WER0oI-qs
+3.
+building microservice in docker
+
+nodejs for production (articles):
+
+https://blog.heroku.com/archives/2014/3/11/node-habits
+https://www.joyent.com/developers/node
+http://blog.carbonfive.com/2014/06/02/node-js-in-production/
+
+docker with node
+
+nginx with node
+https://www.youtube.com/watch?v=FJrs0Ar9asY
+
+
+setting up nginx
+https://www.youtube.com/watch?v=7QXnk8emzOU
+
+
+https://www.youtube.com/watch?v=S3O8QcovtSs
+
+
+wordpress sites using docker as separate service containers with volumes:
+https://www.youtube.com/watch?v=Pe6a8Jbvi9E
+
+**
+complete docker trainning:
+
+https://www.youtube.com/results?search_query=Docker+Training%2C+Noureddin+Sadawi
+
+uploading files nodejs:
+https://www.youtube.com/watch?v=UtfZ-5WKpro
+
+using multi for image uploads
+https://www.youtube.com/watch?v=2y9Nl04B2UA
+https://www.youtube.com/watch?v=H6RW9B0rn0c
+
+dynamic image resizing to optimize in node
+
+
+
+
+
+
+
+
+
+
+
+
