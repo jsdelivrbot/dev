@@ -1,0 +1,11 @@
+/*   
+Theme Name: Child Theme
+Theme URI: http://1pixeldesign.com/
+Description: Child Theme for safe theme alterations.
+Author: Ben Chung
+Author URI: http://1pixeldesign.com/
+Template: 1pixel
+
+*/
+
+@import url("../1pixel/style.css");

@@ -1,0 +1,98 @@
+/* 
+    Document   : theme-settings
+    Created on : Nov 2, 2013, 10:14:13 AM
+    Author     : Ben
+    Description:
+        for styling theme settings page
+*/
+
+/*messages*/
+.error {color:#CC0000;}
+
+.empty-message {
+    display: none;
+}
+
+#contrib-users .delete {
+    display: none;
+}
+
+#contrib-sort-order > div {
+  padding-right: 26px !important;
+  box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+.sorting-container {
+    height: auto;
+/*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
+/*width: 600px;*/
+display: inline-block;
+
+/*    must have position relative*/
+    position: relative;
+}
+
+.sorting-container .delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding:10px;
+    cursor: pointer;
+}
+
+#contrib-sort-order, #contrib-users {
+    border: 1px solid #ddd;
+    float: left;
+    width: 200px;
+/*    must have a big enough height for dropping to work*/
+    min-height: 200px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#contrib-users {
+    margin-right: -1px;
+}
+
+
+#contrib-sort-order > div, #contrib-users > div{
+    background: #DDDDDD;
+    min-height: 18px;
+    margin-bottom: 5px;
+    padding: 10px;
+    position: relative;
+/*    must define the width for the dropping to work*/
+/*    width: 180px;*/
+}
+
+#contrib-sort-order > div:last-child, #contrib-users > div:last-child{
+    margin-bottom: 0 !important;
+
+}
+
+#contrib-sort-order div.default-message, #contrib-users div.default-message td{
+    background: transparent !important;
+}
+
+.description-sort {
+    margin-bottom: 5px;
+    display: block;
+    font-size: 13px;
+    font-style: italic;
+}
+
+form input[id^="contrib"] {
+    width: 25em;
+}
+
+input#contrib_order {
+/*    hide our input box that stores the list of included contributors*/
+    display: none;
+}
+
+/*#contrib-sort-order {
+    min-height: 200px;
+}*/
+
+
+

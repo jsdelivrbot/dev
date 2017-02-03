@@ -1,0 +1,15 @@
+/* 
+    Document   : theme-settings
+    Created on : Nov 2, 2013, 10:14:13 AM
+    Author     : Ben
+    Description:
+        for styling theme settings page
+*/
+
+/*messages*/
+.error {color:#CC0000;}
+
+table#contrib-sort-order td{
+    background: #DDDDDD;
+    width: 329px;
+}

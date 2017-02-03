@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<title>Your Site Title | Your Site Brief Tagline</title>
+	<meta name="description" content="Home - Your Site Title | Your Site Brief Tagline" />
+	<meta charset="UTF-8" />
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<meta name="viewport" content="width=device-width; initial-scale=1"/>	<link rel="icon" href="http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/1pixel_favicon.ico" type="image/x-icon" />
+	<link rel="pingback" href="http://dev.1pixeldesign.com/wordpress2/xmlrpc.php" />
+	<link rel="alternate" type="application/rss+xml" title="Your Site Title" href="http://dev.1pixeldesign.com/wordpress2/feed/" />
+	<link rel="alternate" type="application/atom+xml" title="Your Site Title" href="http://dev.1pixeldesign.com/wordpress2/feed/atom/" />
+        		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+<!-- This site is optimized with the Yoast SEO plugin v2.3.5 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="http://dev.1pixeldesign.com/wordpress2/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Home - Your Site Title" />
+<meta property="og:url" content="http://dev.1pixeldesign.com/wordpress2/" />
+<meta property="og:site_name" content="Your Site Title" />
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"WebSite","url":"http:\/\/dev.1pixeldesign.com\/wordpress2\/","name":"Your Site Title","potentialAction":{"@type":"SearchAction","target":"http:\/\/dev.1pixeldesign.com\/wordpress2\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Your Site Title &raquo; Home Comments Feed" href="http://dev.1pixeldesign.com/wordpress2/home/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/dev.1pixeldesign.com\/wordpress2\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.3.1"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='mailchimp-for-wp-checkbox-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/plugins/mailchimp-for-wp/assets/css/checkbox.min.css?ver=2.3.17' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-style-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/css/woocommerce.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='foundation-style-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/css/foundation.min.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='font-icon-style-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/css/font-awesome.min.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='flexslider-css-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/css/flexslider.min.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='default-style-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/child-theme/style.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='media-queries-style-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/css/media-queries.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mailchimp-for-wp-form-css'  href='http://dev.1pixeldesign.com/wordpress2/wp-content/plugins/mailchimp-for-wp/assets/css/form.min.css?ver=2.3.17' type='text/css' media='all' />
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/jquery.easing.1.3.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://heartcode-canvasloader.googlecode.com/files/heartcode-canvasloader-min-0.9.1.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/jquery.sticky.min.js?ver=4.3.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var onePixel_data = {"site_url":"http:\/\/dev.1pixeldesign.com\/wordpress2","menutype":"In Header","slideshow_direction":"horizontal","slideshow_speed":"7000","slideshow_animation_speed":"600","slideshow_animation_type":"slide","slideshow_animation_loop":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/onePixel.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/jquery.mobilemenu.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/modernizr.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/jquery.stellar.min.js?ver=4.3.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://dev.1pixeldesign.com/wordpress2/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://dev.1pixeldesign.com/wordpress2/wp-includes/wlwmanifest.xml" /> 
+<!--1 Pixel theme-->
+<link rel='shortlink' href='http://dev.1pixeldesign.com/wordpress2/' />
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'><link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <style type='text/css' media='all'>
+/*google fonts*/
+    body { font-family: PT Sans !important; }
+    h1,h2,h3,h4,h5,h6, .large { font-family: Open Sans; }
+    
+/*colors-----------------------------------*/
+
+    /*bodytext color*/
+    body { color: #6d6d6d !important;}
+
+    /*large text color*/
+    .large { color: #a0a0a0 !important;}    
+    
+    /*highlight*/
+    .highlight { color: #add8e6 !important;}
+    .content-block { border-top-color: #add8e6 !important; }
+    
+    #giant-submenu-wrapper.depth-0 > ul > li > a:hover, #giant-submenu-wrapper.depth-0 > ul > li > ul#giant-sub-menu > li a:hover,
+    a:link:hover, a:visited:hover, #sidebar .widget-area > ul > li > a:link:hover, 
+    #sidebar .widget-area > ul > li > a:visited:hover, #nav-primary > .nav-wrapper > nav > div > ul > li > a:hover, 
+    #nav-primary-giant > .nav-wrapper > nav > div > ul > li > a:hover, #nav-primary-b > .nav-wrapper > nav > div > ul > li > a:hover,
+    #nav-primary-b ul.sub-menu > li > a:hover, #nav-primary ul.sub-menu > li > a:hover
+    { color: #add8e6;}
+    
+    .slider-widget .flex-control-paging li a.flex-active {background: #add8e6;}
+    
+    ::selection {background: #add8e6;}
+    ::-moz-selection {background: #add8e6;}
+
+    /*midtone color*/
+    .catch-phrase { background: #7c7c7c !important; }
+    
+    /*subfooter background*/
+    #footertop { background: #333  url(http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2015/06/bg-footer.jpg) no-repeat center top !important; 
+                -webkit-background-size: cover !important;
+                -moz-background-size: cover !important;
+                -o-background-size: cover !important;
+                background-size: cover !important; 
+                }
+    
+    /*darkest color*/
+    #footer { background: #121212 !important; }
+
+    /*header color*/
+    #header-main-wrapper { background: rgba(0,0,0,0.85) !important; }
+    
+    .homeslider, .full-width-img-home { max-height:700px; }
+    
+    /*set the min-width to the size of the uploaded image*/
+    .homeslider .flexslider .slides img {
+        min-width: <br />
+<b>Notice</b>:  Undefined variable: featured_img_width in <b>/home/mollys7/public_html/dev/wordpress2/wp-content/themes/1pixel/lib/head-styles.php</b> on line <b>102</b><br />
+px;
+    }
+    
+    /*flexslider caption*/
+   .homeslider .flex-caption { top: 31%; }
+    
+    @media only screen and (max-width: 479px) {
+    .homeslider .flex-caption { top:0; }
+    .homeslider, .full-width-img-home, .homeslider .flex-viewport .slides > li { height: auto !important; }
+    }
+    
+    /*html background img*/
+    html { background: #121212  url(http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2015/06/img-bg.jpg) no-repeat center top fixed !important; 
+            -webkit-background-size: cover !important;
+            -moz-background-size: cover !important;
+            -o-background-size: cover !important;
+            background-size: cover !important;
+            }
+    
+    
+    
+    </style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+ 	        
+</head>
+
+<!--if contact page, load google map, and load body class on all pages-->
+<body  class="home page page-id-96 page-template page-template-template-home page-template-template-home-php transparent-header inheader-menu fixed-caption standard-pageheader ">
+    
+    
+    
+<div class="hide">
+	<p><a href="#content">Skip to Content</a></p></div><!--.none-->
+
+<div class="clear"></div>
+
+
+
+
+
+<header id="site-header">
+         <div id="header-inner">
+         <div class="testpagey" style="display: none; background: #000;">&nbsp;<!--keep this to make the height work for testing--></div>
+                     <div id="header-main-wrapper">
+                 <div id="header-main" class="row">
+                     
+                         <div class="large-3 columns media-center-lg">
+                             <div id="logo-header" style="max-width: 200px; margin-top:echo $onepix_option['onepix_logo_margin_top'] ?>px;">
+                                 <a href="http://dev.1pixeldesign.com/wordpress2"><img src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2014/07/logo-main.png" alt="Logo" title="Your Site Title"/></a>
+                             </div>
+                         </div>
+                         <div class="large-9 columns">
+                             <div id="header-right">
+                                                                      <div id="nav-primary" class="nav">
+                                         <div class="nav-wrapper">
+<!--                                             this remains hidden until sticky-->
+                                             <div id="logo-header-sticky" style="max-width: 200px; margin-top:echo $onepix_option['onepix_logo_margin_top'] ?>px;">
+                                                <a href="http://dev.1pixeldesign.com/wordpress2"><img src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2014/07/logo-main.png" alt="Logo" title="Your Site Title"/></a>
+                                             </div>
+                                         
+                                             <nav>
+
+                                             <div class="menu-demo-main-menu-container"><ul id="menu-demo-main-menu" class="custom_main_menu"><li id="menu-item-576" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-96 current_page_item menu-item-576"><a href="http://dev.1pixeldesign.com/wordpress2/">Home</a></li>
+<li id="menu-item-1001" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1001"><a href="http://dev.1pixeldesign.com/wordpress2/showcase-page/">Showcase Page</a></li>
+<li id="menu-item-605" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-605"><a href="http://dev.1pixeldesign.com/wordpress2/blog/">Blog</a></li>
+<li id="menu-item-1016" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1016"><a href="http://dev.1pixeldesign.com/wordpress2/testimonial">Testimonials</a></li>
+<li id="menu-item-580" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-580"><a href="#">Sample Pages</a>
+<ul class="sub-menu">
+	<li id="menu-item-579" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-579 columns "><a href="http://dev.1pixeldesign.com/wordpress2/contact/">Contact</a></li>
+	<li id="menu-item-586" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-586 columns "><a href="http://dev.1pixeldesign.com/wordpress2/about-us/">About Us</a></li>
+	<li id="menu-item-800" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-800 columns "><a href="http://dev.1pixeldesign.com/wordpress2/full-width/">Full Width</a></li>
+	<li id="menu-item-740" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-740 columns "><a href="http://dev.1pixeldesign.com/wordpress2/sample-page-2/">Sample Page 2</a></li>
+	<li id="menu-item-975" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-975 columns "><a href="http://dev.1pixeldesign.com/wordpress2/brands/">Brands</a></li>
+	<li id="menu-item-992" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-992 columns "><a href="http://dev.1pixeldesign.com/wordpress2/scroll-navigation/">Scroll Navigation</a></li>
+</ul>
+</li>
+<li id="menu-item-581" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#">Elements</a>
+<ul class="sub-menu">
+	<li id="menu-item-637" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-637 columns "><a href="http://dev.1pixeldesign.com/wordpress2/typography/">Typography</a></li>
+	<li id="menu-item-632" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-632 columns "><a href="http://dev.1pixeldesign.com/wordpress2/columns/">Columns</a></li>
+	<li id="menu-item-636" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-636 columns "><a href="http://dev.1pixeldesign.com/wordpress2/shortcodes/">Shortcodes</a></li>
+	<li id="menu-item-631" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-631 columns "><a href="http://dev.1pixeldesign.com/wordpress2/buttons/">Buttons</a></li>
+	<li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633 columns "><a href="http://dev.1pixeldesign.com/wordpress2/dividers/">Dividers</a></li>
+	<li id="menu-item-635" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-635 columns "><a href="http://dev.1pixeldesign.com/wordpress2/icons/">Icons</a></li>
+</ul>
+</li>
+<li id="menu-item-585" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://dev.1pixeldesign.com/wordpress2/sliders/">Sliders</a></li>
+<li id="menu-item-764" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#">WooCommerce</a>
+<ul class="sub-menu">
+	<li id="menu-item-768" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-768 columns "><a href="http://dev.1pixeldesign.com/wordpress2/shop/">Shop</a>
+	<ul class="sub-menu">
+		<li id="menu-item-956" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#">subpage</a></li>
+	</ul>
+</li>
+	<li id="menu-item-765" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-765 columns "><a href="http://dev.1pixeldesign.com/wordpress2/cart/">Cart</a></li>
+	<li id="menu-item-766" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-766 columns "><a href="http://dev.1pixeldesign.com/wordpress2/checkout/">Checkout</a></li>
+	<li id="menu-item-767" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-767 columns "><a href="http://dev.1pixeldesign.com/wordpress2/my-account/">My Account</a></li>
+</ul>
+</li>
+</ul></div>
+                                            </nav>
+                                         </div><!--#nav-wrapper-->
+                                     </div><!--#nav-primary-->
+                                                              </div>
+                         </div>
+
+
+                                      </div>
+             </div>
+                  
+         
+                  
+                  
+            <div id="mobile-menu-container">
+                <div id="mobile-selector" unselectable="on" class="unselectable"><span>Navigate to...</span></div>
+                <div id="mobile-menu" unselectable="on" class="unselectable"><ul id="menu-demo-main-menu-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-96 current_page_item menu-item-576"><a href="http://dev.1pixeldesign.com/wordpress2/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1001"><a href="http://dev.1pixeldesign.com/wordpress2/showcase-page/">Showcase Page</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-605"><a href="http://dev.1pixeldesign.com/wordpress2/blog/">Blog</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1016"><a href="http://dev.1pixeldesign.com/wordpress2/testimonial">Testimonials</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-580"><a href="#">Sample Pages</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-579"><a href="http://dev.1pixeldesign.com/wordpress2/contact/">Contact</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-586"><a href="http://dev.1pixeldesign.com/wordpress2/about-us/">About Us</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-800"><a href="http://dev.1pixeldesign.com/wordpress2/full-width/">Full Width</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-740"><a href="http://dev.1pixeldesign.com/wordpress2/sample-page-2/">Sample Page 2</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-975"><a href="http://dev.1pixeldesign.com/wordpress2/brands/">Brands</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-992"><a href="http://dev.1pixeldesign.com/wordpress2/scroll-navigation/">Scroll Navigation</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-581"><a href="#">Elements</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-637"><a href="http://dev.1pixeldesign.com/wordpress2/typography/">Typography</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-632"><a href="http://dev.1pixeldesign.com/wordpress2/columns/">Columns</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-636"><a href="http://dev.1pixeldesign.com/wordpress2/shortcodes/">Shortcodes</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-631"><a href="http://dev.1pixeldesign.com/wordpress2/buttons/">Buttons</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="http://dev.1pixeldesign.com/wordpress2/dividers/">Dividers</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-635"><a href="http://dev.1pixeldesign.com/wordpress2/icons/">Icons</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-585"><a href="http://dev.1pixeldesign.com/wordpress2/sliders/">Sliders</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-764"><a href="#">WooCommerce</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-768"><a href="http://dev.1pixeldesign.com/wordpress2/shop/">Shop</a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-956"><a href="#">subpage</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-765"><a href="http://dev.1pixeldesign.com/wordpress2/cart/">Cart</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-766"><a href="http://dev.1pixeldesign.com/wordpress2/checkout/">Checkout</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-767"><a href="http://dev.1pixeldesign.com/wordpress2/my-account/">My Account</a></li>
+</ul>
+</li>
+</ul></div>
+            </div>
+         </div>
+    </header>
+    <div class="clear"></div>
+    
+
+   <div class = "loading-container">
+
+           
+    
+    <div id="main-wrapper"><!-- the wrapper for header, footer, and content area -->
+
+       
+
+                
+
+<!--your loading icon-->
+<!--<img id="onepix-imgloader" src="/images/flexslider/loading.gif" width="32" height="32" alt="loading"/>-->
+<div class="homeslider flexslider-wrapper">
+
+    <div id="slider" class="flexslider homeslider">
+        <ul class="slides">
+
+                        <li style="height:700px;">
+
+                            <a href="http://1pixeldesign.com/dev/wordpress2/wp-content/uploads/2014/12/545X305.jpg">
+                <div class="featured-gradient"></div><!-- gradient overlay  -->
+                <img width="1500" height="783" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2014/10/featured-img-thin-1500x783.jpg" class="attachment-home-slider wp-post-image" alt="featured-img-thin" />            </a>
+                        
+        
+         
+                
+        </li>
+            <li style="height:700px;">
+
+                            <a href="http://1pixeldesign.com/dev/wordpress2/wp-content/uploads/2014/10/featured-img-thin.jpg">
+                <div class="featured-gradient"></div><!-- gradient overlay  -->
+                <img width="1500" height="783" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2014/10/featured-img-thin-1500x783.jpg" class="attachment-home-slider wp-post-image" alt="featured-img-thin" />            </a>
+                        
+        
+         
+                
+        </li>
+
+    </ul><!-- .slides -->
+    
+    
+    
+    <div class="flex-caption-wrapper" >
+        <div class="flex-caption">
+            <div class="caption-container">
+                <div class="text-container caption-one">
+                    <h1 id="homepage-feature-title" >Your Site Title</h1>
+                    <h2 id="homepage-subfeature-title" >What your site is all about</h2>
+                    Secondary tagline                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+</div><!-- .flexslider -->
+
+
+    
+</div>
+
+
+
+    <div class="home-below-featured-wrapper">
+        <!--below header featured widget area-->
+        <div id="text-21" class="widget widget-widget_text">			<div class="textwidget"><div class="sectionHeader "><div class="sectionHeadingWrap"><div class="sectionHeading-container"><span class="sectionHeading-before"></span><div class="sectionHeading">Section Header Title Cras sed mi vel lorem porttitor adipiscing</div><span class="sectionHeading-after"></span></div></div></div></div>
+		</div>    </div>
+
+
+    <!--home below content widget area-->
+    <div class="home-above-content-wrapper">
+        <div id="onepix_img_circles-2" class="widget widget-onepix_img_circles">            
+                                
+                        
+                        
+        <div id="home-circle-callboxes-wrapper">
+            <div id="home-circle-callboxes" class="other">
+
+                <ul class="large-block-grid-3 media-center-lg media-spacer-lg">
+                    <li>
+                        <div class="cat-header-wrapper">
+                            <div class="cat-header-image">
+                                <a href="#"><img src="http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/images/default-image-545x545.jpg"></a>       		        
+                            </div>
+                            <div class="circle-caption">
+                                <a class="caption-title" href="#"><h3>a. -ociisitamet Ptu</h3></a>                                <div class="caption-info">elementum tellus gravida porttitor. Ut et ligula in diam pretium lobortis sit amet ut velit.</div>
+                                    <a class="read-more" href="#">Read More &rarr;</a>
+                                
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cat-header-wrapper">
+                            <div class="cat-header-image">
+                                <a href="#"><img src="http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/images/default-image-545x545.jpg"></a>       		        
+                            </div>
+                            <div class="circle-caption">
+                                <a class="caption-title" href="#"><h3>a. -ociisitamet Ptu</h3></a>                                <div class="caption-info">elementum tellus gravida porttitor. Ut et ligula in diam pretium lobortis sit amet ut velit.</div>
+                                    <a class="read-more" href="#">Read More &rarr;</a>
+                                
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cat-header-wrapper">
+                            <div class="cat-header-image">
+                                <a href="#"><img src="http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/images/default-image-545x545.jpg"></a>       		        
+                            </div>
+                            <div class="circle-caption">
+                                <a class="caption-title" href="#"><h3>a. -ociisitamet Ptu</h3></a>                                <div class="caption-info">elementum tellus gravida porttitor. Ut et ligula in diam pretium lobortis sit amet ut velit.</div>
+                                    <a class="read-more" href="#">Read More &rarr;</a>
+                                
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+                        
+             
+                                                        
+        <!--    </div>-->
+        <div class="clear"></div>
+                                        
+        </div>    </div>
+
+<!-- begin home body content-->
+<div class="body-container home-body-container">
+
+
+<!-- content-->
+
+        <div class="row ">
+<div class="medium-12 columns center">
+<h1 class="x-large">Centered Large Headline</h1>
+<p class="large ">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis nulla nec neque eleifend consectetur in nec nisi. Vestibulum luctus justo ut lacus semper vestibulum. Nulla tempus erat sit amet <a class="highlight " href="#">dui interdum</a> iaculis. Fusce quis sollicitudin lorem.
+</p>
+</div>
+</div>
+
+
+
+
+<!--#content-->
+
+<div class="clear"></div>
+</div><!--.container-->
+
+    <div class="above-footer-wrapper">
+        <!--    above footer widget area-->
+        <div id="onepix_post_boxes-3" class="widget widget-onepix_post_boxes">                                
+                                
+        
+    <div id="home-category-boxes">
+                <ul class="small-block-grid-2 large-block-grid-3">
+                    
+                            <li>
+                                <div class="cat-header-wrapper">
+                                <a href="http://dev.1pixeldesign.com/wordpress2/testpost3/" rel="bookmark" title="Permanent Link to Testpost3">
+                                    <img width="545" height="545" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2013/12/700X545-545x545.jpg" class="attachment-post-thumbnail wp-post-image" alt="700X545" />                                </a>
+                                <div class="cat-header" style="display:none;"><a href="http://dev.1pixeldesign.com/wordpress2/testpost3/" title="Testpost3">Testpost3</a></div>
+                            </div>
+                            </li>
+                            
+                            <li>
+                                <div class="cat-header-wrapper">
+                                <a href="http://dev.1pixeldesign.com/wordpress2/testpost-5/" rel="bookmark" title="Permanent Link to Video Post">
+                                    <img width="545" height="545" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2015/03/545X545-545x545.jpg" class="attachment-post-thumbnail wp-post-image" alt="545X545" />                                </a>
+                                <div class="cat-header" style="display:none;"><a href="http://dev.1pixeldesign.com/wordpress2/testpost-5/" title="Video Post">Video Post</a></div>
+                            </div>
+                            </li>
+                            
+                            <li>
+                                <div class="cat-header-wrapper">
+                                <a href="http://dev.1pixeldesign.com/wordpress2/testpost4/" rel="bookmark" title="Permanent Link to Testpost4">
+                                    <img width="545" height="545" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2013/12/700X545-545x545.jpg" class="attachment-post-thumbnail wp-post-image" alt="700X545" />                                </a>
+                                <div class="cat-header" style="display:none;"><a href="http://dev.1pixeldesign.com/wordpress2/testpost4/" title="Testpost4">Testpost4</a></div>
+                            </div>
+                            </li>
+                                                            </ul>
+            </div>
+
+        </div><div id="onepix_fullwidth_container-2" class="widget widget-onepix_fullwidth_container">                        
+        <div class="fullwidth-container full-width-img plax-img" style="background-image: url(http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/images/default-parallax-image.jpg)" >
+            <div class="row"> 
+                <div class="medium-12 columns">
+                    <div class="row media-spacer-med white-text">
+<div class="medium-3 columns center">
+<div class="icon-border-true" style="border-color:#3ab5fc;"><span class="icon-circle icon-med solid" style="color:#fff; background-color: #3ab5fc; border-color:#3ab5fc"><i class="fa fa-cogs"></i></span></div>
+<div class="spacer-sml"></div>
+<div class="underline-divider-wrapper center "><h3>Title Here</h3>
+<div class="divider dotted"></div></div>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis nulla nec neque eleifend consectetur in nec nisi. Vestibulum luctus justo ut lacus semper <a class="highlight" href="#">vestibulum</a>
+</div>
+<div class="medium-3 columns center">
+<div class="icon-border-true" style="border-color:#3ab5fc;"><span class="icon-circle icon-med solid" style="color:#fff; background-color: #3ab5fc; border-color:#3ab5fc"><i class="fa fa-cogs"></i></span></div>
+<div class="spacer-sml"></div>
+<div class="underline-divider-wrapper center "><h3>Title Here</h3>
+<div class="divider dotted"></div></div>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis nulla nec neque eleifend consectetur in nec nisi. Vestibulum luctus justo ut lacus semper <a class="highlight" href="#">vestibulum</a>
+</div>
+<div class="medium-3 columns center">
+<div class="icon-border-true" style="border-color:#3ab5fc;"><span class="icon-circle icon-med solid" style="color:#fff; background-color: #3ab5fc; border-color:#3ab5fc"><i class="fa fa-cogs"></i></span></div>
+<div class="spacer-sml"></div>
+<div class="underline-divider-wrapper center "><h3>Title Here</h3>
+<div class="divider dotted"></div></div>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis nulla nec neque eleifend consectetur in nec nisi. Vestibulum luctus justo ut lacus semper <a class="highlight" href="#">vestibulum</a>
+</div>
+<div class="medium-3 columns center">
+<div class="icon-border-true" style="border-color:#3ab5fc;"><span class="icon-circle icon-med solid" style="color:#fff; background-color: #3ab5fc; border-color:#3ab5fc"><i class="fa fa-cogs"></i></span></div>
+<div class="spacer-sml"></div>
+<div class="underline-divider-wrapper center "><h3>Title Here</h3>
+<div class="divider dotted"></div></div>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis nulla nec neque eleifend consectetur in nec nisi. Vestibulum luctus justo ut lacus semper <a class="highlight" href="#">vestibulum</a>
+</div>
+</div>                </div>
+            </div>
+            <div class="clear"></div>
+        </div>      
+                                        
+        </div>    </div>
+
+
+                    <div id="footertop">
+                <div class="row media-spacer-med">
+                    <div class="medium-3 columns footer1">
+                            <div id="text-16" class="widget widget-widget_text">			<div class="textwidget"><div class="heading-divider-wrapper ">
+<h3 class="divider-heading">From Our Gallery</h3>
+<div class="divider-container">
+<div class="heading-divider divider large"></div>
+</div>
+</div></div>
+		</div><div id="text-18" class="widget widget-widget_text">			<div class="textwidget"><div class="spacer-med"></div>
+<div class="socials large round greyscale">
+
+            
+            <a class="social link-facebook"alt="facebook" href="http://facebook.com"><i class="fa fa-facebook fa-lg simple_social"></i></a>
+                <a class="social link-twitter" alt="twitter" href="http://twitter.com"><i class="fa fa-twitter fa-lg simple_social"></i></a>
+                <a class="social link-linkedin" alt="linkedin" href="http://linkedin.com"><i class="fa fa-linkedin fa-lg simple_social"></i></a>
+                <a class="social link-pinterest" alt="pinterest" href="http://pinterest.com"><i class="fa fa-pinterest fa-lg simple_social"></i></a>
+                <a class="social link-googleplus" alt="googleplus" href="http://googleplus.com"><i class="fa fa-google-plus fa-lg simple_social"></i></a>
+                <a class="social link-instagram" alt="instagram" href="http://instagram.com"><i class="fa fa-instagram fa-lg simple_social"></i></a>
+                <a class="social link-youtube" alt="youtube" href="http://youtube.com"><i class="fa fa-youtube fa-lg simple_social"></i></a>
+        <div class="clear"></div>
+        
+
+</div>
+</div>
+		</div>                    </div>
+                    <div class="medium-3 columns footer2">
+                        <!-- Footer Top 2 -->                    </div>
+                    <div class="medium-3 columns footer3">
+                        <div id="onepix_fa_title-5" class="widget widget-onepix_fa_title"><h3><i class="fa fa-coffee"></i>&nbsp;&nbsp;Quick Links</h3>
+        <!--    </div>-->
+            <div class="clear"></div>
+                                
+        </div><div id="nav_menu-4" class="widget widget-widget_nav_menu"><div class="menu-custom-footer-menu-container"><ul id="menu-custom-footer-menu" class="menu"><li id="menu-item-370" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-96 current_page_item menu-item-370"><a href="http://dev.1pixeldesign.com/wordpress2/">Home</a></li>
+<li id="menu-item-966" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-966"><a href="http://dev.1pixeldesign.com/wordpress2/blog/">Blog</a></li>
+<li id="menu-item-446" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-446"><a href="http://dev.1pixeldesign.com/wordpress2/about-us/">About Us</a></li>
+<li id="menu-item-447" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-447"><a href="http://dev.1pixeldesign.com/wordpress2/contact/">Contact</a></li>
+</ul></div></div>                    </div>
+                    <div class="medium-3 columns footer4">
+                        <div id="onepix_recent_posts-3" class="widget widget-onepix_recent_posts"><h3>Recent Posts</h3>                                
+                                
+        
+        <div id="home-category-boxes">
+                    <ul class="">
+                        
+                                <li class="onepix-recent-posts-item">
+                                                                            <div class = "onepix-recent-posts-thumb">
+                                            <a href = "http://dev.1pixeldesign.com/wordpress2/testpost3/" rel = "bookmark" title = "Permanent Link to Testpost3">
+                                                <img width="50" height="50" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2013/12/700X545-50x50.jpg" class="attachment-widget-thumb wp-post-image" alt="700X545" />                                            </a>
+                                        </div>
+                                        <div class="onepix-recent-posts-details withthumb">
+                                                                                    <a class="onepix-recent-posts-title" rel="bookmark" title="Permalink to Testpost3" href="http://dev.1pixeldesign.com/wordpress2/testpost3/">Testpost3</a>
+                                            <div class="meta">
+                                                <time datetime="December 18, 2014" class="onepix-recent-posts-date">
+                                                    <span class="meta-date">
+                                                        December 18, 2014                                                    </span> 
+                                                </time>
+                                            </div>
+                                            <div class="onepix-recent-posts-excerpt" style="display:none;">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam&hellip;                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                </li>
+                                
+                                <li class="onepix-recent-posts-item">
+                                                                            <div class = "onepix-recent-posts-thumb">
+                                            <a href = "http://dev.1pixeldesign.com/wordpress2/testpost-5/" rel = "bookmark" title = "Permanent Link to Video Post">
+                                                <img width="50" height="50" src="http://dev.1pixeldesign.com/wordpress2/wp-content/uploads/2015/03/545X545-50x50.jpg" class="attachment-widget-thumb wp-post-image" alt="545X545" />                                            </a>
+                                        </div>
+                                        <div class="onepix-recent-posts-details withthumb">
+                                                                                    <a class="onepix-recent-posts-title" rel="bookmark" title="Permalink to Video Post" href="http://dev.1pixeldesign.com/wordpress2/testpost-5/">Video Post</a>
+                                            <div class="meta">
+                                                <time datetime="December 19, 2013" class="onepix-recent-posts-date">
+                                                    <span class="meta-date">
+                                                        December 19, 2013                                                    </span> 
+                                                </time>
+                                            </div>
+                                            <div class="onepix-recent-posts-excerpt" style="display:none;">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam&hellip;                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                </li>
+                                                                            </ul>
+                </div>
+
+        </div>                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+                <div id="footer" class="padding-bottom">
+            <footer>
+		<div class="row">
+                    <div class="medium-12 columns center media-center-med">
+                            <div class="copywright padding-columns">&copy; <a href="http://dev.1pixeldesign.com/wordpress2/" title="Your Site Brief Tagline">Your Site Title&nbsp;2015</a>.  Website by <a href="http://1pixeldesign.com/">1 Pixel Design</a></div>
+                    </div>
+                </div><!--.container-->
+            </footer>
+        </div><!--#footer-->
+        <!--back to top (put this at the bottom of content area)-->
+        <div id="toTop"><i class="fa fa-chevron-up"></i></div>
+</div><!--#main container-->
+
+</div><!--#loading container-->
+
+
+  <!-- FlexSlider -->
+  <!-- this (must be put here to use the "defer" attribute in the script tag-->
+  <script defer src="http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/flexslider/jquery.flexslider.js"></script>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wordpress2\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/wordpress2\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View Cart","cart_url":"http:\/\/dev.1pixeldesign.com\/wordpress2\/cart\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/woocommerce/add-to-cart.js?ver=4.3.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var onePixel_data = {"shop_url":"http:\/\/dev.1pixeldesign.com\/wordpress2\/shop\/","is_shop_page":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/woocommerce/onePixWoocommerce.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/dev.1pixeldesign.com\/wordpress2\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.3'></script>
+<script type='text/javascript' src='//dev.1pixeldesign.com/wordpress2/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wordpress2\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/wordpress2\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='//dev.1pixeldesign.com/wordpress2/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=2.4.7'></script>
+<script type='text/javascript' src='//dev.1pixeldesign.com/wordpress2/wp-content/plugins/woocommerce/assets/js/jquery-cookie/jquery.cookie.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wordpress2\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/wordpress2\/?wc-ajax=%%endpoint%%","fragment_name":"wc_fragments"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='//dev.1pixeldesign.com/wordpress2/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=2.4.7'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var footer_data = {"googlemap_address":"490 E Main Street Norwich CT 06360","googlemap_lat":"53.80583","googlemap_long":"-1.548903"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-content/themes/1pixel/js/footerscripts.js?ver=1.0.0'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-includes/js/jquery/ui/tabs.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://dev.1pixeldesign.com/wordpress2/wp-includes/js/jquery/ui/accordion.min.js?ver=1.11.4'></script>
+</body>
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching 3/109 queries in 0.172 seconds using disk
+Object Caching 3143/3392 objects using disk
+
+ Served from: dev.1pixeldesign.com @ 2015-10-24 11:34:39 by W3 Total Cache -->

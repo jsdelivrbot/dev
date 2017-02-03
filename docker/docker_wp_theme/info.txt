@@ -1,0 +1,54 @@
+launch
+-------------------------
+cd dockerfiles/docker_wp_theme
+docker-compose up -d
+
+
+only starting files needed:
+Dockerfile
+docker-compose
+
+to run in background (detached mode):
+docker-compose up -d
+
+it will create folders:
+database file - mysql server container volume
+html - volume to store website files
+code - ?
+
+copy files from init-src to html dir
+
+preview:
+192.168.99.100:8000
+
+access php myadmin:
+192.168.99.100:8080
+
+DB user:
+wordpress
+DB pass:
+wordpress
+
+mysqu root:
+root
+wordpress
+
+login:
+admin
+f5z%hjUG9I5K)9#GR^BxECY4
+or
+benchung
+cdg165ls
+
+to upload it to production:
+
+use docker-compose-production for production
+
+wordpress links to update:
+
+menu items: testimonials, 
+showcase skills
+1 pixel options
+post content:
+UPDATE wp_posts 
+SET post_content = REPLACE ( post_content, '192.168.99.100:8000', '<new home url>' )

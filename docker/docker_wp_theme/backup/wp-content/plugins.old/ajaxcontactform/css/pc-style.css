@@ -1,0 +1,229 @@
+/*price calculator--------------------------------------------*/
+
+.price-calc, .price-calc table {
+    width: 100%;
+    font-size: inherit !important;
+}
+
+.price-calc select {
+    -moz-appearance: button;
+    background-clip: padding-box;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 1px 5px rgba(0, 0, 0, 0.05) inset;
+    color: #9C9C9C;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+}
+
+.radio-options li {
+    float: left;
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+.price-calc input[type="radio"]{
+/*    align radio boxes with text*/
+    vertical-align: baseline;
+}
+
+.price-calc, .price-calc table {
+    border-bottom: 0px !important;
+}
+
+.price-calc table tr:first-child td{
+    border: 0px;
+}
+
+.price-calc select{
+    width: 100%;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+.price-calc th {
+    width: 100%;
+}
+
+.price-calc tr > td {
+    padding: 10px 0px;
+}
+
+.price-calc .title {
+    width: 100%;
+    background: #FAFAFA;
+    font-weight: 300;
+    font-size: 20px;
+    font-family: Lato,sans-serif;
+}
+
+.price-calc tr > td:first-child {
+    width: 30%;
+    border-right: 0px !important;
+    vertical-align: top;
+    padding-right: 10px;
+}
+
+.price-calc tr > td:first-child input[type="text"] {
+    min-width: 40px;
+}
+
+.price-calc tr > td:nth-child(2n) {
+    border-left: 0px !important;
+}
+
+.price-calc tr > td.title {
+    border-right: 1px !important;
+}
+
+
+
+.price-calc input[name="total"] {
+    font-weight: bold;
+}
+
+.price-calc ul.input-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none !important;
+}
+
+.price-calc ul.input-list li {
+    float: left;
+    list-style-type: none !important;
+}
+
+.price-calc #domain-options ul.input-list li {
+    width: 50px;
+}
+
+.price-calc ul.input-list-vertical li {
+    float: none !important;
+}
+
+.price-calc ul.input-list-vertical li input {
+    margin-bottom: 15px;
+    margin-top: 2px;
+}
+
+
+
+.price-calc .foldown {
+/*    display: none;*/
+    margin-top: 0px;
+    padding: 15px 0 0;
+/*    width: 700px;*/
+    width: 100%;
+}
+
+.price-calc .foldown#domain-options {
+    height: 20px; /*must add this to prevent jerk at end of slide down (so jquery can know the dimentions for fixed positioning when measuring height)*/
+}
+
+.price-calc .foldown#inquiry-fields {
+/*    height: 118px;*/
+}
+
+.price-calc span.label {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.price-calc form input[type="text"], .price-calc form input[type="textarea"] {
+    margin: 5px 5px 5px 0;
+    width: 100%;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.price-calc #message {
+    max-height: 94px;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    width: 100%;
+}
+
+.dropdown-container {
+   padding-right: 0px !important;
+}
+
+#ajaxcontact-response{
+    padding: 20px 40px;
+    color: #268CBF;
+    background-color: #dcebf2;
+    display: none;
+}
+
+.error-class {
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(255, 0, 0, 1);
+    -moz-box-shadow:    0px 0px 2px 0px rgba(255, 0, 0, 1);
+    box-shadow:         0px 0px 2px 0px rgba(255, 0, 0, 1);
+    
+    border: 1px solid red !important;
+    
+    filter:alpha(opacity=70); /* For IE8 and earlier */
+    -moz-opacity:0.7;
+    -khtml-opacity:0.7;
+    opacity:0.7;
+}
+
+#price-calc-side-follow-wrap {
+    position: fixed;
+    top: 296px;
+    background: url('../images/price-calc-side-follow.png') no-repeat right bottom;
+    width: 90px;
+    padding-bottom: 15px;
+    z-index: 10;
+}
+
+#price-calc-side-follow {
+    width: 87px;
+    background: #fff;
+    padding: 11px 20px 16px;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    border: 1px solid #EEEEEE;
+    border-left: 0 !important;
+}
+
+#price-calc-side-follow .title {
+    font-size: 12px;
+}
+
+#price-calc-side-follow .price {
+    line-height: 10px;
+    font-weight: 600;
+}
+
+.icon-question-sign.tooltips {
+    color: #999 !important;
+}
+
+#form-submit {
+    background-color: #F1F1F1;
+    background-image: linear-gradient(to bottom, #FAFAFA, #F1F1F1);
+    background-repeat: repeat-x;
+    border: 1px solid #D8D8D8;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+    color: #444444;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-decoration: none !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    vertical-align: middle;
+    margin-top: 14px;
+}
+
+.loan-dollar-sign {
+    margin-top: 12px;
+    padding: 5px !important;
+    text-align: right;
+    width: 5px !important;
+    color: #9C9C9C;
+}
+
