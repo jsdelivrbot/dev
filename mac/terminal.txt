@@ -1,0 +1,10 @@
+To force Finder to display hidden files and folders via Terminal:
+
+Open Terminal
+For OS X 10.9 Mavericks, run this command (lower-case finder):
+defaults write com.apple.finder AppleShowAllFiles TRUE
+For OS X 10.8 Mountain Lion, 10.7, or 10.6, run this command (upper-case Finder):
+defaults write com.apple.Finder AppleShowAllFiles true
+notice the setting for true
+Then run this command: killall Finder
+Then exit Terminal
