@@ -111,6 +111,12 @@ pull
 # (go a git pull at the beginning of the day)
 git pull
 
+fetch
+__________________
+#updates your remote tracking branch
+#git pull does a git fetch followed by a git merge.
+
+
 
 push to an existing repository
 ------------------------------------
