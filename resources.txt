@@ -1,3 +1,7 @@
+great ref for common js functions over query:
+https://plainjs.com/
+
+
 good online book for javascript design patterns:
 https://addyosmani.com/resources/essentialjsdesignpatterns/book/#mixinpatternjavascript
 

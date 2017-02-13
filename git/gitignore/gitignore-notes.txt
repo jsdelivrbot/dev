@@ -1,0 +1,3 @@
+#if gitignore doesn’t update, do:
+git rm . -r --cached
+#then add and commit files.
