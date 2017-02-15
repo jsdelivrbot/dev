@@ -1,0 +1,16 @@
+instructions:
+https://code.tutsplus.com/tutorials/quick-tip-how-to-work-with-github-and-multiple-accounts--net-22574
+
+We need to generate a unique SSH key for our second GitHub account.
+ssh-keygen -t rsa -C “ben@formandaffect.com”
+
+save the file as:
+id_rsa_formandaffect
+
+pass:
+
+
+Next, login to your second GitHub account, browse to "Account Overview," and attach the new key, within the "SSH Public Keys" section:
+https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+copy your keys via terminal:
+vim ~/.ssh/id_rsa_formandaffect
