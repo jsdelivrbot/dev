@@ -1,0 +1,86 @@
+<html>
+<head></head>
+<body>
+	<div id="target1" 
+	style="position: absolute; width: 100px; height: 100px; background: #333; left: 20%; top: 40px; ">
+	</div>
+
+	<div id="target2" 
+	style="position: absolute; width: 100px; height: 100px; background: #999; left: 20%; top: 250px; ">
+	</div>
+
+	<script src='./tween.min.js'></script>
+
+	<script>
+
+	var position, position2;
+	var target, target2;
+	var tween;
+
+	init();
+	animate();
+
+	function init() {
+
+		//starting positions
+		position = {x: 0, y: 0, rotation: 0};
+		position2 = {x: 0, y: 0, rotation: 0};
+
+		//get the elements
+		target = document.getElementById('target1');
+		target2 = document.getElementById('target2');
+
+
+		//object1
+		//---------
+
+		//tween will update the position variable it's self to the .to value
+		var tween = new TWEEN.Tween(position)
+			.to({x: 400, y: 400, rotation: 0}, 1000)
+			.delay(0)
+			.easing(TWEEN.Easing.Quadratic.InOut)
+			.onUpdate(function() {
+				target.style.left = this.x + 'px';
+			});
+
+		var tweenBack = new TWEEN.Tween(position)
+			.to({x: 0, y: 0, rotation: 0}, 1000)
+			.delay(0)
+			.easing(TWEEN.Easing.Quadratic.InOut)
+			.onUpdate(function() {
+				target.style.left = this.x + 'px';
+			});
+
+		//specify when finished, start the tweenback animation
+		tween.chain(tweenBack);
+		//we can chain it back to make it loop
+		tweenBack.chain(tween);
+
+		//object2
+		//---------
+
+		var tween2 = new TWEEN.Tween(position2)
+		.to({x: 400, y: 400, rotation: 0}, 1000)
+		.delay(0)
+		.easing(TWEEN.Easing.Quadratic.InOut)
+		.onUpdate(function() {
+			target2.style.left = this.x + 'px';
+		});
+
+		//start tweens
+		tween.start();
+		tween2.start();
+
+	}
+
+	function animate() {
+		requestAnimationFrame(animate);
+		TWEEN.update();
+	}
+
+
+	</script>
+
+
+</body>
+</html>

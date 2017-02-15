@@ -1,0 +1,64 @@
+
+<html>
+<head>
+</head>
+<body>
+    <div id="target" 
+    style="position: absolute; width: 100px; height: 100px; background: #333; left: 20%; top: 40px; ">
+    </div>
+
+    <script src="./tween.min.js"></script>
+
+    <script>
+
+        //automate vendor prefixes on css transforms ('MozTransform', 'WebkitTransform', etc.)
+        //this varable gets populateed on load
+        //call with: 
+        //myElement.style[transformProp] = 'translate3d(0,' + dynamicY + 'px,0)';
+        var transformProp = (function(){
+          var testEl = document.createElement('div');
+          if(testEl.style.transform == null) {
+            var vendors = ['Webkit', 'Moz', 'ms'];
+            for(var vendor in vendors) {
+              if(testEl.style[ vendors[vendor] + 'Transform' ] !== undefined) {
+                return vendors[vendor] + 'Transform';
+              }
+            }
+          }
+          return 'transform';
+        })();
+
+        init();
+        animate();
+
+        function init() {
+
+            var target = document.getElementById('target');
+            //put any variables in Tween (just use these to use to generate numbers)
+            var tween = new TWEEN.Tween({ x: 0, y: 0, rotation: 0 })
+                //tell it what values end up as, at 2 seconds    
+                .to({ x: 400, y: 50, rotation: 90 }, 2000)
+                //easing function examples:
+                //http://tweenjs.github.io/tween.js/examples/03_graphs.html
+                .easing(TWEEN.Easing.Bounce.Out)
+                .onUpdate(function() {
+                    //do the actual work on every update to the above target we specified...
+                    target.style.left = this.x + 'px';
+                    target.style.top = this.y + 'px';
+                    //Math.floor() function returns the largest integer less than or equal to a given number
+                    //apply rotation - make use of auto prefixing
+                    target.style[transformProp] = 'rotate(' + Math.floor(this.rotation) + 'deg)';
+
+                }).start();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            TWEEN.update();
+
+        }
+
+    </script>
+    
+</body>
+</html>

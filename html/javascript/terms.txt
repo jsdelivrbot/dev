@@ -1,0 +1,60 @@
+Terms:
+
+Declarative vs. imparative
+declarative programming is telling what you want without the how, 
+imperative is telling the compiler what you want step by step.
+
+Construct:
+Refers to an abstract way of describing something (namely, a loop) 
+in terms of the syntax of that particular language. 
+"Language construct" means "a way to do [something] with that language".
+
+first class functions:
+Values can be passed to a function, and the function will return a value. 
+In JavaScript, functions are first-class objects, because they can have properties and methods just like any other object. 
+What distinguishes them from other objects is that functions can be called. In brief, they are Function objects.
+
+Canonical:
+a canonical, normal, or standard form of a mathematical object is a standard way of presenting that object as a mathematical expression. 
+
+Data structure:
+A data structure is a specialized format for organizing and storing data. General data structure types include the array, the file, the record, the table, the tree, and so on. 
+Any data structure is designed to organize data to suit a specific purpose so that it can be accessed and worked with in appropriate ways.
+
+Functional Reacive Programming:
+Functional reactive programming (FRP) is a programming paradigm for reactive programming (asynchronous dataflow programming) using the building blocks of functional programming (e.g. map, reduce, filter).
+
+Javascript types:
+What is meant by primitive value in Javascript?
+In JavaScript there are 5 primitive types: undefined , null , boolean , string and number . 
+Everything else is an object. The primitive types boolean, string and number can be wrapped by their object counterparts. 
+These objects are instances of the Boolean , String and Number constructors respectively.
+
+parallelism vs concurrency
+parallelism are processes running at the same time (like multithreading).
+Concurrency is the set up you do to deal with processes running at the same time.
+
+
+Function
+Object
+
+primitive types:
+Number
+String
+Boolean
+Null
+Undefined
+
+
+
+Linear data structures:
+
+Stack
+Queue
+Array
+Linked List
+
+Hiarchial Data Structures:
+
+Tree
+Graph
