@@ -1,0 +1,140 @@
+/* ==========================================================================
+   media queries
+   ========================================================================== */
+
+/*for featured image image sizing: indicate the 'max-width' at the point
+where your flexslider featured image starts to shrink past the container bounds 
+for non flexslider version of this see style.css - .full-width-img-home
+*/
+@media only screen and (max-width: 1279px) {
+
+}
+
+/*adds an initial space to the bottom of any media spacer when not in mobile mode*/
+.media-spacer-lg, .media-spacer-med, .media-spacer-sml  {
+
+}
+
+/* 1026px and above */
+@media screen and (min-width: 1026px) {
+
+
+}
+
+@media only screen and (max-width: 1060px) {
+
+
+}
+
+
+/*iPad Landscape Width 	1024px*/
+@media only screen and (max-width: 1025px) {
+    
+    /*end flexslider------*/
+
+
+    /*-------this centers anything within a container with the "media-center-lg" class*/
+
+    .media-center-lg {
+        text-align: center;
+    }
+
+    .media-center-lg > *:not(.twitter-feed-container:last-child) {
+        display: inline-block !important;
+        float: none !important;
+    }
+
+    /*-------end media center*/
+
+    /*-------Ben - this spaces anything within a container with the "media-spacer-lg" class*/
+
+    .media-spacer-lg > * {
+        margin-bottom: 35px;
+    }
+
+    .media-spacer-lg > *:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /*-------end media spacer*/
+    
+
+
+
+}
+
+
+/*iPad Portrait Width 	768px*/
+@media only screen and (max-width: 767px) {
+
+
+    /*-------this centers anything within a container with the "media-center-med" class*/
+
+    .media-center-med {
+        text-align: center;
+    }
+
+    .media-center-med > * {
+        display: inline-block !important;
+        float: none !important;
+    }
+
+    /*-------end media center*/
+
+    /*-------Ben - this spaces anything within a container with the "media-spacer-med" class*/
+
+    .media-spacer-med > * {
+        margin-bottom: 35px;
+    }
+
+    .media-spacer-med > *:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /*-------end media spacer*/
+
+}
+
+@media only screen and (max-width: 641px) {
+
+    .btn.left-side, .btn.right-side {
+        float: none;
+    }
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    
+
+}
+
+
+/*iPhone Landscape Width 	480px*/
+@media only screen and (max-width: 479px) {
+    
+
+}
+
+
+/*iPhone Portrait Width 	320px*/
+@media handheld, only screen and (max-width: 321px) {
+   
+
+
+}
+
+/*	Retina media query.
+        Overrides styles for devices with a 
+        device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+
+@media 
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2) {
+
+    body {
+
+    }
+
+}
