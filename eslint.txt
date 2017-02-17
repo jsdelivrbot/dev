@@ -1,0 +1,3 @@
+setup with sublime:
+https://www.youtube.com/watch?v=lEtWF3_FR2w
+http://devnull.guru/adding-eslint-to-your-project-is-easier-than-ever/

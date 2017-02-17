@@ -1,0 +1,12 @@
+{
+  "development": {
+    "server": {
+      "root_url": "http://192.168.99.100:80"
+    }
+  },
+  "production": {
+    "server": {
+      "root_url": "http://104.131.25.104:5246"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+process for designing components
+https://facebook.github.io/react/docs/thinking-in-react.html
+:
+
+1.First draw boxes around the design to decide on them.
+How do you know what should be its own component? The single responsibility principle: a component should ideally only do one thing. 
+If it ends up growing, it should be decomposed into smaller subcomponents.
+
+2.create a hiarchy list ex:
+-parent
+ -child
+  -child
+-parent
+
+3.build a static version in react
+What order to build?
+In simpler examples, it's usually easier to go top-down, and on larger projects, 
+it's easier to go bottom-up and write tests as you build.
+-have folder structuer resemble the heirchy of react components (child components in same folder)
+
+4.
+Identify the minimal (but complete) representation of UI state
+you first need to think of the minimal set of mutable state that your app needs.
+Ask yourself:
+-Is it passed in from a parent via props? If so, it probably isn't state.
+-Does it remain unchanged over time? If so, it probably isn't state.
+-Can you compute it based on any other state or props in your component? If so, it isn't state.
+
+5.
+hook up flux/redux to components then set up stores/reducers to identify where data is being held
+(possible put in placeholder data)
+
+6.
+hook up actions to reducers
+
+7.
+hook components to actions
+
+
+definitions:
+
+Props:
+props are a way of passing data from parent to child.
+props are immutable, can't be changed once defined
+also they will not throw an error if empty (if the data hasn't populated yet)
+
+State:
+Data that changes over time.
+State only effects the component it belongs to
+If you don't use something in render(), it shouldn't be in the state
+
+Tip on smart vs. dumb components:
+have as few smart components as possible while not having it so that you
+have too many dumb components that need to pass props all over the place.
+Passing props too much can become confusing.

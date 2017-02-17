@@ -1,0 +1,53 @@
+{
+  "name": "nodejs-test-app",
+  "version": "1.0.0",
+  "description": "\"NodeJS Test App\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "build": "webpack --progress",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm run test -- --watch"
+  },
+  "author": "Ben Chung",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
+    "jasmine-node": "^1.14.5",
+    "jquery": "^2.2.1",
+    "jsdom": "^8.1.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.9.2",
+    "react-addons-test-utils": "^0.14.7"
+  },
+  "dependencies": {
+    "axios": "^0.13.1",
+    "babel-preset-stage-1": "^6.1.18",
+    "bcrypt-nodejs": "0.0.3",
+    "body": "^5.1.0",
+    "body-parser": "^1.15.0",
+    "cors": "^2.8.1",
+    "debug": "~2.0.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-react-views": "^0.10.2",
+    "express-validator": "^2.20.10",
+    "lodash": "^3.10.1",
+    "pg": "^6.0.2",
+    "pg-hstore": "^2.3.2",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-redux": "^5.0.2",
+    "react-router": "^2.0.1",
+    "redux": "^3.0.4",
+    "redux-thunk": "^2.1.0",
+    "serve-favicon": "^2.3.0",
+    "webpack": "^1.14.0"
+  }
+}
