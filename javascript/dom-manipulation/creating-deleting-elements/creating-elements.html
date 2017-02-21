@@ -1,10 +1,22 @@
-(function() {
+<html>
+<head></head>
+<body>
+
+<div id="container"></div>
+
+<script type="text/javascript" >
+	(function() {
 	var container = document.getElementById('container');
 	//create an element (attached to nothing)
 	//document.createElement(nodeName)
 	var newElement = document.createElement('div');
+	//create class
+	newElement.className = "my-class";
 	//insert contents
 	newElement.innerHTML = "foobar";
 	//append to container
 	container.appendChild(newElement);
 })();
+</script>
+</body>
+</html>

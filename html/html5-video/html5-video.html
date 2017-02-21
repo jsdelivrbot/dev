@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<!-- default to video and fall back to animated gif -->
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+
+
+<!-- specify a default image before playing the video -->
+<video poster="/images/w3html5.gif" >
+</video>
+
+<!-- ========================= -->
+
+<!-- inline video is allowed on ios10 provided that:
+there's no audio
+autoplay will pause if it scrolls out of view
+video.play() will return a Promise, which will be rejected if any of these conditions are not met. -->
+
+<!-- the mobile fallback solution for gifs: -->
+<!-- default to video and fall back to animated gif -->
+<!-- autoplays, loops, muted -->
+<video autoplay loop muted playsinline>
+  <source src="image.mp4">
+  <source src="image.webm" onerror="fallback(parentNode)">
+  <img src="image.gif">
+</video>
+
+<script type="text/javascript">
+	function fallback(video)
+	{
+	  var img = video.querySelector('img');
+	  if (img)
+	    video.parentNode.replaceChild(img, video);
+	}
+</script>>
+
+
+<!-- ========================= -->
+
+<!-- mobile fallback version embedding in canvas element: -->
+<div id="either-gif-or-video">
+  <video src="image.mp4" autoplay loop muted playsinline></video>
+  <img src="image.gif">
+</div>
+
+<!-- must have a start button because video is playing inside a canvas -->
+<button onclick="startPlayback()">Start Playback</button> 
+
+<style>
+	#either-gif-or-video video { display: none; }
+	@media (-webkit-video-playable-inline) {
+	    #either-gif-or-video img { display: none; }
+	    #either-gif-or-video video { display: initial; }
+	}
+</style>
+
+<script type="text/javascript">
+	var video;
+	var canvas;
+
+	function startPlayback()
+	{
+	  if (!video) {
+	    video = document.createElement('video');
+	    video.src = 'image.mp4';
+	    video.loop = true;
+	    video.addEventListener('playing', paintVideo);
+	  }
+	  video.play();
+	}
+
+	function paintVideo()
+	{
+	  if (!canvas) {
+	    canvas = document.createElement('canvas');
+	    canvas.width = video.videoWidth;
+	    canvas.height = video.videoHeight;
+	    document.body.appendChild(canvas);
+	  }
+	  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+	  if (!video.paused)
+	    requestAnimationFrame(paintVideo);
+	}
+</script>
+
+<!-- ========================= -->
+
+<!-- setting the playbackRate (for fast forward or slow motion) -->
+<button onclick="getPlaySpeed()" type="button">What is the playback speed?</button>
+<button onclick="setPlaySpeed()" type="button">Set video to be play in slow motion</button><br> 
+
+<video id="myVideo" width="320" height="176" controls>
+  <source src="mov_bbb.mp4" type="video/mp4">
+  <source src="mov_bbb.ogg" type="video/ogg">
+  Your browser does not support HTML5 video.
+</video>
+
+<script>
+var vid = document.getElementById("myVideo");
+
+function getPlaySpeed() { 
+    alert(vid.playbackRate);
+} 
+
+function setPlaySpeed() { 
+    vid.playbackRate = 0.5;
+} 
+</script> 
+
+
+
+
+</body>
+</html>
