@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+	/*hide play button for older phones*/
+	.IIV::-webkit-media-controls-play-button,
+	.IIV::-webkit-media-controls-start-playback-button {
+	    opacity: 0;
+	    pointer-events: none;
+	    width: 5px;
+	}
+
+</style>
+</head>
+<body>
+
+
+test1:
+<br>
+<div class="video-holder">
+<video class="video1" width="560" height="320" poster="placeholder.png" muted playsinline>
+<!--   <source src="movie.mp4">
+  <source src="movie.webm" onerror="fallback(parentNode)"> -->
+  <!-- <img src="image.gif" title="Your browser does not support the <video> tag"> -->
+</video>
+</div>
+
+<br>
+<button class="playvid" type="button" data-video="0">play</button><br>
+<button class="swapvid" type="button" data-video="1">change video</button><br>
+<br>
+<div id="message"></div>
+
+
+<br>
+<br>
+<br>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script src="https://hammerjs.github.io/dist/hammer.js"></script>
+<script src="iphone-inline-video.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+(function() {
+
+	//get video
+	var vid = document.querySelector(".video1");
+
+	//enable inline video
+	enableInlineVideo(vid);
+
+	//set initial video source
+	//setSrc(0);
+
+	// or if you have multiple videos:
+	// $('video').each(function () {
+	//     enableInlineVideo(this);
+	// });
+	
+	// //create the source normal/slow video source
+	// var source1 = document.createElement('source');
+	// //set the class
+	// source1.className = 'vidSource';
+	// //set the initial source of the video
+	// source1.setAttribute('src', 'movie.mp4');
+	// //append the source to the video
+	// vid.appendChild(source1);
+
+	// //create the onion skin version
+	// var source2 = document.createElement('source');
+
+	
+
+	//gif video fallback
+	// function fallback(video)
+	// {
+	//   var img = video.querySelector('img');
+	//   if (img)
+	//     video.parentNode.replaceChild(img, video);
+	// }
+
+	document.querySelector('.playvid').addEventListener('click', changeVid);
+	document.querySelector('.swapvid').addEventListener('click', changeVid);
+
+	// function normalPlaySpeed() {
+
+	// 	//set play speed
+	//     vid.playbackRate = 1;
+	//     //play video
+	//     vid.play();
+	//     //pause video
+	//     //vid.pause();
+	// }
+
+
+
+
+	//parent.replaceChild(source1, source2)
+
+
+
+
+	function changeVid(e){
+
+		var n = e.target.dataset.video;
+		e.preventDefault();
+		setSrc(n);
+
+	}
+
+	function setSrc(n) {
+
+		var v = new Array();
+
+		v[0] = [
+		        "videos/video1.webm",
+		        "videos/video1.ogv",
+		        "videos/video1.mp4"
+		        ];
+		v[1] = [
+		        "videos/video2.webm",
+		        "videos/video2.ogv",
+		        "videos/video2.mp4"
+		        ];
+		
+		console.log('e.target.dataset.video: ', n);
+
+		console.log('Modernizr.video: ', Modernizr.video);
+		console.log('Modernizr.video.webm: ', Modernizr.video.webm);
+		console.log('Modernizr.video.ogg: ', Modernizr.video.ogg);
+		console.log('Modernizr.video.h264: ', Modernizr.video.h264);
+
+	    if(Modernizr.video && Modernizr.video.webm) {
+	        vid.setAttribute("src", v[n][0]);
+
+	        console.log('vid.getAttribute("src"):', vid.getAttribute('src'));
+
+	    } else if(Modernizr.video && Modernizr.video.ogg) {
+	        vid.setAttribute("src", v[n][1]);
+	    } else if(Modernizr.video && Modernizr.video.h264) {
+        	video.setAttribute("src", v[n][2]);
+    	}
+
+	    vid.load();
+	    vid.play();
+	}
+
+
+
+})();
+</script>
+
+
+<script type="text/javascript">
+
+//hammer.js
+var message = document.getElementById('message');
+var videoHolder = document.querySelector('.video-holder');
+
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(videoHolder);
+
+// listen to events...
+mc.on("panleft panright", function(ev) {
+    message.textContent = ev.type +" gesture detected.";
+});
+
+</script>
+
+
+
+</body>
+</html>
