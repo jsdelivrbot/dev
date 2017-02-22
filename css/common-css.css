@@ -314,22 +314,22 @@ div.border:before {
 }
 /*end double borders --------------------------------------------------------------*/
 
+  /*every second*/
+ul li:models-child(2n+2) {  
+  color: #EBF0FD
+}
 
 /*clear the third element*/
 .cmsi-product-feed > div:nth-child(3):after {
     
 }
 
-
-  /*every second*/
-ul li:models-child(2n+2) {  
-  color: #EBF0FD
-}
-
 /*not last child*/
 div:not(:last-child) {
     
 }
+
+
 
 div:last-child {
     margin-right: 0px;
