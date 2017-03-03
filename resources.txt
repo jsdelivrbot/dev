@@ -1,3 +1,12 @@
+read up to practice 4:
+https://zellwk.com/blog/responsive-typography/
+
+vw, vh, vmin, vmax:
+https://web-design-weekly.com/2014/11/18/viewport-units-vw-vh-vmin-vmax/
+
+essential js youtube video series:
+https://www.youtube.com/watch?v=SCYUzGJ0EmY&index=13&list=PLRd0zhQj3CBmLTskcM4WIEBr_IVCmVTTf
+
 great ref for common js functions over query:
 https://plainjs.com/
 

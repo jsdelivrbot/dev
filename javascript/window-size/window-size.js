@@ -1,12 +1,14 @@
 //window.resize
 //using lodash for debouncing
 
+var heightRemoved = true;
+
 function onResize() {
 	_.debounce(function(event) {
 		// All the taxing stuff you do
 	}, 100);
 
-	  var heightRemoved = true;
+	  
 	  //match height if above 400px
 	  if (window.innerWidth > 766) {
 	    if(heightRemoved === true) {

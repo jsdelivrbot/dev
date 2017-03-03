@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<!-- mobile fallback version embedding in canvas element: -->
+<div id="either-gif-or-video">
+  <video src="image.mp4" autoplay loop muted playsinline></video>
+  <img src="image.gif">
+</div>
+
+<!-- must have a start button because video is playing inside a canvas -->
+<button onclick="startPlayback()">Start Playback</button> 
+
+<style>
+	#either-gif-or-video video { display: none; }
+	@media (-webkit-video-playable-inline) {
+	    #either-gif-or-video img { display: none; }
+	    #either-gif-or-video video { display: initial; }
+	}
+</style>
+
+<script type="text/javascript" src="/scripts.js"></script>
+
+</body>
+</html>

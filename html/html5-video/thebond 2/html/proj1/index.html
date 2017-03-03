@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="js/iphone-inline-video.min.js"></script>
+
+	</head>
+
+
+	<body class="">
+
+		<video width="1000" height="650" autoplay controls>
+		  <source src="videos/skater.webm" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+
+
+		<div class="vid-holder">
+			<video class="video1" width="1000" height="650" muted playsinline>
+	<!-- 		  <source src="movie.mp4">
+			  <source src="movie.webm" onerror="fallback(parentNode)"> -->
+			  <img src="placeholder.jpg" title="Your browser does not support the <video> tag">
+			</video>
+		</div>
+
+		<div class="canvas-holder hammer">
+		      <canvas id="c1" width="1000" height="650"></canvas>
+		</div>
+
+		<div class="canvas-holder">
+		      <canvas id="c2" width="1000" height="650"></canvas>
+		</div>
+
+
+		<button class="vid1" type="button" data-video="0">video1</button><br>
+		<button class="vid2" type="button" data-video="1">video2</button><br>
+
+		<div id="debug">
+
+			co-ordinates: <span id="co-oridinates"></span><br>
+			current vid time: <span id="vid-time"></span><br>
+
+		</div>
+		
+
+
+		<!-- scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+		<script src="https://hammerjs.github.io/dist/hammer.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>
+
+
+
+	</body>
+
+</html>

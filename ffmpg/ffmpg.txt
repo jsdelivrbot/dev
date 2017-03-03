@@ -1,0 +1,2 @@
+optimize mp4 files for the web:
+ffmpeg -i input.mp4 -movflags faststart -acodec copy -vcodec copy output.mp4

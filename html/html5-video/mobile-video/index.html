@@ -12,6 +12,7 @@
 	}
 
 </style>
+<script src="../dist/iphone-inline-video.js"></script>
 </head>
 <body>
 
@@ -19,11 +20,24 @@
 test1:
 <br>
 <div class="video-holder">
-<video class="video1" width="560" height="320" poster="placeholder.png" muted playsinline>
+<video src="videos/video1.mp4" class="video1" width="560" height="320" muted playsinline>
 <!--   <source src="movie.mp4">
   <source src="movie.webm" onerror="fallback(parentNode)"> -->
   <!-- <img src="image.gif" title="Your browser does not support the <video> tag"> -->
 </video>
+
+
+
+
+<div class="video-container">
+	<video autoplay muted loop playsinline src="https://rawgit.com/bower-media-samples/big-buck-bunny-480p-30s/master/video.mp4"></video>
+	<button class='play'>Play/pause</button>
+	<button class='fullscreen'>Fullscreen</button>
+	<p>Autoplaying silent <code>&lt;video&gt;</code></p>
+</div>
+
+
+
 </div>
 
 <br>
@@ -39,7 +53,6 @@ test1:
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 <script src="https://hammerjs.github.io/dist/hammer.js"></script>
-<script src="iphone-inline-video.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 (function() {

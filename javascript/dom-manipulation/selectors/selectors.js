@@ -43,3 +43,18 @@ var list = document.getElementsByTagName('a');
 //-------------------
 var element = getElementById('myId');
 
+//using data attributes
+//-------------------
+var article = document.getElementById('electriccars');
+ 
+article.dataset.columns // "3"
+article.dataset.indexNumber // "12314"
+article.dataset.parent // "cars"
+
+// <article 
+//   id="electriccars"
+//   data-columns="3" 
+//   data-indexnumber="12314" 
+//   data-parent="cars">
+// </article>
+
