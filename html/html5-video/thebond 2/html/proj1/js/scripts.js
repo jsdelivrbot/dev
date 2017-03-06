@@ -3,52 +3,193 @@
 	//placeholder for now
 	var mobile = false;
 
-	//init
-	//------------------------------------------------------------//
+	//for debugging
+
+	var scrubtimeCoords = document.getElementById('co-oridinates');
+	
+	var vidTimeDebug = document.getElementById('vid-time');
+	var mouseDnScrubTimeDebug = document.getElementById('vid1-dntime');
 
 	//get video
-	var vid = document.querySelector(".video1");
+	// var vid = document.querySelector(".video1");
+	// var vid2 = document.querySelector(".video2");
 	//get the canvases
     var canvas = document.querySelector('#c1');
-    var canvas2 = document.querySelector('#c2');
+    // var canvas2 = document.querySelector('#c2');
     var canvasWidth = canvas.width;
     var canvasHeight = canvas.height
 
-    //for debugging
-    var coords = document.getElementById('co-oridinates');
-    var vidTime = document.getElementById('vid-time');
-    var deltaText = document.getElementById('delta')
 
     //scrubed time
-    var mouseDnScrubTime = 0;
+    // var mouseDnScrubTime = 0;
     var scrubTime = 0;
+    
+    //create video objects
+    // var videoList = [
+    // 	{
+    // 		video: document.querySelector(".video1"),
+    // 		mouseDnScrubTime: 0,
+    // 		velocity: 0.7,
+    // 		isMainVid: true
+    // 	},
+    // 	{
+    // 		//create ghost video
+    // 		video: document.createElement('video'),
+    // 		mouseDnScrubTime: 0,
+    // 		velocity: 0.3
+    // 	},
+    // 	{
+    // 		//create ghost video
+    // 		video: document.createElement('video'),
+    // 		mouseDnScrubTime: 0,
+    // 		velocity: 0.1
+    // 	}
+    // ]
 
 
-	//if mobile, enable inline video using
-	//iphone-inline-video plugin
-	if(mobile) {
-		enableInlineVideo(vid);
-	}
+	//create video factory
+	const videoFactory = {
+	  Video (vType, velocity) {
+	    return Object.create(this.vidType[vType]);
+	  },
+
+	  vidType: {
+	    main: {
+	    	video: document.querySelector(".video1"),
+	    	mouseDnScrubTime: 0,
+	    	isMainVid: true
+	    },
+	    onionSkin: {
+			//create ghost video
+			video: document.createElement('video'),
+			mouseDnScrubTime: 0,
+			globalAlpha: 0.5
+
+	    }
+
+	  }
+	};
+
+    var videoList = [];
+
+
+	//init
+	//------------------------------------------------------------//
+
+	//(selector for main vid, array of velocity values for main then skins)
+	//init(".video1", 0.7, [0.3, 0.1, 0.05]);
+   	//init(".video1", 0.1, [0.1, 0.3, 0.7]);
+   	init(".video1", 0.1, [0.5, 1]);
+
+	function init (mainVid, velocity, onionSkins) {
+
+		//create array of video onion skin video objects
+		for (var i = 0; i <  onionSkins.length; i++) {
+			videoList[i] = videoFactory.Video('onionSkin');
+			videoList[i].velocity = onionSkins[i];
+		}
+
+		//add the main video to the front of the array
+		var mainVid = videoFactory.Video('main');
+		mainVid.velocity = velocity;	
+		videoList.unshift(mainVid);
 	
-	// or if you have multiple videos:
-	// $('video').each(function () {
-	//     enableInlineVideo(this);
-	// });
 
-	//set initial video source
-	setSrc(0);
+		//if mobile, enable inline video using
+		//iphone-inline-video plugin
+		// or if you have multiple videos:
+		// $('video').each(function () {
+		//     enableInlineVideo(this);
+		// });
+		if(mobile) {
+			enableInlineVideo(vid);
+		}
 
-	vid.load();
-	vid.play();
-	// pause video on load
-	//vid.pause();
-	//paint to canvas
-	timerCallback();
 
-	//add event listeners
-	//vid.addEventListener('play', timerCallback());
-	document.querySelector('.vid1').addEventListener('click', changeVid);
-	document.querySelector('.vid2').addEventListener('click', changeVid);
+		//set initial video source for all
+		for (var i = 0; i <  videoList.length; i++) {
+			setSrc(videoList[i].video, 0);
+		}
+		// setSrc(videoList[0].video, 0);
+		
+		//enable dragging (drag element, video list)
+		enableDrag(document.querySelector('.hammer'));
+
+
+		// pause video on load
+		//vid.pause();
+		//run loop
+		timerCallback();
+
+		//add event listeners
+		//vid.addEventListener('play', timerCallback());
+		var buttonArray = document.querySelectorAll('vid-bttn');
+		for (var i = 0; i <  buttonArray.length; i++) {
+			buttonArray[i].addEventListener('click', changeVid);
+		}
+
+
+	}
+
+
+	function enableDrag(dragEl) {
+
+		// set teh initial mouse down scrubtime
+		dragEl.addEventListener("mousedown", onMouseDown.bind(this));
+
+		function onMouseDown(e) {
+
+
+			for (var i = 0; i <  videoList.length; i++) {
+				//videoList[i].mouseDnScrubTime = calcScrubTime(e.clientX);
+				videoList[i].mouseDnScrubTime = scrubTime;
+				//reset the global alpha
+				videoList[i].globalAlpha = 0.5;
+			}
+			//videoList[0].mouseDnScrubTime = scrubTime;
+			
+			//debug
+			mouseDnScrubTimeDebug.textContent = videoList[0].mouseDnScrubTime;
+
+		}
+
+		//hook up hammer.js------------------//
+
+		// create a simple instance
+		// by default, it only adds horizontal recognizers
+		var mc = new Hammer(dragEl);
+
+		mc.on("panleft panright", panCallback.bind(this));
+
+		function panCallback(e) {
+
+			//get the current mouse/touch position
+			scrubTime = calcScrubTime(e.center.x);
+
+		}
+
+
+		function calcScrubTime(xpos) {
+			//calculate position to 100% of the canvas width
+			var totalCalc = 100/canvasWidth;
+			var percent = xpos * totalCalc;
+			//clamp between 0  and 100
+			if (percent < 0) {
+				percent = 0;
+			}
+			if (percent > 100) {
+				percent = 100;
+			}
+			//set video to this position
+			//pass in duration of the first video
+			var st = percent * (videoList[0].video.duration/100);
+
+			//debug
+			scrubtimeCoords.textContent = scrubTime;
+
+			return st;
+		}
+	}
 
 
 
@@ -63,16 +204,18 @@
 
 	}
 
-	function setSrc(n) {
+	function setSrc(video, n) {
 
 		var v = new Array();
 
 		v[0] = [
+				//"videos/skater.webm",
 		        "videos/googlevid.webm",
 		        "videos/video1.ogv",
 		        "videos/video1.mp4"
 		        ];
 		v[1] = [
+				//"videos/skater.webm",
 		        "videos/googlevid.webm",
 		        "videos/video2.ogv",
 		        "videos/video2.mp4"
@@ -84,122 +227,90 @@
 		// console.log('Modernizr.video.h264: ', Modernizr.video.h264);
 
 	    if(Modernizr.video && Modernizr.video.webm) {
-	        vid.setAttribute("src", v[n][0]);
+	        video.setAttribute("src", v[n][0]);
 
 	    } else if(Modernizr.video && Modernizr.video.ogg) {
-	        vid.setAttribute("src", v[n][1]);
+	        video.setAttribute("src", v[n][1]);
 	    } else if(Modernizr.video && Modernizr.video.h264) {
-        	video.setAttribute("src", v[n][2]);
+     	    video.setAttribute("src", v[n][2]);
     	}
-	}
 
-
-	//hammer.js
-	//------------------------------------------------------------//
-
-	var videoHolder = document.querySelector('.hammer');
-
-	// create a simple instance
-	// by default, it only adds horizontal recognizers
-	var mc = new Hammer(videoHolder);
-
-	// listen to events...
-
-	videoHolder.addEventListener("mousedown", function(){
-		mouseDnScrubTime = scrubTime;
-		console.log(mouseDnScrubTime);
-	});
-
-
-	mc.on("panleft panright", panCallback.bind(this));
-
-	function panCallback(e) {
-		//message.textContent = e.type +" gesture detected.";
-		//get the current mouse/touch position
-		var x1;
-		x1 = e.center.x;
-
-		//debug
-		coords.textContent = "x1: " + x1;
-
-		//calculate position to 100% of the canvas width
-		var totalCalc = 100/canvasWidth;
-		var percent = x1 * totalCalc;
-		//clamp between 0  and 100
-		if (percent < 0) {
-			percent = 0;
-		}
-		if (percent > 100) {
-			percent = 100;
-		}
-		//set video to this position
-		//get total length of video
-		//totoal duration: 5.5
-
-		scrubTime = percent * (vid.duration/100);
+    	video.load();
+    	//video.play();
 
 	}
+
 
 
 	//paint video
 	//------------------------------------------------------------//
 
-	var delta = 0;
+	function calcScrub(video) {
+
+    	//find difference between mouse down position to current position
+		video.mouseDnScrubTime += (scrubTime - video.mouseDnScrubTime) * video.velocity;
+
+		video.video.currentTime = video.mouseDnScrubTime;
+
+        //debug
+    	vidTimeDebug.textContent = video.video.currentTime;
+	}
+
 
 	function timerCallback() {
 
-		// 	if(!mobile) {
+		// if(!mobile) {
 
-		// 		//exit if paused or stopped
-		// 		// if (vid.paused || vid.ended) {
-		// 		//   return;
-		// 		// }
-        
-        //display the video current time
-    	vidTime.textContent = vid.currentTime;
+		// //exit if paused or stopped
+		// if (vid.paused || vid.ended) {
+		//   return;
+		// }
 
-    	//debug
-    	deltaText.textContent = scrubTime - mouseDnScrubTime;
+		//do the image processing (must put this first)
+		for (var i = 0; i <  videoList.length; i++) {
+			//(video, index order to draw)
+			computeFrame(videoList[i]);
+			calcScrub(videoList[i]);
+		}
+		// computeFrame(videoList[0].video);
+		// calcScrub(videoList[0]);
 
-    	//find difference between mouse down position to current position
-		mouseDnScrubTime += (scrubTime - mouseDnScrubTime) * 0.1;
-
-		vid.currentTime = mouseDnScrubTime;
-
-
-        //display the video current time
-    	vidTime.textContent = vid.currentTime;
-
-
-		//do the image processing
-		computeFrame();
 
 		//call again recursively
 		requestAnimationFrame(timerCallback);
 	
-
 	}
 
-	// function timerCallback() {
-	// 	setInterval(function(){  
 
-		    
-	// 	}, 40);
-	// }
+	function computeFrame(video) {
 
+		var ctx = canvas.getContext("2d");
 
-	function computeFrame() {
+		if(video.isMainVid) {
 
-		console.log('computeFrame called')
+		    //draw vid frame on the canvas1
+			ctx.drawImage(video.video, 0, 0, canvasWidth, canvasHeight);
 
-  	    //draw vid frame on the canvas1
-  		//canvas.getContext('2d').drawImage(vid, 0, 0, canvasWidth, canvasHeight);
+		} else if (video.globalAlpha !== 0) {
 
-  		//draw vid frame on the canvas2
-  		//canvas2.getContext('2d').drawImage(vid, 0, 0, canvasWidth, canvasHeight);
+		    //draw vid frame on the canvas1
+		    ctx.globalAlpha = video.globalAlpha;
+			ctx.drawImage(video.video, 0, 0, canvasWidth, canvasHeight);
+			
+			//slowly fade away the alpha
+			video.globalAlpha = video.globalAlpha - 0.005
+			//clamp between 0  and 0.5
+			if (video.globalAlpha < 0) {
+				video.globalAlpha = 0;
+			}
+			if (video.globalAlpha > 0.5) {
+				video.globalAlpha = 0.5;
+			}
+			
+			console.log(video.globalAlpha);
 
-  	   var ctx1 = canvas.getContext('2d');
-       ctx1.drawImage(vid, 0, 0, canvasWidth, canvasHeight);
+		}
+
       // let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
       // let l = frame.data.length / 4;
 

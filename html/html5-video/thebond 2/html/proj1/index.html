@@ -18,7 +18,7 @@
 
 
 		<div class="vid-holder hammer">
-			<video class="video1" width="1000" height="650" muted autoplay playsinline>
+			<video class="video1" width="1000" height="650" muted playsinline>
 	<!-- 		  <source src="movie.mp4">
 			  <source src="movie.webm" onerror="fallback(parentNode)"> -->
 			  <img src="placeholder.jpg" title="Your browser does not support the <video> tag">
@@ -29,19 +29,23 @@
 		      <canvas id="c1" width="1000" height="650"></canvas>
 		</div>
 
-		<div class="canvas-holder">
+<!-- 		<div class="canvas-holder">
 		      <canvas id="c2" width="1000" height="650"></canvas>
-		</div>
+		</div> -->
 
 
-		<button class="vid1" type="button" data-video="0">video1</button><br>
-		<button class="vid2" type="button" data-video="1">video2</button><br>
+		<button class="vid1 vid-bttn" type="button" data-video="0">video1</button><br>
+		<button class="vid2 vid-bttn" type="button" data-video="1">video2</button><br>
 
 		<div id="debug">
 
-			co-ordinates: <span id="co-oridinates"></span><br>
-			current vid time: <span id="vid-time"></span><br>
-			delta: <span id="delta"></span><br>
+			scrub time: <span id="co-oridinates"></span><br>
+			
+			vid1 mouseDnScrubTime: <span id="vid1-dntime"></span><br>
+			vid1 time: <span id="vid-time"></span><br>
+
+<!-- 			vid2 mouseDnScrubTime: <span id="vid1-time"></span><br>
+			vid1 vid2vidTime: <span id="vid2-time"></span><br> -->
 
 		</div>
 		

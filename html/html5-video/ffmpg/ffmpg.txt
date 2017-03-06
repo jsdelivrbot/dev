@@ -1,0 +1,12 @@
+optimize mp4 files for the web:
+ffmpeg -i input.mp4 -movflags faststart -acodec copy -vcodec copy output.mp4
+
+reduce the bitrate of the video - decrease the likelihood that the video player has to stop and buffer, and decreases the amount of data the video player has to process in realtime.
+ffmpeg -i input.mp4 -b 1000000 -movflags faststart output.mp4
+
+ffmpeg -i skater.mp4 -b 1000000 -movflags faststart skater-out.mp4
+
+ffmpeg -i skater.mp4 -b 1000000 -vcodec libx264 skater-out.mp4
+
+
+ffmpeg -i skater.mp4 -c:v libvpx -b:v 1M -c:a libvorbis skater-output.webm
