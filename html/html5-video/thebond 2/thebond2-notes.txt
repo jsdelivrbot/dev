@@ -3,6 +3,17 @@ iPhone inline video:
 https://www.npmjs.com/package/iphone-inline-video
 
 *resources:
+
+*
+scrolling video:
+http://jmeyers44.github.io/blog/2015/05/21/scrubbing-video-on-scroll/
+https://github.com/jmeyers44/scrub-video-on-scroll
+http://codepen.io/anon/pen/mJwbK
+
+requestanimationframe shim
+https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+
+
 jam3
 
 medium5 video
@@ -16,6 +27,14 @@ resources:
 
 layered canvas:
 https://www.ibm.com/developerworks/library/wa-canvashtml5layering/#artdownload
+
+
+todo:
+
+
+
+alpha in canvas:
+http://jsfiddle.net/ELmMT/2/
 
 moz articles:
 https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas

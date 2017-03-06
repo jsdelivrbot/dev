@@ -17,15 +17,12 @@
     //for debugging
     var coords = document.getElementById('co-oridinates');
     var vidTime = document.getElementById('vid-time');
+    var deltaText = document.getElementById('delta')
 
     //scrubed time
+    var mouseDnScrubTime = 0;
     var scrubTime = 0;
 
-    //just call timer on load for now
-	timerCallback();
-
-	//add event listeners
-	//vid.addEventListener('play', timerCallback());
 
 	//if mobile, enable inline video using
 	//iphone-inline-video plugin
@@ -39,9 +36,17 @@
 	// });
 
 	//set initial video source
-	//setSrc(0);
-	vid.setAttribute("src", "videos/skater.webm");
+	setSrc(0);
 
+	vid.load();
+	vid.play();
+	// pause video on load
+	//vid.pause();
+	//paint to canvas
+	timerCallback();
+
+	//add event listeners
+	//vid.addEventListener('play', timerCallback());
 	document.querySelector('.vid1').addEventListener('click', changeVid);
 	document.querySelector('.vid2').addEventListener('click', changeVid);
 
@@ -63,12 +68,12 @@
 		var v = new Array();
 
 		v[0] = [
-		        "videos/video1.webm",
+		        "videos/googlevid.webm",
 		        "videos/video1.ogv",
 		        "videos/video1.mp4"
 		        ];
 		v[1] = [
-		        "videos/video2.webm",
+		        "videos/googlevid.webm",
 		        "videos/video2.ogv",
 		        "videos/video2.mp4"
 		        ];
@@ -86,10 +91,6 @@
 	    } else if(Modernizr.video && Modernizr.video.h264) {
         	video.setAttribute("src", v[n][2]);
     	}
-
-	    vid.load();
-	    //vid.play();
-	    timerCallback();
 	}
 
 
@@ -98,13 +99,18 @@
 
 	var videoHolder = document.querySelector('.hammer');
 
-	console.log(videoHolder);
-
 	// create a simple instance
 	// by default, it only adds horizontal recognizers
 	var mc = new Hammer(videoHolder);
 
 	// listen to events...
+
+	videoHolder.addEventListener("mousedown", function(){
+		mouseDnScrubTime = scrubTime;
+		console.log(mouseDnScrubTime);
+	});
+
+
 	mc.on("panleft panright", panCallback.bind(this));
 
 	function panCallback(e) {
@@ -132,52 +138,68 @@
 
 		scrubTime = percent * (vid.duration/100);
 
-		vid.currentTime = scrubTime;
-
-		//update the video if during touch/move
-		timerCallback();
 	}
 
 
 	//paint video
 	//------------------------------------------------------------//
 
+	var delta = 0;
+
 	function timerCallback() {
-		//todo: call this based on the video's frame rate
 
-		//apply the scrub time
-		//vid.currentTime = 4;
+		// 	if(!mobile) {
 
-		if(!mobile) {
+		// 		//exit if paused or stopped
+		// 		// if (vid.paused || vid.ended) {
+		// 		//   return;
+		// 		// }
+        
+        //display the video current time
+    	vidTime.textContent = vid.currentTime;
 
-			//exit if paused or stopped
-			if (vid.paused || vid.ended) {
-			  return;
-			}
-			//do the image processing
-			computeFrame();
+    	//debug
+    	deltaText.textContent = scrubTime - mouseDnScrubTime;
 
-			//call again recursively
-			requestAnimationFrame(timerCallback);
-		}
+    	//find difference between mouse down position to current position
+		mouseDnScrubTime += (scrubTime - mouseDnScrubTime) * 0.1;
 
+		vid.currentTime = mouseDnScrubTime;
+
+
+        //display the video current time
+    	vidTime.textContent = vid.currentTime;
+
+
+		//do the image processing
+		computeFrame();
+
+		//call again recursively
+		requestAnimationFrame(timerCallback);
+	
 
 	}
+
+	// function timerCallback() {
+	// 	setInterval(function(){  
+
+		    
+	// 	}, 40);
+	// }
 
 
 	function computeFrame() {
 
-	    //display the video current time
-		//vidTime.textContent = vid.currentTime;
+		console.log('computeFrame called')
 
   	    //draw vid frame on the canvas1
-  		canvas.getContext('2d').drawImage(vid, 0, 0, canvasWidth, canvasHeight);
+  		//canvas.getContext('2d').drawImage(vid, 0, 0, canvasWidth, canvasHeight);
 
   		//draw vid frame on the canvas2
-  		canvas2.getContext('2d').drawImage(vid, 0, 0, canvasWidth, canvasHeight);
+  		//canvas2.getContext('2d').drawImage(vid, 0, 0, canvasWidth, canvasHeight);
 
-
-      // this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
+  	   var ctx1 = canvas.getContext('2d');
+       ctx1.drawImage(vid, 0, 0, canvasWidth, canvasHeight);
       // let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
       // let l = frame.data.length / 4;
 

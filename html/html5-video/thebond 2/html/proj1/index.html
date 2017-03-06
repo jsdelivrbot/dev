@@ -10,21 +10,22 @@
 
 	<body class="">
 
-		<video width="1000" height="650" autoplay controls>
-		  <source src="videos/skater.webm" type="video/mp4">
+		<!-- test vid -->
+<!-- 		<video width="1000" height="650" autoplay controls>
+		  <source src="videos/googlevid.webm" type="video/mp4">
 			Your browser does not support the video tag.
-		</video>
+		</video> -->
 
 
-		<div class="vid-holder">
-			<video class="video1" width="1000" height="650" muted playsinline>
+		<div class="vid-holder hammer">
+			<video class="video1" width="1000" height="650" muted autoplay playsinline>
 	<!-- 		  <source src="movie.mp4">
 			  <source src="movie.webm" onerror="fallback(parentNode)"> -->
 			  <img src="placeholder.jpg" title="Your browser does not support the <video> tag">
 			</video>
 		</div>
 
-		<div class="canvas-holder hammer">
+		<div class="canvas-holder">
 		      <canvas id="c1" width="1000" height="650"></canvas>
 		</div>
 
@@ -40,6 +41,7 @@
 
 			co-ordinates: <span id="co-oridinates"></span><br>
 			current vid time: <span id="vid-time"></span><br>
+			delta: <span id="delta"></span><br>
 
 		</div>
 		
