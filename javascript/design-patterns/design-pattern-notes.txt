@@ -1,0 +1,10 @@
+when to use what pattern:
+
+Factory Pattern:
+-create different objects on demand
+
+Mixin Pattern:
+-grab/combine diffenent abilities from other objects
+
+Module Pattern:
+-encapulate a plugin or component
