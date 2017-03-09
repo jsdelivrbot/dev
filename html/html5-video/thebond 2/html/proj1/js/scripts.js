@@ -55,7 +55,7 @@
 
 	  vidType: {
 	    main: {
-	    	video: document.querySelector(".video1"),
+	    	video: document.createElement('video'),
 	    	mouseDnScrubTime: 0,
 	    	isMainVid: true
 	    },
@@ -91,6 +91,7 @@
 
 		//add the main video to the front of the array
 		var mainVid = videoFactory.Video('main');
+		mainVid.video.classList.add('video1');
 		mainVid.velocity = velocity;	
 		videoList.unshift(mainVid);
 	
@@ -297,8 +298,6 @@
 		    ctx.globalAlpha = video.globalAlpha;
 			ctx.drawImage(video.video, 0, 0, canvasWidth, canvasHeight);
 			
-			//slowly fade away the alpha
-			video.globalAlpha = video.globalAlpha - 0.005
 			//clamp between 0  and 0.5
 			if (video.globalAlpha < 0) {
 				video.globalAlpha = 0;
@@ -306,6 +305,9 @@
 			if (video.globalAlpha > 0.5) {
 				video.globalAlpha = 0.5;
 			}
+
+			//slowly fade away the alpha
+			video.globalAlpha = video.globalAlpha - 0.005
 			
 			console.log(video.globalAlpha);
 

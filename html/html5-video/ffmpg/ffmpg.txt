@@ -1,3 +1,40 @@
+install mac:
+====================================================
+-to see what options you can install:
+brew options ffmpeg
+-install while as admin user
+brew install ffmpeg
+
+
+notes:
+====================================================
+
+output doesn’t need a flag, if you don’t put in a flag, the command is considered output
+
+
+
+
+
+
+
+converting video:
+====================================================
+input:
+-i
+codec:
+-c
+video:
+v:
+set bitrate for video to 1M 
+-b:v 1M
+
+
+example:
+ffmpeg -i <input-video> -b:v 1000000 <output-video>
+ffmpeg -i skater.webm -b:v 1000000 skater-out.webm
+
+
+
 optimize mp4 files for the web:
 ffmpeg -i input.mp4 -movflags faststart -acodec copy -vcodec copy output.mp4
 
@@ -9,4 +46,46 @@ ffmpeg -i skater.mp4 -b 1000000 -movflags faststart skater-out.mp4
 ffmpeg -i skater.mp4 -b 1000000 -vcodec libx264 skater-out.mp4
 
 
+
 ffmpeg -i skater.mp4 -c:v libvpx -b:v 1M -c:a libvorbis skater-output.webm
+
+
+extracting video information:
+====================================================
+
+ffmpeg -i skater.webm
+
+
+terms:
+====================================================
+
+Container: 
+-is a file format
+-streams are within containers
+-examples: MP4, WebM, AVI
+
+Streams:
+-are media components(like video, audio, subtitles)
+-Video - H.264, MPEG-2, WMV, VP8
+-Audio - MP3, AAC, WMA
+
+CODEC:
+-streams are formatted/stored/encoded with codecs
+-generally, any CODEC/stream can be within a container, but numerous exceptions
+
+GOP:
+-group of pictures
+-full frame vs. differential frame
+-lots of video doesn’t change significantly from frame to frame
+-i-frame: full-frame (intra-frame). Independent of other frames
+-{P,B,D}-frames: based on other frames
+-larger GOP means smaller file sizes but seeking becomes difficult
+
+process:
+containers are demuxed into streams, streams are decoded into frames, filtered frames are encoded back into streams streams are mixed back into a container(file)
+
+save help to file:
+
+ffmpeg -h > ffmpeg_h.txt
+ffmpeg -h long ffmpeg_h_long.txt
+ffmpeg -h full ffmpeg_h_full.txt
