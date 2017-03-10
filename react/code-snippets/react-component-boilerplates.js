@@ -171,7 +171,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, actions)(ArticlesIndex);
 
 
-
+//-----------------
 
 //Dispatching from Events
 //events should be passed down from Container to Presentational Components. 
