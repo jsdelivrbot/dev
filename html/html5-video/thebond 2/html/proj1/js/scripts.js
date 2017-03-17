@@ -79,7 +79,7 @@
 	//(selector for main vid, array of velocity values for main then skins)
 	//init(".video1", 0.7, [0.3, 0.1, 0.05]);
    	//init(".video1", 0.1, [0.1, 0.3, 0.7]);
-   	init(".video1", 0.1, [0.5, 1]);
+   	init(".video1", 0.1, [0.1, 1]);
 
 	function init (mainVid, velocity, onionSkins) {
 
@@ -211,7 +211,8 @@
 
 		v[0] = [
 				//"videos/skater.webm",
-		        "videos/googlevid.webm",
+		        //"videos/googlevid.webm",
+		        "videos/skater.webloc",
 		        "videos/video1.ogv",
 		        "videos/video1.mp4"
 		        ];
@@ -235,6 +236,9 @@
 	    } else if(Modernizr.video && Modernizr.video.h264) {
      	    video.setAttribute("src", v[n][2]);
     	}
+
+    	video.setAttribute("src", "videos/skater.webm");
+    	//video.setAttribute("src", "videos/googlevid.webm");
 
     	video.load();
     	//video.play();
@@ -307,7 +311,7 @@
 			}
 
 			//slowly fade away the alpha
-			video.globalAlpha = video.globalAlpha - 0.005
+			video.globalAlpha = video.globalAlpha - 0.002
 			
 			console.log(video.globalAlpha);
 
