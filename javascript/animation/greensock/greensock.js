@@ -48,6 +48,8 @@ tl
 	.from(h3, 0.3, {autoAlpha: 0, 3})
 	//overlap prev tween: '-=0.15'
 	.from(h4, 0.3, {autoAlpha: 0}, '-=0.15');
+	//restore element to original
+	.set(h4, {clearProps:"all"});
 
 
 //using labels

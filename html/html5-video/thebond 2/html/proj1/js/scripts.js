@@ -79,7 +79,7 @@
 	//(selector for main vid, array of velocity values for main then skins)
 	//init(".video1", 0.7, [0.3, 0.1, 0.05]);
    	//init(".video1", 0.1, [0.1, 0.3, 0.7]);
-   	init(".video1", 0.1, [0.1, 1]);
+   	init(".video1", 1, [0.3, 0.1]);
 
 	function init (mainVid, velocity, onionSkins) {
 
@@ -237,6 +237,7 @@
      	    video.setAttribute("src", v[n][2]);
     	}
 
+    	//video.setAttribute("src", "videos/skater.mp4");
     	video.setAttribute("src", "videos/skater.webm");
     	//video.setAttribute("src", "videos/googlevid.webm");
 
