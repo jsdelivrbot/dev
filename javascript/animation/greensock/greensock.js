@@ -61,6 +61,25 @@ tl
 	.from(h2, 0.3, {autoAlpha: 0}, 'intro')
 
 
+//staggering animation
+var buttons = $(button);
+tl = new TimelineLite();
+tl
+	.staggerFrom(buttons, 0,2, {x: 100, ease: Power1.easeInOut}, 0.1) //0.1 is stagger delay
+	//.staggerTo
+	.staggerFrom(buttons, 0,2, {x: 100, ease: Power1.easeInOut}, 0.1)
+	//.staggerFromTo
+	.staggerFromTo(buttons, 0,2, {x: 0, ease: Power1.easeInOut}, {x: 100, ease: Power1.easeInOut}, 0.1)
+
+	//stagger with cycle (more refined control for each element)
+	.staggerFrom(buttons, 0,2, 
+		{cycle: {
+			x: [50, -50] //even elements use first value, odd element use the second
+		}, Power1.easeInOut}, 0.1) //0.1 is stagger delay
+
+
+
+
 
  
 

@@ -238,7 +238,7 @@
     	}
 
     	//video.setAttribute("src", "videos/skater.mp4");
-    	video.setAttribute("src", "videos/skater.webm");
+    	video.setAttribute("src", "videos/skater-new.webm");
     	//video.setAttribute("src", "videos/googlevid.webm");
 
     	video.load();

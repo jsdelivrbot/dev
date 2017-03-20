@@ -19,6 +19,9 @@ function removeClass(el, className) {
 function toggle(el) {
     hasClass(el, 'is_hidden') ? removeClass(el, 'is_hidden') : addClass(el, 'is_hidden');
 }
+function toggleClass(el, className) {
+    hasClass(el, className) ? removeClass(el, className) : addClass(el, className);
+}
 //usecase:
 var el = document.querySelector('div');
 if (!hasClass(el, 'foo')) addClass(el, 'foo');
