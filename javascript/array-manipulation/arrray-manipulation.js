@@ -97,6 +97,11 @@ var mapped = fruitBasket.map(function(item) {
 });
 console.log(mapped);
 
+//reset all buttons
+this.props.flightType.map((item) => {
+  this.props.changeFlightType(item.id, false);
+});
+
 //.filter
 //execute for each item and create new array of relevant items for each item that has a return value is true.
 var found = fruitBasket.filter(function(item) {
