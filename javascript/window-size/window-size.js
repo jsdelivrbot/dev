@@ -3,11 +3,7 @@
 
 var heightRemoved = true;
 
-function onResize() {
-	_.debounce(function(event) {
-		// All the taxing stuff you do
-	}, 100);
-
+checkWindowSize() {
 	  
 	  //match height if above 400px
 	  if (window.innerWidth > 766) {
@@ -25,9 +21,6 @@ function onResize() {
 	    }
 	}
 }
-//another example...
-// window is resized 
-var reloadIfResizeChange = _.debounce(function() {
-    window.location.reload();
-}, 200);
-window.addEventListener('resize', reloadIfResizeChange);
+
+let checkSize =_.debounce(this.checkWindowSize.bind(this) , 100)
+window.addEventListener('resize', checkSize);
