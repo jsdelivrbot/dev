@@ -8,6 +8,9 @@ TweenLite.fromTo(img, 1, {x: -200}, {x: 200});
 //just set a value without animating
 TweenLite.set(img, {x: -200});
 
+//change class name only
+TweenLite.set(element, {class:'+=newclass'});
+
 //simple chaining tweens (delay to the duration of first tween)
 TweenLite.from(img, 1, {x: -200});
 TweenLite.from(h2, 1, {autoAlpha: 0}, delay: 1);

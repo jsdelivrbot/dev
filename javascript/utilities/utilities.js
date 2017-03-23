@@ -91,3 +91,57 @@ function toggle(el, value) {
     else el.style.display = 'none';
 }
 
+
+//find next, prev. item in the array
+//---------------------------
+let nextItem = '';
+let prevItem = '';
+let index = 0;
+index = pagesCopy.indexOf(currentPage);
+if(index >= 0) {
+    //need -1 since index uses 0 index and length doesn't
+    if(index !== pagesCopy.length - 1) {
+        nextItem = pagesCopy[index + 1];
+    } else {
+        console.log('called')
+        nextItem = '';
+    }
+    if(index !== 0) {
+        prevItem = pagesCopy[index - 1];
+    } else {
+        prevItem = '';
+    }
+}
+// console.log('prevItem: ', prevItem);
+// console.log('nextItem: ', nextItem);
+
+
+/* From Modernizr */
+//listen for end of css animation
+function whichTransitionEvent(){
+    var t;
+    var el = document.createElement('fakeelement');
+    var transitions = {
+      'transition':'transitionend',
+      'OTransition':'oTransitionEnd',
+      'MozTransition':'transitionend',
+      'WebkitTransition':'webkitTransitionEnd'
+    }
+
+    for(t in transitions){
+        if( el.style[t] !== undefined ){
+            return transitions[t];
+        }
+    }
+}
+
+/* Listen for a transition! */
+var transitionEvent = whichTransitionEvent();
+transitionEvent && e.addEventListener(transitionEvent, function() {
+    console.log('Transition complete!  This is the callback, no library needed!');
+});
+
+/*
+    The "whichTransitionEvent" can be swapped for "animation" instead of "transition" texts, as can the usage :)
+*/
+
