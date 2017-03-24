@@ -30,3 +30,27 @@ ReactDOM.render(
   </Parent>,
   document.getElementById('container')
 );
+
+
+//---------
+
+//with classes
+render {
+  
+  const childrenWithProps = React.Children.map(this.props.children,
+   (child) => {
+    React.cloneElement(child, { onPageLoadComplete: this.onPageLoadComplete.bind(this) })
+  });
+
+  return (
+      {childrenWithProps}
+
+    )
+}
+//hook up props to child components since this component wraps children
+
+
+
+//actually the above might not work?, the below does:
+
+{React.cloneElement(this.props.children, { onPageLoadComplete: this.onPageLoadComplete.bind(this) })}
