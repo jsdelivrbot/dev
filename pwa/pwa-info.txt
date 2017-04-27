@@ -1,0 +1,88 @@
+
+consider:
+-ios pwd Support:
+https://medium.com/dev-channel/why-progressive-web-apps-vs-native-is-the-wrong-question-to-ask-fb8555addcbb
+http://stackoverflow.com/questions/29895387/service-workers-and-ios
+-cordova?
+-simple and fast, efficient interface
+-must be ssl
+-consider deployment, google app engine?
+-mapbox with react
+-getting gps info to paw offline
+-how and do we have to store the data, database?
+-where will this be hosted?
+
+
+resources:
+——————
+
+PRPL Pattern:
+https://www.youtube.com/watch?v=J4i0xJnQUzU
+https://www.polymer-project.org/1.0/toolbox/server
+
+http2 aggressive splitting for web pack
+https://github.com/webpack/webpack/tree/master/examples/http2-aggressive-splitting
+
+generate service workers module for web pack:
+https://www.npmjs.com/package/sw-precache-webpack-plugin
+
+investigate code bloat
+https://github.com/danvk/source-map-explorer
+
+css above the fold plugin
+https://github.com/addyosmani/critical-path-css-tools#node-modules
+
+
+critical rendering path video tutorial
+https://classroom.udacity.com/courses/ud884/lessons/1464158641/concepts/14734291220923
+
+tutorial:
+https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-i-introduction-50679aef2b12
+
+
+-lighthouse chrome extension for testing:
+https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
+https://github.com/GoogleChrome/lighthouse
+
+inspect android devices using chrome:
+chrome://inspect
+
+firebase:
+https://firebase.google.com/?utm_source=google&utm_campaign=Firebase*%20Brand%20GENERIC%20%7C%20Global&utm_medium=cpc&utm_term=firebase&gclid=CMylnLTZktMCFRW2wAodrAkKCg
+
+lazy loading in react
+https://webpack.js.org/guides/lazy-load-react/
+
+free ebook: High Performance
+Browser Networking
+https://hpbn.co/?utm_source=igvita&utm_medium=referral&utm_campaign=igvita-footer
+
+starter projects
+———————————
+https://github.com/insin/react-hn
+https://github.com/GoogleChrome/sw-precache/tree/master/app-shell-demo
+
+help for building the manifest:
+Realfavicongenerator.net
+
+react-map-gl (using react with mapbox)
+https://github.com/uber/react-map-gl
+
+Progressive web app starter using geolocation and device orientation in React with Redux
+https://github.com/paulhoughton/remember
+
+Innovating with HTTP 2.0 Server Push
+https://www.igvita.com/2013/06/12/innovating-with-http-2.0-server-push/
+
+tips on getting site more secure:
+———————————————————
+Some more tips to get your site more secure:
+
+Upgrade unsecure requests (“HTTP” connections) to “HTTPS” redirecting users as needed. Take a look at Content Security Policy and upgrade-insecure-requests.
+
+Update all links referencing “http://” to “https://”. If you rely on third-party scripts or content, talk to them about making their resources available over HTTPS too
+
+Use HTTP Strict Transport Security (HSTS) headers when serving pages. It’s a directive that forces browsers to only talk to your site in HTTPS.
+
+I’d recommend watching Deploying HTTPS: The Green Lock and Beyond and Mythbusting HTTPS: Squashing security’s urban legends for more.
+

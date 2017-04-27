@@ -24,7 +24,7 @@ TweenLite.from(h2, 1, {autoAlpha: 0}, delay: 1);
 //callback functions
 //-----------------------------
 
-TweenLite.from(img, 1, {width: -200, onStart: onStart, 
+TweenLite.from(img, 1, {width: -200,
 	onStart: onStart
 	onUpdate: onUpdate
 	onComplete: onComplete

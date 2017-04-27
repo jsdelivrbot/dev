@@ -315,7 +315,7 @@ div.border:before {
 /*end double borders --------------------------------------------------------------*/
 
   /*every second*/
-ul li:models-child(2n+2) {  
+ul li:nth-child(2n+2) {  
   color: #EBF0FD
 }
 
@@ -484,12 +484,21 @@ applies to both these
 <p class="top-text">Hello world!</p>*/
 
 
+/*horizontally align*/
 
+.align-parent {
+    transform-style: preserve-3d;
+}
 
+.h-align-child {
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+}
 
 /*vertical align technique 1-------------------------------*/
 
-.v-align-parent {
+.align-parent {
     /*to eliminate blurryness for "half pixel" child element for vertical align*/
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
