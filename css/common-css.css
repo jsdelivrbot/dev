@@ -281,13 +281,29 @@ img {
   p.test {font-weight:bold;}
   }
   
-  
-  
-/*fix footer to the bottom of page:*/
-footer{
-    position: fixed;  
-    bottom: 0px;
+
+/*full width video to proportion------------------------------------------------------------------------*/
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
 }
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*then to implement...
+<div class="container">
+<iframe src="//www.youtube.com/embed/yCOY82UdFrw" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>*/
+
 
   
 /*use box-shadow to make double border effect-------------------------------------*/
@@ -315,7 +331,7 @@ div.border:before {
 /*end double borders --------------------------------------------------------------*/
 
   /*every second*/
-ul li:models-child(2n+2) {  
+ul li:nth-child(2n+2) {  
   color: #EBF0FD
 }
 
@@ -326,7 +342,10 @@ ul li:models-child(2n+2) {
 
 /*not last child*/
 div:not(:last-child) {
-    
+}
+
+/*not a certain class*/
+div:not(.some-class) {
 }
 
 
@@ -484,12 +503,21 @@ applies to both these
 <p class="top-text">Hello world!</p>*/
 
 
+/*horizontally align*/
 
+.align-parent {
+    transform-style: preserve-3d;
+}
 
+.h-align-child {
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+}
 
 /*vertical align technique 1-------------------------------*/
 
-.v-align-parent {
+.align-parent {
     /*to eliminate blurryness for "half pixel" child element for vertical align*/
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;

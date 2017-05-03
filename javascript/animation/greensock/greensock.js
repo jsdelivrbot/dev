@@ -18,13 +18,19 @@ TweenLite.from(h2, 1, {autoAlpha: 0}, delay: 1);
 //automatically sets visibility to hidden and alpha to 0 (1 sets it to visible, opacity 1)
 {autoAlpha: 0}
 
+//rotation, opacity, scale
+TweenMax.from( img, 0.5, {css:{scale:0.05, opacity:0, rotation: 180}, 
+    ease:Quad.easeInOut
+});
+
+
 //preview easing:
 //greensock.com/ease-vidualizer
 
 //callback functions
 //-----------------------------
 
-TweenLite.from(img, 1, {width: -200, onStart: onStart, 
+TweenLite.from(img, 1, {width: -200,
 	onStart: onStart
 	onUpdate: onUpdate
 	onComplete: onComplete
@@ -56,17 +62,23 @@ tl
 
 
 //using labels
-tl = new TimelineLite();
+var tl = new TimelineLite();
 tl
 	.from(h1, 0.3, {autoAlpha: 0})
 	.add('intro', 0)
 	//use the 'intro' label to play at the same time as that label
 	.from(h2, 0.3, {autoAlpha: 0}, 'intro')
 
+//repeating animation
+
+var tl = new TimelineMax({repeat:6});
+tl.to(one, 0.75, {css:{rotation:".16rad" },ease:Linear.easeNone} );
+ //tl.to(two, 0.14, {css:{rotation:"0 rad" },ease:Linear.easeNone});
+
 
 //staggering animation
 var buttons = $(button);
-tl = new TimelineLite();
+var tl = new TimelineLite();
 tl
 	.staggerFrom(buttons, 0,2, {x: 100, ease: Power1.easeInOut}, 0.1) //0.1 is stagger delay
 	//.staggerTo
