@@ -1,0 +1,23 @@
+critical path order of steps:
+
+1. Begin constructing the Dom by parsing HTML
+2. Request CSS & JS resources (but it's syncronouse - can't execute it until having cssom)
+3. Parse CSS and construct CSSOM tree
+4. Execute JS
+5. Merge DOM and CSSOM into the render tree
+
+to build the render tree you need both the dom and cssom tree so we must load css first before rendering,
+Javascript is blocked until cssom is created. Once js is executed, dom parser is unblocked and can render page
+
+how to optimize?
+-inlince critical css
+-inline critical js
+-add media query type to css (to skip dounload if not needed)
+-async js that doesn't affect the dom
+
+-reduce number of bytes to download
+-reduce number of critical resources
+-reduce critical path length
+
+critical rendering path video tutorial
+https://classroom.udacity.com/courses/ud884/lessons/1464158641/concepts/14734291220923

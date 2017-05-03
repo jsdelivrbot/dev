@@ -1,0 +1,7 @@
+cross origin resource sharing:
+
+the browser on the client enforces a same origin rule for fetching resources outside the origin. You’ll get an error unless the other origin gives permission
+-the origin is a combination of scheme - ex(http), hostname - ex(yousite.com) and port - ex(80)
+
+steps involved:
+when the browser makes a cross-origin request, it adds a special “origin” header to the request. if the accepting server accepts the request, it will add an access-control-allow-origin header to the response. The browser will note the response and allow cross-origin access to this location.
