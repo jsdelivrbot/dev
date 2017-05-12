@@ -23,3 +23,10 @@ example codepen:
 http://codepen.io/devtips/pen/JorKGm/?editors=1100
 
 natasha bodnarchuck - change to ski-jumping
+
+ei bugs:
+———————————
+-won’t work if there is min-height on flex parent (try using padding instead)
+-using margin auto on flex child won’t work, 
+use align-items: centre, and justify-content: centre on flex parent 
+(or use the foundation classes for centering)

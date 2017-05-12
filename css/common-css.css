@@ -203,6 +203,16 @@ div {
 	background: #7ec87e; /* Firefox */
 }
 
+/*prining------------------------------------------------------------------------*/
+
+/*exclude class from printing*/
+@media print {
+    .no-print { display: none; }
+} 
+
+/*or grab an entire custom stylesheet when printing, include this in the head (consider deferring this script)*/
+/*<link rel="stylesheet" type="text/css" media="print" href="print.css">*/
+
 /*full width image effects------------------------------------------------------------------------*/
 
 /*pattenn overlay bg(scrolls normally)---------------------*/

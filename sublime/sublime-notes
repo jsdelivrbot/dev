@@ -1,4 +1,9 @@
 get react jsx to work in sublime:
 http://gunnariauvinen.com/getting-es6-syntax-highlighting-in-sublime-text/
 
+installing packages:
+
+1. download package contents
+2. Copy the folder to ~/Library/Application Support/Sublime Text 2/Packages/ (make sure this is the Library inside your home folder, not the one in the root of your hard drive)
+
 
