@@ -58,3 +58,14 @@ article.dataset.parent // "cars"
 //   data-parent="cars">
 // </article>
 
+//get parent node
+//-------------------
+var element = getElementById('myId');
+var parent = element.parentNode;
+
+//get last child node
+//-------------------
+var element = getElementById('myId');
+var parent = element.lastChild;
+
+

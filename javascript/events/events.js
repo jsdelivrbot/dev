@@ -29,3 +29,57 @@ function doSomething() {
 }
 
 
+// add and remove multiple event listeners
+
+var bInputs = billing.querySelectorAll('input');
+var bSelects = billing.querySelectorAll('select');
+
+
+var watchFields = function watchFields() {
+	for (var i = 0; i < bInputs.length; i++) {
+		bInputs[i].addEventListener('input', mapBillingFields, false);
+		// bInputs[i].addEventListener('change', mapProvinceSelect, false);
+	}
+	for (var i = 0; i < bSelects.length; i++) {
+		bSelects[i].addEventListener('change', mapProvinceSelect, false);
+	}
+};
+
+var unwatchFields = function unwatchFields() {
+	for (var i = 0; i < bInputs.length; i++) {
+		bInputs[i].removeEventListener('input', mapBillingFields, false);
+		sInputs[i].removeEventListener('change', mapProvinceSelect, false);
+	}
+	for (var i = 0; i < bSelects.length; i++) {
+		bSelects[i].removeEventListener('change', mapProvinceSelect, false);
+	}
+};
+
+//stop bubbling
+//add this to the child element of the element you dont' want it to effect
+event.cancelBubble = true;
+if(event.stopPropagation) event.stopPropagation();
+
+//use in modal for example
+//====================
+var isOpen = false;
+
+var modal = document.querySelector('.container');
+bill.addEventListener('click', function(e) {
+	if(isOpen) {
+		//close modal
+		isOpen = false;
+	}
+}, false);
+
+//click safely without affecting parent
+var child = document.querySelector('.child');
+bill.addEventListener('click', function(e) {
+	event.cancelBubble = true;
+	if(event.stopPropagation) event.stopPropagation();
+	//open the modal
+	isOpen = true;
+}, false);
+
+
+

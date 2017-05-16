@@ -1,3 +1,4 @@
+node = document.createElement("p")
 
 //remove child node:
 node.removeChild(node)
