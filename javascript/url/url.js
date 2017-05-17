@@ -39,7 +39,9 @@
 var currentUrl = window.location.href;
 
 //redirect to new url
-window.location.assign("http://www.benchung.com")
+window.location.assign("http://www.hotmail.com");
+//or if already on a site:
+window.location.assign("/shop");
 
 //get the host name of the current page
 var location = window.location.hostname;
