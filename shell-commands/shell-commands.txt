@@ -13,47 +13,129 @@ Ctrl + A Ctrl + K
 clear screen to get more space:
 clear
 
+word completion:
+write first letters + tab
+
+---------------------
+help/manual
+---------------------
+
+#quick help
+<command> Ñhelp
+
+#comprehensive help
+<command> man
+
+---------------------
+sudo
+---------------------
+
+#run sudo (even with root disabled)
+sudo -s <command>
+
+---------------------
+users
+---------------------
+
+#adding a new user (named deploy) with a login shell of bash
+#and create the userÕs home directory
+sudo useradd --create-home -s /bin/bash deploy
+
+#give it sudo abilities
+sudo adduser deploy sudo
+
+#we need to set a password for it to unlock it:
+sudo passwd deploy
+
+#list all users with info (print info from the /etc/passwd file):
+cat /etc/passwd
+
+#shorter version:
+awk -F':' '{ print $1}' /etc/passwd
+
+#delete a user and related files from user account. 
+#must be run as root user
+userdel userName
+
+#To remove the userÕs home directory and mail spool
+userdel -r userName
+
+---------------------
+printing/editing files
+---------------------
+
+#to print out contents of a file:
+cat file.txt
+
+#to edit a file:
+nano file.txt
+
+---------------------
+list files
+---------------------
+
+#list directory contents:
+ls
+
+#list long version
+ls -l
+
+#list long version and hidden files
+ls -la
+
+#list with pagination (pipe to the more program)
+ls -la |more
+
+#inspect file type
+file <filename>
+
 ---------------------
 navigation
 ---------------------
 
-this will take you to your home directory.
-print working directory:
+#print working directory:
 pwd
 
-list contents:
-ls
-
-enter folder:
+#enter folder:
 cd public_html
 
-delete file:
-rm index.php
-(add -r for entire folder and contents)
+#go up a level
+cd ..
+
+#your current dir is
+.
+
+#go to root
+cd /
+
+#go to home dir
+cd ~
+
+#go to absolute path
+cd /home/mydir
+
+---------------------
+creating/deleting
+---------------------
+
+#create folder
+mkdir <folder name>
+
+#create file(s)
+touch file1.txt file2.txt
+
+#recursively delete contents and force it even if folders not empty
 rm -rf thefolder
 
-ls = list. As in tell me what is in the directory I’m currently in
-cd = change directory. It’s how we move between directories
-example:
-type ls then hit enter,
-type cd public_html then hit enter
-type cd then enter to go back to the root
-
-search for a keyword inside a dir:
-grep -ir texttosearchfor *
-
-find a file with particular name:
-find /home/wellbrookplumbin/public_html/ -name controls.js
-
 ---------------------
-creating and deleting
+moving/renaming files
 ---------------------
-
-# delete/remove a directory
-rm -rf foldertodelete
 
 #move file/folder
-sudo mv hello.sh /usr/local/bin
+mv hello.sh /usr/local/bin
+
+#also use mv to rename files
+mv file1.txt file1renamed.txt
 
 ---------------------
 file permissions:
@@ -79,30 +161,6 @@ chown -R annettewestdrape:nobody public_html/
 
 list permissions for a file:
 ls -l index.php
-
-
-In order to list all files and directories using an SSH client, you would need to execute the appropriate command. The command name, in this case, is ls and it accepts various parameters.
-
-When using the command alone (without arguments):
-
-ls
-
-the output will be all visible files and folders without additional formatting or information.
-
-In order to view more information about the files (such as their permissions, ownership, last modified date, etc) and at the same time to list the files and directories, you would need to supply additional arguments to the command. The most common arguments are as follows:
-
-ls –a
-(Short from –all) Lists all files and folders including hidden (starting with a dot) files and directories.
-
-ls –R
-(Short from –Recursive) Lists recursively (i.e follows subfolders as well) all files and folders under the current directory.
-
-ls -l
-(Short from –long) Lists all files and folders, each on a separate line, and provides additional information about them (permissions, ownership and modified date)
-The arguments, as is with most Unix based commands, can be combined. For example:
-
-ls –alR
-will list all files (even the hidden files starting with dot), provide more information about them and will continue recursively into each subfolder.
 
 File access permissions appear in the first column of the output i.e. -rw-r--r--
 
@@ -132,35 +190,29 @@ For Files:
 find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
 
 ---------------------
+search (locate)
+---------------------
+#for mac, enable locate first:
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+#for linux:
+sudo updateddb
+#then
+locate <filename>
+#locate with part of the file name
+locate *filename*
+
+
+---------------------
 copy files to different directories
 ---------------------
 
-cp is the command. The first file listed is the one you want to copy. 
-The second file is the new name for the copied version of the file, 
-including any path information for where the copy should be located. 
-You can use a relative path like in the example above (that is, there is an image folder inside your current folder already), 
-or you can use a full server path starting with /.
 
-copy a file to a new location:
-cp annettewestdraperycontent.zip /home/annettewestdrape/public_html
+#copy a file to a new location:
+cp file1.zip /home/user/
 
-You can also copy an entire folder (along with all subfolders) using -R:
+#copy entire contents recursively
 
 cp -R image/ image2
-
-Source: /var/www/vhosts/rightdrive.ca/httpdocs/app/webroot/media/transfer/img/
-Target: /var/www/vhosts/rightdrive.ca/beta.rightdrive.ca/wp-content/uploads/encyc-news-gallery/
-
-example:
-cp -R /var/www/vhosts/rightdrive.ca/httpdocs/app/webroot/media/transfer/img/ /var/www/vhosts/rightdrive.ca/beta.rightdrive.ca/wp-content/uploads/encyc-news-gallery/
-
-Simple way to change all file and folder permissions on a directory at once (like for wordpress)
-
-    Directories:
-    find [path to install] -type d -exec chmod 755 {} ;
-
-    Files:
-    Find [path to install] -type f -exec chmod 644 {} ; 
 
 ---------------------
 run a php script/page:

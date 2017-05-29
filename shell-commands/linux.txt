@@ -1,0 +1,4 @@
+#print linux version(ubuntu, etc)
+cat /etc/*release
+#or for other details
+uname -a

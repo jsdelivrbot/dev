@@ -1,70 +1,37 @@
-SSH------------------------------------
+------------------------------------------
+setup passwordless ssh:
+------------------------------------------
 
-ssh root@<ipaddress> -p 22
+#on your computer:
+———————————
 
-enter username:
-<user>
+#you might need to make the .ssh directory
+cd ~/.ssh
 
-password:
-<password>
+#run this then hit enter a few times to generate key or enter 
+#a specific name(don’t bother with password)
+ssh-keygen -C "my@email.com"
 
-or SSH using putty--------------------
+#copy the file contents to the clipboard
+cat id_rsa.pub | pbcopy
 
--open putty and put in IP address or host name (yourdomain.com)
-23.235.194.187
-or
-vps12396.inmotionhosting.com
-or
-23.235.194.187
--port 22
--SSH
+#Push your ssh key to the authorized_keys file on the remote server
+cat ~/.ssh/id_rsa_fa2do.pub | ssh reifwinery@159.203.37.121 -p 52802 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
 
-generate ssh keys
-------------------------------------
-make sure your .ssh dir is read only
+#Your home directory ~, your ~/.ssh directory and the ~/.ssh/authorized_keys 
+#file on the remote machine must be writable only by you (700 or 755, not 775)
+#on remote machine:
+chmod -R 700 ~/.ssh
 
-in command prompt:
-ssh-keygen
-you'll see:
-Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/localuser/.ssh/id_rsa):
-press enter to accept default path or if you are naming it differently, use:
-C:/Users/<user>/.ssh/id_rsa_2
+#exit and you can now ssh without a password!
 
+#if there are still problems, you need to edit /etc/ssh/sshd_config
+follow this:
+https://www.g-loaded.eu/2005/11/10/ssh-with-keys/
+#nano into 
 
-good info for logging in:
-----------------
-http://www.inmotionhosting.com/support/website/ssh/how-to-login-ssh
-root access:
-http://www.inmotionhosting.com/support/website/cpanel-account-management/obtain-root-access
-for shared hosting:
-http://www.inmotionhosting.com/support/website/ssh/shared-reseller-ssh
-
-easy manage your vps via ssh:
-http://www.inmotionhosting.com/support/website/linux/easier-site-management-with-ssh
-
-Rsync--------------------
-
-# to rsync directories on the same sytem:
-# both folders will share changes now (contents of dir1 to dir2)
-# -a preserves preserves symbolic links, special and device files, modification times, group, owner, and permissions
-rsync -a dir1/ dir2
-# to do it with output
-rsync -anv dir1/ dir2
-
-#remote rsync
-# rsync -a ~/dir1 username@remote_host:destination_directory
-rsync -a ~/wordpress.sql benc@159.203.37.43:~/
-
-using keys with filezilla------------------------
-
--use puttygen
--load your id_rsa file
--
-
-
-
-
+#if you use a different name than id_rsa for your private key, use the full path when connecting:
+ssh reifwinery@159.203.37.121 -i ~/.ssh/id_rsa_reifwinery -p 52802
 
 
 

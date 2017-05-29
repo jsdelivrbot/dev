@@ -9,7 +9,7 @@ token:
 
 
 ------------------------------------------
-to spin up a nodejs server------------------------------------------
+to spin up a nodejs server
 ------------------------------------------
 
 -start digital ocean droplet with node.js image package
@@ -20,68 +20,12 @@ https://gist.github.com/learncodeacademy/3cdb928c9314f98404d0
 
 sudo useradd --create-home -s /bin/bash deploy
 sudo adduser deploy sudo
+#we need to set a password for it to unlock it:
 sudo passwd deploy
 
 -ssh in as that new user--------
--setup passwordless ssh:
-mkdir .ssh
-exit
-Push your ssh key to the authorized_keys file on the remote server
-cat ~/.ssh/id_rsa.pub | ssh deploy@159.203.10.251 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
 
-Generate an SSH keypair for passwordless SSH:---------
-
-instructions here:
-https://www.youtube.com/watch?v=DbPDraCYju8
-and here:
-https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2
-
-#on your computer
-cd ~/.ssh
-#you might need to make the .ssh directory
-ssh-keygen -C "my@email.com"
-#hit enter a few times to generate key
-
-#copy the file contents to the clipboard
-cat id_rsa.pub | pbcopy
-
-#log into your machine
-ssh user@mydomain.com
-#make the .ssh directory and get in it
-mkdir .ssh
-cd .ssh
-#open authorized_keys in nano and paste the contents in
-nano authorized_keys
-#paste contents in and save by hitting ctrl+x
-
-#exit and you can now ssh without a password!
-
-
-Automate our deployment using flightplan (node module)---------
-
-first make sure your node preject is a git repository, instructions here:
-https://www.youtube.com/watch?v=vmekjPhQuCc
-instructions here:
-https://gist.github.com/learncodeacademy/393c8ec3ebaa92df9a29
-and
-https://gist.github.com/learncodeacademy/35045e64d2bbe6eb14f9
-
-on your machine:
-npm install -g forever
-
-then in your node project folder:
-npm install flightplan --save-dev
-
-do deploy just run:
-fly staging or fly production
-(since we have no staging server just do fly production)
-
-note:
-it needs rsync to work and you need to install that:
-https://www.itefix.net/content/cwrsync-free-edition
-(set environment variables on windows for it to work):
-http://stackoverflow.com/questions/20493309/cwrsync-in-windows-not-being-recognised
-
+setup passwordless ssh… (see the other file)
 
 
 ---------------------------------------------------
