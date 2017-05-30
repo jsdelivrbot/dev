@@ -25,10 +25,19 @@ chmod -R 700 ~/.ssh
 
 #exit and you can now ssh without a password!
 
-#if there are still problems, you need to edit /etc/ssh/sshd_config
-follow this:
+#if there are still problems: 
+nano /etc/ssh/sshd_config
+
+enable these:
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+HostKey /etc/ssh/ssh_host_dsa_key
+
+#then restart the ssh server:
+service sshd restart
+
+more info here:
 https://www.g-loaded.eu/2005/11/10/ssh-with-keys/
-#nano into 
 
 #if you use a different name than id_rsa for your private key, use the full path when connecting:
 ssh reifwinery@159.203.37.121 -i ~/.ssh/id_rsa_reifwinery -p 52802

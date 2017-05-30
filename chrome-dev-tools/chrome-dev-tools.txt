@@ -1,0 +1,5 @@
+chrome dev tools:
+-install carary and enable experimental features
+css: settings > experience > source diff
+-cmd+shift+p  to find commands
+-click dots near console "source diff"
