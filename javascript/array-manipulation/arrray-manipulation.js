@@ -83,6 +83,10 @@ var regular = ["apple", "grape"];
 var fruitBasket = regular.concat(tropical);
 console.log(fruitBasket);
 
+//find index (works for spaced strings and arrays)
+//---------------------------------------
+var n = str.indexOf('foobar');
+
 //looping through
 //---------------------------------------
 
