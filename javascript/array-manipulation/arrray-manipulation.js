@@ -114,6 +114,13 @@ var found = fruitBasket.filter(function(item) {
 
 console.log(found);
 
+//.find
+//returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
+//(use findIndex() to return the index instead)
+[12, 5, 8, 130, 44].find((element) => {
+  return element >= 15;
+}); // 130
+
 
 //.reduce
 //execute for each item and use the sum (indicated by the sarting value of the second argument)

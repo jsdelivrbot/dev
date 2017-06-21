@@ -48,3 +48,8 @@ npm start
 
 to run a script (located in the scripts area of package.json)
 npm run <scriptname>
+
+
+list all globally installed plugins
+-----------------------
+npm list -g --depth=0

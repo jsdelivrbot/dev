@@ -1,18 +1,3 @@
-flexbox ref:
-
-.container  {
-//enable flex
-display: flex;
-//contents break to next line on wrap
-flex-wrap: wrap;
-//horizontal or vertical stacking
-flex-direction: row | column;
-//shorthand for flex direction/flex wrap
-flex-flow: row wrap;
-//the alignment of child items (if there is free space to deal with)
-justify-content: flex-start | flex-end | center | space-between | space-around;
-}
-
 flexbox resrouces:
 ———————————
 
@@ -21,8 +6,6 @@ http://codepen.io/anon/pen/VKxRoE?editors=1100
 
 example codepen:
 http://codepen.io/devtips/pen/JorKGm/?editors=1100
-
-natasha bodnarchuck - change to ski-jumping
 
 ei bugs:
 ———————————

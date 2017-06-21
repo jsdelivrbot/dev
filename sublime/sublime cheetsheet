@@ -8,13 +8,16 @@ I once had a small cat. The cat was
 	<p>thurs sdfsd sdfs sdfds</p>
 </div>
 
+
+Sublime cheatsheet:
+
 install packages:
 shift+command+p
 search for “install”
 search for your package
 
-
-Sublime cheatsheet:
+remove packages:
+(same as above but search for “remove”)
 
 find/edit
 command + click = insert multiple areas to edit
@@ -46,5 +49,7 @@ format code = edit > line > re-indent
 open the command pallets = command + shift + p
 comment out code = command + /
 
+open file with extension:
+View -> Syntax -> Open all with current extension as ...
 
 

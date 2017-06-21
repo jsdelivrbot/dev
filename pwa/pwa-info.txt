@@ -1,6 +1,10 @@
 
 watch this:
 https://www.youtube.com/watch?v=4sGgB2SBMew
+useful links:
+https://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
+https://gis.stackexchange.com/questions/210188/how-to-unzip-osm2vectortiles-after-extracing-with-mbutil
+
 
 boilerplate setup:
 ====================
@@ -19,6 +23,13 @@ https://www.youtube.com/watch?v=kR06NoSzAXY
 
 geolocation:
 ====================
+
+codepen example:
+https://codepen.io/jnmorse/pen/qbLegO
+GeoLocation, React, ReactRedux, Redux, ReduxPromise
+
+react geolocation npm plugin:
+https://www.npmjs.com/package/react-geolocated
 
 using map box with geolocation example:
 https://www.pubnub.com/blog/2015-04-29-displaying-live-location-data-javascript-mapbox-api/
@@ -43,13 +54,29 @@ https://cognitive-event-finder.mybluemix.net
 source code:
 https://github.com/ibm-cds-labs/cognitive-event-finder
 
+image manipulation:
+====================
+
+upload images:
+
+react dropzone
+https://www.npmjs.com/package/react-dropzone-improved
+http://okonet.ru/react-dropzone/
+https://react-dropzone.netlify.com/
+
+cropping images
+https://github.com/roadmanfong/react-cropper
+
+
 map server:
 ====================
 
 react, mabox-gl.js (using react with mapbox)
 https://github.com/uber/react-map-gl
+
 react, mapbox-gl with redux
 https://github.com/Willyham/redux-map-gl
+
 a different plugin
 https://www.npmjs.com/package/react-mapbox-gl
 
@@ -124,6 +151,15 @@ https://www.igvita.com/2013/06/12/innovating-with-http-2.0-server-push/
 mongoDB:
 ====================
 
+* geoindexing in mongoDB
+http://blog.robertonodi.me/how-to-use-geospatial-indexing-in-mongodb-using-express-and-mongoose/
+https://github.com/robert52/simple-geolocation
+https://dzone.com/articles/geospatial-queries-mongoose
+https://kostasbariotis.com/geospatial-query-with-mongodb-and-node-js/
+
+mongoose geojson schema npm package
+https://www.npmjs.com/package/mongoose-geojson-schema
+
 mongo, express, map box:
 http://denelius.com/leaflet-node-mongodb/
 source code:
@@ -138,12 +174,11 @@ https://www.youtube.com/watch?v=MvY8vcrojYw
 building with mongoDB and map box (series links at bottom of page)
 https://medium.com/@SamCorcos/building-campaignhawk-an-open-source-election-canvassing-app-with-meteor-and-react-part-1-aff5e8e19a32
 
-postgres:
+file upload:
 ====================
+example - redux-form and react-dropzone
+https://ollie.relph.me/blog/redux-form-and-dropzone-react-example/
+https://github.com/BBB/dropzone-redux-form-example
+https://stackoverflow.com/questions/39698285/how-to-upload-file-with-redux-form
 
--storing json data in postgres
-https://blog.codeship.com/unleash-the-power-of-storing-json-in-postgres/
-
--geo support for postgres
-http://www.postgis.net/
 

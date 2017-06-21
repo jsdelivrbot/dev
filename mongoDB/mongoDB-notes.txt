@@ -1,0 +1,33 @@
+#installation:
+==========================
+
+brew update
+brew install mongodb
+
+#install with tls/ssl support
+brew install mongodb --with-openssl
+
+#make mongo db directory
+sudo mkdir -p /data/db
+
+#set permissions on that dir
+sudo chown -R $USER /data/db
+
+#to run:
+==========================
+
+#start mongoDB
+mongod
+
+#run mongoDB every time computer starts
+brew services start mongodb
+
+
+#robomongo:
+==========================
+-click create
+-Name:
+Localhost
+-Address:
+(Leave the Address part as default)
+-save then connect

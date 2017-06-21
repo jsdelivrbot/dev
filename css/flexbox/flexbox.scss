@@ -1,4 +1,52 @@
 /* ==========================================================================
+general
+========================================================================== */
+
+.container  {
+//enable flex
+display: flex;
+//contents break to next line on wrap
+flex-wrap: wrap;
+//horizontal or vertical stacking
+flex-direction: row | column;
+//shorthand for flex direction/flex wrap
+flex-flow: row wrap;
+//the alignment of child items (if there is free space to deal with)
+justify-content: flex-start | flex-end | center | space-between | space-around;
+
+/* 0 0 auto */
+flex: none;
+
+/* One value, unitless number: flex-grow
+(flex-basis changes to 0) */
+flex: 2;
+
+/* One value, width/height: flex-basis */
+flex: 10em;
+flex: 30px;
+flex: auto;
+flex: content;
+
+/* Two values: flex-grow | flex-basis */
+flex: 1 30px;
+
+/* Two values: flex-grow | flex-shrink
+(flex-basis changes to 0) */
+flex: 2 2;
+
+/* Three values:
+flex-grow | flex-shrink | flex-basis */
+flex: 2 2 10%;
+
+/* Global values */
+flex: inherit;
+flex: initial;
+flex: unset;
+
+}
+
+
+/* ==========================================================================
 sticky footer
 ========================================================================== */
 

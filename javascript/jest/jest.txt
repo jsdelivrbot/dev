@@ -1,0 +1,18 @@
+jest docks:
+https://facebook.github.io/jest/docs/en/getting-started.html#content
+
+using jest with redux
+https://www.youtube.com/watch?v=jB0_nl7aKqA
+
+watch usage:
+————————————
+run all tests:
+a
+only run tests related to changed files:
+o
+filter by filename regex pattern:
+p
+quit watch mode:
+q
+trigger test run:
+enter
