@@ -1,3 +1,28 @@
+// resource for checking regex interactively
+// http://www.regexpal.com/
+
+var patt = new Regexp(/e/);
+patt.test("The best things in life are free!");
+//true
+
+//return the index of found search
+var str = "Visit W3Schools";
+var n = str.search(/w3schools/i);
+//6
+
+//replace
+var str = "Visit Microsoft!";
+var res = str.replace("Microsoft", "W3Schools");
+// "Visit W3Schools!"
+
+// functions
+//========================//
+
+//Tests for a match in a string. Returns the first match
+exec();
+//Tests for a match in a string. Returns true or false
+test();
+
 // flags.
 //========================//
 //

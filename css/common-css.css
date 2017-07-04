@@ -359,10 +359,16 @@ div:not(.some-class) {
 }
 
 
-
+/*last child*/
 div:last-child {
     margin-right: 0px;
 }
+
+/*last of type*/
+div:last-of-type {
+    margin-right: 0px;
+}
+
 
 .about-sections > div:last-child {
     margin-right: 0px;

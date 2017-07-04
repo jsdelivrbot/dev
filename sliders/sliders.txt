@@ -1,0 +1,2 @@
+minimal slider for hide and show
+https://github.com/peduarte/wallop

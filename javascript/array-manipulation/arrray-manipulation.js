@@ -6,6 +6,10 @@ var fruits = ["Banana", "Orange", "Apple", "Mango"];
 //convert to string
 console.log(fruits.toString());
 
+//convert comma separated string to an array
+var string = "foo,bar,baz";
+console.log(string.split(','))
+
 //convert into string with custom delimeter.
 console.log(fruits.join("*"));
 
@@ -83,10 +87,6 @@ var regular = ["apple", "grape"];
 var fruitBasket = regular.concat(tropical);
 console.log(fruitBasket);
 
-//find index (works for spaced strings and arrays)
-//---------------------------------------
-var n = str.indexOf('foobar');
-
 //looping through
 //---------------------------------------
 
@@ -120,6 +120,10 @@ console.log(found);
 [12, 5, 8, 130, 44].find((element) => {
   return element >= 15;
 }); // 130
+
+//find index (works for spaced strings and arrays)
+//---------------------------------------
+var n = str.indexOf('foobar');
 
 
 //.reduce

@@ -7,3 +7,9 @@ save your logic code for dynamic things
 Frameworks, languages and algorithms should also have a way for you to enter them using the “basics” and most problems should be solvable using the basics. Only if you can’t solve them using basics - should you try to solve things using advanced techniques.
 
 -have your mechanics working as console logs before you connect it to the moving parts
+
+-doing large amounts at a time is never possible, you can be successful at scratching away at the surface though. How do do go faster? You can’t do more at a time, you can only get faster at doing small bits at a time.
+
+type everything out that you can. It’s sets you up to understand your “chainning” brain rather than your visual brain. Cutting and pasting makes you remember how things look rather than how they work in small bits
+
+-keep code in small chunks (units) break code into separate functions that do one thing, then separate components that each do one thing and keep each component within a reasonable page of code.
