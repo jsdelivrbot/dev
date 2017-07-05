@@ -165,8 +165,14 @@ http://denelius.com/leaflet-node-mongodb/
 source code:
 https://github.com/denelius/nodejs_leaflet
 
+<<<<<<< Updated upstream
 mongo tutorials (general mongoDB):
 https://www.youtube.com/playlist?list=PL4cUxeGkcC9jpvoYriLI0bY8DOgWZfi6u
+=======
+good link to other articles:
+====================
+https://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
+>>>>>>> Stashed changes
 
 REST API Tutorial (Node, Express & Mongo) #13 - GeoJSON
 https://www.youtube.com/watch?v=MvY8vcrojYw
@@ -176,9 +182,28 @@ https://medium.com/@SamCorcos/building-campaignhawk-an-open-source-election-canv
 
 file upload:
 ====================
+<<<<<<< Updated upstream
 example - redux-form and react-dropzone
 https://ollie.relph.me/blog/redux-form-and-dropzone-react-example/
 https://github.com/BBB/dropzone-redux-form-example
 https://stackoverflow.com/questions/39698285/how-to-upload-file-with-redux-form
+=======
+video:
+https://www.youtube.com/watch?v=BXTdKUNr1j8&t=89s
 
+blogs:
+https://medium.com/ibm-watson-data-lab/navigating-sxsw-via-cognitive-chatbot-28a2e1f7a456
+https://medium.com/ibm-watson-data-lab/the-most-popular-search-term-at-sxsw-according-to-our-chatbox-9f4a47a33406
+demo app:
+https://cognitive-event-finder.mybluemix.net
+source code:
+https://github.com/ibm-cds-labs/cognitive-event-finder
+>>>>>>> Stashed changes
+
+
+tool for visual creating geojson
+http://geojson.io/#map=9/35.3185/6.2334
+
+cordova offline:
+https://github.com/trevorpowell/mapbox-gl-js-cordova-offline-example
 

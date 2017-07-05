@@ -34,24 +34,33 @@ $(document).ready(function() {
 		lastBlur=v;
 	}
 
+    //set the blur to the element through css
 	$galleryPictures.css({
 		webkitFilter:"url('#blur')",
 		filter:"url('#blur')"
 	});
+
     $galleryPicture.each(function(i) {
         var cur = $(this);
+        //animate slide by click
   		cur.click(function(){
   			if(Math.abs(totalDist)<distThreshold)
   				setGalleryPos(i);
   		});
+        //animate slide by dot click
   		$(".gallery-pagination-dot").eq(i).click(function(){
   			setGalleryPos(i);
   		})
     });
 
+
     function setGalleryPos(v,anim){
+        // TweenMax.to(myObject, 2, {x:100, y:200});
+        // The above code will tween myObject.x from whatever it 
+        // currently is to 100 and myObject.y property to 200 over the course of 2 seconds
     	if(typeof anim=="undefined") anim=true;
     	stopMomentum();
+
     	TweenMax.to(galleryPos,anim?0.8:0,{
     		x:-v*imageTotalWidth,
     		ease:Quint.easeOut,
@@ -59,18 +68,24 @@ $(document).ready(function() {
     		onComplete:updateGalleryPos
     	});
     }
-
+    //called repeatedly as galleryPos is animating
+    //this is where the blur effect happens
     function updateGalleryPos(){
+
+        //with each tick, just set the position to animate the slide
     	TweenMax.set($galleryPictures,{
     		x:galleryPos.x+(($(window).width()-imageWidth)/2),
     		force3D:true,
     		lazy:true
     	});
-    	var speed=lastPos.x-galleryPos.x;
-    	var blur=Math.abs(Math.round(speed*blurMultiplier));
-	    setBlur(blur);
+
+    	// var speed=lastPos.x-galleryPos.x;
+    	// var blur=Math.abs(Math.round(speed*blurMultiplier));
+	    // setBlur(blur);
+
     	lastPos.x=galleryPos.x;
 
+        //highlight the dot depending on the current index of the slide
 	    var _currentImage=Math.round(-galleryPos.x/imageTotalWidth);
 	    if(_currentImage!=currentImage){
 	    	currentImage=_currentImage;
@@ -79,6 +94,10 @@ $(document).ready(function() {
 	    }
 
     }
+
+    //for mouse drag
+    // ====================================================
+
     $gallery.mousedown(function(event){
     	event.preventDefault();
     	dragging=true;
@@ -146,6 +165,9 @@ $(document).ready(function() {
 	    	}
 	    }
     });
+
+    // ====================================================
+
     function stopMomentum(){
     	if(momentumTween!=null){
 	    	momentumTween.kill();

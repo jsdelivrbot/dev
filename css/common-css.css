@@ -1,3 +1,6 @@
+/*creating shapes in css*/
+/*  https://css-tricks.com/examples/ShapesOfCSS/  */
+
 /**
  * Clear fix------------------------------------------------------------
  * For modern browsers
@@ -201,6 +204,21 @@ div {
 	}
 ::-moz-selection {
 	background: #7ec87e; /* Firefox */
+}
+/*background size------------------------------------------------------------------------*/
+
+.image {
+    background: url(/img.jpg);
+    background-size: 300px 80px;
+    background-repeat: no-repeat;
+}
+
+/*multiple backgrounds------------------------------------------------------------------------*/
+
+#example1 {
+background-image: url (img_flwr.gif), url(paper.gif);
+background-position: right bottom, left top;
+background-repeat: no-repeat, repeat;
 }
 
 /*prining------------------------------------------------------------------------*/
