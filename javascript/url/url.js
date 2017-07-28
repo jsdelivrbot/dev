@@ -35,7 +35,7 @@
 
 //url properties
 
-//get window location
+//get the cull url
 var currentUrl = window.location.href;
 
 //redirect to new url

@@ -30,6 +30,12 @@ let inner = select.querySelectorAll('.outer .inner');
 inner.length; // 1, not 0!
 
 
+//the html element
+document.documentElement
+
+//the body elememt
+document.body
+
 //getElementsByClassNames
 //-------------------
 //Returns an array-like object of all child elements which have all of the given class names. 

@@ -1,0 +1,13 @@
+css matrices explained:
+
+transform: matrix(1,0,0,1,0,0);
+
+first two zeros:
+add scew by using one or the other
+rotates object by makig both numbers opposite (.5, -.5)
+
+last two zeros:
+x,y translate the object
+
+both ones:
+scale x, scale y

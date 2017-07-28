@@ -29,6 +29,15 @@
     *zoom: 1;
 }
 
+html, body {
+/*prevent scroll on iphone*/
+   height: 100%;
+   width: 100%;
+   overflow: hidden !important;
+   position: fixed !important;
+/*font smoothing*/
+   @include font-smoothing;
+}
 
 
 /*Standards------------------------------------------------*/
@@ -591,6 +600,10 @@ parent-valign-wrapper
 
 */
 
+/*object-fit-------------------------------*/
+
+/*this forces the element to act like background-size: cover*/
+object-fit: cover;
 
 /*vertical align technique 3-------------------------------*/
 

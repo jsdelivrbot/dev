@@ -1,0 +1,29 @@
+when animating, avoid using:
+margin, padding, top, left, bottom, right
+
+use:
+transform: translate3D(x,y,z)
+(or scale3D)
+z isn’t needed we just use 3D to force gpu usage instead of cpu
+
+consider browser crtical rendering path steps:
+styles>layout>paint>composite
+
+-we must focus on the composite step for smooth animation and avoid going back in steps
+-style: (calculate styles to apply to elements)
+-layout: generate shape and position of elements (width, height, margins, left/top/right/bottom)
+-paint: starts filling in pixels (box-shadow, border-radius, colour, background-color)
+-composite: draws layers on screen
+here you want to use transforms and opacity:
+Position — transform: translateX(n) translateY(n) translateZ(n);
+Scale — transform: scale(n);
+Rotation — transform: rotate(ndeg);
+Opacity — opacity: n;
+
+tips:
+
+use this:
+will-change: transform;
+to tell browser to promote it to a different layer so browser doesn’t have to consider layout or painting
+
+when updating a class to trigger animations, only add the class the the animating element, not a higher up parent or it will cause recalculation of styles and make a slight delay at the beginning of your animation

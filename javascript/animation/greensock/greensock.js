@@ -70,13 +70,37 @@ tl
 	.from(h2, 0.3, {autoAlpha: 0}, 'intro')
 
 //repeating animation
-
+//(-1 repeats infinately)
+TweenMax.to(el, 1, { x: 0, repeat: -1})
+//or
 var tl = new TimelineMax({repeat:6});
 tl.to(one, 0.75, {css:{rotation:".16rad" },ease:Linear.easeNone} );
  //tl.to(two, 0.14, {css:{rotation:"0 rad" },ease:Linear.easeNone});
 
 
 //staggering animation
+
+//pass in an elements array and animate in sequence
+TweenMax.staggerTo(elementsArray, 0.5,//time to tween each
+{
+autoAlpha: 1,
+y: 0,
+onComplete: onComplete
+}, 0.3,//time to stagger delay
+onAllComplete
+);
+
+function onComplete() {
+console.log('oncomplete');
+}
+
+function onAllComplete() {
+console.log('onAllComplete');
+}
+
+
+
+
 var buttons = $(button);
 var tl = new TimelineLite();
 tl
@@ -92,6 +116,69 @@ tl
 			x: [50, -50] //even elements use first value, odd element use the second
 		}, Power1.easeInOut}, 0.1) //0.1 is stagger delay
 
+
+//clear all properties after animation:
+
+//clear all inline properties immediately with a set() call:
+TweenLite.set("#element", {clearProps:"all"});
+
+//or clear just the transform:
+TweenLite.set("#element", {clearProps:"transform"}); 
+
+//or clear the transform at the end of your tween:
+TweenLite.to("#element", 1, {rotation:60, scale:0.5, clearProps:"transform"});
+
+
+
+//animate to center:==============
+
+TweenLite.to(el, 1, {left: '50%'})
+//then put in the negative width amount in x value in css
+//transform: translateX(-300px) translateY(90vh) !important;
+
+
+//when using vh in calculations, just print out the translate instead of using x: y:
+
+TweenLite.to(element, 1, { transform: "translate3d(15em, 50vh, 0)" });
+
+
+//other ideas:
+
+.to(".target",1,{left:'50%',top:'50%', x:20 ,xPercent:'-50',yPercent:'-50'})
+
+//or:
+
+var tl = new TimelineLite();
+
+tl.to(".target", 1, { x: getMidX(".target")+20, y: getMidY(".target") } );
+
+function getMidX( obj ){
+  return ( $(obj).parent().width()/2 ) - $(obj).width()/2;
+}
+
+function getMidY( obj ){
+  return ( $(obj).parent().height()/2 ) - $(obj).height()/2;
+}
+
+//firefox bug:==============
+
+//slight delay removes firefox bug
+var delay = (bowser.firefox) ? 0.9 : 0;
+
+TweenMax.fromTo(currentBlurEl, 0.5,
+{
+	autoAlpha:0,
+	left: '35%'
+},
+{
+	delay: delay,
+	autoAlpha:1,
+	left: leftEnd,
+	ease: Elastic.easeOut,
+	easeParams: [0.4, 0.3],
+	force3D: true,
+	onComplete: onAnimationComplete
+});
 
 
 

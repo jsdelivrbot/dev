@@ -1,8 +1,9 @@
 //utilities from:
 //https://plainjs.com/
 
+/* ==========================================================================
 //toggle class (useful for css animations)
-//---------------------------
+========================================================================== */
 
 //functions to use
 function hasClass(el, className) {
@@ -32,8 +33,10 @@ var json = '{ "foo": true, "bar": 1 }',
 obj = JSON.parse(json);
 console.log(obj);
 
+
+/* ==========================================================================
 //test if array contains something
-//---------------------------
+========================================================================== */
 
 var contains = function(needle) {
   // Per spec, the way to identify NaN is that it is not equal to itself
@@ -62,9 +65,10 @@ var contains = function(needle) {
 //usage:
 //contains.call(myArray, lookupValue) //true
 
-
+/* ==========================================================================
 //trim leading and trailing white space
-//---------------------------
+========================================================================== */
+
 // IE 8
 if (!String.prototype.trim) {
     String.prototype.trim = function(){ return this.replace(/^\s+|\s+$/g, ''); };
@@ -75,9 +79,10 @@ s = s.trim();
 console.log(s);
 // "Hello World!"
 
-
+/* ==========================================================================
 //merge two js objects
-//---------------------------
+========================================================================== */
+
 function extend(obj, src) {
     for (var key in src) {
         if (src.hasOwnProperty(key)) obj[key] = src[key];
@@ -93,9 +98,9 @@ console.log(c);
 // { foo: true, bar: false }
 
 
-
+/* ==========================================================================
 //hide or show element
-//---------------------------
+========================================================================== */
 //usage:
 //toggle(myEl, 'block')
 
@@ -121,9 +126,10 @@ function toggle(el, value) {
     else el.style.display = 'none';
 }
 
-
+/* ==========================================================================
 //find next, prev. item in the array
-//---------------------------
+========================================================================== */
+
 let nextItem = '';
 let prevItem = '';
 let index = 0;
@@ -146,6 +152,19 @@ if(index >= 0) {
 // console.log('nextItem: ', nextItem);
 
 
+/* ==========================================================================
+//Listen for a transition!
+========================================================================== */
+
+var transitionEvent = whichTransitionEvent();
+transitionEvent && e.addEventListener(transitionEvent, function() {
+    console.log('Transition complete!  This is the callback, no library needed!');
+});
+
+/*
+    The "whichTransitionEvent" can be swapped for "animation" instead of "transition" texts, as can the usage :)
+*/
+
 /* From Modernizr */
 //listen for end of css animation
 function whichTransitionEvent(){
@@ -165,13 +184,48 @@ function whichTransitionEvent(){
     }
 }
 
-/* Listen for a transition! */
-var transitionEvent = whichTransitionEvent();
-transitionEvent && e.addEventListener(transitionEvent, function() {
-    console.log('Transition complete!  This is the callback, no library needed!');
-});
 
-/*
-    The "whichTransitionEvent" can be swapped for "animation" instead of "transition" texts, as can the usage :)
-*/
+/* ==========================================================================
+// debounce
+========================================================================== */
+
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
+
+//usage:
+// function checkWindowSize() {
+    
+//   console.log('called');
+
+//     //match height if above 400px
+//     if (window.innerWidth > 766) {
+//         //do something
+//         console.log('greater than 766');
+
+//     } else {
+//         //do something
+//         console.log('less than 766');
+
+//   }
+// }
+
+// let checkSize =debounce(checkWindowSize , 100);
+// window.addEventListener('resize', checkSize);
 

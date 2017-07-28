@@ -13,3 +13,18 @@ Frameworks, languages and algorithms should also have a way for you to enter the
 type everything out that you can. It’s sets you up to understand your “chainning” brain rather than your visual brain. Cutting and pasting makes you remember how things look rather than how they work in small bits
 
 -keep code in small chunks (units) break code into separate functions that do one thing, then separate components that each do one thing and keep each component within a reasonable page of code.
+
+-whenever finishing a task, clean up after yourself. Close windows, remove unneeded logs, and temporary code.
+Tidy up the product of your task.
+
+-be forceful
+like when driving a stick shift and there's some unsurety of what gear you'r currently in, just force it into the gear you need to be at now.
+In code when working with finicky situations in aplication lifecycle, just force it into the correct state instead of trying to keep track of
+too many things. For example, instead of keeping track of which buttons are pressed, simply turn them all off before setting the current button to be active.
+
+-keep things small
+keep projects small, keep codebase small, keep each module small.
+The larger the project, the more complexity, and more overhead needed to manage the amount of code.
+
+-have a cutoff moment
+have a cutoff time in the project where no new features are added and there's just debugging. More features will introduce more bugs.

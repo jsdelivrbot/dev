@@ -1,0 +1,58 @@
+svg {
+  display: none;
+}
+  
+
+body {
+  background: black;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  overflow: hidden;
+}
+
+
+.object {
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  text-transform: uppercase;
+  padding: 20px;
+  font-size: 80px;
+}
+
+
+#blur-on:checked~.object>.blur-outer {
+  filter: url('#blur');
+}
+
+.test-image {
+  display: none;
+}
+
+#image-on:checked~.object .test-image {
+  display: block;
+}
+
+#image-on:checked~.object .test-text {
+  display: none;
+}
+
+.blur-outer {
+  transform-origin: 50% 50%;
+}
+
+.blur-inner {
+  transform-origin: 50% 50%;
+  animation: text-gfx-anim 3s ;
+  animation-fill-mode: forwards;
+}
+
+.small {
+  font-size: 0.69em;
+}
+
+input {
+  margin: 10px;
+}
+  

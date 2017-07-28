@@ -12,20 +12,19 @@ cd ~/.ssh
 #a specific name(don’t bother with password)
 ssh-keygen -C "my@email.com"
 
-#copy the file contents to the clipboard
-cat id_rsa.pub | pbcopy
-
 #Push your ssh key to the authorized_keys file on the remote server
-cat ~/.ssh/id_rsa_fa2do.pub | ssh reifwinery@159.203.37.121 -p 52802 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+#(cat copies file contents: cat id_rsa.pub | destination)
+cat ~/.ssh/id_rsa_formandaffect.pub | ssh formandaffect@159.203.37.121 -p 52802 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+
+#exit and you can now ssh without a password!
+
+#if there are still problems: 
 
 #Your home directory ~, your ~/.ssh directory and the ~/.ssh/authorized_keys 
 #file on the remote machine must be writable only by you (700 or 755, not 775)
 #on remote machine:
 chmod -R 700 ~/.ssh
 
-#exit and you can now ssh without a password!
-
-#if there are still problems: 
 nano /etc/ssh/sshd_config
 
 enable these:

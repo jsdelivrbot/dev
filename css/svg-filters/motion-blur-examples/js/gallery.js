@@ -79,9 +79,10 @@ $(document).ready(function() {
     		lazy:true
     	});
 
-    	// var speed=lastPos.x-galleryPos.x;
-    	// var blur=Math.abs(Math.round(speed*blurMultiplier));
-	    // setBlur(blur);
+        //*blur happens here
+    	var speed=lastPos.x-galleryPos.x;
+    	var blur=Math.abs(Math.round(speed*blurMultiplier));
+	    setBlur(blur);
 
     	lastPos.x=galleryPos.x;
 

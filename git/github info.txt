@@ -111,6 +111,10 @@ pull
 # (go a git pull at the beginning of the day)
 git pull
 
+#if you want to pull exactly what’s on the server without doing a merge:
+git fetch origin master
+git reset --hard FETCH_HEAD
+
 fetch
 __________________
 #updates your remote tracking branch

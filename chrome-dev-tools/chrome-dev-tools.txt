@@ -6,5 +6,26 @@ css: settings > experience > source diff
 -cmd+shift+p  to find commands
 -click dots near console "source diff"
 
+js debugging
+====================
+
 -“pause on caught exceptions”
 (stop sign with pause in middle on right side)
+
+performance tab
+====================
+
+use throddle and pick device mode 3g/2g
+cmd z to zoom out
+click and scroll to scroll in
+red marker for jankiness
+click view to look at it differently
+click down arrow to see what's going on for a specific bar
+check:
+js profile, memory, screenshots
+look at fps at top
+
+network tab
+====================
+blue line is dom
+red line is all loaded

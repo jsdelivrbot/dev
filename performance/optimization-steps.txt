@@ -1,0 +1,13 @@
+
+measure:
+
+page speed insights
+yslow
+https://tools.pingdom.com/
+
+responsive image loader for react:
+https://github.com/herrstucki/responsive-loader
+
+optimizing images
+imageoptim.com
+gulp imagemin

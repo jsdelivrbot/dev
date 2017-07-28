@@ -36,3 +36,11 @@ Localhost
 ==========================
 udemy course github link (lessons stored in branches):
 https://github.com/StephenGrider/MongoCasts
+
+#security:
+==========================
+steps:
+https://www.youtube.com/watch?v=cqc7YbZpLA4&t=74s
+
+docs on mongo website:
+https://docs.mongodb.com/manual/administration/security-checklist/

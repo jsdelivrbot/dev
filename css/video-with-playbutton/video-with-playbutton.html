@@ -1,0 +1,31 @@
+<!-- works in chrome, ie10, firefox, safari -->
+
+<html>
+	<head>
+		<style ref="stylesheet/css">
+			.video-callout {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.play-button {
+					position: absolute;	left: 50%;
+					top: 50%;
+				    transform: translateX(-37px) translateY(-37px);
+					width: 74px;
+					z-index: 1;
+				}
+				.video {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="video-callout">
+		  <img class="play-button" src="{{root}}{{paths.assets}}img/icons/play-button.png" data-popup-id="slide1-vid" />
+		  <img class="video" src="{{root}}{{paths.assets}}img/vid1-poster.jpg"/>
+		</div>
+	</body>
+</html>
+

@@ -1,0 +1,20 @@
+Javascript execution context
+======================
+
+the creation phase comprises of:
+-global object (the window object for example)
+-'this'
+-a lexical link to the outer environment (access to functions and variables in the outer lexical scope)
+-setup memory space for variables and functions (this is why 'hoisting' works - when execution starts, the 
+variables aleardy exist in memory)
+
+the execution phase:
+-runs the code line by line
+
+execution stack
+===============
+every time a function is invoked, a new execution context is created and put on the execution stack
+going through the creation stage, then the execution stage, then if it has another function during the execution stage
+a new execution context is created and put on the stack, and so on...
+Once it finishes it gets poped off the stack, then onto the next one, etc.
+Note the execution context gets popped off the stack only after it's finished running

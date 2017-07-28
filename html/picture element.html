@@ -1,6 +1,11 @@
-picture element.html
-//html 5 picture element
-//(for responsive images)
+<!-- picture element.html
+html 5 picture element
+(for responsive images) 
+not supported on ie
+for polyfill, use:
+https://github.com/scottjehl/picturefill
+
+-->
 <picture>
   <source srcset="img_smallflower.jpg" media="(max-width: 400px)">
   <source srcset="img_flowers.jpg">

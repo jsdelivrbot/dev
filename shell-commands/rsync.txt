@@ -13,8 +13,11 @@ rsync -arv dir1/ dir2
 # rsync -arv <~/dir1> <username@remote_host>:<destination_directory>
 rsync -arv /Users/benchung/Desktop/test/ root@138.197.158.72:~/
 
-#rsync with host port included
+#port included
 rsync -arv -e "ssh -p 22" /Users/benchung/Desktop/test root@138.197.158.72:~/
+
+#rsync with custom named rss key included
+rsync -arv -e "ssh -i $HOME/.ssh/id_rsa_reifwinery -p 52802" /Users/benchung/Desktop/test <user>@138.197.158.72:~/
 
 #installation
 --------------------
