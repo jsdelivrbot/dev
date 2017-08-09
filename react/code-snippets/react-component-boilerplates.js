@@ -195,4 +195,37 @@ export default connect(
 //In the Presentation Component, we can do onClick={this.props.toggleActive} 
 //just as we did before but this time we didn't have to write the event itself.
 
+//the manual way of calling actions
+//------------------------------------------------------------------//
+
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions/articles';
+
+
+class SearchForm extends Component {
+
+  onSubmit(formProps) {
+    // dispatch Injected by react-redux:
+    this.props.dispatch(actions.searchArticles(formProps));
+  }
+
+  render() {
+    return (
+      <div >
+      </div>
+      )
+  }
+}
+
+
+function mapStateToProps(state) {
+  return {
+    //categoryAdded: state.category.categoryAdded,
+  }
+}
+
+export default connect(mapStateToProps)(SearchForm)
+
+
 

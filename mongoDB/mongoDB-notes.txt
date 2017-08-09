@@ -35,6 +35,10 @@ use <db-name>
 ==========================
 db.<document-name>.createIndex({ title: “text” })
 
+#remove indexes on item (for text searches)
+==========================
+db.<document-name>.dropIndex({ title: “text” })
+
 #robomongo:
 ==========================
 -click create
