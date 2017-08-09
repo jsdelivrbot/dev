@@ -43,9 +43,51 @@ el.parentNode.replaceChild(myEl, el)
 
 
 
+//ben's detach - re-attach module
+var DetachReAttach = (function() {
+  var node = null;
+  var parent = null;
+  var next = null;
 
+  return {
+    detatch: function(selector) {
+      if (selector) {
+        //if we don't already have a detached el...
+        if(!node) {
+          console.log('detatching and storing');
+          node = document.querySelector(selector) || node;
+          parent = node.parentNode || parent;
+          next = node.nextSibling || next;
+          // abort if no parent
+          if (!parent) { return; }
+          // Detach node from DOM.
+          parent.removeChild(node);
+        }
+      }
+    },
+    // Re-attach node to DOM.
+    reAttach: function (callback) {
+         // abort if no parent
+        if (!parent) { return; }
+        if(node) {
+          console.log('re attaching');
+          parent.insertBefore(node, next);
+        }
+        //reset the node
+        node = null;
+        //fire callback
+        callback();
+    }
+  }
+})();
 
+//remove full width vid to prevent playing it
+DetachReAttach.detatch('.full-screen-video');
 
+//re attach the video
+DetachReAttach.reAttach(function() {
+  document.querySelector('.full-screen-video').play();
+});
 
 
 
@@ -87,7 +129,7 @@ function detach(node, async, fn) {
 
 
 // Get an element.
-var elem = document.getElementById('huge-ass-table');
+var elem = document.getElementById('huge-table');
 
 // Just detach element from the DOM.
 detach(elem);
@@ -95,6 +137,7 @@ detach(elem);
 // Detach + exec fn + reattach, synchronous.
 detach(elem, function() {
   // this == elem, do stuff here.
+  // , reattach will happen automatically.
 });
 
 // Detach + exec fn + reattach, asynchronous.

@@ -1,24 +1,18 @@
 //window.resize
 //using lodash for debouncing
 
-var heightRemoved = true;
+var isMobile = false;
+//ipad landscape
+var mediaThreshold = 1024;
 
 checkWindowSize() {
-	  
 	  //match height if above 400px
-	  if (window.innerWidth > 766) {
-	    if(heightRemoved === true) {
-
-	      //do something
-	      heightRemoved = false;
-	    }
-
+	  if (window.innerWidth >= mediaThreshold) {
+      isMobile = false;
+      //do something
 	  } else {
-	    if(heightRemoved === false) {
-
-	      //do something
-	      heightRemoved = true;
-	    }
+      isMobile = true;
+      //do something
 	}
 }
 

@@ -54,14 +54,14 @@ var element = getElementById('myId');
 var article = document.getElementById('electriccars');
  
 article.dataset.columns // "3"
-article.dataset.indexNumber // "12314"
-article.dataset.parent // "cars"
+article.dataset.indexNumber // "12314" * note that dashed datasets are converted to cammel case
+article.dataset.myThing // "cars"
 
 // <article 
 //   id="electriccars"
 //   data-columns="3" 
-//   data-indexnumber="12314" 
-//   data-parent="cars">
+//   data-index-number="12314" 
+//   data-myThing="cars">
 // </article>
 
 //get parent node

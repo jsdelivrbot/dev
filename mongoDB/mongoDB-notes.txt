@@ -13,6 +13,10 @@ sudo mkdir -p /data/db
 #set permissions on that dir
 sudo chown -R $USER /data/db
 
+#start mongo shell:
+==========================
+mongo —shell
+
 #to run:
 ==========================
 
@@ -22,6 +26,14 @@ mongod
 #run mongoDB every time computer starts
 brew services start mongodb
 
+#show/use db:
+==========================
+show dbs
+use <db-name>
+
+#create indexes on item (for text searches)
+==========================
+db.<document-name>.createIndex({ title: “text” })
 
 #robomongo:
 ==========================

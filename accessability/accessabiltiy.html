@@ -1,0 +1,23 @@
+<!-- good article tabindexL:
+http://webaim.org/techniques/keyboard/tabindex -->
+
+<a tabindex="4">button</a>
+
+<script>
+	//set tabindex prgramatically
+	document.getElementById("link3").tabIndex = 6;
+
+	//the the prev. tabindex on tab pressed
+	  document.addEventListener('keydown', function(e) {
+	  	// if tab pressed
+	  	if (e.keyCode === 9){
+	    	var prevTabIndex = document.activeElement.tabIndex;
+
+	  	}
+	  });
+
+	  //select element by tab index
+	  document.querySelector('[tabindex=' + document.activeElement.tabIndex + ']')
+</script>
+
+
