@@ -136,6 +136,14 @@ return sum + item.length;
 
 console.log(total);
 
+//return a new array without undefined
+let newArray = someArray.reduce(function(result, item) {
+  if(item.active) {
+    result.push(item.id);
+  }
+  return result;
+}, []);
+
 
 //array tricks  
 //---------------------------------------

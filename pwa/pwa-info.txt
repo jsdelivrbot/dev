@@ -207,3 +207,11 @@ http://geojson.io/#map=9/35.3185/6.2334
 cordova offline:
 https://github.com/trevorpowell/mapbox-gl-js-cordova-offline-example
 
+server setup:
+====================
+-node with apache:
+https://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server
+
+mongoldb automated backups:
+-https://coderwall.com/p/hdmmnq/easy-automatic-nightly-backups-for-mongodb
+
