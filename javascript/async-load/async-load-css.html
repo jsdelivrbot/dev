@@ -1,0 +1,22 @@
+
+<!-- put above closing head tag -->
+<script>
+  var loadCSS = function(url, callback, location){
+      //url is URL of external file, callback is the code
+      //to be called from the file, location is the location to 
+      //insert the <link> element
+
+      var linkTag = document.createElement('link');
+      linkTag.rel  = 'stylesheet';
+      linkTag.type = 'text/css';
+      linkTag.media = 'all';
+      linkTag.href = url;
+      linkTag.onload = callback;
+      linkTag.onreadystatechange = callback;
+      location.appendChild(linkTag);
+  };
+  var onScriptLoaded = function(){
+    //callback code here
+  }
+  loadCSS('assets/media/css/admin.css', onScriptLoaded, document.head);
+</script>

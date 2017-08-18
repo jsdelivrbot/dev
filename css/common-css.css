@@ -1,3 +1,19 @@
+/*transforms*/
+
+
+div {
+    transform: rotate(90deg);
+    transform: translate(x,y);
+    transform: translateX(x);
+    transform: translateY(y);
+    transform: scale(x,y);
+}
+
+
+
+
+
+
 /*creating shapes in css*/
 /*  https://css-tricks.com/examples/ShapesOfCSS/  */
 
@@ -85,6 +101,7 @@ html, body {
     text-shadow: 1px 1px 0px #fff;
 }
 
+/* offset x offsety blur colour */
 .boxshadow {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }

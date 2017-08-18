@@ -47,6 +47,9 @@ git init
 # pull your reprository into the current  using the repo url:
 git clone repositoryurl
 
+# to pull a specific commit:
+git checkout 91f25642453
+
 
 staging
 ———————————————

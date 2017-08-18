@@ -209,9 +209,22 @@ https://github.com/trevorpowell/mapbox-gl-js-cordova-offline-example
 
 server setup:
 ====================
+This approach looks OK. The only thing to keep an eye on is that it does proxy only the appropriate domain. 
+Nightly backups of the whole server are made overnight, so I'd recommend doing this as early in the day as possible, just in case. Then we can roll back without losing too many changes made by other users on the server.
+
+
 -node with apache:
 https://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server
 
 mongoldb automated backups:
 -https://coderwall.com/p/hdmmnq/easy-automatic-nightly-backups-for-mongodb
+
+
+react-mapbox-gls:
+====================
+turorial:
+https://medium.com/@alex_picprod/an-efficient-webgl-map-with-mapbox-gl-js-and-react-mapbox-gl-4ac7f3d41570
+https://www.npmjs.com/package/react-mapbox-gl
+https://github.com/alex3165/react-mapbox-gl/blob/master/docs/API.md
+https://github.com/alex3165/react-mapbox-gl/tree/master/example/src
 
