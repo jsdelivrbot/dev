@@ -1,0 +1,90 @@
+vim
+========================================================================
+
+
+
+insert mode
+========================
+
+insert mode:
+i
+
+exit insert mode
+esc
+
+
+
+commands mode
+========================
+
+undo/redo:
+
+undo
+u
+
+redo:
+Ctrl-r
+
+
+movement:
+
+j moves the cursor down one line.
+k moves the cursor up one line.
+0 moves the cursor to the beginning of the line.
+$ moves the cursor to the end of the line.
+h moves the cursor one character to the left.
+l moves the cursor one character to the right.
+
+G move to the end of the file.
+gg move to the beginning of the file.
+`. move to the last edit.
+
+w move forward one word.
+b move backward one word.
+
+
+
+deleting:
+
+d starts the delete operation.
+dd delete entire line
+d0 will delete to the beginning of a line.
+d$ will delete to the end of a line.
+dgg will delete to the beginning of the file.
+dG will delete to the end of the file.
+dw will delete a word.
+u will undo the last operation.
+Ctrl-r will redo the last undo.
+
+
+copy/paste:
+
+v highlight one character at a time.
+V highlight one line at a time.
+y yank text into the copy buffer.
+p paste text after the current line.
+P (capital p) paste text on the current line.
+
+
+
+last line mode
+========================
+
+last line mode:
+:
+
+write to file
+w
+
+exit vim
+q
+
+exit without saving
+q!
+
+save and quit the file
+zz
+or
+x
+
+

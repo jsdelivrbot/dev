@@ -1,0 +1,49 @@
+links:
+
+http://shinysparkly.com/blog/2015/05/31/node-in-apache/
+
+http://www.codingtricks.biz/run-nodejs-application-apache/
+
+https://atticuswhite.com/blog/apache-serving-nodejs/
+
+https://www.1and1.com/cloud-community/learn/application/misc/set-up-a-nodejs-app-for-a-website-with-apache-on-ubuntu-1604/
+
+https://stackoverflow.com/questions/34084621/apache-and-nodejs-over-ssl
+
+
+1.
+In /etc/httpd/conf/httpd.conf make sure you have the following lines enabled (no # infront of them):
+
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+
+2.
+if not, install the Apache modules proxy and proxy_http with the commands:
+
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+
+3.
+restart apache
+sudo service apache2 restart
+or
+apachectl restart
+
+4.
+modify
+/etc/httpd/conf/httpd.conf
+with:
+
+<VirtualHost *:80>
+ServerName example.com
+
+ProxyPreserveHost On
+ProxyRequests off
+ProxyPass /api/ http://localhost:3000/
+ProxyPassReverse /api/ http://localhost:3000/
+
+</VirtualHost>
+
+
+
+

@@ -1,14 +1,6 @@
-#apache confitg file:
+#apache config file on Ubuntu:
 /etc/apache2/
 apache2.conf
 
-#in:
+#apache config file on CentOS:
 /etc/httpd/conf/httpd.conf
-look at:
-Proxy Server directives
-to enable proxy if having probelms
-#fid virtual host there
-
-#
-look at:
-sites

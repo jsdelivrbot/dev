@@ -1,0 +1,20 @@
+#installation on centOS:
+==========================
+instructions:
+https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-7
+and:
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
+
+#installation on mac:
+==========================
+brew update
+brew install mongodb
+
+#install with tls/ssl support
+brew install mongodb --with-openssl
+
+#make mongo db directory
+sudo mkdir -p /data/db
+
+#set permissions on that dir
+sudo chown -R $USER /data/db

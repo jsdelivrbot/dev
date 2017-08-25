@@ -1,21 +1,11 @@
-#installation:
-==========================
-
-brew update
-brew install mongodb
-
-#install with tls/ssl support
-brew install mongodb --with-openssl
-
-#make mongo db directory
-sudo mkdir -p /data/db
-
-#set permissions on that dir
-sudo chown -R $USER /data/db
-
 #start mongo shell:
 ==========================
 mongo —shell
+or
+mongo
+
+#start shell if it has a different port
+mongo --port 19500
 
 #to run:
 ==========================
@@ -24,6 +14,20 @@ mongo —shell
 mongod
 
 #run mongoDB every time computer starts
+brew services start mongodb
+
+#to stop it
+brew services stop mongodb
+or
+sudo service mongod stop
+
+#restart mongoldb:
+==========================
+brew services stop mongodb
+or
+use admin
+db.shutdownServer();
+(stop the shell then)
 brew services start mongodb
 
 #show/use db:
@@ -38,6 +42,21 @@ db.<document-name>.createIndex({ title: “text” })
 #remove indexes on item (for text searches)
 ==========================
 db.<document-name>.dropIndex({ title: “text” })
+
+#mongoDB conf file:
+==========================
+normally in:
+/etc/mongodb.config
+
+if installed via home-brew:
+/usr/local/etc/mongod.conf
+
+after changing, run this command:
+mongod --config /etc/mongod.conf
+or
+mongod --config /usr/local/etc/mongod.conf
+
+then restart
 
 #robomongo:
 ==========================
@@ -58,5 +77,80 @@ https://github.com/StephenGrider/MongoCasts
 steps:
 https://www.youtube.com/watch?v=cqc7YbZpLA4&t=74s
 
+instructions:
+https://codewithintent.com/how-to-secure-mongodb/
+
 docs on mongo website:
 https://docs.mongodb.com/manual/administration/security-checklist/
+
+use mongo sanitize in your app server
+https://www.npmjs.com/package/express-mongo-sanitize
+
+
+steps:
+
+1. user authentication:
+https://docs.mongodb.com/manual/tutorial/enable-authentication/
+(note that the admin database is internal)
+use admin
+db.createUser(
+  {
+    user: “<username>”,
+    pwd: “<password>”,
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+
+
+
+2. change mongoldb port. In the :
+
+systemLog:
+  destination: file
+  path: /usr/local/var/log/mongodb/mongo.log
+  logAppend: true
+storage:
+  dbPath: /usr/local/var/mongodb
+net:
+  bindIp: 127.0.0.1
+  port <port#>
+
+restart mongo
+test the port:
+lsof -i -ac mongod
+
+
+#mongodump (backup db):
+==========================
+using scripts:
+https://dzone.com/articles/auto-backup-mongodb-database-with-nodejs-on-server-1
+
+thought the server:
+https://coderwall.com/p/hdmmnq/easy-automatic-nightly-backups-for-mongodb
+be sure to store the environment variables in a .bachrc file or similar
+
+#!/bin/sh
+DIR=`date +%m%d%y`
+DEST=~/db_backups/$DIR
+mkdir $DEST
+mongodump -h <your_database_host> -d <your_database_name> -u <username> -p <password> -o $DEST
+
+
+#check remote connection:
+==========================
+replace zeros with ip address:
+mongo --host 000.000.000.000
+
+
+#check port it’s running on:
+==========================
+lsof -i -ac mongod
+
+
+
+#import test data:
+==========================
+mongoimport -h 127.0.0.1:<port> --db test --collection restaurants --file /tmp/primer-dataset.json
+then in mongo shell:
+db.restaurants.find().limit( 1 ).pretty()

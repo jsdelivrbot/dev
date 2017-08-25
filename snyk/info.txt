@@ -1,0 +1,12 @@
+installation:
+npm install -g snyk
+authorize your account:
+snyk auth
+
+to run test agains your project floder:
+snyk test
+(lists vulnerabilities)
+
+find out how to fix:
+snyk wizard
+(select how you want to fix with each vulnerability)

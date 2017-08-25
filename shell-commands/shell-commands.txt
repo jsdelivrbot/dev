@@ -13,6 +13,9 @@ Ctrl + A Ctrl + K
 clear screen to get more space:
 clear
 
+really clear:
+reset
+
 word completion:
 write first letters + tab
 
@@ -201,6 +204,11 @@ locate <filename>
 #locate with part of the file name
 locate *filename*
 
+---------------------
+copy contents of file over ssh to your clipboard(mac)
+---------------------
+
+ssh USER@REMOTE cat /etc/httpd/conf | pbcopy
 
 ---------------------
 copy files to different directories
@@ -377,7 +385,7 @@ hello.sh
 echo 'Change current directory to working...'
 
 # we must execute this script using:
-. hello.sh 
+. hello.sh
 # to make sure it executes in it's own instance of the shell to change current directory
 
 # --------------------

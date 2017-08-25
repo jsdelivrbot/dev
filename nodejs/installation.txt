@@ -9,12 +9,15 @@
 curl --silent --location https://rpm.nodesource.com/setup_7.x | sudo bash -
 
 #then:
-yum install -y node.js
+yum -y install nodejs npm
 node -v
 npm-v
 
+check it’s running on port:
+
+
 # full instructions from DO article (node.js on centOS):
-https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-a-centos-7-server
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-centos-7
 
 setup reverse proxy with node - apache
 https://www.youtube.com/watch?v=A3Prx_2YEm8
