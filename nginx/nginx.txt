@@ -1,0 +1,12 @@
+important files to work with in nginx:
+===========================================
+
+config file:
+located in:
+/etc/nginx/nginx.conf
+
+default file:
+/etc/nginx/sites-available/default
+
+mime types:
+/etc/nginx/mime.types

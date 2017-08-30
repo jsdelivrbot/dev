@@ -27,7 +27,7 @@ sudo a2enmod proxy_http
 restart apache
 sudo service apache2 restart
 or
-apachectl restart
+sudo service httpd restart
 
 4.
 modify

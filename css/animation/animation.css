@@ -55,8 +55,15 @@ body {
 	padding: 50px;
 }
 
-/*animation: [name] [duration] [timming-function] [delay] */
-/*[iteration-count] [direction] [fill-mode] [play-state];*/
+/*here is the shorthand*/
+/*animation: [name] [duration] [timming-function] [delay] [iteration-count] [direction] [fill-mode] [play-state];*/
+.box {
+	/*typical setup*/
+	animation: expandSearchContainer .7s ease both;
+	/*full example*/
+	animation: 3s ease-in 1s 2 reverse both paused slidein;;
+}
+
 
 .box {
 	display: inline-block;
@@ -78,6 +85,7 @@ body {
 	/*forwards/reverse/alternate*/
 	animation-direction: alternate;
 	/*what state the animation resumes in*/
+	/*none/forwards/backwards/both*/
 	animation-fill-mode: forwards;
 	/*running/paused*/
 	/*use with javascript to pause it*/

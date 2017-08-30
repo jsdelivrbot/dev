@@ -146,6 +146,8 @@ mongo --host 000.000.000.000
 #check port it’s running on:
 ==========================
 lsof -i -ac mongod
+or 
+lsof -i :<the-mongo-port>
 
 
 
