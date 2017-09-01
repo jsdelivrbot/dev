@@ -35,6 +35,17 @@ brew services start mongodb
 show dbs
 use <db-name>
 
+#show collections:
+==========================
+show collections
+
+#show/find documents:
+==========================
+all docs:
+db.<collection-name>.find()
+by condition:
+db.<collection-name>.find({ "borough": "Manhattan" })
+
 #create indexes on item (for text searches)
 ==========================
 db.<document-name>.createIndex({ title: “text” })
