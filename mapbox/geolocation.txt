@@ -1,0 +1,12 @@
+geolocation:
+====================
+
+codepen example:
+https://codepen.io/jnmorse/pen/qbLegO
+GeoLocation, React, ReactRedux, Redux, ReduxPromise
+
+react geolocation npm plugin:
+https://www.npmjs.com/package/react-geolocated
+
+using map box with geolocation example:
+https://www.pubnub.com/blog/2015-04-29-displaying-live-location-data-javascript-mapbox-api/

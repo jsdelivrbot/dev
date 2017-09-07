@@ -1,0 +1,14 @@
+manifest:
+====================
+generator for building the manifest:
+https://tomitm.github.io/appmanifest/
+
+favicon generator:
+Realfavicongenerator.net
+
+manifest.json
+====================
+
+Add a query string parameter to the start_url that indicates how it was launched.
+This can be anything you want; the value we're using has the advantage of being meaningful to Google Analytics:
+"start_url": "/?utm_source=homescreen"

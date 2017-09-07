@@ -1,0 +1,23 @@
+map server:
+====================
+self hosting vector tiles
+https://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
+
+good series on mapbox with node, etc:
+part1:
+https://www.youtube.com/watch?v=xI7QkEodCac
+part2:
+https://www.youtube.com/watch?v=GPArNrRL79Q
+part3:
+https://www.youtube.com/watch?v=6nLZVdbmSYw
+
+simple mbtiles server with express
+https://github.com/tobinbradley/mbtiles-server
+
+map box toggle layers example:
+https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
+
+useful links:
+https://www.youtube.com/watch?v=4sGgB2SBMew
+https://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
+https://gis.stackexchange.com/questions/210188/how-to-unzip-osm2vectortiles-after-extracing-with-mbutil

@@ -167,3 +167,20 @@ lsof -i :<the-mongo-port>
 mongoimport -h 127.0.0.1:<port> --db test --collection restaurants --file /tmp/primer-dataset.json
 then in mongo shell:
 db.restaurants.find().limit( 1 ).pretty()
+
+mongo tutorials (general mongoDB):
+==========================
+https://www.youtube.com/playlist?list=PL4cUxeGkcC9jpvoYriLI0bY8DOgWZfi6u
+
+
+mongoDB Geojson:
+====================
+
+* geoindexing in mongoDB
+http://blog.robertonodi.me/how-to-use-geospatial-indexing-in-mongodb-using-express-and-mongoose/
+https://github.com/robert52/simple-geolocation
+https://dzone.com/articles/geospatial-queries-mongoose
+https://kostasbariotis.com/geospatial-query-with-mongodb-and-node-js/
+
+mongoose geojson schema npm package
+https://www.npmjs.com/package/mongoose-geojson-schema

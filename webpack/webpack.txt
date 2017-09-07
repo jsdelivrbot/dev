@@ -23,6 +23,15 @@ https://<github-username>.github.io/<repo-name>
 ex:
 https://benchung5.github.io/WebpackSampleDeploy
 
+http2 aggressive splitting for web pack
+https://github.com/webpack/webpack/tree/master/examples/http2-aggressive-splitting
+
+investigate code bloat
+https://github.com/danvk/source-map-explorer
+
+css above the fold plugin
+https://github.com/addyosmani/critical-path-css-tools#node-modules
+
 
 
 

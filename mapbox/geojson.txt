@@ -1,0 +1,22 @@
+geojson:
+====================
+
+tool for visual creating geojson
+http://geojson.io/#map=9/35.3185/6.2334
+
+good writeup on geojson:
+https://macwright.org/2015/03/23/geojson-second-bite.html
+
+Adding GeoJSON to a Mapbox Style
+https://www.youtube.com/watch?v=98qZUAeaMmc
+
+ibm resources:
+======
+
+blogs:
+
+https://medium.com/ibm-watson-data-lab/the-most-popular-search-term-at-sxsw-according-to-our-chatbox-9f4a47a33406
+demo app:
+https://cognitive-event-finder.mybluemix.net
+source code:
+https://github.com/ibm-cds-labs/cognitive-event-finder

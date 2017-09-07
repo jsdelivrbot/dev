@@ -1,230 +1,30 @@
-
-watch this:
-https://www.youtube.com/watch?v=4sGgB2SBMew
-useful links:
-https://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
-https://gis.stackexchange.com/questions/210188/how-to-unzip-osm2vectortiles-after-extracing-with-mbutil
-
-
-boilerplate setup:
+manifest:
 ====================
+help for building the manifest:
+Realfavicongenerator.net
 
-jest:
-https://facebook.github.io/jest/
-
-ESLint:
-http://eslint.org/docs/user-guide/getting-started
-
-server setup:
+pwa with react:
 ====================
-
-deploy node.js app to digital ocean with nginx and ssl
-https://www.youtube.com/watch?v=kR06NoSzAXY
-
-geolocation:
-====================
-
-codepen example:
-https://codepen.io/jnmorse/pen/qbLegO
-GeoLocation, React, ReactRedux, Redux, ReduxPromise
-
-react geolocation npm plugin:
-https://www.npmjs.com/package/react-geolocated
-
-using map box with geolocation example:
-https://www.pubnub.com/blog/2015-04-29-displaying-live-location-data-javascript-mapbox-api/
-
-geojson:
-====================
-
-good writeup on geojson:
-https://macwright.org/2015/03/23/geojson-second-bite.html
-
-Adding GeoJSON to a Mapbox Style
-https://www.youtube.com/watch?v=98qZUAeaMmc
-
-ibm resources:
-======
-
-blogs:
-
-https://medium.com/ibm-watson-data-lab/the-most-popular-search-term-at-sxsw-according-to-our-chatbox-9f4a47a33406
-demo app:
-https://cognitive-event-finder.mybluemix.net
-source code:
-https://github.com/ibm-cds-labs/cognitive-event-finder
-
-image manipulation:
-====================
-
-upload images:
-
-react dropzone
-https://www.npmjs.com/package/react-dropzone-improved
-http://okonet.ru/react-dropzone/
-https://react-dropzone.netlify.com/
-
-cropping images
-https://github.com/roadmanfong/react-cropper
-
-
-map server:
-====================
-
-react, mabox-gl.js (using react with mapbox)
-https://github.com/uber/react-map-gl
-
-react, mapbox-gl with redux
-https://github.com/Willyham/redux-map-gl
-
-a different plugin
-https://www.npmjs.com/package/react-mapbox-gl
-
-good series on mapbox with node, etc:
-part1:
-https://www.youtube.com/watch?v=xI7QkEodCac
-part2:
-https://www.youtube.com/watch?v=GPArNrRL79Q
-part3:
-https://www.youtube.com/watch?v=6nLZVdbmSYw
-
-simple mbtiles server with express
-https://github.com/tobinbradley/mbtiles-server
-
-map box toggle layers example:
-https://www.mapbox.com/mapbox.js/example/v1.0.0/layers/
-
-
-
-
-webpack/react:
-====================
-
-http2 aggressive splitting for web pack
-https://github.com/webpack/webpack/tree/master/examples/http2-aggressive-splitting
-
-generate service workers module for web pack:
-https://www.npmjs.com/package/sw-precache-webpack-plugin
-
-investigate code bloat
-https://github.com/danvk/source-map-explorer
-
-css above the fold plugin
-https://github.com/addyosmani/critical-path-css-tools#node-modules
-
-tutorial:
+react pwa series tutorial:
 https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-i-introduction-50679aef2b12
 
-lazy loading in react
-https://webpack.js.org/guides/lazy-load-react/
-
 react pwa starter projects:
-====================
-
-service worker - map box example code (at bottom)
-https://github.com/mapbox/mapbox-gl-js/issues/4326
+https://github.com/insin/react-hn
+https://github.com/GoogleChrome/sw-precache/tree/master/app-shell-demo
 
 -lighthouse chrome extension for testing:
 https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
 https://github.com/GoogleChrome/lighthouse
 
 
-react pwa starter projects:
+pwa with map box:
 ====================
+service worker - map box example code (at bottom)
+https://github.com/mapbox/mapbox-gl-js/issues/4326
 
-https://github.com/insin/react-hn
-https://github.com/GoogleChrome/sw-precache/tree/master/app-shell-demo
-
-help for building the manifest:
-Realfavicongenerator.net
-
-Progressive web app starter using geolocation and device orientation in React with Redux
-https://github.com/paulhoughton/remember
-
-critical path:
+learning:
 ====================
-
-Innovating with HTTP 2.0 Server Push
-https://www.igvita.com/2013/06/12/innovating-with-http-2.0-server-push/
+https://developers.google.com/web/ilt/pwa/
 
 
-mongoDB:
-====================
-
-* geoindexing in mongoDB
-http://blog.robertonodi.me/how-to-use-geospatial-indexing-in-mongodb-using-express-and-mongoose/
-https://github.com/robert52/simple-geolocation
-https://dzone.com/articles/geospatial-queries-mongoose
-https://kostasbariotis.com/geospatial-query-with-mongodb-and-node-js/
-
-mongoose geojson schema npm package
-https://www.npmjs.com/package/mongoose-geojson-schema
-
-mongo, express, map box:
-http://denelius.com/leaflet-node-mongodb/
-source code:
-https://github.com/denelius/nodejs_leaflet
-
-<<<<<<< Updated upstream
-mongo tutorials (general mongoDB):
-https://www.youtube.com/playlist?list=PL4cUxeGkcC9jpvoYriLI0bY8DOgWZfi6u
-=======
-good link to other articles:
-====================
-https://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
->>>>>>> Stashed changes
-
-REST API Tutorial (Node, Express & Mongo) #13 - GeoJSON
-https://www.youtube.com/watch?v=MvY8vcrojYw
-
-building with mongoDB and map box (series links at bottom of page)
-https://medium.com/@SamCorcos/building-campaignhawk-an-open-source-election-canvassing-app-with-meteor-and-react-part-1-aff5e8e19a32
-
-file upload:
-====================
-<<<<<<< Updated upstream
-example - redux-form and react-dropzone
-https://ollie.relph.me/blog/redux-form-and-dropzone-react-example/
-https://github.com/BBB/dropzone-redux-form-example
-https://stackoverflow.com/questions/39698285/how-to-upload-file-with-redux-form
-=======
-video:
-https://www.youtube.com/watch?v=BXTdKUNr1j8&t=89s
-
-blogs:
-https://medium.com/ibm-watson-data-lab/navigating-sxsw-via-cognitive-chatbot-28a2e1f7a456
-https://medium.com/ibm-watson-data-lab/the-most-popular-search-term-at-sxsw-according-to-our-chatbox-9f4a47a33406
-demo app:
-https://cognitive-event-finder.mybluemix.net
-source code:
-https://github.com/ibm-cds-labs/cognitive-event-finder
->>>>>>> Stashed changes
-
-
-tool for visual creating geojson
-http://geojson.io/#map=9/35.3185/6.2334
-
-cordova offline:
-https://github.com/trevorpowell/mapbox-gl-js-cordova-offline-example
-
-server setup:
-====================
-This approach looks OK. The only thing to keep an eye on is that it does proxy only the appropriate domain. 
-Nightly backups of the whole server are made overnight, so I'd recommend doing this as early in the day as possible, just in case. Then we can roll back without losing too many changes made by other users on the server.
-
-
--node with apache:
-https://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server
-
-mongoldb automated backups:
--https://coderwall.com/p/hdmmnq/easy-automatic-nightly-backups-for-mongodb
-
-
-react-mapbox-gls:
-====================
-turorial:
-https://medium.com/@alex_picprod/an-efficient-webgl-map-with-mapbox-gl-js-and-react-mapbox-gl-4ac7f3d41570
-https://www.npmjs.com/package/react-mapbox-gl
-https://github.com/alex3165/react-mapbox-gl/blob/master/docs/API.md
-https://github.com/alex3165/react-mapbox-gl/tree/master/example/src
 
