@@ -11,7 +11,11 @@ div {
 
 
 
+/** hide scrollbars **/
 
+::-webkit-scrollbar { 
+    display: none;
+}
 
 
 /*creating shapes in css*/

@@ -19,3 +19,21 @@
   }
   loadJS('{{root}}{{paths.assets}}js/three-scene.js', onScriptLoaded, document.body);
 </script>
+
+
+<!-- or -->
+<script>
+  (function() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'assets/myScript.js';
+    //get the first existing script tag in the doc
+    var s = document.getElementByTagName('script')[0];
+    //insert created tag just above it
+    s.parentNode.insertBefore(script, s);
+  })();
+</script>
+
+<!-- async vs deferred, vs none
+http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html -->
