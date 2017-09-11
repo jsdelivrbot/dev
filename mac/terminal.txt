@@ -8,3 +8,9 @@ defaults write com.apple.Finder AppleShowAllFiles true
 notice the setting for true
 Then run this command: killall Finder
 Then exit Terminal
+
+tow commands to remove mac files with metadata (that make files unwritable)
+# Remove the metadata attributes
+xattr -c <some file>
+# Remove the file ACL(s)
+chmod -N <some file>
