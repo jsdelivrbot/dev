@@ -1,5 +1,9 @@
 manifest:
 ====================
+
+google explanation:
+https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+
 generator for building the manifest:
 https://tomitm.github.io/appmanifest/
 
