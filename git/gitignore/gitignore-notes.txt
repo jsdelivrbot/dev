@@ -1,3 +1,18 @@
 #if gitignore doesn’t update, do:
 git rm . -r --cached
 #then add and commit files.
+
+ignore a specific file (always from the root of project)
+css/app.css
+
+ignore all files with a certain name anywhere in project
+app.css
+
+or folder:
+myfolder
+
+ignore all of certain type:
+*.txt
+
+ignore all files in a certain folder
+js/*
