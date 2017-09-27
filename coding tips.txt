@@ -30,3 +30,5 @@ The larger the project, the more complexity, and more overhead needed to manage 
 have a cutoff time in the project where no new features are added and there's just debugging. More features will introduce more bugs.
 
 -keep data freely flowing in it’s natural form. Avoid converting data into something else or adding to/ taking away from it on the fly if it’s the kind of data that updates constantly. If you’re doing this, rethink what you’re doing.
+
+-don’t ever underestimate any small task. Think it through before diving in, take it seriousely. Even very small things can not be so “obviouse” to solve.

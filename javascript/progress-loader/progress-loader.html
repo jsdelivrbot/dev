@@ -1,106 +1,76 @@
-    
- <!--  note: try setting a timeout on this to get it to work with numbers -->
-<!-- http://jsfiddle.net/WpJxn/1/ -->
+<html>
+  <head>
 
-
-<style>
-  .preload {
-    background-color: rgba(0,0,0,1);
-    transition: opacity 0.5s;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    right: 0;
-    left: 0;
-    opacity: 1;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  .preload .progress-counter {
-    font-size: 2em;
-    opacity: 0.5;
-    display: none;
-  }
-  .preload.loaded {
-    opacity: 0;
-    visibility: hidden;
-  }
-</style>
-
-
+    <style>
+      .preload {
+        background-color: rgba(0,0,0,1);
+        transition: opacity 0.5s;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        right: 0;
+        left: 0;
+        opacity: 1;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .preload.loaded {
+        /*slight delay to ensure smooth*/
+        animation: fadeOut .7s ease .5s both;
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; visibility: visible; }
+        to { opacity: 0; visibility: hidden; }
+      }
+    </style>
 
     <script type="text/javascript">
-      document.onreadystatechange = function(e) {
+      //IE9/10 polyfill custom event
+      //use like this:
+      // let LoadSceneEvent = CustomEvent("sceneLoaded", { bubbles: false, cancelable: false, detail: 'my event detail' });
+      function CustomEvent ( event, params ) {
+        params = params || { bubbles: false, cancelable: false, detail: undefined };
+        var evt = document.createEvent( 'CustomEvent' );
+        evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+        return evt;
+      }
+      CustomEvent.prototype = window.Event.prototype;
 
       //add window contentLoaded event
       var ContentLoadedEvent = CustomEvent("contentLoaded", { bubbles: false, cancelable: false, detail: {}});
 
+      // combination of the DOMContentLoaded event and requestAnimationFrame. 
+      // DOMContentLoaded fires after the document has been completely loaded and parsed but before 
+      // all of the images and other assets on the page have completed downloading. 
+      //requestAnimationFrame will delay the removal of the class until after the page hasbeen painted so the element will properly transition.
+      document.addEventListener("DOMContentLoaded", function(event) {
+          window.requestAnimationFrame(showPage);
+      });
 
-      var all = document.getElementsByTagName("*");
-      var tracker = document.getElementById("progress_width");
-      var displayPercent = document.querySelector(".progress-counter");
+      function showPage() {
+        var preload = document.querySelector('.preload');
+        addClass(preload, 'loaded');
 
-        if(document.readyState == "interactive")
-        {
-          var all = document.getElementsByTagName("*");
-          for (var i = 0, max = all.length; i < max; i++) 
-          {
-            set_ele(all[i]);
-          }
-        }
+        // console.log('showpage called');
+        window.dispatchEvent(ContentLoadedEvent);
+      }
 
-        function check_element(ele) {
-          var totalele = all.length;
-          var per_inc = 100/all.length;
-
-          if($(ele).on()) {
-            //var prog_width=per_inc+Number(tracker.value);
-            //tracker.value=prog_width;
-
-            // $("#bar1").animate({width:prog_width+"%"},10,function(){
-            //   if(document.getElementById("bar1").style.width=="100%")
-            //   {
-            //     $(".progress").fadeOut("slow");
-            //   }     
-            // });
-            var prog_width=per_inc+Number(tracker.value);
-            tracker.value=prog_width;
-
-            var outputDisplay = parseInt(prog_width);
-            displayPercent.textContent = outputDisplay;
-
-            if (prog_width > 99.99) {
-               //loaded... (needs additional settimeout to work)
-               setTimeout(function() {
-                 window.dispatchEvent(ContentLoadedEvent);
-               }, 100);
-            }
-          } else {
-            set_ele(ele);
-          }
-        }
-
-        function set_ele(set_element) {
-          check_element(set_element);
-        }
+      //class add / remove
+      function addClass(el, className) {
+          if (el.classList) el.classList.add(className);
+          else if (!hasClass(el, className)) el.className += ' ' + className;
       }
     </script>
 
+  </head>
 
-      <!-- Loading progress counter -->
-      <div class="preload">
-          <div class="progress-counter"></div>
-      </div>
+  <body>
 
-      <!-- progress bar -->
-    <!--   <div class='progress' id="progress_div">
-        <div class='bar' id='bar1'></div>
-        <div class='percent' id='percent1'></div>
-      </div> -->
+    <!-- preload screen (put above everything) -->
+    <div class="preload">
+    </div>
 
-      <!-- Loading progress data holder-->
-      <input type="hidden" id="progress_width" value="0">
+  </body>
+</html>

@@ -1,0 +1,6 @@
+https://prepros.io/help/output-settings
+
+Replace Segment
+This option allows to replace a segment/part in input path to create output path.
+
+Eg: If input file is Project-Folder/source/abc/def/style.less and segment to replace is source/abc/def with destination . the output file will be Project-Folder/destination/style.css.

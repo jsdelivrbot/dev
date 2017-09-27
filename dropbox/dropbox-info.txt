@@ -1,0 +1,24 @@
+
+
+file sync problems:
+https://n8henrie.com/2014/10/fix-dropbox-sync-issues-mac/
+
+resetting dropbox permessions:
+
+dropbox>preferences>accound>hold down option>fix permissions
+or:
+https://www.dropbox.com/en/help/syncing-uploads/stuck-syncing
+sudo chflags -R nouchg ~/"Dropbox (Form & Affect)" ~/.dropbox
+sudo chown "$USER" "$HOME"
+sudo chown -R "$USER" ~/"Dropbox (Form & Affect)" ~/.dropbox
+sudo chmod -RN ~/.dropbox ~/"Dropbox (Form & Affect)"
+chmod -R u+rw ~/"Dropbox (Form & Affect)" ~/.dropbox
+
+
+https://www.dropbox.com/help/syncing-uploads/files-not-syncing
+
+bad files check:
+https://www.dropbox.com/bad_files_check
+
+reset home dir permissions on mac:
+

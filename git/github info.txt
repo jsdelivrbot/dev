@@ -180,7 +180,8 @@ feature/eglebegle/refactor/xyzzy
 merge
 
 ------------------------------------
-
+#first fetch to include the remote branch in your local repo
+git fetch
 #to merge another branch into your active branch (e.g. master), use
 git merge <branch-to-merge>
 #manually by editing the files shown by git then after changing, you need to mark them as merged with

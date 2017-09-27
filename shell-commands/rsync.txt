@@ -13,6 +13,9 @@ rsync -arv dir1/ dir2
 # rsync -arv <~/dir1> <username@remote_host>:<destination_directory>
 rsync -arv /Users/benchung/Desktop/test/ root@138.197.158.72:~/
 
+#copy to your computer from server (do this on your computer)
+rsync -arv -e "ssh -i $HOME/.ssh/id_rsa_venture" root@138.197.158.72:~/database-backup ~/Desktop/venture-niagara
+
 #port included
 rsync -arv -e "ssh -p 22" /Users/benchung/Desktop/test root@138.197.158.72:~/
 
