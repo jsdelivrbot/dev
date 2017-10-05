@@ -17,3 +17,29 @@ use with ssl:
 https://www.youtube.com/watch?v=m9aa7xqX67c
 
 https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
+
+test nginx config file has no errors before restarting nginx:
+===========================================
+sudo nginx -t
+
+
+
+enable browser/http caching in nginx (that works):
+===========================================
+https://www.digitalocean.com/community/tutorials/how-to-implement-browser-caching-with-nginx-s-header-module-on-ubuntu-16-04
+
+enable gzip compression:
+===========================================
+in: /etc/nginx/nginx.conf
+
+enable these gzip settings:
+
+        gzip on;
+        gzip_disable "msie6";
+
+        gzip_vary on;
+        gzip_proxied any;
+        gzip_comp_level 6;
+        gzip_buffers 16 8k;
+        gzip_http_version 1.1;
+        gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;

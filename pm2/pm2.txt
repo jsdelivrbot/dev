@@ -53,3 +53,17 @@ pm2 sendSignal SIGUSR2 my-app # Send system signal to script
 pm2 start app.js --no-daemon
 pm2 start app.js --no-vizion
 pm2 start app.js --no-autorestart
+
+if trouble getting pm2 to restart on server reboot:
+==============================
+
+1. try:
+#save all processes
+pm2 save
+#install latest version
+npm install pm2 -g
+#update the in-memory processes
+pm2 update
+
+2. try:
+https://futurestud.io/tutorials/pm2-restart-processes-after-system-reboot

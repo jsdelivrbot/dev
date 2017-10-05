@@ -1,0 +1,5 @@
+download vector tiles:
+https://openmaptiles.com/downloads/
+
+utility to export .mbtiles to files (pbf)
+https://github.com/mapbox/mbutil
