@@ -48,11 +48,19 @@ db.<collection-name>.find({ "borough": "Manhattan" })
 
 #create indexes on item (for text searches)
 ==========================
-db.<document-name>.createIndex({ title: “text” })
+db.<collection-name>.createIndex({ title: “text” })
 
-#remove indexes on item (for text searches)
+#remove all indexes (except id index) in collection
 ==========================
-db.<document-name>.dropIndex({ title: “text” })
+db.<collection-name>.dropIndexes()
+
+#list all indexes on all collections
+==========================
+db.getCollectionNames().forEach(function(collection) {
+   indexes = db[collection].getIndexes();
+   print("Indexes for " + collection + ":");
+   printjson(indexes);
+});
 
 #mongoDB conf file:
 ==========================
