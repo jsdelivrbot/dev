@@ -1,7 +1,7 @@
 // resource for checking regex interactively
 // http://www.regexpal.com/
 
-var patt = new Regexp(/e/);
+var patt = new RegExp(/e/);
 patt.test("The best things in life are free!");
 //true
 
