@@ -61,7 +61,7 @@ body {
 	/*typical setup*/
 	animation: expandSearchContainer .7s ease both;
 	/*full example*/
-	animation: 3s ease-in 1s 2 reverse both paused slidein;;
+	animation: expandSearchContainer 3s ease-in 1s 2 reverse both paused slidein;;
 }
 
 
@@ -80,7 +80,7 @@ body {
 	animation-timing-function: ease-in-out;
 	/*delay before animation starts*/
 	animation-delay: 0s;
-	/*how many times does this animation occur*/
+	/*how many times does this animation occur (can make it loop forever with infinate)*/
 	animation-iteration-count: infinite;
 	/*forwards/reverse/alternate*/
 	animation-direction: alternate;

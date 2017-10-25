@@ -32,3 +32,13 @@ have a cutoff time in the project where no new features are added and there's ju
 -keep data freely flowing in it’s natural form. Avoid converting data into something else or adding to/ taking away from it on the fly if it’s the kind of data that updates constantly. If you’re doing this, rethink what you’re doing.
 
 -don’t ever underestimate any small task. Think it through before diving in, take it seriousely. Even very small things can not be so “obviouse” to solve.
+
+-have a defined arrangement of windows so you know where to find things. have a limit to how many windows opened at once
+
+steps for debugging:
+==========
+
+-look at flattened output (chrome dev tools element view)
+-look at code stepping through order of actions
+-insert mock dependency
+-remove components dependencies one by one to narrow down problem

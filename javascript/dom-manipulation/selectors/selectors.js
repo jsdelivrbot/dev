@@ -74,4 +74,16 @@ var parent = element.parentNode;
 var element = getElementById('myId');
 var parent = element.lastChild;
 
+//get attribute
+//-------------------
+var attribute = element.getAttribute(attributeName);
+
+//convert elments list to array (from querySelectorAll) so we can use it in a forEach loop for example
+//-------------------
+var arrows = [].slice.call(document.querySelectorAll('.sideArrow'));
+arrows.forEach(function(item, index) {
+  item.addEventListener('click', onArrowClick);
+});
+
+
 

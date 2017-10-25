@@ -86,6 +86,14 @@ git reset
 #Resets the index and working tree. 
 Any changes to tracked files in the working tree since <commit> are discarded.
 
+reset all local files to remote repo
+_________________
+#git fetch downloads the latest from remote without trying to merge or rebase anything.
+#Then the git reset resets the master branch to what you just fetched. The --hard option changes all the files in your working tree to match the files in origin/master:
+git fetch --all
+git reset --hard origin/master
+#if you’re working on a branch:
+git reset --hard origin/<branch_name>
 
 commit
 ——————————
@@ -223,7 +231,6 @@ git stash apply <nameofstash>
 git stash
 git checkout branch2
 git stash pop
-
 
 status
 ————————————

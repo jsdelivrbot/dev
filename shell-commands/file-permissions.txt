@@ -1,0 +1,51 @@
+---------------------
+file permissions:
+---------------------
+
+list current permissions in dir
+ls -alh
+
+good article on changin ownership/file permissions
+http://www.inmotionhosting.com/support/website/ssh/changing-permissions-and-ownership
+
+change ownership of file:
+chown user:user file
+chown annettewestdrape:annettewestdrape file.txt
+chown annettewestdrape:annettewestdrape wp-activate.php
+
+change ownership of entire folder:
+chown -R annettewestdrape:annettewestdrape public_html/
+
+below is the correct ownership for public_html folder:
+chown -R annettewestdrape:nobody public_html/
+(theusername:nobody)
+
+list permissions for a file:
+ls -l index.php
+
+File access permissions appear in the first column of the output i.e. -rw-r--r--
+
+    The first character - is nothing but the file type. ñ means regular file and d means directory.
+    The next three characters (rw-) specify permissions for the user who owns the file
+    The next three (r--) specify permissions for all members of the group that owns the file.
+    Finally, the last three characters in the column (r--) specify permissions for all other users on the system.
+
+Each character in permission has meaning as follows:
+
+    r : Read permission.
+    w : Write permission.
+    x : Execute permission.
+    - : No permission.
+
+For example rw- permission means owner can read, write to a file but cannot execute the same.
+
+change file permissions:
+chmod 755 index.php
+
+
+For wordpress, change file permissions to proper format recursively with the following command:
+
+For Directories:
+find /path/to/your/wordpress/install/ -type d -exec chmod 755 {} \;
+For Files:
+find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
