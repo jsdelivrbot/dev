@@ -91,7 +91,7 @@ console.log(fruitBasket);
 //---------------------------------------
 
 
-//.map .filter. .reduce
+//.map .filter. .find .reduce
 //---------------------------------------
 
 //.map
@@ -101,18 +101,11 @@ var mapped = fruitBasket.map(function(item) {
 });
 console.log(mapped);
 
-//reset all buttons
-this.props.flightType.map((item) => {
-  this.props.changeFlightType(item.id, false);
-});
-
 //.filter
 //execute for each item and create new array of relevant items for each item that has a return value is true.
 var found = fruitBasket.filter(function(item) {
     return item === "bananna" || item === "apple";
 });
-
-console.log(found);
 
 //.find
 //returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
@@ -127,13 +120,11 @@ var n = str.indexOf('foobar');
 
 
 //.reduce
-//execute for each item and use the sum (indicated by the sarting value of the second argument)
-//to apply to each item.
-//the last itteration is the resulting return value (since sum holds the sum of each other item we keep that information)
+//The return value of the function is stored in an accumulator (result/total).
+//the total becomes a single value (reduce the array to a single value)
 var total = frutiBasket.reduce(function(sum, item) {
 return sum + item.length;
 }, 0);
-
 console.log(total);
 
 //return a new array without undefined
@@ -145,33 +136,12 @@ let newArray = someArray.reduce(function(result, item) {
 }, []);
 
 
-//array tricks  
+//using apply
 //---------------------------------------
 
-//using Array.apply in interesting ways..
-// returns a newly-created array instance with undefined in each value
-var a = Array.apply(null, Array(9));
-console.log(a);
-
-//a trick to making an equivelent of a foreach statement
-//in this case the array is used for nothing but to set foreach against.
-Array.apply(null, Array(5)).forEach(function(){
-  console.log('called');
-});
-
-
-//same thing, but use .map for the item and index
-//and it also allows us to return a new array
-var c = Array.apply(null, Array(5)).map(function(item, index){
-  //in this case we don't use 'item' because all items are undefined anyways
-  return index;
-});
-
-console.log(c);
-
-//use apply to populate an arbitrary number of arguments
-//to a function
 function getMaxOfArray(numArray) {
+  //use apply to populate an arbitrary 
+  //number of arguments to a function
   return Math.max.apply(null, numArray);
 }
 var arr = [1, 2, 3];
@@ -222,9 +192,6 @@ let errorSomewhere = this.state.fields.every((item) => {
 //Lodash
 //---------------------------------------
 
-//deep clone
-_.clone(arrayWithNestedObjects)
-
 //filter through an array of objects
 _.filter(datastore, function(item){
   return item.incubatorIdentification.parent === 'Food';
@@ -270,9 +237,21 @@ myArray.forEach(function(value, index){
   console.log("value: ", value);
 });
 
+//operating for N times
+//---------------------------------------
+
+//create an array of N size (filled with undefined values)
+var myarray = Array.apply(null, Array(6));
+
+//loop for N times
+Array.apply(null, Array(5)).forEach(function() {
+  //...
+});
+
 
 
 //test if value exists in array
+//---------------------------------------
 function inArray(needle, haystack) {
     var length = haystack.length;
     for(var i=0; i<length; i++) {
@@ -291,3 +270,13 @@ Array.prototype.inArray = function inArray(value){
 }
 var sampArray = [1,2,3,4,5];
 document.write("3 in array : " + sampArray.inArray(3) + "<br />");
+
+
+//loop through a collection and return deeply nested property from each item
+//---------------------------------------
+newArray = myArray.map((item) => {
+  return item.subitem[0].name;
+});
+
+
+

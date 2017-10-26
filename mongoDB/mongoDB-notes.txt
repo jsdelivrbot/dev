@@ -120,10 +120,10 @@ db.createUser(
   }
 )
 
+db.changeUserPassword(‘’,’ASJ6a9LO0q0b22g')
 
 
-
-2. change mongoldb port. In the :
+2. change mongoldb port. In the /etc/mongodb.config or in /usr/local/etc/mongod.conf change to:
 
 systemLog:
   destination: file
@@ -133,7 +133,7 @@ storage:
   dbPath: /usr/local/var/mongodb
 net:
   bindIp: 127.0.0.1
-  port <port#>
+  port: <port#>
 
 restart mongo
 test the port:

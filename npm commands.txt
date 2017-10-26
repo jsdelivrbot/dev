@@ -53,3 +53,6 @@ npm run <scriptname>
 list all globally installed plugins
 -----------------------
 npm list -g --depth=0
+
+install a remote branch:
+npm install --save-dev github:gulpjs/gulp#4.0
