@@ -18,3 +18,30 @@ sudo mkdir -p /data/db
 
 #set permissions on that dir
 sudo chown -R $USER /data/db
+
+#uninstall on mac:
+==========================
+
+# checks to see if running 
+launchctl list | grep mongo
+ 
+launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+launchctl remove homebrew.mxcl.mongodb
+
+pkill -f mongod
+
+rm -f ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+
+brew uninstall mongodb
+
+# double check existence
+ls -al /usr/local/bin/mong*
+ls -al ~/Library/LaunchAgents
+
+#delete these directories (these contain db data)
+rm -rf /usr/local/var/mongodb
+rm -rf /data/db
+
+#delete config fiels:
+rm -rf /usr/local/etc/mongod.conf
+rm -rf /usr/local/etc/mongod.conf.default
