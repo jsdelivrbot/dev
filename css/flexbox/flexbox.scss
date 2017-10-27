@@ -45,6 +45,21 @@ flex: unset;
 
 }
 
+/* ==========================================================================
+// needed to work on IOS8
+========================================================================== */
+
+flex-shrink: 0
+//turns to:
+-webkit-flex-shrink: 0;
+
+//for flex elements that have a parent of flex with direction of row
+//use width instead of flex-basis
+flex-basis: 50%;
+// turns to:
+width: 50%
+
+
 
 /* ==========================================================================
 sticky footer

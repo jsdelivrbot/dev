@@ -1,0 +1,10 @@
+/*enable scroll on element*/
+div {
+	/*makes it scrollable if it's longer than int's container*/
+	overflow: auto;
+	/*makes it asways scrollable*/
+	overflow: scroll;
+
+	/*never use this, it can cause incompatabilities*/
+	/*-webkit-overflow-scrolling: touch;*/
+}

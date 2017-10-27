@@ -53,3 +53,11 @@ npm run <scriptname>
 list all globally installed plugins
 -----------------------
 npm list -g --depth=0
+
+
+install a project from github
+-----------------------
+npm install user/repo#branch
+
+good article on how to use a forked node package:
+http://debuggable.com/posts/how-to-fork-patch-npm-modules:4e2eb9f3-e584-44be-b1a9-3db7cbdd56cb

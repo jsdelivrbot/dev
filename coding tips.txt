@@ -42,3 +42,7 @@ steps for debugging:
 -look at code stepping through order of actions
 -insert mock dependency
 -remove components dependencies one by one to narrow down problem
+
+-try to approach a problem with as many diffrent points of view - as many different angles of attach as possible. Solving problems is a combinations of stepping back and reflecting as well as active attempts at different angeles until you eventually narrow down what the problem is.
+
+-don’t be afraid to dig when you need to if you need more information, dig out the information you need to see the environment, see how the code works, then dig deeper when you know what area for sure is causing it.

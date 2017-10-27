@@ -1,0 +1,58 @@
+<html>
+<head>
+	<style>
+		.bg-screen {
+		  min-height: 100vh;
+		  width: 100%;
+		  z-index: 1;
+		  position: fixed!important;
+		}
+		/*to dim the video a bit*/
+		.bg-screen:before {
+		  content: '';
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  background: rgba(125,123,119,0.5);
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="bg-screen ">
+	   <div style="position: absolute; 
+	   z-index: -1; 
+	   top: 0px; 
+	   left: 0px; 
+	   bottom: 0px; 
+	   right: 0px; 
+	   overflow: hidden; 
+	   background-size: cover; 
+	   background-color: transparent; 
+	   background-repeat: no-repeat; 
+	   background-position: 50% 50%; 
+	   background-image: none;">
+	      <video autoplay loop muted 
+	      style="margin: auto; 
+	      position: absolute; 
+	      z-index: -1; 
+	      top: 50%; 
+	      left: 50%; 
+	      transform: translate(-50%, -50%); 
+	      visibility: visible; 
+	      opacity: 1;
+	      min-width: 100%;
+	      min-height: 100%;
+	      width: auto; 
+	      height: auto;">
+	         <source src="/assets/vid/bg-video.mp4" type="video/mp4">
+	      </video>
+	   </div>
+	</div>
+</body>
+</html>
+
+<!-- more info here:
+https://envato.com/blog/video-background-html5-video/ -->
