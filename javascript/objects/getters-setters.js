@@ -1,56 +1,6 @@
-// A basic JavaScript object with properties and a method
-var customer = {
-  name: 'Tom Smith',
-  speak: function(){
-
-    // this allows you to reference a specific objects value
-    // without knowing the objects name
-    return "My name is " + this.name;
-  },
-  // Objects can contain other objects
-  address: {
-    street: '123 Main St',
-    city: 'Pittsburgh',
-    state: 'PA'
-  }
-};
-
-document.write(customer.speak()+ "<br />");
-
-// You access properties and object properties like this
-document.write(customer.name + " lives at " + customer.address.street + "<br />");
-
-// You can add properties
-customer.address.country = "US";
-
-document.write(customer.address.country + "<br />");
-
-//-------------------------------
-
-//in javascript objects are passed by reference and variables by value
-
-//pass by value
-function change(b) {
-    b = 2;
-}
-
-var a = 1;
-change(a);
-console.log(a);
-//1
-
-//pass by reference
-function changeObj(d) {
-    d.prop1 = function() {};
-    d.prop2 = {};
-}
-
-var c = {};
-c.prop1 = {};
-changeObj(c);
-console.log(c);
-//{ prop1: [Function], prop2: {}}
-
+/* ==========================================================================
+getters/setters
+========================================================================== */
 
 // ---------- PRIVATE PROPERTIES ----------
 // All properties in an object are public in that any function

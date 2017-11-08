@@ -39,7 +39,7 @@ var shifted = fruits.shift();
 console.log(shifted);
 console.log(fruits);
 
-//add new element to beginning of  (returns new array length)
+//add new element to beginning of array (returns new array length)
 var unshifted = fruits.unshift("Mango");
 console.log(unshifted);
 console.log(fruits);
