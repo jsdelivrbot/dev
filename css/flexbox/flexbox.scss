@@ -12,7 +12,8 @@ flex-direction: row | column;
 //shorthand for flex direction/flex wrap
 flex-flow: row wrap;
 //the alignment of child items (if there is free space to deal with)
-justify-content: flex-start | flex-end | center | space-between | space-around;
+justify-content: flex-start | flex-end | center | space-between | space-around | stretch (default value);
+align-items: (same as above)
 
 /* 0 0 auto */
 flex: none;

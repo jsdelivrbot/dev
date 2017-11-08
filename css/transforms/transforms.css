@@ -17,6 +17,8 @@ div {
 	transform: rotateY(90deg);
 	/*rotateX (3d rotation around an axis projecting streight into the screen)*/
 	transform: rotateZ(90deg);
+	/*translate 3d*/
+	transform: translate3d(tx, ty, tz);
 }
 
 /* ==========================================================================
@@ -26,4 +28,6 @@ div {
 div {
 	-webkit-transform: <same as regular transform>;
 }
+
+
 
