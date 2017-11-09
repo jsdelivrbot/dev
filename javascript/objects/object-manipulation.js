@@ -67,3 +67,17 @@ Object.prototype.pick = function(arr) {
 var fruit = { name: 'bannana', color: 'yellow', variety: 'tropical' }
 var newFruit = fruit.pick(['color', 'variety']);
 //{ color: 'yellow', variety: 'tropical' }
+
+/* ==========================================================================
+use this to loop through/itterate through a javascript object
+========================================================================== */
+for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+        str += "<h3>" + key + "</h3>";
+        //loop through children
+        for (var key in obj[key]) {
+                str += key + ": " + obj[key][0] + "</br>";
+        }
+        str+= "</br>";
+    }
+}
