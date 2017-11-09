@@ -1,5 +1,6 @@
-/*transforms*/
-
+/* ==========================================================================
+transforms
+========================================================================== */
 
 div {
     transform: rotate(90deg);
@@ -10,16 +11,37 @@ div {
 }
 
 
+/* ==========================================================================
+scrolling/scrollbars
+========================================================================== */
 
-/** hide scrollbars **/
-
-::-webkit-scrollbar { 
+/*hide scrollbars*/
+::-webkit-scrollbar {
     display: none;
 }
 
+html, body {
+/*prevent scroll on iphone*/
+   height: 100%;
+   width: 100%;
+   overflow: hidden !important;
+   position: fixed !important;
+/*font smoothing*/
+   @include font-smoothing;
+}
+
+
+/* ==========================================================================
+shapes
+========================================================================== */
 
 /*creating shapes in css*/
 /*  https://css-tricks.com/examples/ShapesOfCSS/  */
+
+
+/* ==========================================================================
+clearfix
+========================================================================== */
 
 /**
  * Clear fix------------------------------------------------------------
@@ -41,74 +63,52 @@ div {
     clear: both;
 }
 
-/**
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
-.cf {
-    *zoom: 1;
-}
-
-html, body {
-/*prevent scroll on iphone*/
-   height: 100%;
-   width: 100%;
-   overflow: hidden !important;
-   position: fixed !important;
-/*font smoothing*/
-   @include font-smoothing;
-}
-
-
-/*Standards------------------------------------------------*/
-/*Clearfix--------------------------*/
-
 /* Clear Floated Elements */
 .clear {
-	clear: both;
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
 .clearfix:after {
-	clear: both;
-	content: ' ';
-	display: block;
-	font-size: 0;
-	line-height: 0;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
 .clearfix {
-	display: inline-block;
+    display: inline-block;
 }
 
 * html .clearfix {
-	height: 1%;
+    height: 1%;
 }
 
 .clearfix {
-	display: block;
+    display: block;
 }
 
-/*common shadows */
-.textshadow {
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-}
-/*creates bevel in text (negative shadow)*/
-.textbevel {
-    text-shadow: 1px 1px 0px #fff;
+
+/* ==========================================================================
+font smoothing
+========================================================================== */
+
+html, body {
+   /*font smoothing*/
+   @include font-smoothing;
 }
 
-/* offset x offsety blur colour */
-.boxshadow {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-}
+/* ==========================================================================
+kill outline/border
+========================================================================== */
 
 .kill-outline {
     outline: none;
@@ -117,92 +117,23 @@ html, body {
     box-shadow: none;
 }
 
-.bold {
-    font-weight: bold;
+/* ==========================================================================
+shadows
+========================================================================== */
+
+/*common shadows */
+.textshadow {
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
-.large-text {
-    font-size: 30px;
+/* offset x offsety blur colour */
+.boxshadow {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
 
-.small text {
-    font-size: 11px;
-}
-
-.italic {
-    font-style: italic;
-}
-
-.underline {
-    text-decoration: underline;
-}
-
-.highlight {
-    color: red;
-}
-
-.last {
-    margin-right: 0px !important;
-    border-right: 0 none !important;
-}
-
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-.margin-left {
-    margin-left: 20px;
-}
-
-.margin-right {
-    margin-right :20px;
-}
-
-.margin-top-sml {
-    margin-top: 10px;
-}
-
-.margin-top {
-    margin-top: 20px;
-}
-
-.margin-top-lg {
-    margin-top: 40px;
-}
-
-.margin-bottom-sml {
-    margin-bottom: 20px;
-}
-
-.margin-bottom {
-    margin-bottom: 20px;
-}
-
-.margin-bottom-lg {
-    margin-bottom: 40px;
-}
-
-.no-border {
-    border: 0px none !important;
-    box-shadow: none !important;
-}
-
-.bevel {
-    text-shadow: 1px 1px 0px #fff;
-}
-
-/*remove spin arrows on input type=number*/
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/*End Standards------------------------------------------------*/
+/* ==========================================================================
+gradient
+========================================================================== */
 
 .gradient {
     background: #bf2525; /* Old browsers */
@@ -263,15 +194,6 @@ background-repeat: no-repeat, repeat;
 
 /*full width image effects------------------------------------------------------------------------*/
 
-/*pattenn overlay bg(scrolls normally)---------------------*/
-html { 
-    
-    background: url(../images/bg-pattern.png)#fff;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.5;
-    color: #555;
-
-}
 
 /*full page bg fixed image---------------------*/
 /*for bg*/
@@ -646,10 +568,6 @@ parent-valign-wrapper
 
 */
 
-/*object-fit-------------------------------*/
-
-/*this forces the element to act like background-size: cover*/
-object-fit: cover;
 
 /*vertical align technique 3-------------------------------*/
 

@@ -1,0 +1,17 @@
+/*https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit*/
+
+.img-wrapper {
+	height: 167px;
+	width: 167px;
+	overflow: hidden;
+	img {
+		object-fit: cover;
+		max-width: 170%;
+	}
+}
+
+/*usage*/
+
+/*<div class="img-wrapper">
+ <img src="..." />
+</div>*/
