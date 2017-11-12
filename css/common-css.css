@@ -89,18 +89,6 @@ clearfix
     height: 0;
 }
 
-.clearfix {
-    display: inline-block;
-}
-
-* html .clearfix {
-    height: 1%;
-}
-
-.clearfix {
-    display: block;
-}
-
 
 /* ==========================================================================
 font smoothing
@@ -152,56 +140,31 @@ gradient
 
 }
 
+
+/* ==========================================================================
+background
+========================================================================== */
+
 /*multiple background images*/
 div {
   background:  url("foreground.png") 0 0 no-repeat, url("middle-ground.png") 0 0 no-repeat, url("background.png") 0 0 no-repeat;
 }
 
-/*rounded corners*/
-.corner-radius {
-    -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
-}
-
-
-
-/*change highlight colour*/
-::selection {
-	background: #7ec87e; /* Safari */
-	}
-::-moz-selection {
-	background: #7ec87e; /* Firefox */
-}
-/*background size------------------------------------------------------------------------*/
-
+/*background size*/
 .image {
     background: url(/img.jpg);
     background-size: 300px 80px;
     background-repeat: no-repeat;
 }
 
-/*multiple backgrounds------------------------------------------------------------------------*/
-
+/*multiple backgrounds*/
 #example1 {
 background-image: url (img_flwr.gif), url(paper.gif);
 background-position: right bottom, left top;
 background-repeat: no-repeat, repeat;
 }
 
-/*prining------------------------------------------------------------------------*/
-
-/*exclude class from printing*/
-@media print {
-    .no-print { display: none; }
-} 
-
-/*or grab an entire custom stylesheet when printing, include this in the head (consider deferring this script)*/
-/*<link rel="stylesheet" type="text/css" media="print" href="print.css">*/
-
-/*full width image effects------------------------------------------------------------------------*/
-
-
-/*full page bg fixed image---------------------*/
-/*for bg*/
+/*full page bg fixed image*/
 body {
     background: url(../images/bg-sky.png) no-repeat center center fixed;
     
@@ -223,79 +186,89 @@ img {
     width: 100%;
 }
 
+/* ==========================================================================
+border radius
+========================================================================== */
+
+/*border radius*/
+.border-radius {
+    -webkit-border-radius: 10px; 
+    -moz-border-radius: 10px; 
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+highlight color
+========================================================================== */
+
+/*change highlight colour*/
+::selection {
+	background: #7ec87e; /* Safari */
+	}
+::-moz-selection {
+	background: #7ec87e; /* Firefox */
+}
+
+/* ==========================================================================
+transitions
+========================================================================== */
+
 /*add these properties to any class that needs transition animation*/
 .transition{
-    	-webkit-transition: color .3s linear; -o-transition: color .3s linear; -moz-transition: color .3s linear;
+	-webkit-transition: color .3s linear; 
+    -o-transition: color .3s linear; 
+    -moz-transition: color .3s linear;
 }
 /*transition to all properties*/
 .transition-all {
-    transition: all .2s linear; -webkit-transition: all .2s linear; -moz-transition: all .2s linear; -o-transition: all .2s linear;
+    transition: all .2s linear; 
+    -webkit-transition: all .2s linear; 
+    -moz-transition: all .2s linear; 
+    -o-transition: all .2s linear;
 }
 
 .no-transition {
-    transition: none; -webkit-transition: none; -moz-transition: none; -o-transition: none;
+    transition: none; 
+    -webkit-transition: none; 
+    -moz-transition: none; 
+    -o-transition: none;
 }
 
 
 /*css3 media queries (respoonsive design)*/
 
 
-
-/*media queries*/
+/* ==========================================================================
+media queries
+========================================================================== */
 
 @media (min-width: 500px) and (max-width: 100px) {
     
 }
 
-
-@media all and (min-width: 640px) {
+@media (min-width: 640px) {
 	#media-queries-1 { background-color: #0f0; }
 }	
 
-@media screen and (max-width: 2000px) {
+@media (max-width: 2000px) {
 	#media-queries-2 { background-color: #0f0; }
 }
 
-/*change according to print version (serif font for print and sans for screen)*/
+/* ==========================================================================
+printing
+========================================================================== */
 
-@media screen
-  {
-  p.test {font-family:verdana,sans-serif;font-size:14px;}
-  }
-@media print
-  {
-  p.test {font-family:times,serif;font-size:10px;}
-  }
-@media screen,print
-  {
-  p.test {font-weight:bold;}
-  }
+  /*exclude class from printing*/
+  @media print {
+      .no-print { display: none; }
+  } 
+  /*or grab an entire custom stylesheet when printing, include this in the head (consider deferring this script)*/
+  /*<link rel="stylesheet" type="text/css" media="print" href="print.css">*/
   
+/* ==========================================================================
+box shadow
+========================================================================== */
 
-/*full width video to proportion------------------------------------------------------------------------*/
-
-.container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
-}
-.video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/*then to implement...
-<div class="container">
-<iframe src="//www.youtube.com/embed/yCOY82UdFrw" 
-frameborder="0" allowfullscreen class="video"></iframe>
-</div>*/
-
-
-  
 /*use box-shadow to make double border effect-------------------------------------*/
   .double-borders {  
     box-shadow: 0 0 0 6px #fff, 0 0 0 12px #888;  
@@ -320,6 +293,9 @@ div.border:before {
 }
 /*end double borders --------------------------------------------------------------*/
 
+/* ==========================================================================
+pseudo-classes
+========================================================================== */
 
 /* n is the number at each step, starting at 0 (0, 1,2,3,4) */
 /*How about the :nth-child(2n+1)?
@@ -340,8 +316,12 @@ ul li:nth-child(odd) {
 }
 
 /*clear the third element*/
-.cmsi-product-feed > div:nth-child(3):after {
+.cmsi-product-feed > div:nth-child(3n):after {
     
+}
+
+/*select the fifth child div*/
+.bubble-caption > div:nth-child(5n) {
 }
 
 /*not last child*/
@@ -352,7 +332,6 @@ div:not(:last-child) {
 div:not(.some-class) {
 }
 
-
 /*last child*/
 div:last-child {
     margin-right: 0px;
@@ -361,15 +340,6 @@ div:last-child {
 /*last of type*/
 div:last-of-type {
     margin-right: 0px;
-}
-
-
-.about-sections > div:last-child {
-    margin-right: 0px;
-}
-
-/*select the fifth child div*/
-.bubble-caption > div:models-child(5n) {
 }
 
 /*inner shadow only firefox at the moment but it's futureproofed below'*/
@@ -397,24 +367,25 @@ div:last-of-type {
     -moz-box-shadow:inset 0 0 10px #000000;
 }
 
+/* ==========================================================================
+selectors
+========================================================================== */
 
-/*select particular input box and also some basic styling*/
+/*select by attribute*/
 input[type="text"], input[type="password"], select {
-    background: url("../images/bg_ip.png") repeat-x scroll center top #FFFFFF;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px 5px 5px 5px;
-    color: #666666;
-    font-family: Arial,"helvetica neue",Helvetica,Verdana,sans-serif;
-    font-size: 12px;
-    margin: 0;
-    padding: 7px 5px;
+
 }
 
-/*opacity*/
-img
-{
-filter:alpha(opacity=70); -moz-opacity:0.7; -khtml-opacity:0.7; opacity:0.7;
+/*"starts with" css selector
+(attribute|=startswith)
+*/
+[class|=top] {
+    background:yellow;
 }
+
+/* ==========================================================================
+pointer events
+========================================================================== */
 
 /*make link (anchor) unclickable, unlink anchor*/
 .active {
@@ -422,26 +393,23 @@ filter:alpha(opacity=70); -moz-opacity:0.7; -khtml-opacity:0.7; opacity:0.7;
    cursor: default;
 }
 
+/* ==========================================================================
+centering
+========================================================================== */
 
-/*center a div of with variable width-------------------------*/
-
+/*center a div of with variable width*/
 #parent{
-        width:600px;
-        height:400px;
-        background:#ffcc00;
+        width:100%;
         text-align:center;
     }
 #child{
         display:inline-block;
         margin:0 auto;
-        background:#fff;
-    }  
-/*HTML:*/
-/*<div id="parent">
-    <div id="child">voila</div>
-</div>*/
+    } 
 
-/*end center a div of with variable width-------------------------*/
+/* ==========================================================================
+border-box
+========================================================================== */
 
 /*This fixes common issues with the box model by placing the border and padding inside the box
 apply this to divs - also takes care of textarea problems nicely because you can make the width
@@ -454,93 +422,18 @@ textarea {
         width: 100%;
 }
 
-/*break text etc. into columns evenly (css3)*/
-div
-{
-column-count:3;
--moz-column-count:3; /* Firefox */
--webkit-column-count:3; /* Safari and Chrome */
-} 
+/* ==========================================================================
+vertical align
+========================================================================== */
 
-.div .no-break {
-/*    prevent from breaking in between colums*/
-    display: inline-block;
-    break-inside: avoid-column;
-    -webkit-column-break-inside: avoid;
-}
-
-/*applies to this html
-<div class="newspaper">
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
-<div class="no-break">Lorem ipsum dolor sit amet</div>
-</div>*/
-
-
-/*center an absolute positioned element*/
-/*in ie, you must indicate width, not max-width*/
-.tagline {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: 1000;
-/*    max-width: 200px;*/
-    width: 200px;
-}
-
-/* align radio boxes with text*/
-.price-calc input[type="radio"]{
-    vertical-align: baseline;
-}
-
-/*html - wrap the radio input and text in a label is also good practice. - 
-also, the "name" attribute is the actual "group" it belongs to.
-
-<label>yes&nbsp;<input type="radio" name="appraisal" value="yes" /></label>
-<label>no&nbsp;<input type="radio" name="appraisal" value="no" /></label>
-*/
-
-
-
-
-
-/*"starts with" css selector
-(attribute|=startswith)
-*/
-
-[class|=top]
-{
-background:yellow;
-}
-
-/*
-applies to both these
-<h1 class="top-header">Welcome</h1>
-<p class="top-text">Hello world!</p>*/
-
-
-/*horizontally align*/
-
-.align-parent {
-    transform-style: preserve-3d;
-}
-
-.h-align-child {
-    position: relative;
-    left:50%;
-    transform: translateX(-50%);
-}
-
-/*vertical align technique 1-------------------------------*/
-
+/*vertical align using transform*/
 .align-parent {
     /*to eliminate blurryness for "half pixel" child element for vertical align*/
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
-
-.v-align-child {
+.v-align {
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -549,55 +442,24 @@ applies to both these
 }
 
 
-/*vertical align technique 2-------------------------------*/
-
-.parent-valign-wrapper {
+/*vertical align using table/table-cell*/
+.v-align-parent {
     display: table;
 	/* this has to have defined height for 
     contents to vertical align into. Cannot use min-height*/
     height: 200px;
     width: 100%;
 }
-
-.parent-valign {
+.v-align {
     display: table-cell;
     width: 100%;
     vertical-align: middle;
 	float: none !important;
 }
-/* heiarchy:
 
-parent-valign-wrapper 
-    parent-valign
-
-
-*/
-
-
-/*vertical align technique 3-------------------------------*/
-
-
-.parent {
-    position:relative
-}
-
-.child {
-    position:absolute; 
-    top:50%; 
-    height:10em; 
-    margin-top:-5em
-}
-
-/*html for these*/
-
-/*<div class="parent">
-    <div class="child"></div>
-</div>*/
-
-
-/* Style anything but the .different class */
-li:not(.different) {
-  font-size: 3em;
+/* align radio boxes with text*/
+.price-calc input[type="radio"]{
+    vertical-align: baseline;
 }
 
 

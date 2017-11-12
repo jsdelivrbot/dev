@@ -40,8 +40,8 @@ npm uninstall --save module1.
   
   -----------------------
   
-  to install express generator:
-  npm install express-generator -g
+to install express generator:
+npm install express-generator -g
 
 to start a package:
 npm start
@@ -61,4 +61,8 @@ npm install user/repo#branch
 
 good article on how to use a forked node package:
 http://debuggable.com/posts/how-to-fork-patch-npm-modules:4e2eb9f3-e584-44be-b1a9-3db7cbdd56cb
+
+#to install latest alpha:
+-----------------------
+npm install 'gulpjs/gulp.git#4.0' --save-dev
 

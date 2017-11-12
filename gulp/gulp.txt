@@ -1,2 +1,0 @@
-#to install latest alpha:
-npm install 'gulpjs/gulp.git#4.0' --save-dev
