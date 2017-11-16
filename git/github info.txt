@@ -20,7 +20,8 @@ origin/remote
 ——————————————
 #(origin is the default remote name Git gives to the server you cloned from)
 
-# -v shows you the URLs that Git has stored for the shortname (origin)
+#list all remotes
+# -v (verbose) shows you the URLs that Git has stored for the shortname (origin)
 to be used when reading and writing to that remote
 git remote -v
 
@@ -29,9 +30,6 @@ git remote add origin <origin>
 
 #remove origin
 git remote rm origin
-
-#list all remotes
-git show
 
 #to inspect a remote
 git remote show <remotename>

@@ -5,9 +5,11 @@ not supported on ie
 for polyfill, use:
 https://github.com/scottjehl/picturefill
 
+*note, if using max-width, make sure to put smaller media queries on top
 -->
 <picture>
-  <source srcset="img_smallflower.jpg" media="(max-width: 400px)">
+  <source srcset="img_smallflower.jpg" media="(max-width: 480px)">
+  <source srcset="img_medflower.jpg" media="(max-width: 1400px)">
   <source srcset="img_flowers.jpg">
   <img src="img_flowers.jpg" alt="Flowers" style="width:auto;">
 </picture>

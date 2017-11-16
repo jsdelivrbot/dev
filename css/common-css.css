@@ -30,6 +30,17 @@ html, body {
    @include font-smoothing;
 }
 
+/* ==========================================================================
+line breaks
+========================================================================== */
+
+/*force line break*/
+div {
+    word-wrap: break-word;
+    /*tells the browser to break where necessary, if the above alone doesn't wordk,
+    use this with it*/
+    word-break: break-all;
+}
 
 /* ==========================================================================
 shapes
