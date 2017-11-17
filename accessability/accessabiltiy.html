@@ -1,7 +1,16 @@
 <!-- good article tabindexL:
 http://webaim.org/techniques/keyboard/tabindex -->
 
-<a tabindex="4">button</a>
+
+<!-- tabindex of zero makes it naturally tab according to the document flow -->
+<a tabindex="0">button</a>
+
+<!-- tabindex of one or more makes it explict order (try to use sparingly) -->
+<a tabindex="1">button</a>
+
+<!-- -1 removes it from the natural flow order and enables it's index to be set via script or link -->
+<a tabindex="-1">button</a>
+
 
 <script>
 	//set tabindex prgramatically
