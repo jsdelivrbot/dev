@@ -1,0 +1,10 @@
+linear interpolation is the opposite of normalize.
+You have the value from zero to one and you want to find
+out the range version value (value between min and max numbers)
+
+
+max - min just gets the range since we're not only working with a range from zero to whatever.
+the base of the formula is norm times the range.
+we are then left with the number that lies within that range but it just gives you the number starting from the min.
+We need to add the min value to offset it to the correct starting position.
+(max - min) * norm + min
