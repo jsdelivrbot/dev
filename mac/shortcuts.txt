@@ -1,0 +1,8 @@
+print screen (saves to desktop):
+
+bring up selection box:
+cmd + shift + 4
+
+print whole screen):
+cmd + shift + 3
+
