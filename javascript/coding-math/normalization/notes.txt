@@ -1,0 +1,10 @@
+normalization is converting a range in to a value that lies between zero and one.
+Like a percentage of a that range. The minus min just takes it back to a simple formula of
+value/max - this would be the as if the range was zero to max.
+
+formula:
+(val - min) / (max - min)
+
+		min       val    max
+0------15--------44-----55
+
