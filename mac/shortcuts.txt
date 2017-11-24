@@ -6,3 +6,11 @@ cmd + shift + 4
 print whole screen):
 cmd + shift + 3
 
+
+current running applications:
+option + command + esc
+
+open activity monitor - use spotlight:
+cmd + spacebar
+type in acti...
+
