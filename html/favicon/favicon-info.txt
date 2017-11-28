@@ -1,0 +1,4 @@
+favicon genearator (with tags, and app icons) site:
+https://realfavicongenerator.net/
+
+put all generated favicon and xml files at the site root
