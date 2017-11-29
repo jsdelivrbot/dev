@@ -394,6 +394,22 @@ input[type="text"], input[type="password"], select {
     background:yellow;
 }
 
+/*ajacent sibling selector*/
+/*apply the style only to the element that immediately follows it as a sibling*/
+
+.el + .elsibling {
+    background: red;
+}
+
+/* above example:
+<div>
+    <div class="el"></div>
+    <div class="elsibling">red</div>
+    <div class="elsibling"></div>
+</div>*/
+
+
+
 /* ==========================================================================
 pointer events
 ========================================================================== */

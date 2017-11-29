@@ -24,3 +24,14 @@ if (cDescriptions && cDescriptions.length !== 0) {
     item.innerHTML = trimmedDesc;
   });
 }
+
+//trim leading and trailing white space
+// IE 8
+if (!String.prototype.trim) {
+    String.prototype.trim = function(){ return this.replace(/^\s+|\s+$/g, ''); };
+}
+// example
+var s = '  Hello World!  ';
+s = s.trim();
+console.log(s);
+// "Hello World!"

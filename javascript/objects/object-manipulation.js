@@ -26,7 +26,7 @@ myObj.foo = 1;
 console.log(Object.keys(myObj)); // console: ['foo']
 
 /* ==========================================================================
-Object.assign
+merge objects (Object.assign)
 ========================================================================== */
 
 //merge one or more objects into the target one, overriding exiting values if applicable
@@ -36,9 +36,23 @@ var a = { name: 'foo', age: 12 }
 var b = Object.assign({}, a, { name: 'fred' }, { foo: 'poo' });
 // { name: 'fred', age: 12, foo: 'poo' }
 
+//or a manual implimentation...
+function extend(obj, src) {
+    for (var key in src) {
+        if (src.hasOwnProperty(key)) obj[key] = src[key];
+    }
+    return obj;
+}
+// example
+var a = { foo: true }, b = { bar: false };
+var c = extend(a, b);
+console.log(c);
+// { foo: true, bar: false }
+
 /* ==========================================================================
 removing values from an object
 ========================================================================== */
+
 //todo: make this return a new object
 Object.prototype.remove = function(arr) {
 	var _this  = this;
@@ -71,6 +85,7 @@ var newFruit = fruit.pick(['color', 'variety']);
 /* ==========================================================================
 use this to loop through/itterate through a javascript object
 ========================================================================== */
+
 for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
         str += "<h3>" + key + "</h3>";

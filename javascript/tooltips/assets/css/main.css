@@ -73,6 +73,6 @@ tooltips
   visibility:hidden
 }
 
-.tooltip-container:hover+.highlight {
+.tooltip-container:hover + .highlight {
   visibility:visible
 }

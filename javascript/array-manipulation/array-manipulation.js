@@ -1,5 +1,6 @@
-//Converting Arrays to Strings
-//---------------------------------------
+/* ==========================================================================
+Converting Arrays to Strings
+========================================================================== */
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 
@@ -16,9 +17,9 @@ console.log(fruits.join("*"));
 //convert to primitive value (javascript converts this primitive value to string )
 console.log("value of fruits: " + fruits.valueOf());
 
-
-//Popping and Pushing
-//---------------------------------------
+/* ==========================================================================
+Popping and Pushing
+========================================================================== */
 
 //remove the last element from an array:
 var popped = fruits.pop();              
@@ -31,8 +32,9 @@ var pushed = fruits.push("Kiwi");
 console.log(pushed);
 console.log(fruits);
 
-//Shifting
-//---------------------------------------
+/* ==========================================================================
+shifting
+========================================================================== */
 
 //remove the first element of array (returns shifted item)
 var shifted = fruits.shift();
@@ -53,8 +55,9 @@ console.log(fruits);
 fruits[fruits.length] = "Grape";
 console.log(fruits);
 
-//Sort
-//---------------------------------------
+/* ==========================================================================
+sort
+========================================================================== */
 
 // arr.sort()
 var scores = [1, 10, 21, 2]; 
@@ -75,13 +78,11 @@ numbers.sort(function(a, b) {
   return a - b;
 });
 console.log(numbers);
-
 // [1, 2, 3, 4, 5]
 
-
-//Splice
-//---------------------------------------
-
+/* ==========================================================================
+splice
+========================================================================== */
 //insert elements at position
 //.splice(start-position, amt-elements-removed, ...rest-elements-to-add)
 fruits.splice(2,0,"Lemon", "Lime");
@@ -91,8 +92,9 @@ console.log(fruits);
 fruits.splice(2,1);
 console.log(fruits);
 
-//Slice
-//---------------------------------------
+/* ==========================================================================
+slice
+========================================================================== */
 
 //return a new array that's a cut end piece of an array after number indicated (no elements removed from original)
 var slicedFruits = fruits.slice(3);
@@ -104,8 +106,9 @@ var slicedFruits2 = fruits.slice(1,3);
 console.log(slicedFruits2);
 console.log(fruits);
 
-//concatenate
-//---------------------------------------
+/* ==========================================================================
+concatenate
+========================================================================== */
 
 //concatenate two arrays
 var tropical = ["bananna", "pineapple"];
@@ -113,12 +116,10 @@ var regular = ["apple", "grape"];
 var fruitBasket = regular.concat(tropical);
 console.log(fruitBasket);
 
-//looping through
-//---------------------------------------
 
-
+/* ==========================================================================
 //.map .filter. .find .reduce
-//---------------------------------------
+========================================================================== */
 
 //.map
 // execute for each item in array and what's returned goes into a new array.
@@ -140,12 +141,14 @@ var found = fruitBasket.filter(function(item) {
   return element >= 15;
 }); // 130
 
-//find index (works for spaced strings and arrays)
-//---------------------------------------
+/* ==========================================================================
+find index (works for spaced strings and arrays)
+========================================================================== */
 var n = str.indexOf('foobar');
 
-
-//.reduce
+/* ==========================================================================
+reduce
+========================================================================== */
 //The return value of the function is stored in an accumulator (result/total).
 //the total becomes a single value (reduce the array to a single value)
 var total = frutiBasket.reduce(function(sum, item) {
@@ -162,8 +165,9 @@ let newArray = someArray.reduce(function(result, item) {
 }, []);
 
 
-//using apply
-//---------------------------------------
+/* ==========================================================================
+apply
+========================================================================== */
 
 function getMaxOfArray(numArray) {
   //use apply to populate an arbitrary 
@@ -179,35 +183,10 @@ var max2 = Math.max(...arr);
 console.log(max2);
 
 
-
-
-
-let professions = []
-for (var i = 0; i <= foundProfessions.length; i++) {
- //professions.push(foundProfessions[i].body);
- //console.log(foundProfessions[i].body);
- professions.push(foundProfessions[i]);
-}
-
-//find the body of the profession using the professionId to lookup the reducer data
-let data = _.find(this.props.professions, function(item){ return item.id == professionId; });
-let body = data.body;
-
-//check if the user alreay selected the list item
-var inListAlready = _.some(selectedItemList, function (item) {
-  return item.id === professionId;
-});
-//add if not alreay in list and keep list to 5 items max
-if(!inListAlready && selectedItemList.length <= 4) {
-  //update the button list
-  selectedItemList.push({id: professionId, body: body});
-  //update the currently selected item (stored in the reducer)
-  this.props.dispatch(changeProfession(professionId, true));
-}
-
-//.every
+/* ==========================================================================
+every
+========================================================================== */
 //(true/false if fined in array)
-//---------------------------------------
 
 //check if any errors in all fields
 let errorSomewhere = this.state.fields.every((item) => {
@@ -216,7 +195,9 @@ let errorSomewhere = this.state.fields.every((item) => {
 });
 
 
+/* ==========================================================================
 //foreach
+========================================================================== */
 //itterate over an array of values and execute a function for each one
 //array.forEach(function(currentValue, index, arr), thisValue);
 //*it doesn't execute for blank values
@@ -228,8 +209,9 @@ myArray.forEach(function(value, index){
   console.log("value: ", value);
 });
 
+/* ==========================================================================
 //operating for N times
-//---------------------------------------
+========================================================================== */
 
 //create an array of N size (filled with undefined values)
 var myarray = Array.apply(null, Array(6));
@@ -240,9 +222,10 @@ Array.apply(null, Array(5)).forEach(function() {
 });
 
 
-
+/* ==========================================================================
 //test if value exists in array
-//---------------------------------------
+========================================================================== */
+
 function inArray(needle, haystack) {
     var length = haystack.length;
     for(var i=0; i<length; i++) {
@@ -263,8 +246,35 @@ var sampArray = [1,2,3,4,5];
 document.write("3 in array : " + sampArray.inArray(3) + "<br />");
 
 
+/* ==========================================================================
 //loop through a collection and return deeply nested property from each item
-//---------------------------------------
+========================================================================== */
+
 newArray = myArray.map((item) => {
   return item.subitem[0].name;
 });
+
+/* ==========================================================================
+//find next, prev. item in the array
+========================================================================== */
+
+let nextItem = '';
+let prevItem = '';
+let index = 0;
+index = pagesCopy.indexOf(currentPage);
+if(index >= 0) {
+    //need -1 since index uses 0 index and length doesn't
+    if(index !== pagesCopy.length - 1) {
+        nextItem = pagesCopy[index + 1];
+    } else {
+        console.log('called')
+        nextItem = '';
+    }
+    if(index !== 0) {
+        prevItem = pagesCopy[index - 1];
+    } else {
+        prevItem = '';
+    }
+}
+// console.log('prevItem: ', prevItem);
+// console.log('nextItem: ', nextItem);
