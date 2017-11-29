@@ -28,8 +28,6 @@ must reads:
 speed up server side rendering in react:
 https://www.youtube.com/watch?v=PnpfGy7q96U
 
-good setup for nodejs and and ssl on digital ocean
-https://www.youtube.com/watch?v=kR06NoSzAXY
 
-regex in javascript:
-https://www.youtube.com/watch?v=44P2s6bZ8Js
+
+

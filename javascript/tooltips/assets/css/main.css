@@ -1,0 +1,78 @@
+/* ==========================================================================
+tooltips
+========================================================================== */
+
+/* wraps the tooltip box and the button */
+
+.tooltip-container {
+  position:absolute;
+  width:25vw;
+}
+
+/* tooltip button */
+
+.tooltip-button {
+  position:absolute;
+  z-index:1;
+}
+
+.tooltip-button-content {
+  background: orange;
+  position:relative;
+  width:2.5vw;
+  height:2.5vw;
+  border-radius:2.5vw;
+  top:0.25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:white;
+  font-size:1.5vw
+}
+
+/* tooltip popup box */
+
+.tooltip {
+  position:absolute;
+  padding: 0.2vw;
+  background-color: #84BE00;
+  top:2.55vw;
+  left:2.55vw;
+  visibility: hidden;
+  font-size: 1.5vw;
+  z-index: 1000;
+}
+
+.tooltip-container:hover .tooltip{
+  visibility:visible;
+  -webkit-transform:scale(1);
+  -moz-transform:scale(1);
+  -ms-transform:scale(1);
+  -o-transform:scale(1);
+  transform:scale(1);
+}
+
+.tooltip-content {
+  padding:1vw;
+  color: white;
+}
+
+.tooltip-title {
+  padding: 1vw;
+  line-height: 3.5vw;
+  color: white;
+  font-size: 1.7vw
+}
+
+/* the highlight box (separate from the tooltip) */
+
+.tooltip-container .highlight {
+  position:absolute;
+  border:#FF9D00 solid 0.25vw;
+  background:rgba(255, 157, 0, 0.2);
+  visibility:hidden
+}
+
+.tooltip-container:hover+.highlight {
+  visibility:visible
+}

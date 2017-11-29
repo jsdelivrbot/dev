@@ -1,2 +1,5 @@
 use:
 regexr.com
+
+regex in javascript:
+https://www.youtube.com/watch?v=44P2s6bZ8Js
