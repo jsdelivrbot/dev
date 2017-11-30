@@ -38,7 +38,7 @@ npm uninstall -g <packagename>
 To remove module1 with changing package.json, and removing it from the dependencies in package.json:
 npm uninstall --save module1.
   
-  -----------------------
+-----------------------
   
 to install express generator:
 npm install express-generator -g
@@ -65,4 +65,8 @@ http://debuggable.com/posts/how-to-fork-patch-npm-modules:4e2eb9f3-e584-44be-b1a
 #to install latest alpha:
 -----------------------
 npm install 'gulpjs/gulp.git#4.0' --save-dev
+
+#clear npm cache:
+-----------------------
+npm cache clean
 
