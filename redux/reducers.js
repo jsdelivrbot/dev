@@ -69,8 +69,3 @@ return getAddedIds(state.cart).map(id => ({
  console.log(modified2);
  
  }());
-
-
-//another way to make a copy of state so as to not modify it:
-//(same as state.slice(0,state.length))
-let stateCopy = state.slice();
