@@ -19,9 +19,7 @@ render() {
 
 render() {
 const { tweets } = this.props;
-
 const mappedTweets = tweets.map(tweet => <li>{tweet.text}</li>)
-
 return <div>
             <ul>{mappedTweets}</ul>
         </div>
@@ -65,48 +63,6 @@ return (
         </div>
     );
 //...
-
-//----------------------------------
-
-//using _.map to map an array of objects to the props of an array of components
-//usage:
-//...
-
-const todo = [{
-  task: 'do laundry',
-  isCompleted: false
-}, {
-    task: 'tuck kids in',
-    isCompleted: false
-  }, {
-    task: 'feed goldfish',
-    isCompleted: false
-  }];
-
-renderItems() {
-    //return this.props.todo.map(() => );
-    //.map also conveniently has an index arg
-    //also lodash is able to navigate deeply-nested properties by just providing a 
-    //string instead of a callback function)
-    //spread:
-    //{...todo} is equivelent to:
-    //task={todo.task} isCompleted={todo.iscompleted}
-    return _.map(todo, (item, index) => <TodoListItem key={index } {...item} /> );
-}
-render() {
-    return (
-        <ul>
-        {this.renderItems()}
-        </ul>
-    );
-}
-//...
-
-//find one in an object
-toggleTask(task) {
-//lodash - find the clicked on task in the task object
-const foundTodo = _.find(this.state.todo, item => item.task === task);
-}
 
 
 
