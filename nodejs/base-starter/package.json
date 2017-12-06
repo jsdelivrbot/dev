@@ -1,0 +1,11 @@
+{
+  "name": "base-starter",
+  "version": "1.0.0",
+  "description": "bare bones node",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ben Chung",
+  "license": "ISC"
+}

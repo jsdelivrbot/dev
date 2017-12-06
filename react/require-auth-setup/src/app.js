@@ -20,7 +20,7 @@ ReactDOM.render(
 	      <Main>
 		      <Switch>
 			      <Route exact path="/" component={Home} />
-			      <Route exact path="/protected" component={Protected} />
+
 			      <Route path="/resources" component={requireAuth(Resources)} />
 		      </Switch> 
 	      </Main>

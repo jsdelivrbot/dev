@@ -1,8 +1,0 @@
-/node_modules
-/admin/config
-bundle.js
-npm-debug.log
-
-# IntelliJ
-*.iml
-/.idea

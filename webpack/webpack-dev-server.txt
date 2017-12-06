@@ -1,2 +1,0 @@
--make sure https works with web pack dev server?:
-https://github.com/webpack/webpack-dev-server/tree/master/examples/https

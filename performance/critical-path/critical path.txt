@@ -22,6 +22,12 @@ how to optimize?
 -reduce number of critical resources
 -reduce critical path length
 
+above the fold css steps:
+===================
+
+-Determine the above-the-fold styles for a page and write them between <style> tags in the head.
+-Load all other stylesheets in the footer, ideally asynchronously.
+
 resources
 ===================
 

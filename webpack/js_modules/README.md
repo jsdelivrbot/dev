@@ -1,3 +1,10 @@
+# Webpack Starter
+
+Webpack 2 starter that uses:
+ 
+* style loading into js files
+* async load via system.import
+* copy images to dist
 
 
 ## to run
