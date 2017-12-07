@@ -4,7 +4,7 @@ var scene = function(onComplete) {
 	//if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 	var stats, controls, projector, canvas, manager, interval,
-	camera, camera1, scene, renderer, light, raycaster, mouse;
+	camera, scene, renderer, light, raycaster, mouse;
 
 	var blueishCol = new THREE.Color("rgb(200,255,255)");
 
@@ -44,26 +44,6 @@ var scene = function(onComplete) {
 
 
 	//-----------------//
-
-	//var debugItems = [{'cameraZoomz' : cameraZoom.z}];
-
-	//set up multiple views
-	var	views = [
-		//main view
-		{
-			left: 0,
-			bottom: 0,
-			width: 1,
-			height: 1,
-			background: new THREE.Color().setRGB( 0.5, 0.5, 0.7 ),
-			eye: [ 2, 18, -100 ],
-			up: [ 0, 1, 0 ],
-			fov: 30,
-			updateCamera: function ( camera1, scene, mouseX, mouseY) {
-				//optionally update camera
-			}
-		},
-	];
 
 	var clock = new THREE.Clock();
 	var delta;
@@ -113,44 +93,36 @@ var scene = function(onComplete) {
 		// enable shadows on the renderer 
 		//renderer.shadowMapEnabled = true;
 
+
 		//-----------------------------------------------------------------------------//  
-		//setup camara
+		//setum scene
 		//-----------------------------------------------------------------------------// 
-		//set up views
-		for (var ii =  0; ii < views.length; ++ii ) {
 
-			var view = views[ii];
-
-			camera1 = new THREE.PerspectiveCamera( view.fov, window.innerWidth / window.innerHeight, 1, 10000 );
-			camera1.name = "camera1";
-			camera1.position.x = view.eye[ 0 ];
-			camera1.position.y = view.eye[ 1 ];
-			camera1.position.z = view.eye[ 2 ];
-			camera1.up.x = view.up[ 0 ];
-			camera1.up.y = view.up[ 1 ];
-			camera1.up.z = view.up[ 2 ];
-
-			//set up orbit controls
-			controls = new THREE.OrbitControls( camera1, renderer.domElement );
-			controls.autoRotate = true;
-			controls.autoRotateSpeed = -0.15;
-			controls.enableDamping = true;
-			controls.dampingFactor = 0.1;
-			controls.enablePan = false;
-			controls.rotateSpeed = 0.2;
-			controls.minDistance = 25;
-			controls.maxDistance = 42;
-			controls.maxPolarAngle = Math.PI/2 - .04;
-			controls.target.set( 0, 12, 0 );
-
-			view.camera = camera1;
-		}
+		var cam = getCamera();
+		camera = cam.init();
 
 		scene = new THREE.Scene();
 
 		//for hit detection
 		raycaster = new THREE.Raycaster(); // create once
 		mouse = new THREE.Vector2(); // create once
+
+		//-----------------------------------------------------------------------------//
+		//setup orbit controls
+		//-----------------------------------------------------------------------------//
+
+		//set up orbit controls
+		controls = new THREE.OrbitControls( camera.getCamera(), renderer.domElement );
+		controls.autoRotate = true;
+		controls.autoRotateSpeed = -0.15;
+		controls.enableDamping = true;
+		controls.dampingFactor = 0.1;
+		controls.enablePan = false;
+		controls.rotateSpeed = 0.2;
+		controls.minDistance = 25;
+		controls.maxDistance = 42;
+		controls.maxPolarAngle = Math.PI/2 - .04;
+		controls.target.set( 0, 12, 0 );
 
 		//-----------------------------------------------------------------------------//
 		//debugging
@@ -197,67 +169,12 @@ var scene = function(onComplete) {
 		};
 
 
-		//-----------------------------------------------------------------------------//
-		//FBX loader
-		//-----------------------------------------------------------------------------//
+		var cubeMatBox = CubeMatBox().init();
 
-		// var loader = new THREE.FBXLoader( manager );
-		// loader.load( 'assets/models/fbx/xsi_man_skinning.fbx', function( object ) {
-
-		// 	scene.add (new THREE.Mesh (geometry,
-		// 	    new THREE.MeshBasicMaterial ({ color: 0x00ffff, wireframe: true })));
-
-
-		// 	console.log('loaded object: ', object);
-
-		// 	//notify all items loaded
-		// 	allItemsLoaded();
-
-
-		// 	object.mixer = new THREE.AnimationMixer( object );
-		// 	mixers.push( object.mixer );
-
-		// 	var action = object.mixer.clipAction( object.animations[ 0 ] );
-		// 	action.play();
-
-		// 	//scene.add( object );
-
-		// }, onProgress, onError );
-
-		//-----------------------------------------------------------------------------//
-		//texture loader
-		//-----------------------------------------------------------------------------//
-
-		var texLoader = new THREE.TextureLoader();
-
-		//-----------------------------------------------------------------------------//
-		//create cubemap skybox
-		//-----------------------------------------------------------------------------//
-
-		// Textures
-		var r = 'assets/textures/cube/sky/';
-		var urls = [ r + "px.jpg", r + "nx.jpg",
-					 r + "py.jpg", r + "ny.jpg",
-					 r + "pz.jpg", r + "nz.jpg" ];
-
-		textureCube = new THREE.CubeTextureLoader().load( urls );
-		textureCube.format = THREE.RGBFormat;
-		textureCube.mapping = THREE.CubeReflectionMapping;
-
-		var cubeShader = THREE.ShaderLib[ "cube" ];
-		var cubeMaterial = new THREE.ShaderMaterial( {
-			fragmentShader: cubeShader.fragmentShader,
-			vertexShader: cubeShader.vertexShader,
-			uniforms: cubeShader.uniforms,
-			depthWrite: false,
-			side: THREE.BackSide
-		} );
-
-		cubeMaterial.uniforms[ "tCube" ].value = textureCube;
 
 		// Skybox
 
-		cubeMesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial );
+		cubeMesh = 
 		scene.add( cubeMesh );
 
 		//-----------------------------------------------------------------------------//
@@ -385,11 +302,13 @@ var scene = function(onComplete) {
 		window.addEventListener( 'resize', onWindowResize, false );
 
 		//debounced ticker
+		// * re-init
 		interval = setInterval(debouncedTicker, 40);
 
 		createHitObjects();
 
 		//call to update animation
+		// * re-init
 		update();
 
 		//notify all items loaded
@@ -467,8 +386,7 @@ var scene = function(onComplete) {
 	}
 
 	function onWindowResize() {
-		camera1.aspect = window.innerWidth / window.innerHeight;
-		camera1.updateProjectionMatrix();
+		camera.update(window.innerWidth, window.innerHeight);
 
 		renderer.setSize( window.innerWidth, window.innerHeight );
 	}
@@ -479,7 +397,7 @@ var scene = function(onComplete) {
 		  // updateAnimation(delta);
 
 		//cause horizon mesh to always face the camera
-		// horizon.lookAt( camera1.position );
+		// horizon.lookAt( camera.position );
 		
 	    //render
 	    render();
@@ -497,7 +415,7 @@ var scene = function(onComplete) {
 	}
 
 	//debounced version of update
-	function debouncedTicker () {
+	function debouncedTicker() {
 		hitDetection();
 		calcCamDistance();
 	}
@@ -517,37 +435,20 @@ var scene = function(onComplete) {
 
 
 	function render() {
-		//renderer.clear();
+		//update renderer
+		var left   = Math.floor( window.innerWidth  * CONFIG.camera.left );
+		var bottom = Math.floor( window.innerHeight * CONFIG.camera.bottom );
+		var width  = Math.floor( window.innerWidth  * CONFIG.camera.width );
+		var height = Math.floor( window.innerHeight * CONFIG.camera.height );
+		renderer.setViewport( left, bottom, width, height );
+		renderer.setScissor( left, bottom, width, height );
+		renderer.setScissorTest( true );
+		renderer.setClearColor( CONFIG.camera.background );
 
-		//render the extra views
-		for ( var ii = 0; ii < views.length; ++ii ) {
+		//update camera
+		camera.update(width, height);
 
-			view = views[ii];
-			//camera1 = view.camera;
-
-			view.updateCamera( camera1, scene, mouse.x, mouse.y );
-
-			var left   = Math.floor( window.innerWidth  * view.left );
-			var bottom = Math.floor( window.innerHeight * view.bottom );
-			var width  = Math.floor( window.innerWidth  * view.width );
-			var height = Math.floor( window.innerHeight * view.height );
-			renderer.setViewport( left, bottom, width, height );
-			renderer.setScissor( left, bottom, width, height );
-			renderer.setScissorTest( true );
-			renderer.setClearColor( view.background );
-
-			camera1.aspect = width / height;
-			camera1.updateProjectionMatrix();
-
-			//console.log(camera1.position.x, camera1.position.y, camera1.position.z)
-
-			renderer.render( scene, camera1 );
-		}
-
-		//renderer.clearDepth();
-
-		//render the main view
-		//renderer.render( scene, camera );
+		renderer.render( scene, camera.getCamera());
 	}
 
 	function onDocumentMouseMove( event )
@@ -597,21 +498,21 @@ var scene = function(onComplete) {
 		// // create a Ray with origin at the mouse position
 		// //   and direction into the scene (camera direction)
 		// var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-		// projector.unprojectVector( vector, camera1 );
-		// var ray = new THREE.Raycaster( camera1.position, vector.sub( camera1.position ).normalize() );
+		// projector.unprojectVector( vector, camera );
+		// var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 		// // create an array containing all objects in the scene with which the ray intersects
 		// var intersects = ray.intersectObjects( hitObjects );
 
 	    //---------
 
 	    // find intersections
-	    raycaster.setFromCamera( mouse, camera1 );
+	    raycaster.setFromCamera( mouse, camera.getCamera() );
 	    var intersects = raycaster.intersectObjects( hitObjects, true );
 
 
 	    if(intersects[0] && intersects.length > 0) {
 
-	    	var proj = toScreenPosition(intersects[0].object, camera1);
+	    	var proj = toScreenPosition(intersects[0].object, camera);
 	    	hitObj.name = intersects[0].object.name;
 	    	hitObj.x = proj.x;
 	    	hitObj.y = proj.y;
@@ -653,12 +554,12 @@ var scene = function(onComplete) {
 	function toScreenPosition(obj, camera) {
 	    var vector = new THREE.Vector3();
 
-	    var widthHalf = 0.5*renderer.context.canvas.width;
-	    var heightHalf = 0.5*renderer.context.canvas.height;
+	    var widthHalf = 0.5 * renderer.context.canvas.width;
+	    var heightHalf = 0.5 * renderer.context.canvas.height;
 
 	    obj.updateMatrixWorld();
 	    vector.setFromMatrixPosition(obj.matrixWorld);
-	    vector.project(camera);
+	    vector.project(camera.getCamera());
 
 	    vector.x = ( vector.x * widthHalf ) + widthHalf;
 	    vector.y = - ( vector.y * heightHalf ) + heightHalf;
