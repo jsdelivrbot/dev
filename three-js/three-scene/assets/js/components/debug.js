@@ -18,3 +18,6 @@
 //axes
 // var axes = new THREE.AxisHelper(2);
 // scene.add(axes);
+
+// var helper = new THREE.SpotLightHelper( spotlight2, 2.5 );
+// scene.add(helper);

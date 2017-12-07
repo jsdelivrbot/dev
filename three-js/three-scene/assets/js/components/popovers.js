@@ -1,6 +1,11 @@
 var Popovers = {
-	init: function(scene) {
+	init: function(scene, container, mouse, camera, canvas, controls, update) {
+		this.container = container;
 		this.scene = scene;
+		this.mouse = mouse;
+		this.camera = camera;
+		this.canvas = canvas;
+		this.controls = controls;
 		this.hitFocused = false;
 		this.overHitArea = false;
 		this.hitObj = {
@@ -10,9 +15,28 @@ var Popovers = {
 		};
 		this.popovers = [];
 		this.hitObjects = [];
+		this.zoomSpeed = 1.03;
+		//for tweenlite for camera
+		this.cameraZoom = {
+			z: this.zoomSpeed
+		};
+		this.zoomType = '';
+		this.zooming = false;
+		this.cameraPosition 
+		this.camPos = new THREE.Vector3( 0, 0, 0 );
+		//no arguments; will be initialised to (0, 0, 0)
+		this.origin = new THREE.Vector3();
+		this.requestId = null;
+
+		this.container.addEventListener( 'click', this.onDocumentClick.bind(this), false );
 
 		this.createHitObjects();
+		this.update();
+
+		//return Object.create(this);
+		return this;
 	},
+
 	createHitObjects: function() {
 		//elbow
 		//(radius, width segs, height segs)
@@ -61,172 +85,158 @@ var Popovers = {
 		this.scene.add(mesh);
 		//this.scene.add( mesh );
 		this.hitObjects.push(mesh);
-
-		return Object.create(this);
 	},
 
+	onDocumentClick: function(event) {
+		console.log(this.hitFocused);
+		//don't interrupt zoom
+		if(!this.zooming) {
+			if(!this.hitFocused && this.overHitArea) {
+				this.hitFocused = true;
+				this.zoomCamera('zoomin');
+				this.triggerPopover(this.hitObj.name, this.hitObj.x , this.hitObj.y);
+				// disable controls
+				this.controls.enableZoom = false;
+				this.controls.enableRotate = false;
+				this.controls.autoRotate = false;
+			} else if (this.hitFocused) {
+				this.hitFocused = false;
+				this.clearPopovers();
+				this.zoomCamera('zoomout');
+				//enable this.controls
+				// disable this.controls
+				this.controls.enableZoom = true;
+				this.controls.enableRotate = true;
+				this.controls.autoRotate = true;
+			}
+		}
+	},
 
-	// function onDocumentClick( event ) {
-	// 	//don't interrupt zoom
-	// 	if(!zooming){
+	hitDetection: function() {
+	    // find intersections
+	    raycaster = new THREE.Raycaster(); // create once
+	    raycaster.setFromCamera( this.mouse, this.camera );
+	    var intersects = raycaster.intersectObjects( this.hitObjects, true );
 
-	// 		if(!this.hitFocused && this.overHitArea) {
+	    if(intersects[0] && intersects.length > 0) {
 
-	// 			this.hitFocused = true;
-	// 			zoomCamera('zoomin');
-	// 			triggerPopover(this.hitObj.name, this.hitObj.x , this.hitObj.y);
-	// 			// disable controls
-	// 			controls.enableZoom = false;
-	// 			controls.enableRotate = false;
-	// 			controls.autoRotate = false;
+	    	var proj = this.toScreenPosition(intersects[0].object, this.camera);
+	    	this.hitObj.name = intersects[0].object.name;
+	    	this.hitObj.x = proj.x;
+	    	this.hitObj.y = proj.y;
+	    	this.overHitArea = true;
+	    	this.toggleMaterial(true, intersects[0].object);
 
+	    } else {
+	    	this.overHitArea = false;
+	    	this.toggleMaterial(false);
+	    }
+	},
 
-	// 		} else if (this.hitFocused){
-	// 			this.hitFocused = false;
-	// 			clearPopovers();
-	// 			zoomCamera('zoomout');
-	// 			//enable controls
-	// 			// disable controls
-	// 			controls.enableZoom = true;
-	// 			controls.enableRotate = true;
-	// 			controls.autoRotate = true;
-	// 		}
-	// 	}
-	// }
+	toggleMaterial: function(isActive, obj) {
+		if(this.hitFocused || isActive) {
+			if(obj) {
+				//change the material color of current object
+				//obj.material.color.setHex( 0xffff00 );
+				obj.material.opacity = 0.5;
+			}
+		} else {
+			//change back the material color for all
+			for(var i=0; i<this.hitObjects.length; i++) {
+				// this.hitObjects[i].material.color.setHex( 0xff0000 );
+				this.hitObjects[i].material.opacity = 0.2;
+			}
+		}
+	},
 
-	// function hitDetection() {
-	// 	// // find intersections (old way)
-	// 	// // create a Ray with origin at the mouse position
-	// 	// //   and direction into the scene (camera direction)
-	// 	// var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-	// 	// projector.unprojectVector( vector, camera );
-	// 	// var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-	// 	// // create an array containing all objects in the scene with which the ray intersects
-	// 	// var intersects = ray.intersectObjects( this.hitObjects );
+	//convert world position to screen position
+	toScreenPosition: function(obj, camera) {
+	    var vector = new THREE.Vector3();
 
-	//     //---------
+	    var widthHalf = 0.5 * this.canvas.width;
+	    var heightHalf = 0.5 * this.canvas.height;
 
-	//     // find intersections
-	//     raycaster.setFromCamera( mouse, camera.getCamera() );
-	//     var intersects = raycaster.intersectObjects( this.hitObjects, true );
+	    obj.updateMatrixWorld();
+	    vector.setFromMatrixPosition(obj.matrixWorld);
+	    vector.project(this.camera);
 
+	    vector.x = ( vector.x * widthHalf ) + widthHalf;
+	    vector.y = - ( vector.y * heightHalf ) + heightHalf;
 
-	//     if(intersects[0] && intersects.length > 0) {
+	    return { 
+	        x: vector.x,
+	        y: vector.y
+	    };
+	},
 
-	//     	var proj = toScreenPosition(intersects[0].object, camera);
-	//     	this.hitObj.name = intersects[0].object.name;
-	//     	this.hitObj.x = proj.x;
-	//     	this.hitObj.y = proj.y;
+	triggerPopover: function(popoverName, x, y) {
+		//adjust popover postion according to position in window
+		//if too close to the bottom
+		var heightBias = 200;
+		if(y > (window.innerHeight - heightBias)) {
+			y = y - 200;
+		}
+		//if too close to the right
+		var widthBias = 200;
+		if(x > (window.innerWidth - widthBias)) {
+			x = x - 200;
+		}
 
-	//     	this.overHitArea = true;
-	//     	toggleMaterial(true, intersects[0].object);
+		//tween popover in
+		TweenLite.set("#" + popoverName, { css: {left: x + "px", top: y + 'px'} });
+		TweenMax.to("#" + popoverName, 0.5, {className:"+=is_active", opacity:"1", left: x + "px", top: y + 'px', ease:Power2.easeInOut});
+	},
 
-	//     } else {
+	clearPopovers: function() {
+		//clear all this.popovers
+		TweenLite.set(".popover", { css: {left: 0 + "px", top: -1000 + 'px'} });
+		TweenMax.to(".popover", 0.5, {className:"-=is_active", opacity:"0", ease:Power2.easeInOut});
+	},
 
-	//     	this.overHitArea = false;
-	//     	toggleMaterial(false);
+	animateZoom: function() {
+		if(this.zoomType === 'zoomin') {
+			//camera dolly in
+			this.controls.dIn(this.cameraZoom.z);
+		} else if (this.zoomType === 'zoomout') {
+			//camera dolly out
+			this.controls.dOut(this.cameraZoom.z);
+		}
+	},
 
-	//     }
-	// }
+	zoomCamera: function(zoomFunc) {
+		//only animate if there isn't one already playing
+		//to debug, turn this to this:
 
-	// function toggleMaterial(isActive, obj) {
+		if(!this.zooming) {
+			//reset zoom value
+			this.cameraZoom.z = this.zoomSpeed;
 
-	// 	if(this.hitFocused || isActive) {
-			
-	// 		if(obj) {
-	// 			//change the material color of current object
-	// 			//obj.material.color.setHex( 0xffff00 );
-	// 			obj.material.opacity = 0.5;
-	// 		}
+			this.zooming = true;
 
-	// 	} else {
-	// 		//change back the material color for all
-	// 		for(var i=0; i<this.hitObjects.length; i++) {
-	// 			// this.hitObjects[i].material.color.setHex( 0xff0000 );
-	// 			this.hitObjects[i].material.opacity = 0.2;
-	// 		}
-	// 	}
-	// }
+			var tweenZoom = TweenMax.to(
+			    this.cameraZoom, 0.5, {
+			    	z: 1,
+			    	ease: Power2.easeInOut,
+			    	onComplete: function() {
+			    		this.zooming = false;
+			    	}.bind(this)
+			    }
+			);
+			//camera dolly out
+			this.zoomType = zoomFunc;
+		} 
+	},
 
-	// //convert world position to screen position
-	// function toScreenPosition(obj, camera) {
-	//     var vector = new THREE.Vector3();
+	update: function() {
+		this.requestId = requestAnimationFrame(this.update.bind(this));
 
-	//     var widthHalf = 0.5 * renderer.context.canvas.width;
-	//     var heightHalf = 0.5 * renderer.context.canvas.height;
+		this.hitDetection();
+		this.animateZoom();
+	},
 
-	//     obj.updateMatrixWorld();
-	//     vector.setFromMatrixPosition(obj.matrixWorld);
-	//     vector.project(camera.getCamera());
+	stopUpdate: function() {
+	   cancelAnimationFrame(requestId);
+	   this.requestId = undefined;
 
-	//     vector.x = ( vector.x * widthHalf ) + widthHalf;
-	//     vector.y = - ( vector.y * heightHalf ) + heightHalf;
-
-	//     return { 
-	//         x: vector.x,
-	//         y: vector.y
-	//     };
-	// }
-
-	// function triggerPopover(popoverName, x, y) {
-	// 	//adjust popover postion according to position in window
-	// 	//if too close to the bottom
-	// 	var heightBias = 200;
-	// 	if(y > (window.innerHeight - heightBias)) {
-	// 		y = y - 200;
-	// 	}
-	// 	//if too close to the right
-	// 	var widthBias = 200;
-	// 	if(x > (window.innerWidth - widthBias)) {
-	// 		console.log('over width')
-	// 		x = x - 200;
-	// 	}
-
-	// 	//tween popover in
-	// 	TweenLite.set("#" + popoverName, { css: {left: x + "px", top: y + 'px'} });
-	// 	TweenMax.to("#" + popoverName, 0.5, {className:"+=is_active", opacity:"1", left: x + "px", top: y + 'px', ease:Power2.easeInOut});
-	// }
-
-	// function clearPopovers() {
-
-	// 	//clear all this.popovers
-	// 	TweenLite.set(".popover", { css: {left: 0 + "px", top: -1000 + 'px'} });
-	// 	TweenMax.to(".popover", 0.5, {className:"-=is_active", opacity:"0", ease:Power2.easeInOut});
-	// }
-
-	// function animateZoom() {
-	// 	if(zoomType === 'zoomin') {
-	// 		//camera dolly in
-	// 		controls.dIn(cameraZoom.z);
-
-	// 	} else if (zoomType === 'zoomout') {
-	// 		//camera dolly out
-	// 		controls.dOut(cameraZoom.z);
-	// 	}
-	// }
-
-	// function zoomCamera(zoomFunc) {
-	// 	//only animate if there isn't one already playing
-	// 	//to debug, turn this to this:
-	// 	if(!zooming ) {
-
-	// 		//reset zoom value
-	// 		cameraZoom.z = zoomSpeed;
-
-	// 		zooming = true;
-
-	// 		tweenZoom = TweenMax.to(
-	// 		    cameraZoom, 0.5, {
-	// 		    	z: 1,
-	// 		    	ease: Power2.easeInOut,
-	// 		    	onComplete: function() {
-	// 		    		zooming = false;
-	// 		    	}
-	// 		    }
-	// 		);
-
-	// 		//camera dolly out
-	// 		zoomType = zoomFunc;
-	// 	} 
-	// }
+	}
 }
