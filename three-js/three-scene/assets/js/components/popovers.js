@@ -88,7 +88,6 @@ var Popovers = {
 	},
 
 	onDocumentClick: function(event) {
-		console.log(this.hitFocused);
 		//don't interrupt zoom
 		if(!this.zooming) {
 			if(!this.hitFocused && this.overHitArea) {
