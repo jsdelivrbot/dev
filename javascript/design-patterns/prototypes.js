@@ -11,14 +11,7 @@ prototypes
 // they can act like backup/utiltiy functions if they're not available
 // on the direct object at hand.
 
-function getSum(num1, num2){
-  return num1 + num2;
-}
 
-// Get the number of function arguments
-document.write("Num of arguments : " + getSum.length + "<br />");
-
-// You can add properties and methods to this object
 function Mammal(name){
   this.name = name;
   this.getInfo = function(){
@@ -26,31 +19,28 @@ function Mammal(name){
   }
 }
 
-// Use prototype to add a property
+// Use prototype to add a property and a method
 Mammal.prototype.sound = "Grrrrr";
-
-// Use it to add a method
 Mammal.prototype.makeSound = function() {
   return this.name + " says " + this.sound;
 };
 
 var grover = new Mammal("Grover");
+console.log(grover.makeSound());
 
-document.write(grover.makeSound() + "<br />");
-
-// List all properties of an object
+// List all properties of the object
 for( var prop in grover){
-  document.write(prop + " : " + grover[prop] + "<br />");
+  console.log(prop + " : " + grover[prop]);
 }
 
-
-
 // Check which property belongs to prototype vs. the object grover
-document.write("name Property of Grover : " + grover.hasOwnProperty("name") + "<br />");
+console.log("name Property of Grover : " + grover.hasOwnProperty("name"));
+console.log("sound Property of Grover : " + grover.hasOwnProperty("sound"));
 
-document.write("sound Property of Grover : " + grover.hasOwnProperty("sound") + "<br />");
+/* ==========================================================================
+adding to built in JS objects using prototype
+========================================================================== */
 
-// You can add methods to built in JS objects
 Array.prototype.inArray = function inArray(value){
   for(i = 0; i < this.length; i++){
     if(this[i] === value){
@@ -64,23 +54,9 @@ var sampArray = [1,2,3,4,5];
 
 document.write("3 in array : " + sampArray.inArray(3) + "<br />");
 
-//another prototype example...
-
-function Person (firstname,lastname) {
-    this.firstname = firstname;
-    this.lastname = lastname;
-}
-
-Person.prototype.greet = function() {
-    console.log('Hello, ' + this.firstname + ' ' +
-    this.lastname);
-}
-
-var john = new Person('John', 'Doe');
-john.greet();
-
-var jane = new Person('Jane', 'Doe');
-jane.greet();
+/* ==========================================================================
+print prototype
+========================================================================== */
 
 //prit out what is contained in the actual prototype
 console.log(john.__proto__);
@@ -89,31 +65,9 @@ console.log(jane.__proto__);
 //Person {greeting: [Function]}
 
 
-//another example...
-
-function Person (firstname,lastname) {
-    this.firstname = firstname;
-    this.lastname = lastname;
-}
-
-Person.prototype.greet = function() {
-    console.log('Hello, ' + this.firstname + ' ' +
-    this.lastname);
-}
-
-var john = new Person('John', 'Doe');
-john.greet();
-
-var jane = new Person('Jane', 'Doe');
-jane.greet();
-
-//prit out what is contained in the actual prototype
-console.log(john.__proto__);
-console.log(jane.__proto__);
-//Person {greeting: [Function]}
-//Person {greeting: [Function]}
-
-//example2
+/* ==========================================================================
+parent/child prototype
+========================================================================== */
 
 function Animal(){
   this.name = "Animal";
@@ -146,7 +100,6 @@ var arcticWolf = new Wolf();
 
 // Wolf inherits toString from Animal
 document.write(arcticWolf.toString() + "<br />");
-
 document.write("Wolf instance of Animal : " + (arcticWolf instanceof Animal) + "<br />");
 
 // Properties added to any object in the chain is inherited
@@ -161,8 +114,10 @@ Wolf.prototype.sound = "Grrrr Wooof";
 
 document.write(arcticWolf.getSound() + "<br />");
 
+/* ==========================================================================
 // More often then not it makes more sense to just inherit the
 // prototype to speed up the lookup process
+========================================================================== */
 
 function Rodent(){
   this.name = "Rodent";
@@ -182,37 +137,16 @@ var caneRat = new Rat();
 // Wolf inherits toString from Animal
 document.write(caneRat.toString() + "<br />");
 
-//using object.create to directly create a prototype
-var person = {
-    firstname: '',
-    lastname: '',
-    greet: function() {
-        return this.firstname + ' ' + this.lastname;
-    }
-}
-
-var john = Object.create(person);
-john.firstname = 'John';
-john.lastname = 'Doe';
-
-var jane = Object.create(person);
-jane.firstname = 'Jane';
-jane.lastname = 'Doe';
-
-console.log(john.greet() + ' ' + jane.greet());
-
-
-// ---------- INTERMEDIATE FUNCTION INHERITANCE ----------
+/* ==========================================================================
+// extend prototypes (mixin) 1
+========================================================================== */
 
 function extend(Child, Parent){
   var Temp = function(){};
 
   Temp.prototype = Parent.prototype;
-
   Child.prototype = new Temp();
-
   Child.prototype.constructor = Child;
-
 }
 
 function Deer(){
@@ -226,8 +160,76 @@ var elk = new Deer();
 
 document.write(elk.getSound() + "<br />");
 
+/* ==========================================================================
+// extend prototypes (mixin) 2
+========================================================================== */
 
-// ---------- CALL PARENT METHODS ----------
+//jquery has the equivelent of this using $.extend();
+function extend(target) {
+  //check if there's a second argument, if not, exit
+  if(!arguments[1]) {
+    return;
+  }
+  
+  //starting at second argument, loop through each source object
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var prop in source) {
+      //source.hasOwnProperty is so we don't copy properties that are on the prototype
+      //!target[prop] don't copy if already on target prop
+      if (!target[prop] && source.hasOwnProperty(prop)) {
+        target[prop] = source[prop];
+      }
+    }
+  }
+}
+
+//base subjects
+function Crab(name) {
+  this.name = name;
+}
+
+function Fish(name) {
+  this.name = name;
+}
+
+//objects to use to extend capability
+var mover = {
+  crawl : function() {
+    return this.name + " is crawling.";
+  },
+  run : function() {
+    return this.name + " is running."
+  }
+}
+
+var eater = {
+  eat: function() {
+    return this.name + " is eating.";
+  }
+}
+
+var swimmer = {
+  swim: function() {
+    return this.name + " is swimming.";
+  }
+}
+
+extend(Crab.prototype, mover, eater);
+extend(Fish.prototype, swimmer, eater);
+
+var fish1 = new Fish("Nemo");
+var crab1 = new Crab("Sebastian");
+
+console.log(fish1.swim());
+console.log(crab1.crawl());
+console.log(crab1.eat());
+
+/* ==========================================================================
+// call parent methods
+========================================================================== */
+
 function Vehicle(name) {
   this.name = "Vehicle"
 }
@@ -252,7 +254,6 @@ Truck.prototype.constructor = Truck;
 
 // Overwrite drive parent method
 Truck.prototype.drive = function(){
-
   // Call the parent method with apply so that the parent
   // method can access the Trucks name value
   var driveMsg = Vehicle.prototype.drive.apply(this);
@@ -262,13 +263,4 @@ Truck.prototype.drive = function(){
 var jeep = new Truck("Jeep");
 
 document.write(jeep.drive() + "<br />");
-
 document.write(jeep.stop() + "<br />");
-
-
-
-
-
-
-
-

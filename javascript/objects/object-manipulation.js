@@ -1,4 +1,22 @@
 /* ==========================================================================
+Object.create
+========================================================================== */
+// creates a new object with optional prototype object as parameters
+
+const proto = {
+  drive () {
+    console.log('Vroom!');
+  }
+};
+
+function factoryCar() {
+  return Object.create(proto);
+}
+
+const car3 = factoryCar();
+console.log(car3.drive());
+
+/* ==========================================================================
 Object.keys
 ========================================================================== */
 
@@ -83,7 +101,7 @@ var newFruit = fruit.pick(['color', 'variety']);
 //{ color: 'yellow', variety: 'tropical' }
 
 /* ==========================================================================
-use this to loop through/itterate through a javascript object
+use for... to loop through/itterate through a javascript object
 ========================================================================== */
 
 for (var key in obj) {
@@ -95,4 +113,28 @@ for (var key in obj) {
         }
         str+= "</br>";
     }
+}
+
+/* ==========================================================================
+use for... to loop through/itterate through a javascript object
+========================================================================== */
+
+// List all properties of an object
+for( var prop in grover){
+  document.write(prop + " : " + grover[prop] + "<br />");
+
+/* ==========================================================================
+hasOwnProperty
+========================================================================== */
+//The hasOwnProperty() method returns a boolean indicating whether the object 
+//has the specified property as own (not inherited) property.
+
+
+// differentiate between direct properties and 
+// properties inherited through the prototype chain:
+o = new Object();
+o.prop = 'exists';
+o.hasOwnProperty('prop');             // returns true
+o.hasOwnProperty('toString');         // returns false
+o.hasOwnProperty('hasOwnProperty');   // returns false
 }
