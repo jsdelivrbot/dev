@@ -4,7 +4,7 @@ var scene = function(onComplete) {
 	//if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 	var stats, controls, projector, canvas, manager, interval,
-	camera, scene, renderer, light, raycaster, mouse;
+	camera, scene, renderer, light, raycaster, mouse, popovers;
 
 	var blueishCol = new THREE.Color("rgb(200,255,255)");
 
@@ -23,20 +23,7 @@ var scene = function(onComplete) {
 	var camPos = new THREE.Vector3( 0, 0, 0 );
 	//no arguments; will be initialised to (0, 0, 0)
 	var origin = new THREE.Vector3();
-	var distToTarget = 0;
-
-	//hit detection
-	//-----------------//
-
-	var hitFocused = false;
-	var overHitArea = false;
-	var hitObj = {
-		name: '',
-		x: 0,
-		y: 0
-	};
-	var popovers = [];
-	var popover = null;
+	
 
 	//custom materials and textures
 	var matHeadHands, matShoes, matBody;
@@ -48,29 +35,8 @@ var scene = function(onComplete) {
 	var clock = new THREE.Clock();
 	var delta;
 	var mixers = [];
-	var hitObjects = [];
 	//for requestAnimationFrame
 	var requestId;
-
-	//-----------------------------------------------------------------------------// 
-	//activate/deactivate the scene
-	//-----------------------------------------------------------------------------//
-
-	this.activate = function() {
-		// disable controls
-		controls.enableZoom = true;
-		controls.enableRotate = true;
-		controls.autoRotate = true;
-	}
-
-	this.deactivate = function() {
-		// disable controls
-		controls.enableZoom = false;
-		controls.enableRotate = false;
-		controls.autoRotate = false;
-		//clear popovers
-		clearPopovers();
-	}
 
 	//-----------------------------------------------------------------------------// 
 	//initialize
@@ -82,24 +48,13 @@ var scene = function(onComplete) {
 		//setup renderer
 		//-----------------------------------------------------------------------------//
 
-		renderer = new THREE.WebGLRenderer( { antialias: true } );
-		//lense flare
-		//renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-		renderer.autoClear = false; // to allow overlay
-		renderer.setPixelRatio( window.devicePixelRatio );
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		renderer.setClearColor( 0x000000 );
-		container.appendChild( renderer.domElement );
-		// enable shadows on the renderer 
-		//renderer.shadowMapEnabled = true;
-
+		renderer = Renderer.init(container);
 
 		//-----------------------------------------------------------------------------//  
-		//setum scene
+		//setup scene
 		//-----------------------------------------------------------------------------// 
 
-		var cam = getCamera();
-		camera = cam.init();
+		camera = Camera.init();
 
 		scene = new THREE.Scene();
 
@@ -111,39 +66,7 @@ var scene = function(onComplete) {
 		//setup orbit controls
 		//-----------------------------------------------------------------------------//
 
-		//set up orbit controls
-		controls = new THREE.OrbitControls( camera.getCamera(), renderer.domElement );
-		controls.autoRotate = true;
-		controls.autoRotateSpeed = -0.15;
-		controls.enableDamping = true;
-		controls.dampingFactor = 0.1;
-		controls.enablePan = false;
-		controls.rotateSpeed = 0.2;
-		controls.minDistance = 25;
-		controls.maxDistance = 42;
-		controls.maxPolarAngle = Math.PI/2 - .04;
-		controls.target.set( 0, 12, 0 );
-
-		//-----------------------------------------------------------------------------//
-		//debugging
-		//-----------------------------------------------------------------------------//
-
-		// grid
-		// var gridHelper = new THREE.GridHelper( 28, 28, 0x303030, 0x303030 );
-		// gridHelper.position.set( 0, - 0.04, 0 );
-		// scene.add( gridHelper );
-
-		// stats
-		// stats = new Stats();
-		// container.appendChild( stats.dom );
-
-		//must init this after container.appendChild(renderer.domElement)
-		//because we need the canvas to be created first in order to ad mouseover events to it
-		//initMouse(container);
-
-		//axes
-		// var axes = new THREE.AxisHelper(2);
-		// scene.add(axes);
+		controls = Controls.init(camera.getCamera(), renderer);
 
 		// model
 		manager = new THREE.LoadingManager();
@@ -168,32 +91,19 @@ var scene = function(onComplete) {
 			console.log('loading manager error: ', xhr);
 		};
 
-
-		var cubeMatBox = CubeMatBox().init();
-
-
 		// Skybox
+		var cubeMatBox = CubeMatBox.init('assets/textures/cube/sky/');
 
-		cubeMesh = 
-		scene.add( cubeMesh );
+		scene.add( cubeMatBox );
 
 		//-----------------------------------------------------------------------------//
 		//create ground plane
 		//-----------------------------------------------------------------------------//
 
-		var floorTexture = texLoader.load('assets/textures/uv-grid.jpg', function() {
+		var floorTexture = Texture.load('assets/textures/uv-grid.jpg');
 
-			floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
-			floorTexture.repeat.set( 1, 1 );
-
-		});
-
-		// Note the change to Lambert material.
 		var floorMaterial = new THREE.MeshLambertMaterial( { map: floorTexture } );
-		// PlaneGeometry(width, height, widthSegments, heightSegments)
-		//var floorGeometry = new THREE.PlaneGeometry(100, 100, 50, 50);
 
-		//THREE.CircleGeometry( radius, segments )
 		var floorGeometry = new THREE.CircleGeometry( 20, 50 );
 		var floor = new THREE.Mesh(floorGeometry, floorMaterial);
 		floor.position.y = -2;
@@ -206,13 +116,7 @@ var scene = function(onComplete) {
 		//load model
 		//-----------------------------------------------------------------------------//
 
-		textureTest = texLoader.load('assets/textures/uv-grid.jpg', function() {
-
-			textureTest.wrapS = THREE.RepeatWrapping; 
-			textureTest.wrapT = THREE.RepeatWrapping;
-			textureTest.repeat.set( 1, 1 );
-
-		});
+		var textureTest = Texture.load('assets/textures/uv-grid.jpg');
 
 		//test the texture using a plane
 		//var testMat, testPlane;
@@ -220,7 +124,6 @@ var scene = function(onComplete) {
 		//texture.repeat.set( 1, 1 ); 
 		// material = new THREE.MeshLambertMaterial({ map : texture });
 		// plane = new THREE.Mesh(new THREE.PlaneGeometry(400, 3500), material);
-		// plane.material.side = THREE.DoubleSide;
 		// plane.position.x = 100;
 		// scene.add(plane);
 
@@ -302,13 +205,12 @@ var scene = function(onComplete) {
 		window.addEventListener( 'resize', onWindowResize, false );
 
 		//debounced ticker
-		// * re-init
 		interval = setInterval(debouncedTicker, 40);
 
-		createHitObjects();
+		// * re-init
+		popovers = Popovers.init(scene);
 
 		//call to update animation
-		// * re-init
 		update();
 
 		//notify all items loaded
@@ -335,55 +237,6 @@ var scene = function(onComplete) {
 	// create hit objects
 	//-----------------------------------------------------------------------------//
 
-	function createHitObjects() {
-		//elbow
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 0.8, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "elbow";
-	    mesh.position.set(5.3,15.5,-0.3);
-
-		scene.add(mesh);
-		//scene.add( mesh );
-		hitObjects.push(mesh);
-
-		//lower back
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 1.2, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "lower-back";
-	    mesh.position.set(1.7,14,0.5);
-
-		scene.add(mesh);
-		//scene.add( mesh );
-		hitObjects.push(mesh);
-
-		//skate
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 1.2, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "skate";
-	    mesh.position.set(-1.3,5,-1.5);
-
-		scene.add(mesh);
-		//scene.add( mesh );
-		hitObjects.push(mesh);
-
-		//mid thigh
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 1.2, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "mid-thigh";
-	    mesh.position.set(1.8,10.5,-0.7);
-
-		scene.add(mesh);
-		//scene.add( mesh );
-		hitObjects.push(mesh);
-	}
 
 	function onWindowResize() {
 		camera.update(window.innerWidth, window.innerHeight);
@@ -402,13 +255,14 @@ var scene = function(onComplete) {
 	    //render
 	    render();
 	    //process camera zoom
-	    animateZoom();
+	    // * re-init
+	    //animateZoom();
+
 	    //update obitcontrolls
 	    controls.update();
 	}
 
 	function stopUpdate() {
-
 	   cancelAnimationFrame(requestId);
 	   requestId = undefined;
 
@@ -416,21 +270,8 @@ var scene = function(onComplete) {
 
 	//debounced version of update
 	function debouncedTicker() {
-		hitDetection();
-		calcCamDistance();
-	}
-
-	function calcCamDistance() {
-		//get the camera position from orbit controls
-		cameraPosition = controls.getPos();
-		camPos.x = cameraPosition.x;
-		camPos.y = cameraPosition.y;
-		camPos.z = cameraPosition.z;
-
-		distToTarget = camPos.distanceTo( origin );
-
-	    //animate zoom monitor
-		TweenLite.set(".zoom-monitor .zoom-mask", { css: {top: distToTarget + '%'} });
+		// * re-init
+		//hitDetection();
 	}
 
 
@@ -463,187 +304,7 @@ var scene = function(onComplete) {
 	}
 
 	function onDocumentClick( event ) {
-		//don't interrupt zoom
-		if(!zooming){
-
-			if(!hitFocused && overHitArea) {
-
-				hitFocused = true;
-				zoomCamera('zoomin');
-				triggerPopover(hitObj.name, hitObj.x , hitObj.y);
-				// disable controls
-				controls.enableZoom = false;
-				controls.enableRotate = false;
-				controls.autoRotate = false;
-
-
-			} else if (hitFocused){
-				hitFocused = false;
-				clearPopovers();
-				zoomCamera('zoomout');
-				//enable controls
-				// disable controls
-				controls.enableZoom = true;
-				controls.enableRotate = true;
-				controls.autoRotate = true;
-			}
-		}
-	}
-
-	//mouse hit detection
-	//==============================//
-
-	function hitDetection() {
-		// // find intersections (old way)
-		// // create a Ray with origin at the mouse position
-		// //   and direction into the scene (camera direction)
-		// var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-		// projector.unprojectVector( vector, camera );
-		// var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-		// // create an array containing all objects in the scene with which the ray intersects
-		// var intersects = ray.intersectObjects( hitObjects );
-
-	    //---------
-
-	    // find intersections
-	    raycaster.setFromCamera( mouse, camera.getCamera() );
-	    var intersects = raycaster.intersectObjects( hitObjects, true );
-
-
-	    if(intersects[0] && intersects.length > 0) {
-
-	    	var proj = toScreenPosition(intersects[0].object, camera);
-	    	hitObj.name = intersects[0].object.name;
-	    	hitObj.x = proj.x;
-	    	hitObj.y = proj.y;
-
-	    	overHitArea = true;
-	    	toggleMaterial(true, intersects[0].object);
-
-	    } else {
-
-	    	overHitArea = false;
-	    	toggleMaterial(false);
-
-	    }
-
-	}
-
-
-	function toggleMaterial(isActive, obj) {
-
-		if(hitFocused || isActive) {
-			
-			if(obj) {
-				//change the material color of current object
-				//obj.material.color.setHex( 0xffff00 );
-				obj.material.opacity = 0.5;
-			}
-
-		} else {
-			//change back the material color for all
-			for(var i=0; i<hitObjects.length; i++) {
-				// hitObjects[i].material.color.setHex( 0xff0000 );
-				hitObjects[i].material.opacity = 0.2;
-			}
-		}
-
-	}
-
-	//convert world position to screen position
-	function toScreenPosition(obj, camera) {
-	    var vector = new THREE.Vector3();
-
-	    var widthHalf = 0.5 * renderer.context.canvas.width;
-	    var heightHalf = 0.5 * renderer.context.canvas.height;
-
-	    obj.updateMatrixWorld();
-	    vector.setFromMatrixPosition(obj.matrixWorld);
-	    vector.project(camera.getCamera());
-
-	    vector.x = ( vector.x * widthHalf ) + widthHalf;
-	    vector.y = - ( vector.y * heightHalf ) + heightHalf;
-
-	    return { 
-	        x: vector.x,
-	        y: vector.y
-	    };
-	};
-
-	//popovers
-	//==============================//
-
-	function triggerPopover(popoverName, x, y) {
-		//adjust popover postion according to position in window
-		//if too close to the bottom
-		var heightBias = 200;
-		if(y > (window.innerHeight - heightBias)) {
-			y = y - 200;
-		}
-		//if too close to the right
-		var widthBias = 200;
-		if(x > (window.innerWidth - widthBias)) {
-			console.log('over width')
-			x = x - 200;
-		}
-
-		//tween popover in
-		TweenLite.set("#" + popoverName, { css: {left: x + "px", top: y + 'px'} });
-		TweenMax.to("#" + popoverName, 0.5, {className:"+=is_active", opacity:"1", left: x + "px", top: y + 'px', ease:Power2.easeInOut});
-
-	}
-
-	function clearPopovers() {
-
-		//clear all popovers
-		TweenLite.set(".popover", { css: {left: 0 + "px", top: -1000 + 'px'} });
-		TweenMax.to(".popover", 0.5, {className:"-=is_active", opacity:"0", ease:Power2.easeInOut});
-
-	}
-
-	//camera zoom
-	//==============================//
-
-	function animateZoom() {
-		if(zoomType === 'zoomin') {
-			//camera dolly in
-			controls.dIn(cameraZoom.z);
-
-		} else if (zoomType === 'zoomout') {
-			//camera dolly out
-			controls.dOut(cameraZoom.z);
-		}
-
-	}
-
-	function zoomCamera(zoomFunc) {
-		//only animate if there isn't one already playing
-		//to debug, turn this to this:
-		if(!zooming ) {
-
-			//reset zoom value
-			cameraZoom.z = zoomSpeed;
-
-			zooming = true;
-
-			tweenZoom = TweenMax.to(
-			    cameraZoom, 0.5, {
-			    	z: 1,
-			    	ease: Power2.easeInOut,
-			    	onComplete: function() {
-			    		zooming = false;
-			    	}
-			    }
-			);
-
-			//animate zoom monitor
-			TweenMax.to("zoom-mask", 1, {className:"+=zoomed-in", top:"0", ease:Power2.easeInOut});
-
-			//camera dolly out
-			zoomType = zoomFunc;
-
-		} 
-
+		//call to popovers onDoc Click
 	}
 
 }
