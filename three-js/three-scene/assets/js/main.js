@@ -15,7 +15,7 @@
 	var sceneLoaded = false;
 	var sceneLoading = false;
 
-	currentScene = new scene(onComplete);
+	currentScene = new Scene(onComplete);
 	currentScene.init();
 
 	sceneLoading = true;

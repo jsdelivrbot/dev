@@ -1,5 +1,5 @@
 //regular scene version
-var scene = function(onComplete) {
+var Scene = function(onComplete) {
 
 	//if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
