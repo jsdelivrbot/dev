@@ -46,7 +46,7 @@ var Scene = function(onComplete) {
 		scene.add(cubeMatBox);
 
 		// floor
-		var floorTexture = Texture.load('assets/textures/uv-grid.jpg');
+		var floorTexture = Texture.load('assets/models/obj/teapot/textures/uv-grid.jpg');
 		var floorMaterial = new THREE.MeshLambertMaterial({ map: floorTexture });
 		var floorGeometry = new THREE.CircleGeometry( 20, 50 );
 		var floor = new THREE.Mesh(floorGeometry, floorMaterial);
@@ -56,7 +56,7 @@ var Scene = function(onComplete) {
 
 		//model
 		 var model = Model.load(scene, manager, 'assets/models/obj/teapot/teapot.obj', 
-		 	'assets/textures/uv-grid.jpg', function(model) {});
+		 	'assets/models/obj/teapot/textures/uv-grid.jpg', function(model) {});
 		 
 		//-----------------------------------------------------------------------------//
 		// lights
