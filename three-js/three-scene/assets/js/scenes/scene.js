@@ -19,10 +19,23 @@ var scene = function(onComplete) {
 
 		camera = Camera.init();
 		scene = new THREE.Scene();
-		renderer = Renderer.init(container, camera.getCamera(), scene);
-		mouse = new THREE.Vector2(); // create once
+		renderer = Renderer.init(CONTAINER, camera.getCamera(), scene);
+		mouse =  Mouse.init();
 		controls = Controls.init(camera.getCamera(), renderer.renderer);
 		manager = LoadingManager.init();
+
+		window.addEventListener( 'resize', onWindowResize, false );
+
+		//setup popovers
+		popovers = Popovers.init(scene, mouse, camera.getCamera(), controls);
+
+		//update
+		update();
+
+		//notify all items loaded
+		setTimeout(function() {
+			allItemsLoaded();
+		}, 1500);
 
 		//-----------------------------------------------------------------------------//
 		// load assets
@@ -32,7 +45,7 @@ var scene = function(onComplete) {
 		var cubeMatBox = CubeMatBox.init('assets/textures/cube/sky/');
 		scene.add(cubeMatBox);
 
-		//floor
+		// floor
 		var floorTexture = Texture.load('assets/textures/uv-grid.jpg');
 		var floorMaterial = new THREE.MeshLambertMaterial({ map: floorTexture });
 		var floorGeometry = new THREE.CircleGeometry( 20, 50 );
@@ -45,47 +58,17 @@ var scene = function(onComplete) {
 		 var model = Model.load(scene, manager, 'assets/models/obj/teapot/teapot.obj', 
 		 	'assets/textures/uv-grid.jpg', function(model) {});
 		 
-
 		//-----------------------------------------------------------------------------//
-		// setup lights
+		// lights
 		//-----------------------------------------------------------------------------//
 
-		//for ground plane
-		//----------------
 		//SpotLight( color, intensity, distance, angle, penumbra, decay )
 		var blueishCol = new THREE.Color("rgb(200,255,255)");
 		var spotlight2 = new THREE.SpotLight(blueishCol, 0.7, 1000, 0.7, 1, 1);
 		spotlight2.position.set(-1.19, 20, 1.18);
 		scene.add(spotlight2);
 
-		//-----------------------------------------------------------------------------//
-		// misc. init
-		//-----------------------------------------------------------------------------//
-
-		container.addEventListener( 'mousemove', onDocumentMouseMove, false );
-		window.addEventListener( 'resize', onWindowResize, false );
-
-		//setup popovers
-		popovers = Popovers.init(scene, container, mouse, camera.getCamera(), renderer.renderer.context.canvas, controls);
-
-		//debounced ticker
-		interval = setInterval(debouncedTicker, 40);
-
-		//call to update animation
-		update();
-
-		//notify all items loaded
-		setTimeout(function() {
-			allItemsLoaded();
-		}, 1500);
-
-	}//init
-
-	//-----------------------------------------------------------------------------// 
-	// loading animation/activation
-	//-----------------------------------------------------------------------------//
-
-	//once all items loaded, tween in scene...
+	}
 
 	function allItemsLoaded() {
 		console.log('scene fully loaded');
@@ -94,7 +77,10 @@ var scene = function(onComplete) {
 	}
 
 	function onWindowResize() {
-		camera.update(window.innerWidth, window.innerHeight);
+		CANVAS_WIDTH = window.innerWidth;
+		CANVAS_HEIGHT = window.innerHeight;
+
+		camera.update();
 		renderer.updateSize();
 	}
 
@@ -102,11 +88,9 @@ var scene = function(onComplete) {
 		// delta = clock.getDelta();
 		requestId = requestAnimationFrame(update);
 		// updateAnimation(delta);
-
 	    renderer.render();
 	    //update camera
-	    camera.update(window.innerWidth, window.innerHeight);
-
+	    camera.update();
 	    //update obitcontrolls
 	    controls.update();
 	}
@@ -115,21 +99,4 @@ var scene = function(onComplete) {
 	   cancelAnimationFrame(requestId);
 	   requestId = undefined;
 	}
-
-	//debounced version of update
-	function debouncedTicker() {
-		
-	}
-
-	function onDocumentMouseMove( event )
-	{
-		// the following line would stop any other event handler from firing
-		// (such as the mouse's TrackballControls)
-		// event.preventDefault();
-
-		mouse.x = ( ( event.clientX - renderer.renderer.domElement.offsetLeft ) / renderer.renderer.domElement.width ) * 2 - 1;
-		mouse.y = - ( ( event.clientY - renderer.renderer.domElement.offsetTop ) / renderer.renderer.domElement.height ) * 2 + 1;
-
-	}
-
 }

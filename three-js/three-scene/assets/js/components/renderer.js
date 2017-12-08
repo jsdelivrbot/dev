@@ -1,11 +1,11 @@
 var Renderer = {
 	init: function(container, camera, scene) {
-		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		//lense flare
 		//renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 		this.renderer.autoClear = false; // to allow overlay
 		this.renderer.setPixelRatio( window.devicePixelRatio );
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
+		this.renderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 		this.renderer.setClearColor( 0x000000 );
 		container.appendChild( this.renderer.domElement );
 		this.camera = camera;
@@ -13,7 +13,7 @@ var Renderer = {
 		return this;
 	},
 	updateSize: function() {
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
+		this.renderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 	},
 	render: function() {
 		//update renderer

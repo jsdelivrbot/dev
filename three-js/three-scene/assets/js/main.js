@@ -3,10 +3,10 @@
 	//create container
 	//-----------------------------------------------------------------------------//
 
-	container = document.createElement( 'div' );
-	container.className = "scene-container";
+	CONTAINER = document.createElement('div');
+	CONTAINER.className = "scene-container";
 	//append container before the 4th child element in the body (just above the site container)
-	document.body.appendChild(container);
+	document.body.appendChild(CONTAINER);
 
 	//-----------------------------------------------------------------------------//
 	// load scene
@@ -26,7 +26,7 @@
 		sceneLoaded = true;
 		sceneLoading = false;
 		//fade in scene container
-		TweenMax.to(container, 1, {className:"+=is_active", autoAlpha: 1}, 0.2);
+		TweenMax.to(CONTAINER, 1, {className:"+=is_active", autoAlpha: 1}, 0.2);
 	}
 
 })()

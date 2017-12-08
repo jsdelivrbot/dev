@@ -11,3 +11,6 @@ var CONFIG = {
 		fov: 30,
 	}
 }
+var CONTAINER = null;
+var CANVAS_WIDTH = window.innerWidth;
+var CANVAS_HEIGHT = window.innerHeight;

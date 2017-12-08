@@ -1,6 +1,6 @@
 var Camera = {
-	update: function update(width, height) {
-		this.camera.aspect = width / height;
+	update: function update() {
+		this.camera.aspect = CANVAS_WIDTH / CANVAS_HEIGHT;
 		this.camera.updateProjectionMatrix();
 	},
 	getCamera: function() {
@@ -20,7 +20,7 @@ var Camera = {
 	// 	TweenLite.set(".zoom-monitor .zoom-mask", { css: {top: distToTarget + '%'} });
 	// }
 	init: function() {
-		this.camera = new THREE.PerspectiveCamera( CONFIG.camera.fov, window.innerWidth / window.innerHeight, 1, 10000 );
+		this.camera = new THREE.PerspectiveCamera( CONFIG.camera.fov, CANVAS_WIDTH / CANVAS_HEIGHT, 1, 10000 );
 		this.camera.name = CONFIG.camera.name;
 		this.camera.position.x = CONFIG.camera.eye[ 0 ];
 		this.camera.position.y = CONFIG.camera.eye[ 1 ];

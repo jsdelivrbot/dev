@@ -1,10 +1,8 @@
 var Popovers = {
-	init: function(scene, container, mouse, camera, canvas, controls, update) {
-		this.container = container;
+	init: function(scene, mouse, camera, controls) {
 		this.scene = scene;
 		this.mouse = mouse;
 		this.camera = camera;
-		this.canvas = canvas;
 		this.controls = controls;
 		this.hitFocused = false;
 		this.overHitArea = false;
@@ -28,63 +26,47 @@ var Popovers = {
 		this.origin = new THREE.Vector3();
 		this.requestId = null;
 
-		this.container.addEventListener( 'click', this.onDocumentClick.bind(this), false );
+		CONTAINER.addEventListener( 'click', this.onDocumentClick.bind(this), false );
+
+		this.popovers = document.createElement('div');
 
 		this.createHitObjects();
 		this.update();
+		this.interval = setInterval(this.debouncedUpdate.bind(this), 40);
 
 		//return Object.create(this);
 		return this;
 	},
 
 	createHitObjects: function() {
-		//elbow
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 0.8, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "elbow";
-	    mesh.position.set(5.3,15.5,-0.3);
+		hitObjects.forEach(function(item) {
+			// create hit objects
+			//(radius, width segs, height segs)
+		    var geometry = new THREE.SphereGeometry( 0.8, 20, 20 );
+		    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
+		    var mesh = new THREE.Mesh( geometry, material );
+			mesh.name = item.name;
+		    mesh.position.set(item.position[0],item.position[1],item.position[2]);
 
-		this.scene.add(mesh);
-		//this.scene.add( mesh );
-		this.hitObjects.push(mesh);
+			this.scene.add(mesh);
+			this.hitObjects.push(mesh);
 
-		//lower back
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 1.2, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "lower-back";
-	    mesh.position.set(1.7,14,0.5);
+			// add the popovers html to the body
 
-		this.scene.add(mesh);
-		//this.scene.add( mesh );
-		this.hitObjects.push(mesh);
+			var popover = document.createElement('div');
+			popover.classList.add('popover');
+			popover.id = item.name;
+			var popoverContent = 
+			`<div class="info-card">
+			      ${item.content}
+			  </div>`;
+			popover.innerHTML = popoverContent;
 
-		//skate
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 1.2, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "skate";
-	    mesh.position.set(-1.3,5,-1.5);
+			this.popovers.appendChild(popover);
+			console.log(this.popovers)
+			document.body.appendChild(this.popovers);
 
-		this.scene.add(mesh);
-		//this.scene.add( mesh );
-		this.hitObjects.push(mesh);
-
-		//mid thigh
-		//(radius, width segs, height segs)
-	    var geometry = new THREE.SphereGeometry( 1.2, 20, 20 );
-	    var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
-	    var mesh = new THREE.Mesh( geometry, material );
-		mesh.name = "mid-thigh";
-	    mesh.position.set(1.8,10.5,-0.7);
-
-		this.scene.add(mesh);
-		//this.scene.add( mesh );
-		this.hitObjects.push(mesh);
+		}.bind(this));
 	},
 
 	onDocumentClick: function(event) {
@@ -152,8 +134,8 @@ var Popovers = {
 	toScreenPosition: function(obj, camera) {
 	    var vector = new THREE.Vector3();
 
-	    var widthHalf = 0.5 * this.canvas.width;
-	    var heightHalf = 0.5 * this.canvas.height;
+	    var widthHalf = 0.5 * CANVAS_WIDTH;
+	    var heightHalf = 0.5 * CANVAS_HEIGHT;
 
 	    obj.updateMatrixWorld();
 	    vector.setFromMatrixPosition(obj.matrixWorld);
@@ -228,9 +210,12 @@ var Popovers = {
 
 	update: function() {
 		this.requestId = requestAnimationFrame(this.update.bind(this));
-
-		this.hitDetection();
 		this.animateZoom();
+	},
+
+	//debounced version of update
+	debouncedUpdate: function() {
+		this.hitDetection();
 	},
 
 	stopUpdate: function() {
