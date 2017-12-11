@@ -55,9 +55,6 @@ var Model = {
 	},
 
 	onModelLoaded: function(object) {
-
-		console.log('object: ', object);
-
 		object.traverse( function (child) {
 			if (child instanceof THREE.Mesh) {
 				// switch ( child.material.name ) {

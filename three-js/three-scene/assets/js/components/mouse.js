@@ -1,8 +1,9 @@
 var Mouse = {
 	init: function() {
-		this.mouse = new THREE.Vector2();
-		CONTAINER.addEventListener( 'mousemove', this.onDocumentMouseMove.bind(this), false );
-		return this.mouse;
+		var instance = Object.create(this);
+		instance.mouse = new THREE.Vector2();
+		CONTAINER.addEventListener( 'mousemove', instance.onDocumentMouseMove.bind(instance), false );
+		return instance.mouse;
 	},
 
 	onDocumentMouseMove: function( event ) {

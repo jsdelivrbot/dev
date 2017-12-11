@@ -1,5 +1,5 @@
 var CubeMatBox = {
-	init: function(path) {
+	init: function(scene, path) {
 		var texLoader = new THREE.TextureLoader();
 
 		// Textures
@@ -23,6 +23,6 @@ var CubeMatBox = {
 
 		cubeMaterial.uniforms[ "tCube" ].value = textureCube;
 		var mesh = new THREE.Mesh( new THREE.BoxGeometry( 100, 100, 100 ), cubeMaterial );
-		return mesh;
+		scene.add(mesh);
 	},
 }

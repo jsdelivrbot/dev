@@ -42,8 +42,7 @@ var Scene = function(onComplete) {
 		//-----------------------------------------------------------------------------//
 
 		// Skybox
-		var cubeMatBox = CubeMatBox.init('assets/textures/cube/sky/');
-		scene.add(cubeMatBox);
+		CubeMatBox.init(scene, 'assets/textures/cube/sky/');
 
 		// floor
 		var floorTexture = Texture.load('assets/models/obj/teapot/textures/uv-grid.jpg');

@@ -1,16 +1,17 @@
 var Renderer = {
 	init: function(container, camera, scene) {
-		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		var instance = Object.create(this);
+		instance.renderer = new THREE.WebGLRenderer({ antialias: true });
 		//lense flare
 		//renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-		this.renderer.autoClear = false; // to allow overlay
-		this.renderer.setPixelRatio( window.devicePixelRatio );
-		this.renderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
-		this.renderer.setClearColor( 0x000000 );
-		container.appendChild( this.renderer.domElement );
-		this.camera = camera;
-		this.scene = scene;
-		return this;
+		instance.renderer.autoClear = false; // to allow overlay
+		instance.renderer.setPixelRatio( window.devicePixelRatio );
+		instance.renderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+		instance.renderer.setClearColor( 0x000000 );
+		container.appendChild( instance.renderer.domElement );
+		instance.camera = camera;
+		instance.scene = scene;
+		return instance;
 	},
 	updateSize: function() {
 		this.renderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);

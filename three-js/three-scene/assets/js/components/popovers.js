@@ -1,41 +1,41 @@
 var Popovers = {
 	init: function(scene, mouse, camera, controls) {
-		this.scene = scene;
-		this.mouse = mouse;
-		this.camera = camera;
-		this.controls = controls;
-		this.hitFocused = false;
-		this.overHitArea = false;
-		this.hitObj = {
+		var instance = Object.create(this);
+		instance.scene = scene;
+		instance.mouse = mouse;
+		instance.camera = camera;
+		instance.controls = controls;
+		instance.hitFocused = false;
+		instance.overHitArea = false;
+		instance.hitObj = {
 			name: '',
 			x: 0,
 			y: 0
 		};
-		this.popovers = [];
-		this.hitObjects = [];
-		this.zoomSpeed = 1.03;
+		instance.popovers = [];
+		instance.hitObjects = [];
+		instance.zoomSpeed = 1.03;
 		//for tweenlite for camera
-		this.cameraZoom = {
-			z: this.zoomSpeed
+		instance.cameraZoom = {
+			z: instance.zoomSpeed
 		};
-		this.zoomType = '';
-		this.zooming = false;
-		this.cameraPosition 
-		this.camPos = new THREE.Vector3( 0, 0, 0 );
+		instance.zoomType = '';
+		instance.zooming = false;
+		instance.cameraPosition 
+		instance.camPos = new THREE.Vector3( 0, 0, 0 );
 		//no arguments; will be initialised to (0, 0, 0)
-		this.origin = new THREE.Vector3();
-		this.requestId = null;
+		instance.origin = new THREE.Vector3();
+		instance.requestId = null;
 
-		CONTAINER.addEventListener( 'click', this.onDocumentClick.bind(this), false );
+		CONTAINER.addEventListener( 'click', instance.onDocumentClick.bind(instance), false );
 
-		this.popovers = document.createElement('div');
+		instance.popovers = document.createElement('div');
 
-		this.createHitObjects();
-		this.update();
-		this.interval = setInterval(this.debouncedUpdate.bind(this), 40);
+		instance.createHitObjects();
+		instance.update();
+		instance.interval = setInterval(instance.debouncedUpdate.bind(instance), 40);
 
-		//return Object.create(this);
-		return this;
+		return instance;
 	},
 
 	createHitObjects: function() {
@@ -63,7 +63,6 @@ var Popovers = {
 			popover.innerHTML = popoverContent;
 
 			this.popovers.appendChild(popover);
-			console.log(this.popovers)
 			document.body.appendChild(this.popovers);
 
 		}.bind(this));

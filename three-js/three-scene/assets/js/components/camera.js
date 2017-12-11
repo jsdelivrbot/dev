@@ -20,15 +20,16 @@ var Camera = {
 	// 	TweenLite.set(".zoom-monitor .zoom-mask", { css: {top: distToTarget + '%'} });
 	// }
 	init: function() {
-		this.camera = new THREE.PerspectiveCamera( CONFIG.camera.fov, CANVAS_WIDTH / CANVAS_HEIGHT, 1, 10000 );
-		this.camera.name = CONFIG.camera.name;
-		this.camera.position.x = CONFIG.camera.eye[ 0 ];
-		this.camera.position.y = CONFIG.camera.eye[ 1 ];
-		this.camera.position.z = CONFIG.camera.eye[ 2 ];
-		this.camera.up.x = CONFIG.camera.up[ 0 ];
-		this.camera.up.y = CONFIG.camera.up[ 1 ];
-		this.camera.up.z = CONFIG.camera.up[ 2 ];
-		return Object.create(this);
+		var instance = Object.create(this);
+		instance.camera = new THREE.PerspectiveCamera( CONFIG.camera.fov, CANVAS_WIDTH / CANVAS_HEIGHT, 1, 10000 );
+		instance.camera.name = CONFIG.camera.name;
+		instance.camera.position.x = CONFIG.camera.eye[ 0 ];
+		instance.camera.position.y = CONFIG.camera.eye[ 1 ];
+		instance.camera.position.z = CONFIG.camera.eye[ 2 ];
+		instance.camera.up.x = CONFIG.camera.up[ 0 ];
+		instance.camera.up.y = CONFIG.camera.up[ 1 ];
+		instance.camera.up.z = CONFIG.camera.up[ 2 ];
+		return instance;
 	}
 
 }
