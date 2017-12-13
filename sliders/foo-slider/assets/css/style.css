@@ -1,0 +1,69 @@
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 200px;
+  position: relative;
+}
+
+/* ==========================================================================
+// fooslider
+========================================================================== */
+
+/*slider*/
+
+.fooslider {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.fooslider .slide {
+  font-weight: 900;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  color: #fff;
+}
+
+/*controls*/
+
+.fooslider-controls {
+  margin: 0 auto;
+  width: 100px;
+  position: relative;
+  margin-top: 1em;
+}
+
+.fooslider-controls .prev, 
+.fooslider-controls .next {
+  display: block;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background: grey;
+  color: white;
+  outline: none;
+  position: absolute;
+}
+
+.fooslider-controls .prev {
+  left: 0;
+}
+
+.fooslider-controls .next {
+  right: 0;
+}
+
+.num-bottom {
+  font-weight: 900;
+}
