@@ -50,6 +50,7 @@ Any content can go into 'slide-inner'. It is relative positioned and overflow wi
 ### controls
 
 Controls are optional and fooslider-controls can be anywhere on the page.
+You can have multiple prev/next controls.
 
 ### styling
 

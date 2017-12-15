@@ -104,6 +104,11 @@ var newFruit = fruit.pick(['color', 'variety']);
 use for... to loop through/itterate through a javascript object
 ========================================================================== */
 
+// List all properties of an object
+for( var prop in grover){
+  document.write(prop + " : " + grover[prop] + "<br />");
+
+//another example
 for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
         str += "<h3>" + key + "</h3>";
@@ -114,14 +119,6 @@ for (var key in obj) {
         str+= "</br>";
     }
 }
-
-/* ==========================================================================
-use for... to loop through/itterate through a javascript object
-========================================================================== */
-
-// List all properties of an object
-for( var prop in grover){
-  document.write(prop + " : " + grover[prop] + "<br />");
 
 /* ==========================================================================
 hasOwnProperty
