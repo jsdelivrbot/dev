@@ -19,15 +19,15 @@
         //else move the prev/next boxes into correct position...
         //if prev
         if(i < this.current) {
-          // //move prev boxes to above
-          //only move if its previousely current
+          //move prev boxes to above
+          //only move if its previously current
           if($(this.boxes[i]).hasClass('current')) {
             this.animateUp(this.boxes[i]);
             $(this.boxes[i]).removeClass('current');
           }
         }
         if(i > this.current) {
-          // //move next boxes to below
+          //move next boxes to below
           //only move if its previousely current
           if($(this.boxes[i]).hasClass('current')) {
            this.animateDown(this.boxes[i]);
@@ -67,7 +67,7 @@
     },
 
     animateUp: function(el) {
-      TweenLite.to(el, 0.5 , { 
+      TweenLite.to(el, this.slideSpeed , { 
           transform: "translate(0, " + (-this.moveAmount) + "px)",
           autoAlpha: 0,
           onComplete: onAnimUpComplete
@@ -78,7 +78,7 @@
     },
 
     animateDown: function(el) {
-      TweenLite.to(el, 0.5 , { 
+      TweenLite.to(el, this.slideSpeed , { 
           transform: "translate(0, " + (this.moveAmount) + "px)",
           autoAlpha: 0,
           onComplete: onAnimDownComplete
@@ -89,7 +89,7 @@
     },
 
     animateIn: function (el) {
-      TweenLite.to(el, 0.5 , { 
+      TweenLite.to(el, this.slideSpeed , { 
           transform: "translate(0, 0px)",
           autoAlpha: 1,
           onComplete: onAnimInComplete
@@ -116,6 +116,7 @@
 
     init: function(options) {
         var inst = Object.create(this);
+        inst.slideSpeed = options.slideSpeed || 0.5;
         inst.current = 0;
         inst.boxes = [].slice.call(document.querySelectorAll(".fooslider .slide"));
         inst.container = document.querySelector('.fooslider');
@@ -161,8 +162,10 @@
   
 
   //init slider
-  var mySlider = FooSlider.init({});
+  var mySlider = FooSlider.init({
+    slideSpeed: 0.6
+  });
 
   //set clider position through code
-  mySlider.goTo(5);
+  // mySlider.goTo(5);
 })();

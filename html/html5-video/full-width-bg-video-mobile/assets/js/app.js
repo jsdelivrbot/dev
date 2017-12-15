@@ -15,13 +15,14 @@
 	 // bg video mobile swap
 	 ========================================================================== */
 
+	 var vidEl = document.querySelector('.bg-video-el');
+
 	 var DetachReAttach = {
-	     detatch: function(selector) {
-	     	console.log('detatching...')
-	       if (selector) {
+	     detatch: function(el) {
+	       if (el) {
 	         //if we don't already have a detached el...
 	         if(!this.node) {
-	           this.node = document.querySelector(selector) || this.node;
+	           this.node = el || this.node;
 	           this.parent = this.node.parentNode || this.parent;
 	           this.next = this.node.nextSibling || this.next;
 	           // abort if no parent
@@ -46,19 +47,16 @@
 	 };
 
 	 function toggleBgVid(isActive) {
-
+	   if(vidEl) {
 	     if (isActive) {
 	       //re attach the video
 	       DetachReAttach.reAttach(function() {
-	         var vid = document.querySelector('.full-screen-video')
-	         if(vid) {
-	           vid.play();
-	         }
+	         vidEl.play();
 	       });
 	     } else {
 	       //remove full width vid to prevent playing it
-	       DetachReAttach.detatch('.full-screen-video');
+	       DetachReAttach.detatch(vidEl);
 	     }
-
+	   }
 	 }
 })()

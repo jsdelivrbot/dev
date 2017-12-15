@@ -10,45 +10,40 @@
 	window size
 	========================================================================== */
 
-	//if mobile detexted or smaller screen than 600
 	checkMobile();
-
-	//check window size (jquery)
-	$(window).resize(function() {
-		checkMobile();
-	});
 
 	function checkMobile() {
 		if(window.innerWidth < mobileThreshold) {
 			if(mediaSize !== 'mobile') {
-				responsiveBgImages('small');
+				responsiveVidPoster('small');
 			}
 		} else if(window.innerWidth >= mobileThreshold && window.innerWidth < tabletThreshold) {
 			if(mediaSize !== 'tablet') {
-				responsiveBgImages('medium');
+				responsiveVidPoster('medium');
 			}
 		}
 		else {
 			if(mediaSize !== 'desktop') {
-				responsiveBgImages('large');
+				responsiveVidPoster('large');
 			}
 		}
 	}
-
-
 
 	/* ==========================================================================
-	// responsive images
+	// responsive bg vid
 	========================================================================== */
 
-	var responsiveImages = [].slice.call(document.querySelectorAll('.responsive-image'));
+	//only call responsiveVidPoster on initial page load.
+	//don't load it on resize or it will reload the video.
 
-	function responsiveBgImages(size) {
-		if(responsiveImages) {
-			for(var i = 0; i < responsiveImages.length; i++) {
-				var urlString = 'url(' + responsiveImages[i].dataset[size] + ')';
-				responsiveImages[i].style.backgroundImage = urlString;
+	var responsiveVideos = [].slice.call(document.querySelectorAll('.responsive-video-poster'));
+
+	function responsiveVidPoster(size) {
+		if(responsiveVideos) {
+			for(var i = 0; i < responsiveVideos.length; i++) {
+				responsiveVideos[i].poster = responsiveVideos[i].dataset[size];
 			}
 		}
 	}
+
 })();
