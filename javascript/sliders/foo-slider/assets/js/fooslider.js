@@ -6,7 +6,8 @@
         to: {
           transform: "translate(0, 0px)",
           autoAlpha: 1,
-          zIndex: 1,
+          ease: Power2.easeInOut,
+          // zIndex: 1,
         }
        },
        fadeIn: {
@@ -15,7 +16,8 @@
         },
         to: {
           autoAlpha: 1,
-          zIndex: 1,
+          ease: Power2.easeInOut,
+          // zIndex: 1,
         }
       }
     },
@@ -120,7 +122,8 @@
       TweenLite.to(el, this.slideSpeed , { 
           transform: "translate(0, " + (-this.moveAmount) + "px)",
           autoAlpha: 0,
-          zIndex: 0,
+          // zIndex: 0,
+          ease: Power2.easeInOut,
           onComplete: this.onAnimInComplete.bind(this),
        });
     },
@@ -129,7 +132,8 @@
       TweenLite.to(el, this.slideSpeed , { 
           transform: "translate(0, " + (this.moveAmount) + "px)",
           autoAlpha: 0,
-          zIndex: 0,
+          // zIndex: 0,
+          ease: Power2.easeInOut,
           onComplete: this.onAnimInComplete.bind(this),
        });
     },
@@ -192,7 +196,7 @@
   }
 
   var mySlider = FooSlider.init({
-    slideSpeed: 0.8,
+    slideSpeed: 1,
     animStyle: 'fadeIn',
     onAnimComplete: onSlideComplete
     //animStyle: 'carousel',

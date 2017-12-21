@@ -53,7 +53,6 @@ fooslider
 .fooslider .slide {
   visibility: hidden; 
   opacity: 0;
-  font-weight: 900;
   position: absolute;
   display: flex;
   width: 100%;

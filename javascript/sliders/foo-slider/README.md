@@ -55,3 +55,7 @@ You can have multiple prev/next controls.
 ### styling
 
 set background transition color in css file for '.fooslider' class.
+
+### notes
+
+don't change z-index in the animation or it will trigger re-composite

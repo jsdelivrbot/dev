@@ -14,3 +14,7 @@ open activity monitor - use spotlight:
 cmd + spacebar
 type in acti...
 
+hard refresh (mac - chrome)
+shift + command + r
+or view > Force Reload This Page
+

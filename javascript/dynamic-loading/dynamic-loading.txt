@@ -1,0 +1,6 @@
+note that images that use responsive-bg-images don't need to use dynamic-image-loading.
+Sites can have a mix of these and can often use one or the other. 
+For example, for smaller images, use dynamic-image-loading.
+For full page images, use responsive-bg-images.
+Full screen videos should use responsive-video-poster and dynamic-video-loading,
+smaller videos should just use dynamic-video-loading
