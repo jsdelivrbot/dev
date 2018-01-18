@@ -1,0 +1,33 @@
+---------------------
+sudo
+---------------------
+
+#run sudo (even with root disabled)
+sudo -s <command>
+
+---------------------
+users
+---------------------
+
+#adding a new user (named deploy) with a login shell of bash
+#and create the user’s home directory
+sudo useradd --create-home -s /bin/bash deploy
+
+#give it sudo abilities
+sudo adduser deploy sudo
+
+#we need to set a password for it to unlock it:
+sudo passwd deploy
+
+#list all users with info (print info from the /etc/passwd file):
+cat /etc/passwd
+
+#shorter version:
+awk -F':' '{ print $1}' /etc/passwd
+
+#delete a user and related files from user account. 
+#must be run as root user
+userdel userName
+
+#To remove the user’s home directory and mail spool
+userdel -r userName

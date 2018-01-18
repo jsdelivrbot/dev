@@ -1,6 +1,11 @@
 // resource for checking regex interactively
 // http://www.regexpal.com/
 
+
+// functions
+//========================//
+
+//Tests for a match in a string. Returns true or false
 var patt = new RegExp(/e/);
 patt.test("The best things in life are free!");
 //true
@@ -15,13 +20,16 @@ var str = "Visit Microsoft!";
 var res = str.replace("Microsoft", "W3Schools");
 // "Visit W3Schools!"
 
-// functions
-//========================//
+//or
+imgName.replace(/(\.[\w\d_-]+)$/i, '-lg$1');
+
+// ============
 
 //Tests for a match in a string. Returns the first match
-exec();
-//Tests for a match in a string. Returns true or false
-test();
+var str = "The best things in life are free";
+var reg = new RegExp("e");
+var res = reg.exec(str);
+//[ 'e', index: 5, input: 'The best things in life are free' ]
 
 // flags.
 //========================//

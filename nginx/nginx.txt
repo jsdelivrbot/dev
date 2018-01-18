@@ -22,6 +22,11 @@ test nginx config file has no errors before restarting nginx:
 ===========================================
 sudo nginx -t
 
+shut down/restart:
+===========================================
+
+systemctl restart nginx
+systemctl stop nginx
 
 
 enable browser/http caching in nginx (that works):
