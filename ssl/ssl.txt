@@ -1,0 +1,48 @@
+to renew let's encrypt ssl:
+===========================================
+
+first stop nginx:
+systemctl stop nginx
+
+renew with this command:
+/opt/letsencrypt/certbot-auto renew
+
+first stop nginx:
+systemctl restart nginx
+
+try this for better auto renew:
+https://community.letsencrypt.org/t/trying-to-renew-cert-on-nginx-but-getting-problem-binding-to-port-443-could-not-bind-to-ipv4-or-ipv6/36289/2
+
+to test auto renew:
+# ===============================
+./certbot-auto renew --dry-run
+
+# good setup for nodejs and and ssl on digital ocean
+# ===============================
+https://www.youtube.com/watch?v=kR06NoSzAXY
+written tutorial:
+https://code.lengstorf.com/deploy-nodejs-ssl-digitalocean/
+
+*note that for the above tutorial, in this step:
+# Create the SSL certificate
+./certbot-auto certonly --standalone
+
+you should use
+(backup nginx config files before using this)
+./certbot-auto certonly --nginx
+or —webroot --webroot-path /usr/share/nginx/html/artintheopen/
+(see docs)
+
+see info here:
+https://certbot.eff.org/docs/using.html#certbot-commands
+
+The purpose of the —standalone option is to launch a temporary webserver because you don’t have one running.
+But since nginx is installed you’d want it to use that when auto-renewing otherwize it will not let you renew.
+
+******
+actually… can run this command to stop then start nginx while renewing (if you’ve installed the cert using —standalone)
+certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+
+see “Renewing certificates” in:
+https://certbot.eff.org/docs/using.html#certbot-commands
+

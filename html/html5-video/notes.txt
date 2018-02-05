@@ -1,5 +1,0 @@
-Thats done with software. Download Handbrake. Under presets use "normal". And click web optimized. That will enable the movie to stream quickly and not have to download prior. In a nut shell that is it. Or you could watch 150 people on the web all say different versions of whats the best presets for optimized video in handbrake as I did.
-
-Edit. Of course the size of your video matters too. Web streaming should prob not be any bigger than 720p.
-
-And you could always make it very simple and just youtube or venimo embed the video. However I found video quality took a hit doing that.

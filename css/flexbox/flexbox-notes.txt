@@ -7,6 +7,13 @@ http://codepen.io/anon/pen/VKxRoE?editors=1100
 example codepen:
 http://codepen.io/devtips/pen/JorKGm/?editors=1100
 
+strange bug:
+-max width on element inside a flex child could cause white space issues.
+
+iphone:
+if doing a column layout, don’t just use one column for example to do halves, use two columns even if one is invisible
+iphone will have alignment problems if you don’t
+
 ei bugs:
 ———————————
 ensure flex children have: 

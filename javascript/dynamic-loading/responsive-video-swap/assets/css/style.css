@@ -1,0 +1,52 @@
+/* ==========================================================================
+full-width bg video
+========================================================================== */
+
+.bg-video {
+	min-height: 100vh;
+	width: 100%;
+	z-index: 1;
+	position: fixed;
+	background-size: cover;
+}
+
+.bg-video-inner {
+	position: absolute; 
+	z-index: -1; 
+	top: 0px; 
+	left: 0px; 
+	bottom: 0px; 
+	right: 0px; 
+	overflow: hidden; 
+	background-size: cover; 
+	background-color: transparent; 
+	background-repeat: no-repeat; 
+	background-position: 50% 50%; 
+	background-image: none;
+}
+
+.bg-video-inner video {
+	margin: auto; 
+	position: absolute; 
+	z-index: -1; 
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%); 
+	visibility: visible; 
+	opacity: 1;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto; 
+	height: auto;
+}
+
+/*dim color overlay*/
+.bg-video:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(125,123,119,0.9);
+}

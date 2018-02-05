@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+
+<!-- mobile fallback version embedding in canvas element: -->
+<!-- painting a playing <video> to a <canvas> without taking that <video> into fullscreen mode. -->
+<div id="either-gif-or-video">
+  <video src="videos/video1.mp4" autoplay loop muted playsinline></video>
+  <img src="videos/video1.gif">
+</div>
+
+
+
+<style>
+	#either-gif-or-video video { display: none; }
+	@media (-webkit-video-playable-inline) {
+	    #either-gif-or-video img { display: none; }
+	    #either-gif-or-video video { display: initial; }
+	}
+</style>
+
+<!-- must have a start button because video is playing inside a canvas -->
+<button class="playback-button">Start Playback</button> 
+
+<script type="text/javascript" src="/scripts.js"></script>
+
+</body>
+</html>

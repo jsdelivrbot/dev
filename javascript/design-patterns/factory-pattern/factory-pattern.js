@@ -110,8 +110,8 @@ console.log(check);
 
 // same as above examples, only you use Object.create to return the object
 // this sets up the prototype on object creation
-const proto = {
-  drive () {
+var proto = {
+  drive: function() {
     console.log('Vroom!');
   }
 };
@@ -120,8 +120,8 @@ function factoryCar() {
   return Object.create(proto);
 }
 
-const car3 = factoryCar();
-console.log(car3.drive());
+var car3 = factoryCar();
+car3.drive();
 
 /* ==========================================================================
 //prototypal - factory function with custom props

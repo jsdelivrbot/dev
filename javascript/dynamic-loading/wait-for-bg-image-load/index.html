@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<script>
+			document.addEventListener("DOMContentLoaded", function(event) {
+				setTimeout(function() {
+					//does't fire until hero bg image is loaded
+				    console.log('hero fully loaded');
+				}, 100)
+			});
+		</script>
+	</head>
+	<body>
+		<section id="hero-section" class="full-width-section initial-image"
+			data-small="/img/sample-hero-sml.jpg" 
+			data-medium="/img/sample-hero-med.jpg" 
+			data-large="/img/sample-hero-lg.jpg">
+		</section>
+
+
+		<script>
+			//this will prevent DOMContentLoaded from firing until hero image is loaded
+			//still enabling us to choose the bg image size on load and 
+			//have the image source fed from inline.
+			var tempImg = document.createElement('img');
+			var hero = document.querySelector('.initial-image');
+			var imgSrc = '';
+
+			if(window.innerWidth > 768) {
+			  imgSrc = hero.dataset.large;
+			} else {
+			  imgSrc = hero.dataset.medium;
+			}
+
+			tempImg.src = imgSrc;
+
+			tempImg.addEventListener('load', function() {
+			  //remove the image from memory...
+			  tempImg = null;
+			  //set hero bg image
+			  hero.style.backgroundImage = 'url("' + imgSrc + '")';
+			});
+		</script>
+	</body>
+</html>
