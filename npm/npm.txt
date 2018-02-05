@@ -70,3 +70,21 @@ npm install 'gulpjs/gulp.git#4.0' --save-dev
 -----------------------
 npm cache clean
 
+#update all packages to latest version:
+-----------------------
+npm update --save
+
+#update each globally installed package (-dev causes dev packages to be updated as well):
+-----------------------
+npm update -dev --save
+
+#update each globally installed package:
+-----------------------
+npm update -g
+
+#update a single package to the latest version:
+-----------------------
+npm update <pachage-name> --save
+
+
+
