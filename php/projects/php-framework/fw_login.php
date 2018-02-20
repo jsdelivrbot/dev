@@ -37,12 +37,12 @@ echo <<<_END
 <p>user: friend, pass: helicopter2</P>
 
 <form method='post' action='fw_login.php'>$error
-Username <input type='text' maxlength='16' name='user'
+	Username <input type='text' maxlength='16' name='user'
 	value='$user' /><br />
-Password <input type='password' maxlength='16' name='pass'
+	Password <input type='password' maxlength='16' name='pass'
 	value='$pass' /><br />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<input type='submit' value='Login' />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	<input type='submit' value='Login' />
 </form>
 _END;
 ?>
