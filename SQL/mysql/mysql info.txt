@@ -1,0 +1,173 @@
+good ref:
+https://www.youtube.com/watch?v=yPu6qV5byu4
+
+to restart
+------------------------
+### To start ###
+service mysql start
+# OR
+/etc/init.d/mysql start
+ 
+### To stop ###
+service mysql stop
+# OR
+/etc/init.d/mysql stop
+ 
+### To restart ###
+service mysql restart
+# OR
+/etc/init.d/mysql restart
+
+
+*to get mysql commmands to work in windows commandline:
+set PATH=%PATH%;C:\Program Files (x86)\MySQL\MySQL Server 5.7\bin
+(make sure this path is correct)
+
+mysql runs at system startup (can change this)
+
+port:
+3306
+
+xprotocol port:
+33060
+
+backup database file. (this dumps the database to the path you're currently in - *this is not a mysql command, you must call it in your cmd line)
+mysqldump -u root -p wptheme_DB > wptheme_DB_backup.sql
+mysqldump -u ben -p test3 > test3_backup.sql
+
+root pass:
+HY^&4^$#gdh
+
+user
+ben
+host
+localhost
+pass:
+HY^&4^$#gdh
+
+windows service name:
+MySQL57
+
+run windows service as Standard System account
+
+command line (to connect to local mysql server):
+
+"C:\Program Files (x86)\MySQL\MySQL Server 5.7\bin\mysql" -u ben
+
+or to connect to remote sql server
+
+mysql -u root -p
+
+root
+
+end commands with ; or \g
+
+show databases;
+
+create database:
+CREATE DATABASE benc_DB;
+
+use this db:
+USE wordp_DB;
+
+import data from database (make sure you are currently using the database target):
+(SOURCE /path/to/sql/file.sql)
+SOURCE /home/ben/node-app-DB-import/test3_backup.sql
+
+this shows the contents:
+SELECT DATABASE();
+
+delete database:
+DROP DATABASE IF EXISTS wordp_DB;
+
+just drop all tables in database.
+This is a hidden Stored Procedure in sql server, and will be executed for each table in the database you're connected:
+EXEC sp_MSforeachtable @command1 = "DROP TABLE ?";
+
+
+create user:
+CREATE USER 'ben'@'localhost' IDENTIFIED BY 'HY^&4^$#gdh';
+
+show all users:
+SELECT User FROM mysql.user;
+
+GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@'localhost’;
+the (*) is for "all"
+GRANT ALL ON wordp_DB.* TO 'wordp_DB'@'localhost';
+
+SHOW GRANTS FOR 'wordp_DB'@'localhost';
+
+show all tables
+SHOW TABLES;
+or
+SHOW TABLES IN DBNAME;
+
+list out an existing table
+DESCRIBE <tablename>
+
+list all items of table:
+SELECT * FROM [table name];
+
+----------------------------------------------------
+import/export mysql
+----------------------------------------------------
+
+export a database (done outside of mysql)
+mysqldump -p -u username database_name > rightdrivedatabase.sql 
+example:
+mysqldump -p -u wptheme_DB wptheme_DB > wptheme_DB_Backup.sql
+mysqldump -p -u rightdrive rightdrive > rightdrivedatabasebackup.sql 
+
+pass:pcKdssp3Jo
+
+import a database
+mysql -p -u username database_name < file.sql
+example:
+mysql -p -u onepixe3_wrd3 onepixe3_wrd3 < 1360761947_-_olife.sql
+
+----------------------------------------------------
+vagrant mysql
+----------------------------------------------------
+to install a typical setup for apache and sql on vagrant:
+
+https://premium.wpmudev.org/blog/vagrant-wordpress-test-environment/
+
+to find out these configurations, in the cmd type
+vagrant ssh
+also look in the .sh file used to install
+
+
+SSH Hostname:
+127.0.0.1:2222
+
+user:
+vagrant
+pass:
+vagrant
+
+MySQL Hostname:
+127.0.0.1
+
+MySQL Server Port: 
+3306
+
+Username:
+root
+pass:
+root
+
+
+MYSQL user:
+root
+pass:
+root
+or
+On}-hzS$gLQbt@V
+root
+pass:
+On}-hzS$gLQbt@V
+
+mysql with node:
+https://www.youtube.com/watch?v=hGZX_SA7lYg
+
+
