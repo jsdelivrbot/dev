@@ -52,20 +52,37 @@ CREATE TABLE class(
 	name VARCHAR(30) NOT NULL,
 	class_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY);
 
-# add columns to an existing table
-ALTER TABLE <table_name> ADD <col_name> INT NOT NULL AFTER <after_this_col>;
-
-# change column name
-ALTER TABLE score CHANGE event_id test_id 
-	INT UNSIGNED NOT NULL;
-
-#rename tables
+# rename tables
 RENAME TABLE 
 absence to absences,
 class to classes,
 score to scores,
 student to students,
 test to tests;
+
+/* ==========================================================================
+ALTER (columns)
+========================================================================== */
+# add columns to an existing table
+# AFTER or BEFORE to define the placement
+ALTER TABLE <table_name> ADD <col_name> INT NOT NULL AFTER <after_this_col>;
+
+# ALTER and DROP COLUMN can delete a column
+ALTER TABLE absences
+DROP COLUMN test_taken;
+
+# change column name
+ALTER TABLE score CHANGE event_id test_id 
+INT UNSIGNED NOT NULL;
+
+# can change the data type with ALTER and CHANGE
+ALTER TABLE absences
+CHANGE student_id student_id INT UNSIGNED NOT NULL;
+
+# can also change the data type with ALTER and MODIFY COLUMN
+ALTER TABLE absences
+MODIFY COLUMN test_taken ENUM('T','F') NOT NULL DEFAULT 'F';
+
 
 /* ==========================================================================
 select/where
@@ -252,87 +269,49 @@ student_id INT UNSIGNED NOT NULL,
 event_id INT UNSIGNED NOT NULL,
 score INT NOT NULL,
 PRIMARY KEY(event_id, student_id));
-	
 
+/* ==========================================================================
+GROUP BY
+========================================================================== */
 
+# defines how the results will be grouped
 
-	
-	
+/* ==========================================================================
+HAVING
+========================================================================== */
 
-	
+# The HAVING clause is used to filter values in a GROUP BY
+SELECT state, COUNT(state) AS 'Amount'
+FROM students
+GROUP BY state
+HAVING Amount > 1;
 
-	
-	a. GROUP BY defines how the results will be grouped
-	
-41. SELECT MONTH(birth_date) AS 'Month', COUNT(*)
-	FROM students
-	GROUP BY Month
-	ORDER BY Month;
-	
-	a. We can get each month in which we have a birthday and the total
-	number for each month
-	
-42. SELECT state, COUNT(state) AS 'Amount'
-	FROM students
-	GROUP BY state
-	HAVING Amount > 1;
-	
-	a. HAVING allows you to narrow the results after the query is executed
-	
+/* ==========================================================================
+GROUP BY
+========================================================================== */
 
-	
-45. SELECT * FROM absences; 
+SELECT MONTH(birth_date) AS 'Month', COUNT(*)
+FROM students
+GROUP BY Month;
 
-	DESCRIBE scores;
+/* ==========================================================================
+DELETE
+========================================================================== */
 	
-	SELECT student_id, test_id
-	FROM scores
-	WHERE student_id = 6;
-	
-	INSERT INTO scores VALUES
-	(6, 3, 24);
+DELETE FROM absences 
+WHERE student_id = 6;
 
-	DELETE FROM absences 
-	WHERE student_id = 6;
-	
-	a. Look up students that missed a test
-	
-	b. Look up the specific test missed by student 6
-	
-	c. Insert the make up test result
-	
-	d. Delete the record in absences
-	
-46. ALTER TABLE absences
-	ADD COLUMN test_taken CHAR(1) NOT NULL DEFAULT 'F'
-	AFTER student_id; 
-	
-	a. Use ALTER to add a column to a table. You can use AFTER
-	or BEFORE to define the placement
+/* ==========================================================================
+UPDATE
+========================================================================== */
 
-47. ALTER TABLE absences
-	MODIFY COLUMN test_taken ENUM('T','F') NOT NULL DEFAULT 'F';
-	
-	a. You can change the data type with ALTER and MODIFY COLUMN
-	
-48. ALTER TABLE absences
-	DROP COLUMN test_taken;
-	
-	a. ALTER and DROP COLUMN can delete a column
+# Use UPDATE to change a value in a row
+UPDATE scores SET score=25 
+WHERE student_id=4 AND test_id=3;
 
-49. ALTER TABLE absences
-	CHANGE student_id student_id INT UNSIGNED NOT NULL;
-	
-	a. You can change the data type with ALTER and CHANGE
-	
-50. SELECT *
-    FROM scores
-    WHERE student_id = 4;
-
-	UPDATE scores SET score=25 
-	WHERE student_id=4 AND test_id=3;
-	
-	a. Use UPDATE to change a value in a row
+/* ==========================================================================
+BETWEEN
+========================================================================== */
 	
 51. SELECT first_name, last_name, birth_date
 	FROM students
@@ -341,12 +320,20 @@ PRIMARY KEY(event_id, student_id));
 	
 	a. Use BETWEEN to find matches between a minimum and maximum
 	
+/* ==========================================================================
+IN
+========================================================================== */
+
 52. SELECT first_name, last_name
 	FROM students
 	WHERE first_name IN ('Bobby', 'Lucy', 'Andy');
 	
 	a. Use IN to narrow results based on a predefined list of options
 	
+/* ==========================================================================
+JOIN (AND)
+========================================================================== */
+
 53. SELECT student_id, date, score, maxscore
 	FROM tests, scores
 	WHERE date = '2014-08-25'
@@ -390,6 +377,10 @@ PRIMARY KEY(event_id, student_id));
 	a. If we wanted a list of the number of absences per student we
 	have to group by student_id or we would get just one result
 	
+/* ==========================================================================
+LEFT JOIN
+========================================================================== */
+
 57. SELECT students.student_id, 
 	CONCAT(students.first_name, " ", students.last_name) AS Name,
 	COUNT(absences.date) AS Absences
@@ -401,6 +392,10 @@ PRIMARY KEY(event_id, student_id));
 	first "FROM students", even if it doesn't exist in the table on
 	the right "LEFT JOIN absences", we can use a LEFT JOIN.
 	
+/* ==========================================================================
+INNER JOIN
+========================================================================== */
+
 58. SELECT students.first_name, 
 	students.last_name,
 	scores.test_id,
@@ -417,22 +412,3 @@ PRIMARY KEY(event_id, student_id));
 	b. Here I'm getting all the data for all quizzes and matching that 
 	data up based on student ids
 	
-59. One-to-One Relationship (SLIDE)
-
-	a. In this One-to-One relationship there can only be one social security number per person. Hence,  each social security number can be associated with one person. As well, one person in the other table only matches up with one social security number.
-
-	b. One-to-One relationships can be identified also in that the foreign keys never duplicate across all rows.
-
-	c. If you are confused by the One-to-One relationship it is understandable, because they are not often used. Most of the time if a value never repeats it should remain in the parent table being customer in this case. Just understand that in a One-to-One relationship, exactly one row in a parent table is related to exactly one row of a child table.
-
-60. One-to-Many Relationship
-
-	a. When we are talking about One-to-Many relationships think about the table diagram here. If you had a list of customers chances are some of them would live in the same state. Hence, in the state column in the parent table, it would be common to see a duplication of states. In this example, each customer can only live in one state so their would only be one id used for each customer.
-
-	b. Just remember that, a One-to-Many relationship is one in which a record in the parent table can have many matching records in the child table, but a record in the child can only match one record in the parent. A customer can choose to live in any state, but they can only live in one at a time.
-
-61. Many-to-Many Relationship
-
-	a. Many people can own many different products. In this example, you can see an example of a Many-to-Many relationship. This is a sign of a non-normalized database, by the way. How could you ever access this information:
-
-	b. If a customer buys more than one product, you will have multiple product idâ??s associated with each customer. As well, you would have multiple customer idâ??s associated with each product.
