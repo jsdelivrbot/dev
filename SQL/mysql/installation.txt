@@ -1,0 +1,15 @@
+install on mac via brew:
+brew install mysql
+
+start as service via brew:
+brew services start mysql
+
+if you don't need it as a bg service:
+mysql.server start
+
+set the root password:
+mysqladmin -u root password 'yourpassword'
+for testing just set it to root
+
+to start mysql:
+mysql -uroot -p
