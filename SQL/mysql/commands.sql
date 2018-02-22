@@ -312,103 +312,93 @@ WHERE student_id=4 AND test_id=3;
 /* ==========================================================================
 BETWEEN
 ========================================================================== */
-	
-51. SELECT first_name, last_name, birth_date
-	FROM students
-	WHERE birth_date 
-	BETWEEN '1960-1-1' AND '1970-1-1';
-	
-	a. Use BETWEEN to find matches between a minimum and maximum
+
+# find matches between a minimum and maximum	
+SELECT first_name, last_name, birth_date
+FROM students
+WHERE birth_date 
+BETWEEN '1960-1-1' AND '1970-1-1';
 	
 /* ==========================================================================
 IN
 ========================================================================== */
 
-52. SELECT first_name, last_name
-	FROM students
-	WHERE first_name IN ('Bobby', 'Lucy', 'Andy');
-	
-	a. Use IN to narrow results based on a predefined list of options
-	
+# narrow results based on a predefined list of options
+SELECT first_name, last_name
+FROM students
+WHERE first_name IN ('Bobby', 'Lucy', 'Andy');
+
 /* ==========================================================================
-JOIN (AND)
+joinning two or more table selects
 ========================================================================== */
 
-53. SELECT student_id, date, score, maxscore
-	FROM tests, scores
-	WHERE date = '2014-08-25'
-	AND tests.test_id = scores.test_id;
-	
-	a. To combine data from multiple tables you can perform a JOIN
-	by matching up common data like we did here with the test ids
-	
-	b. You have to define the 2 tables to join after FROM
-	
-	c. You have to define the common data between the tables after WHERE
-	
-54. SELECT scores.student_id, tests.date, scores.score, tests.maxscore
-	FROM tests, scores
-	WHERE date = '2014-08-25'
-	AND tests.test_id = scores.test_id;
-	
-	a. It is good to qualify the specific data needed by proceeding
-	it with the tables name and a period
-	
-	b. The test_id that is in scores is an example of a foreign key, which 
-	is a reference to a primary key in the tests table
-	
-55. SELECT CONCAT(students.first_name, " ", students.last_name) AS Name, 
-	tests.date, scores.score, tests.maxscore
-	FROM tests, scores, students
-	WHERE date = '2014-08-25'
-	AND tests.test_id = scores.test_id
-	AND scores.student_id = students.student_id;
-	
-	a. You can JOIN more then 2 tables as long as you define the like 
-	data between those tables
-	
-56. SELECT students.student_id, 
-	CONCAT(students.first_name, " ", students.last_name) AS Name,
-	COUNT(absences.date) AS Absences
-	FROM students, absences
-	WHERE students.student_id = absences.student_id
-	GROUP BY students.student_id;
-	
-	a. If we wanted a list of the number of absences per student we
-	have to group by student_id or we would get just one result
+-- To combine data from multiple tables:
+-- define the 2 tables to join after FROM
+-- define the common data between the tables after WHERE
+
+SELECT student_id, date, score
+FROM tests, scores
+WHERE date = '2014-08-25'
+AND tests.test_id = scores.test_id;
+
+-- It is good to qualify the specific data needed by proceeding
+-- it with the tables name and a period
+
+-- The test_id that is in scores is an example of a foreign key, which 
+-- is a reference to a primary key in the tests table
+
+-- You can JOIN more then 2 tables as long as you define the like 
+-- data between those tables
+
+SELECT CONCAT(students.first_name, " ", students.last_name) AS Name, 
+tests.date, scores.score, tests.maxscore
+FROM tests, scores, students
+WHERE date = '2014-08-25'
+AND tests.test_id = scores.test_id
+AND scores.student_id = students.student_id;
+
+-- If we wanted a list of the number of absences per student we
+-- have to group by student_id or we would get just one result
+
+SELECT students.student_id, 
+CONCAT(students.first_name, " ", students.last_name) AS Name,
+COUNT(absences.date) AS Absences
+FROM students, absences
+WHERE students.student_id = absences.student_id
+GROUP BY students.student_id;
 	
 /* ==========================================================================
 LEFT JOIN
 ========================================================================== */
 
-57. SELECT students.student_id, 
-	CONCAT(students.first_name, " ", students.last_name) AS Name,
-	COUNT(absences.date) AS Absences
-	FROM students LEFT JOIN absences
-	ON students.student_id = absences.student_id
-	GROUP BY students.student_id;
-	
-	a. If we need to include all information from the table listed
-	first "FROM students", even if it doesn't exist in the table on
-	the right "LEFT JOIN absences", we can use a LEFT JOIN.
-	
+-- If we need to include all information from the table listed
+-- first (students), even if it doesn't exist in the table on
+-- the right (absences), we can use a LEFT JOIN.
+-- must un ON not WHERE with it
+
+SELECT students.student_id, 
+CONCAT(students.first_name, " ", students.last_name) AS Name,
+COUNT(absences.date) AS Absences
+FROM students LEFT JOIN absences
+ON students.student_id = absences.student_id
+GROUP BY students.student_id;
+
 /* ==========================================================================
 INNER JOIN
 ========================================================================== */
 
-58. SELECT students.first_name, 
-	students.last_name,
-	scores.test_id,
-	scores.score
-	FROM students
-	INNER JOIN scores
-	ON students.student_id=scores.student_id
-	WHERE scores.score <= 15
-	ORDER BY scores.test_id;
-	
-	a. An INNER JOIN gets all rows of data from both tables if there
-	is a match between columns in both tables
-	
-	b. Here I'm getting all the data for all quizzes and matching that 
-	data up based on student ids
-	
+-- An INNER JOIN gets all rows of data from both tables if there
+-- is a match between columns in both tables
+
+-- Here I'm getting all the data for all quizzes and matching that 
+-- data up based on student ids
+
+SELECT students.first_name, 
+students.last_name,
+scores.test_id,
+scores.score
+FROM students
+INNER JOIN scores
+ON students.student_id=scores.student_id
+WHERE scores.score <= 15
+ORDER BY scores.test_id;
