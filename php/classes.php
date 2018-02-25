@@ -13,6 +13,64 @@ $myClass = new MyClass();
 
 $myClass->myMethod();
 
+/* ==========================================================================
+//constructors/destructors
+========================================================================== */
+
+class MyClass {
+	public function __construct($initVar1, $initVar2) {
+		echo 'object just instantiated with: ' . $initVar1 . ' ' . $initVar2 . '. ';
+	}
+
+	public function __destruct() {
+		echo 'Object destroyed';
+	}
+}
+
+$myClass = new MyClass('foo', 'bar');
+
+/* ==========================================================================
+//extending classes
+========================================================================== */
+
+class Fungi {
+	private $spores = '';
+	public function __construct($spores) {
+		$this->spores = $spores;
+	}
+	public function getSpores() {
+		echo $this->spores . "\n";
+	}
+}
+
+class Mushroom extends Fungi {
+	private $size = 'big';
+	public function getSize() {
+		echo $this->size . "\n";
+	}
+}
+
+$white_mushroom = new Mushroom('airborn');
+$white_mushroom->getSize();
+$white_mushroom->getSpores();
+
+/* ==========================================================================
+//serialize/deserialize
+========================================================================== */
+// to save the object to file or send over the network
+
+$myObj = new bankAccount('246810', 'Morgan Freeman');
+// serialize
+$serialized = serialize ($myObj);
+echo 'Object is serialized<br>';
+// unserialize into new object
+$newObj = unserialize ($serialized);
+echo 'Object is unserialized<br>';
+print_r ($newObj);
+
+/* ==========================================================================
+//variable property access
+========================================================================== */
 
 //accessing properties using variable property names.
 //$class->{<property-to-evaluate-to>}
