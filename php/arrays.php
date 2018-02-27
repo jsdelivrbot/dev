@@ -166,4 +166,62 @@ echo "Original String = $myString<br>";
 $myString = str_replace ("cat", "dog", $myString);
 echo "New String = $myString<br>";
 
+/* ==========================================================================
+//reset
+========================================================================== */
+
+// reset the array's internal pointer to the first element
+$stuff = array('foo', 'bar', 'baz');
+echo current($stuff) . "<br>";
+echo next($stuff)  . "<br>";
+echo reset($stuff);
+
+/* ==========================================================================
+// merge
+========================================================================== */
+
+// merge arrays together. (careful - this will reset the keys to numbered ones)
+$array1 = array("color" => "red", 2, 4);
+$array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+$result = array_merge($array1, $array2);
+print_r($result);
+
+/* ==========================================================================
+// add arrays together without resetting keys
+========================================================================== */
+
+// this will combine the two arrays, but keeping the left side array intact
+// and adding anything left from the right array if it's longer than the left one
+// indexed keys are added to items that don't already have them.
+$array1 = array("color" => "red", 2, 4);
+$array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+
+$new_array = $array1+$array2;
+echo $new_array;
+
+// Array
+// (
+//     [color] => red
+//     [0] => 2
+//     [1] => 4
+//     [shape] => trapezoid
+//     [2] => 4
+// )
+
+/* ==========================================================================
+// Exchanges all keys with their associated values in an array
+========================================================================== */
+
+$input = array("oranges", "apples", "pears");
+$flipped = array_flip($input);
+
+print_r($flipped);
+
+// Array
+// (
+//     [oranges] => 0
+//     [apples] => 1
+//     [pears] => 2
+// )
+
 ?>
