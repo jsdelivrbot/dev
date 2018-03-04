@@ -1,0 +1,4 @@
+setting up a local webserver for angular and url routing:
+video: https://www.youtube.com/watch?v=P4N3MDOSITs
+repo:
+https://github.com/codingforentrepreneurs/Guides/blob/master/all/angular_webserver.md
