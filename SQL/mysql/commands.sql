@@ -47,10 +47,24 @@ INSERT INTO student VALUES('Dale', 'Cooper', 'dcooper@aol.com',
 	'123 Main St', 'Yakima', 'WA', 98901, '792-223-8901', "1959-2-22",
 	'M', NOW(), 3.50, NULL);
 
+#better way to do it is specify the column names so
+#you don't have to worry aout columns changing
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+#insert multiple values at once
+INSERT INTO class VALUES
+('English', NULL), ('Speech', NULL), ('Literature', NULL),
+('Algebra', NULL), ('Geometry', NULL), ('Trigonometry', NULL),
+('Calculus', NULL), ('Earth Science', NULL), ('Biology', NULL),
+('Chemistry', NULL), ('Physics', NULL), ('History', NULL),
+('Art', NULL), ('Gym', NULL);
+
 # creating a table
 CREATE TABLE class(
+	class_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
 	name VARCHAR(30) NOT NULL,
-	class_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY);
+	);
 
 # rename tables
 RENAME TABLE 
@@ -402,3 +416,28 @@ INNER JOIN scores
 ON students.student_id=scores.student_id
 WHERE scores.score <= 15
 ORDER BY scores.test_id;
+
+/* ==========================================================================
+embedded select and evaluate first
+========================================================================== */
+
+-- this is to make it evaluate first so the fuel_cost and service_cost can be used
+-- SELECT *
+-- FROM (
+-- ) AS __vehicles
+
+SELECT *, fuel_cost + service_cost AS total
+FROM (
+   SELECT v.id, v.name,
+    (
+        SELECT SUM(f.cost)
+        FROM fuel f
+        WHERE f.vehicle_id=v.id
+    ) AS fuel_cost,
+    (
+        SELECT SUM(s.cost)
+        FROM service s
+        WHERE s.vehicle_id=v.id
+    ) AS service_cost
+    FROM vehicles v
+) AS __vehicles

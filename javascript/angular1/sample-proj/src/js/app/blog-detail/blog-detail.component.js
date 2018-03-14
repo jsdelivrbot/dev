@@ -6,7 +6,6 @@ angular.module('blogDetail').
 		//template: '<div></div>'
 		templateUrl: '/templates/blog-detail.html',
 		controller: function(Post, $http, $location, $routeParams, $scope) {
-
 			Post.query(function(data) {
 				angular.forEach(data, function(post) {	
 					if (post.id == $routeParams.id) {

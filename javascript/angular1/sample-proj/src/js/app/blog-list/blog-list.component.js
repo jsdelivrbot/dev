@@ -5,7 +5,14 @@ angular.module('blogList').
 		//quick version:
 		//template: '<div></div>'
 		templateUrl: '/templates/blog-list.html',
-		controller: function(Post, $routeParams, $scope) {
+		controller: function(Post, $location, $routeParams, $rootScope, $scope) {
+			$scope.goToItem = function(post) {
+				$location.path("/blog/" + post.id);
+				// $rootScope.$apply(function() {
+					
+				// });
+			}
+
 			$scope.items = Post.query();
 		}
 	});
