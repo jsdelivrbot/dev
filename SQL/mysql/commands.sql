@@ -42,24 +42,6 @@ show tables;
 # show the table structure
 DESCRIBE <table_name>;
 
-# insert row into table
-INSERT INTO student VALUES('Dale', 'Cooper', 'dcooper@aol.com', 
-	'123 Main St', 'Yakima', 'WA', 98901, '792-223-8901', "1959-2-22",
-	'M', NOW(), 3.50, NULL);
-
-#better way to do it is specify the column names so
-#you don't have to worry aout columns changing
-INSERT INTO table_name (column1, column2, column3, ...)
-VALUES (value1, value2, value3, ...);
-
-#insert multiple values at once
-INSERT INTO class VALUES
-('English', NULL), ('Speech', NULL), ('Literature', NULL),
-('Algebra', NULL), ('Geometry', NULL), ('Trigonometry', NULL),
-('Calculus', NULL), ('Earth Science', NULL), ('Biology', NULL),
-('Chemistry', NULL), ('Physics', NULL), ('History', NULL),
-('Art', NULL), ('Gym', NULL);
-
 # creating a table
 CREATE TABLE class(
 	class_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
@@ -73,6 +55,36 @@ class to classes,
 score to scores,
 student to students,
 test to tests;
+
+/* ==========================================================================
+INSERT
+========================================================================== */
+
+# insert row into table
+INSERT INTO student VALUES('Dale', 'Cooper', 'dcooper@aol.com', 
+	'123 Main St', 'Yakima', 'WA', 98901, '792-223-8901', "1959-2-22",
+	'M', NOW(), 3.50, NULL);
+
+#insert multiple values at once
+INSERT INTO class VALUES
+('English', NULL), 
+('Speech', NULL), 
+('Literature', NULL);
+
+#better way to insert is specify the column names so
+#you don't have to worry aout columns changing
+INSERT INTO table_name(column1, column2, column3, ...)
+VALUES 
+(value1, value2, value3, ...),
+(value1, value2, value3, ...),
+(value1, value2, value3, ...)
+;
+
+# insert by copying data from one table to another.
+# just substitute the VALUES with a SELECT
+INSERT INTO class(id, room, grade)
+SELECT id, room, grade 
+FROM some_other_table;
 
 /* ==========================================================================
 ALTER (columns)
@@ -96,7 +108,6 @@ CHANGE student_id student_id INT UNSIGNED NOT NULL;
 # can also change the data type with ALTER and MODIFY COLUMN
 ALTER TABLE absences
 MODIFY COLUMN test_taken ENUM('T','F') NOT NULL DEFAULT 'F';
-
 
 /* ==========================================================================
 select/where
