@@ -110,6 +110,8 @@ SELECT FIRST_NAME, last_name
 FROM student;
 
 # select where
+# **always surroun the where search 
+# value with quotes unless it's a number
 SELECT first_name, last_name, state 
 FROM students
 WHERE state="WA";
@@ -166,7 +168,7 @@ SELECT first_name, last_name
 FROM students
 ORDER BY last_name;
 	
-ORDER BY allows you to order results. To change the order use
+-- ORDER BY allows you to order results. To change the order use
 ORDER BY col_name DESC;
 	
 SELECT first_name, last_name, state
@@ -228,9 +230,28 @@ FROM students
 WHERE first_name LIKE 'D%' OR last_name LIKE '%n';
 
 # _ matchs any single character
+# below would match 'baby'
 SELECT last_name, first_name
 FROM students
 WHERE first_name LIKE '___y';
+
+/* ==========================================================================
+REGEXP
+========================================================================== */
+
+# basic
+SELECT name FROM items WHERE name REGEXP 'new';
+
+# fall, ball, tall
+SELECT name FROM items WHERE name REGEXP '.all';
+
+# bob or frank
+SELECT name FROM items WHERE name REGEXP 'bob|frank';
+
+# using sets
+SELECT name FROM items WHERE name REGEXP '[1-5]';
+
+
 
 /* ==========================================================================
 CONCAT
@@ -289,6 +310,12 @@ GROUP BY
 ========================================================================== */
 
 # defines how the results will be grouped
+# aggregate functions rely on GROUP BY to decide
+# what colum they'll execute against.
+# like saying for each entry in the GROUP BY colum, execute the above SELECT, etc...
+SELECT state, COUNT(state) AS 'Amount'
+FROM students
+GROUP BY state
 
 /* ==========================================================================
 HAVING
@@ -342,6 +369,9 @@ SELECT first_name, last_name
 FROM students
 WHERE first_name IN ('Bobby', 'Lucy', 'Andy');
 
+# also can use the opposite
+NOT IN ('Bobby', 'Lucy', 'Andy');
+
 /* ==========================================================================
 joinning two or more table selects
 ========================================================================== */
@@ -385,10 +415,10 @@ GROUP BY students.student_id;
 LEFT JOIN
 ========================================================================== */
 
--- If we need to include all information from the table listed
--- first (students), even if it doesn't exist in the table on
--- the right (absences), we can use a LEFT JOIN.
--- must un ON not WHERE with it
+-- If we need to include ALL data from the table listed
+-- on the left (students), even if it doesn't exist in the table on
+-- the right (absences)
+-- must un ON with it
 
 SELECT students.student_id, 
 CONCAT(students.first_name, " ", students.last_name) AS Name,
@@ -401,8 +431,8 @@ GROUP BY students.student_id;
 INNER JOIN
 ========================================================================== */
 
--- An INNER JOIN gets all rows of data from both tables if there
--- is a match between columns in both tables
+-- An INNER JOIN gets only rows of data from both tables if there
+-- is a match between columns in BOTH tables
 
 -- Here I'm getting all the data for all quizzes and matching that 
 -- data up based on student ids
@@ -416,6 +446,16 @@ INNER JOIN scores
 ON students.student_id=scores.student_id
 WHERE scores.score <= 15
 ORDER BY scores.test_id;
+
+/* ==========================================================================
+subqueries/nested select
+========================================================================== */
+
+# nested selects are evaluated first.
+# what is returned from a nested select can be a single value, or a table, if
+# it's a single number it can go inside a AVG() for example, if it's a table
+# it can go inside a IN (,,,) for example, or you can do an inner join() to inclued
+# it into the query as if it was a normal table
 
 /* ==========================================================================
 embedded select and evaluate first
@@ -441,3 +481,78 @@ FROM (
     ) AS service_cost
     FROM vehicles v
 ) AS __vehicles
+
+/* ==========================================================================
+useful queries
+========================================================================== */
+
+-- testing for null
+WHERE my_column IS NULL
+
+/* ==========================================================================
+date functions
+========================================================================== */
+
+-- get current time
+NOW()
+
+/* ==========================================================================
+CONCAT
+========================================================================== */
+
+# concat values accross differnt columns to combine to one
+# use concat_ws where possible since it won't do null values
+CONCAT_WS(', ', col1, col2) AS combined_value;
+
+/* ==========================================================================
+expressions
+========================================================================== */
+
+# any expression works
+SELECT cost+20 AS final_cost
+
+/* ==========================================================================
+aggregate functions
+========================================================================== */
+
+# aggregate functions work by evaluating column values vertically
+# number of returned items
+COUNT(colname);
+# add the numbers in the returned items
+SUM(cost);
+# the average
+AVG(cost);
+# the maximum/minimum
+MAX(cost);
+MIN(cost)
+
+# group concat - must be used with GROUP_BY.
+# concatenates column data vertically
+GROUP_CONCAT(colname);
+
+# with separator, distinct and order by
+SELECT pub_id,GROUP_CONCAT(DISTINCT cate_id
+ORDER BY  cate_id ASC SEPARATOR ' ')
+
+/* ==========================================================================
+utility functions
+========================================================================== */
+
+# uppercase
+UPPER()
+
+/* ==========================================================================
+full text search
+========================================================================== */
+
+# add full text search ability to column
+# search by algorithm and with speed (alternative to LIKE or REGEXP)
+ALTER TABLE items ADD FULLTEXT(name);
+
+#use it like this
+SELECT name, cost FROM items WHERE MATCH(name) AGAINST("baby");
+
+#boolean mode (include word baby, not include coat)
+AGAINST('+baby -coat' IN BOOLEAN MODE)
+AGAINST("baby")
+
