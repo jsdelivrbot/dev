@@ -35,6 +35,12 @@ have a cutoff time in the project where no new features are added and there's ju
 
 -have a defined arrangement of windows so you know where to find things. have a limit to how many windows opened at once
 
+-start from beginning to the end, not all at once, one step at at time in one direction
+
+-go as fast as possible, but slow down when hitting a concentrated area, step through each part of it and slow down until it's understood, don't skim over.
+
+-every now and then, pause and try to understand what it's doing overall. Step out and look at the big picture.
+
 steps for debugging:
 ==========
 

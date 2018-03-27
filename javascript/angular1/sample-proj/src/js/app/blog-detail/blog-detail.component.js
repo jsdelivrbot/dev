@@ -7,12 +7,39 @@ angular.module('blogDetail').
 		templateUrl: '/templates/blog-detail.html',
 		controller: function(Post, $http, $location, $routeParams, $scope) {
 			Post.query(function(data) {
+				$scope.nofFound = true;
 				angular.forEach(data, function(post) {	
 					if (post.id == $routeParams.id) {
+						$scope.notFount = false;
 						$scope.post = post;
+						resetReply();
 					}
 				});
 			});
+
+			$scope.deleteComment = function(comment) {
+				// use apply to make sure the context of scope is within
+				// this component since this is being called from the directive
+				$scope.$apply($scope.post.comments.splice(comment, 1));
+			}
+
+			$scope.addReply = function() {
+				console.log($scope.reply);
+				$scope.post.comments.push($scope.reply);
+				resetReply();
+			}
+
+			function resetReply() {
+				$scope.reply = {
+					id: $scope.post.comments.length + 1,
+					text: ""
+				}
+			}
+
+			if($scope.notFound) {
+				console.log('not found');
+				$location.path("/");
+			}
 
 			// using http method
 			// //can also do post

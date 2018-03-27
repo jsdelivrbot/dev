@@ -104,6 +104,18 @@ $myString = implode(" ", $myArray);
 print_r($myString);
 
 /* ==========================================================================
+//array_filter
+========================================================================== */
+
+//filter out nulls from an array
+
+//useful to use with implode
+$test_array = array(0=>"288",1=>"288",2=>null);
+print_r(implode(',', array_filter($test_array)));
+//288,288
+
+
+/* ==========================================================================
 //trim whitespace
 ========================================================================== */
 
@@ -229,5 +241,18 @@ print_r($flipped);
 //     [apples] => 1
 //     [pears] => 2
 // )
+
+/* ==========================================================================
+// Exchanges all keys with their associated values in an array
+========================================================================== */
+
+//compare the *values of two arrays, return the matches
+//(use the existing keys of the first array)
+
+$a1=array("a"=>"red","b"=>"green","c"=>"blue","d"=>"yellow");
+$a2=array("e"=>"red","f"=>"green","g"=>"blue");
+
+$result=array_intersect($a1,$a2);
+print_r($result);
 
 ?>

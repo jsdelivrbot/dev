@@ -91,6 +91,13 @@ if (file_exists('/tmp/php_essentials.txt'))
     unlink('/tmp/php_essentials.old'); 
 }
 
+//test unlink
+if (!unlink($file)) {
+  echo ("Error deleting $file");
+} else {
+  echo ("Deleted $file");
+}
+
 /* ==========================================================================
 accessing file attributes
 ========================================================================== */
@@ -191,4 +198,28 @@ echo "Current directory is now $current_dir";
 $array = scandir(".", 1);
 print_r($array);
 
-?>
+/* ==========================================================================
+reading from a file
+========================================================================== */
+
+// Reads entire file into a string
+// use with 'php://input' to get raw post data
+file_get_contents();
+
+pathinfo($path, $options);
+
+// returns:
+// Array
+// (
+// [dirname] => /testweb
+// [basename] => test.txt
+// [extension] => txt
+// )
+
+// Possible second parameter values:
+
+// PATHINFO_DIRNAME - return only dirname
+// PATHINFO_BASENAME - return only basename
+// PATHINFO_EXTENSION - return only extension
+
+

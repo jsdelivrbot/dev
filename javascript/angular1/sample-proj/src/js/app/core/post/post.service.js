@@ -8,7 +8,7 @@ angular.module('post').
 				method: 'GET',
 				params: {},
 				isArray: true,
-				cache: true,
+				cache: false,
 				//transformResponse
 				//interceptor
 			},
@@ -16,7 +16,7 @@ angular.module('post').
 				method: 'GET',
 				// params: {"id": @id},
 				isArray: true,
-				cache: true,
+				cache: false,
 			}
 		})
 	});

@@ -64,4 +64,18 @@ execution operator
 
 //runs as if in the terminal
 echo `ls -la`;
+
+/* ==========================================================================
+elvis operator
+========================================================================== */
+
+$bar = null;
+$baz = '1234'
+$foo = $bar ?: $baz;
+echo $foo;
+
+//roughly resolves to
+
+$foo = $bar ? $bar : $baz;
+
 ?>

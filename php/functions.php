@@ -50,4 +50,11 @@ function &addNumbers ($arg1, $arg2)
 
 $myVar = &addNumbers (20, 10);
 
-?>
+/* ==========================================================================
+//error handling
+========================================================================== */
+
+// @functionname will supress warnings if they occur
+// use commonly with unlink.
+
+@functionname();

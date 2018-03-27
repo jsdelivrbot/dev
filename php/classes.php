@@ -93,4 +93,19 @@ echo $foo->{$start . $end} . "\n";
 $arr = 'arr';
 echo $foo->{$arr[1]} . "\n";
 
-?>
+/* ==========================================================================
+//static
+========================================================================== */
+
+class MyClass {
+    const MY_CONST = 'my_const';
+    
+    public function myFunc() {
+        echo static::MY_CONST;
+    }
+}
+
+$myClass = new MyClass();
+
+$myClass->myFunc();
+//my_const
