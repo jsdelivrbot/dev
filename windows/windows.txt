@@ -1,0 +1,21 @@
+close the current window:
+alt + f4
+
+screens side by side:
+win + left/right arrow
+
+open new window:
+ctrl + n
+
+navigate desktop:
+win + tab
+
+file exploer
+win + e
+
+task manager:
+ctrl + shift + esc
+
+print current window:
+click on window
+alt + PrtScn

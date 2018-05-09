@@ -114,6 +114,9 @@ $test_array = array(0=>"288",1=>"288",2=>null);
 print_r(implode(',', array_filter($test_array)));
 //288,288
 
+//also ensure the output is either an empty array or a filtered one
+$output = array_filter($input_array) ?: 'empty';
+
 
 /* ==========================================================================
 //trim whitespace

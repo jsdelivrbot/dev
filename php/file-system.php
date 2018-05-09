@@ -86,6 +86,9 @@ if (file_exists('/tmp/php_essentials.txt'))
     // Copy the file
     copy('/tmp/php_essentials.txt', '/tmp/php_essentials.bak'); 
     // Rename the file
+    // usually used for moving files
+    // Attempts to rename oldname to newname, moving it between directories if necessary 
+    // * The wrapper used in oldname must match the wrapper used in newname.
     rename('/tmp/php_essentials.bak', '/tmp/php_essentials.old');
     // Delete the file
     unlink('/tmp/php_essentials.old'); 
@@ -170,8 +173,14 @@ Array
 directories
 ========================================================================== */
 
+//making a dir
 //create directory
 $result = mkdir ("/path/to/directory", "0777");
+//example:
+$path = .'/temp/';
+if (! file_exists($path)) {
+    mkdir($path, 0777, true);
+}
 
 //delete a directory
 rmdir("/path/to/directory");
@@ -222,4 +231,127 @@ pathinfo($path, $options);
 // PATHINFO_BASENAME - return only basename
 // PATHINFO_EXTENSION - return only extension
 
+/* ==========================================================================
+Move uploaded file
+========================================================================== */
+
+// move_uploaded_file — Moves an uploaded file to a new location 
+// This function checks to ensure that the file designated by filename is a valid upload file (meaning that it was uploaded via PHP's HTTP POST upload mechanism). If the file is valid, it will be moved to the filename given by destination. 
+
+$uploads_dir = '/uploads';
+foreach ($_FILES["pictures"]["error"] as $key => $error) {
+    if ($error == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
+        // basename() may prevent filesystem traversal attacks;
+        // further validation/sanitation of the filename may be appropriate
+        $name = basename($_FILES["pictures"]["name"][$key]);
+        move_uploaded_file($tmp_name, "$uploads_dir/$name");
+    }
+}
+
+//can also use like:
+$filename = pathinfo('filename', PATHINFO_FILENAME);
+move_uploaded_file('path/'.$filename);
+
+/* ==========================================================================
+Is uploaded file
+========================================================================== */
+
+// is_uploaded_file — Tells whether the file was uploaded via HTTP POST 
+if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+   echo "File ". $_FILES['userfile']['name'] ." uploaded successfully.\n";
+   echo "Displaying contents\n";
+   readfile($_FILES['userfile']['tmp_name']);
+} else {
+   echo "Possible file upload attack: ";
+   echo "filename '". $_FILES['userfile']['tmp_name'] . "'.";
+}
+
+/* ==========================================================================
+sha1 hash file
+========================================================================== */
+
+// sha1_file — Calculate the sha1 hash of a file 
+foreach(glob('/home/Kalle/myproject/*.php') as $ent)
+{
+    if(is_dir($ent))
+    {
+        continue;
+    }
+
+    echo $ent . ' (SHA1: ' . sha1_file($ent) . ')', PHP_EOL;
+}
+
+/* ==========================================================================
+file upload example
+========================================================================== */
+
+//http://php.net/manual/en/features.file-upload.php
+
+header('Content-Type: text/plain; charset=utf-8');
+
+try {
+    
+    // Undefined | Multiple Files | $_FILES Corruption Attack
+    // If this request falls under any of them, treat it invalid.
+    if (
+        !isset($_FILES['upfile']['error']) ||
+        is_array($_FILES['upfile']['error'])
+    ) {
+        throw new RuntimeException('Invalid parameters.');
+    }
+
+    // Check $_FILES['upfile']['error'] value.
+    switch ($_FILES['upfile']['error']) {
+        case UPLOAD_ERR_OK:
+            break;
+        case UPLOAD_ERR_NO_FILE:
+            throw new RuntimeException('No file sent.');
+        case UPLOAD_ERR_INI_SIZE:
+        case UPLOAD_ERR_FORM_SIZE:
+            throw new RuntimeException('Exceeded filesize limit.');
+        default:
+            throw new RuntimeException('Unknown errors.');
+    }
+
+    // You should also check filesize here. 
+    if ($_FILES['upfile']['size'] > 1000000) {
+        throw new RuntimeException('Exceeded filesize limit.');
+    }
+
+    // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
+    // Check MIME Type by yourself.
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    if (false === $ext = array_search(
+        $finfo->file($_FILES['upfile']['tmp_name']),
+        array(
+            'jpg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+        ),
+        true
+    )) {
+        throw new RuntimeException('Invalid file format.');
+    }
+
+    // You should name it uniquely.
+    // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
+    // On this example, obtain safe unique name from its binary data.
+    if (!move_uploaded_file(
+        $_FILES['upfile']['tmp_name'],
+        sprintf('./uploads/%s.%s',
+            sha1_file($_FILES['upfile']['tmp_name']),
+            $ext
+        )
+    )) {
+        throw new RuntimeException('Failed to move uploaded file.');
+    }
+
+    echo 'File is uploaded successfully.';
+
+} catch (RuntimeException $e) {
+
+    echo $e->getMessage();
+
+}
 

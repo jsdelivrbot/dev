@@ -82,4 +82,8 @@ $myString = "This is a short string";
 $strLength = strlen($myString);
 echo "The string length is $strLength.<br>";
 
-?>
+/* ==========================================================================
+trim whitespace
+========================================================================== */
+
+trim()

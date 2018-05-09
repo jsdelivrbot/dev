@@ -109,3 +109,40 @@ $myClass = new MyClass();
 
 $myClass->myFunc();
 //my_const
+
+/* ==========================================================================
+//class inside class
+========================================================================== */
+
+class Admin
+{
+    function init()
+    {
+        $tasks = new Tasks();
+        $tasks->test();
+    }
+}
+
+class Tasks
+{
+    function test()
+    {
+        //...
+    }
+}
+
+$admin = new Admin();
+$admin->init();
+
+/* ==========================================================================
+//std class
+========================================================================== */
+
+// std classes are simple objects (like in js)
+
+//use
+$page = new stdClass();
+$page->name = 'Home';
+$page->status = 1;
+//or commonly convert an array to an object to create one
+$obj = (object) array('1' => 'foo');

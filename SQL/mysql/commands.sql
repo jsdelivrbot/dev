@@ -171,6 +171,13 @@ FROM students
 GROUP BY sex;
 
 /* ==========================================================================
+dates
+========================================================================== */
+
+# Subtract 10 days from a date and return the date:
+SELECT DATE_SUB("2017-06-15", INTERVAL 10 DAY);
+
+/* ==========================================================================
 order by
 ========================================================================== */
 
@@ -566,4 +573,31 @@ SELECT name, cost FROM items WHERE MATCH(name) AGAINST("baby");
 #boolean mode (include word baby, not include coat)
 AGAINST('+baby -coat' IN BOOLEAN MODE)
 AGAINST("baby")
+
+/* ==========================================================================
+CASE/WHEN/THEN/ELSE/END
+========================================================================== */
+
+# like and if statement in SQL
+
+# select certain columns based on condition 
+# (Stock is the ailias for the decided column) 
+SELECT OrderID, Quantity,
+CASE
+    WHEN Quantity > 30 THEN ColA
+    WHEN Quantity = 30 THEN ColB
+    ELSE ColC
+END Stock
+FROM OrderDetails;
+
+# order by certain column based on condition
+SELECT CustomerName, City, Country FROM Customers
+ORDER BY (
+	CASE
+		WHEN City IS NULL THEN Country
+		ELSE City
+	END
+);
+
+
 

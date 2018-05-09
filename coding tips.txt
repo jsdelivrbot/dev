@@ -41,6 +41,15 @@ have a cutoff time in the project where no new features are added and there's ju
 
 -every now and then, pause and try to understand what it's doing overall. Step out and look at the big picture.
 
+-section your code off. Try to block off distractions and just work with the section you need to. This may need to be forceful.
+
+-separate your code into what is the main 'machine' you're dealing with and what is just formatting. What is just data conversion and what is the actual mechanism of importance.
+
+-everything you do in code can have a representation in the physical world. Try to construct it in you mind - what it might look like.
+
+-you don't have to worry about losing track. 1 because what you see helps you keep a mental hash of what it was doing, and 2 because once you sift out what's important, you can 'flatten out' the problem and forget about the dirty path you took to get there.
+Narrowing it down to one or tow variables on a few lines.
+
 steps for debugging:
 ==========
 
@@ -52,3 +61,6 @@ steps for debugging:
 -try to approach a problem with as many diffrent points of view - as many different angles of attach as possible. Solving problems is a combinations of stepping back and reflecting as well as active attempts at different angeles until you eventually narrow down what the problem is.
 
 -don’t be afraid to dig when you need to if you need more information, dig out the information you need to see the environment, see how the code works, then dig deeper when you know what area for sure is causing it.
+
+-reading through code:
+pretend you will be implimenting it yourself step by step as you try to understand it

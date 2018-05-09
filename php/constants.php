@@ -34,6 +34,9 @@ defining constants
 ========================================================================== */
 
 //constants are defined different than regular variables
+//preferred:
+const ROOT_URL = '/1pix_app/';
+//or
 define('INCHES_PER_YARD', 36);
 
 //to check if it's defined

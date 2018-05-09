@@ -6,4 +6,16 @@ installing packages:
 1. download package contents
 2. Copy the folder to ~/Library/Application Support/Sublime Text 2/Packages/ (make sure this is the Library inside your home folder, not the one in the root of your hard drive)
 
+customize settings:
+Preference -> Settings (copy settings from default side to the user side to modify)
+
+jump to beginning/end parenthesis of funtion:
+ctrl + m
+
+navigate to - by file path
+ctrl + p
+
+install package
+ctrl + shift + p
+
 
