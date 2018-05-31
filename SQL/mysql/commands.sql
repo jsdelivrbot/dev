@@ -152,6 +152,13 @@ FROM students
 WHERE DAY(birth_date) >= 12 && (state="CA" || state="NV");
 
 /* ==========================================================================
+row count
+========================================================================== */
+
+# get only the returned row count
+SELECT SQL_CALC_FOUND_ROWS
+
+/* ==========================================================================
 count
 ========================================================================== */
 
@@ -599,5 +606,66 @@ ORDER BY (
 	END
 );
 
+/* ==========================================================================
+// joining in subqueries
+========================================================================== */
+
+#use when needing to bring in data from other tables to populate certain columns
+#where you need to do operations on it first.
+
+SELECT
+	f.id,
+	_apples.cost + _oranges.cost AS total
+FROM
+	fruit f
+LEFT JOIN (
+	SELECT
+		SUM(cost) cost
+	FROM
+		apples
+	GROUP BY
+		fruit_id
+) _apples ON _apples.fruit_id = f.id
+LEFT JOIN (
+	SELECT
+		SUM(cost) cost
+	FROM
+		oranges
+	GROUP BY
+		fruit_id
+) _oranges ON _oranges.fruit_id = f.id
+GROUP BY
+	f.id
+
+#doing a left join select in codeigniter:
+/*
+->join('(SELECT COUNT(id) AS person_count, certificate_id
+		FROM swp_person_certificate
+		WHERE deleted_at IS NULL
+		GROUP BY certificate_id) AS pc_', 'pc_.certificate_id=c.id', 'left')
+*/
+
+
+/* ==========================================================================
+// union
+========================================================================== */
+
+#combines two tables (aggregates) data vertically stacked
+
+SELECT DISTINCT *
+FROM
+(
+	SELECT YEAR(s.serviced_on) year
+	FROM flt_service s
+
+	UNION
+	
+	SELECT YEAR(f.receipt_date)
+	FROM flt_fuel f
+) AS __years
+
+WHERE year IS NOT NULL
+
+ORDER BY year DESC
 
 

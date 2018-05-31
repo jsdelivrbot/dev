@@ -283,6 +283,13 @@ foreach(glob('/home/Kalle/myproject/*.php') as $ent)
 }
 
 /* ==========================================================================
+check if is a file
+========================================================================== */
+
+//Returns TRUE if the filename exists and is a regular file, FALSE otherwise.
+is_file('/usr/bin/a_file.txt')
+
+/* ==========================================================================
 file upload example
 ========================================================================== */
 
@@ -354,4 +361,13 @@ try {
     echo $e->getMessage();
 
 }
+
+/* ==========================================================================
+get image size
+========================================================================== */
+
+getimagesize()//returns an array with the image size info
+//Index 0 and 1 contains respectively the width and the height of the image.
+list();
+list($width, $height) = getimagesize($file_name);
 

@@ -18,4 +18,16 @@ ctrl + p
 install package
 ctrl + shift + p
 
+move an entire line up or down:
+ctrl + shift + up/down
+
+highlight all above the cursor
+ctrl + shift + home/end
+
+go to end/beginning of file:
+ctrl + end/home
+
+delete an entire line:
+ctrl + shift + k
+
 

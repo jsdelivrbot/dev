@@ -65,6 +65,7 @@ array_map(function($o) { echo $o; }, $a);
 //array_merge - merge  one array into another
 ========================================================================== */
 
+//note that the keys will be re-indexed when using array_merge
 $a1=array("red","green");
 $a2=array("blue","yellow");
 print_r(array_merge($a1,$a2));
@@ -113,6 +114,9 @@ print_r($myString);
 $test_array = array(0=>"288",1=>"288",2=>null);
 print_r(implode(',', array_filter($test_array)));
 //288,288
+
+//use array filter for explode as well
+array_filter(explode(',', $c->required_certificates));
 
 //also ensure the output is either an empty array or a filtered one
 $output = array_filter($input_array) ?: 'empty';
@@ -208,6 +212,27 @@ $result = array_merge($array1, $array2);
 print_r($result);
 
 /* ==========================================================================
+// check if key exists
+========================================================================== */
+
+//check whether a given key exists in an array
+array_key_exists($key, $my_array);
+
+/* ==========================================================================
+// get keys from an array
+========================================================================== */
+
+//returns the keys, numeric and string, from the array.
+$keys = array_keys($my_array);
+
+/* ==========================================================================
+// get part of an array
+========================================================================== */
+
+//return a subset of an array at the given keys
+array_intersect_key($array, array_flip((array) $keys));
+
+/* ==========================================================================
 // add arrays together without resetting keys
 ========================================================================== */
 
@@ -258,4 +283,11 @@ $a2=array("e"=>"red","f"=>"green","g"=>"blue");
 $result=array_intersect($a1,$a2);
 print_r($result);
 
-?>
+/* ==========================================================================
+// check if values from one array are contained in another array
+========================================================================== */
+
+//check if values from one array are contained in another array
+if (count($array1) == count(array_intersect(array_grab($array2, 'certificate_id'), $array1))) {
+  //all values are contained
+}

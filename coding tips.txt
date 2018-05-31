@@ -64,3 +64,6 @@ steps for debugging:
 
 -reading through code:
 pretend you will be implimenting it yourself step by step as you try to understand it
+
+-know how to prune away.
+When in a situation that promotes you to confusion, know how to prune away the unnessecary variables so you can just consentrate on a small, simple and narrowed in piece that is the focus of the problem. This way even the most complex problems can be solved by not being a "genius" but by being a simple minded person that knows how to clean up the access distractions of a situation before trying to solve it.
