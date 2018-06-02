@@ -62,15 +62,6 @@ array_map(function($o) { echo $o; }, $a);
 //12345
 
 /* ==========================================================================
-//array_merge - merge  one array into another
-========================================================================== */
-
-//note that the keys will be re-indexed when using array_merge
-$a1=array("red","green");
-$a2=array("blue","yellow");
-print_r(array_merge($a1,$a2));
-
-/* ==========================================================================
 //loop key/value pair in array
 ========================================================================== */
 
@@ -202,14 +193,12 @@ echo next($stuff)  . "<br>";
 echo reset($stuff);
 
 /* ==========================================================================
-// merge
+//current
 ========================================================================== */
 
-// merge arrays together. (careful - this will reset the keys to numbered ones)
-$array1 = array("color" => "red", 2, 4);
-$array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
-$result = array_merge($array1, $array2);
-print_r($result);
+//points to the current index of an array
+//can use with next($my_array) to shift the index
+current($my_array)
 
 /* ==========================================================================
 // check if key exists
@@ -255,6 +244,16 @@ echo $new_array;
 // )
 
 /* ==========================================================================
+// merge
+========================================================================== */
+
+// merge arrays together. (careful - this will reset the keys to numbered ones)
+$array1 = array("color" => "red", 2, 4);
+$array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+$result = array_merge($array1, $array2);
+print_r($result);
+
+/* ==========================================================================
 // Exchanges all keys with their associated values in an array
 ========================================================================== */
 
@@ -271,7 +270,7 @@ print_r($flipped);
 // )
 
 /* ==========================================================================
-// Exchanges all keys with their associated values in an array
+// Return new array with matching values
 ========================================================================== */
 
 //compare the *values of two arrays, return the matches

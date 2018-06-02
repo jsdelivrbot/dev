@@ -508,6 +508,19 @@ FROM (
 ) AS __vehicles
 
 /* ==========================================================================
+exists
+========================================================================== */
+
+# disclude the selection returned from a subselect.
+# SELECT NULL because you don't neet to return any column data
+# great thing is that you can access an outer variable: WHERE pc.id=test.user_id
+AND NOT EXISTS (
+	SELECT NULL
+	FROM swp_person_certificate pc
+	WHERE pc.id=test.user_id
+)
+
+/* ==========================================================================
 useful queries
 ========================================================================== */
 
@@ -650,7 +663,8 @@ GROUP BY
 // union
 ========================================================================== */
 
-#combines two tables (aggregates) data vertically stacked
+# combines two tables (aggregates) data vertically stacked
+# UNION ALL instead of UNION, if possible, as it is much more efficient
 
 SELECT DISTINCT *
 FROM
@@ -658,7 +672,7 @@ FROM
 	SELECT YEAR(s.serviced_on) year
 	FROM flt_service s
 
-	UNION
+	UNION ALL
 	
 	SELECT YEAR(f.receipt_date)
 	FROM flt_fuel f
@@ -667,5 +681,23 @@ FROM
 WHERE year IS NOT NULL
 
 ORDER BY year DESC
+
+/* ==========================================================================
+COALESCE
+========================================================================== */
+
+# Return the first non-null expression in a list:
+SELECT COALESCE(NULL, NULL, NULL, 'W3Schools.com', NULL, 'Example.com');
+# 'W3Schools.com'
+# example usecase:
+SELECT COALESCE(IF(ISNULL(u2.first_name), NULL, CONCAT_WS(" ", u2.first_name, u2.last_name))
+
+/* ==========================================================================
+if statement
+========================================================================== */
+
+#if statement
+SELECT IF(500<1000, "YES", "NO");
+
 
 
