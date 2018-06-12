@@ -1,0 +1,10 @@
+
+Angular calling order
+run: A run block is the code which needs to run to kickstart the application.
+You can use this for the task that need to be executed once for the whole application
+
+app.config()
+app.run()
+directive's compile functions (if they are found in the dom)
+app.controller()
+directive's link functions (again, if found)

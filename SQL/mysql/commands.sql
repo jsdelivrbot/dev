@@ -342,6 +342,12 @@ SELECT state, COUNT(state) AS 'Amount'
 FROM students
 GROUP BY state
 
+#group by multiple columns:
+GROUP BY X 
+#means put all those with the same value for X in the one group.
+GrouP BY X, Y 
+#means put all those with the same values for both X and Y in the one group
+
 /* ==========================================================================
 HAVING
 ========================================================================== */

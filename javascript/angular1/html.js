@@ -35,3 +35,11 @@ $scope.selectedOption = $scope.options[1];
 <select name="selUser" id="selUser" ng-model="chosenUser" ng-options="u.id as u.first_name+' '+u.last_name for u in users track by u.id">
 	<option value="">- Choose -</option>
 </select>
+
+/* ==========================================================================
+// passing parameters to ng-click
+========================================================================== */
+
+<?php 
+echo '<a href="" ng-click="spInfo($event, '.$u->id.')"><img src="/static/images/icons/question.png"></a>';
+?>

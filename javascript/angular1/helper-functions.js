@@ -58,6 +58,13 @@ $scope.$apply();
 //in the controller access it by:
 $attrs.moduleUrl;
 
+/* ==========================================================================
+// rootScope
+========================================================================== */
+
+//the scope created on the HTML element that contains the ng-app directive
+$rootScope
+
 
 
 

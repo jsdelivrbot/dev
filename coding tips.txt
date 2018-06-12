@@ -67,3 +67,13 @@ pretend you will be implimenting it yourself step by step as you try to understa
 
 -know how to prune away.
 When in a situation that promotes you to confusion, know how to prune away the unnessecary variables so you can just consentrate on a small, simple and narrowed in piece that is the focus of the problem. This way even the most complex problems can be solved by not being a "genius" but by being a simple minded person that knows how to clean up the access distractions of a situation before trying to solve it.
+
+-dig into your code form one place to another, then in you mind, flatten out (like in photoshop flatten layers)
+so you don't have to keep track of all has led you to that point. Jeep a breadcrumb trail of where you are.
+Perhaps the trick to leaving a breadcrump trail is concentrating on the thing/place that you currently are rather
+than trying to remember where you were. The context will reveal it's self if you focus on where you are.
+
+-one clue that code is good is that it looks good. Like chess, if the board looks organized that means that
+your technique is good and your peices are protected. In the same way, if code looks organized and easy to read and understand,
+you can be pretty sure that the functinallity is correct too. Messy code where you have a hard time understanding how it works
+is almost guaranteed to be buggy.
