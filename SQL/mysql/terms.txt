@@ -1,0 +1,6 @@
+natural keys:
+email for example - natural keys that occur that you presume to be unique
+
+serrogate keys:
+keys your table auto generate
+

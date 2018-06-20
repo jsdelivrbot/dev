@@ -23,6 +23,9 @@ MEDIUMINT
 # Can't contain a negative value
 UNSIGNED
 
+# Can contain a positive or negative value
+SIGNED
+
 # Stores a date in the format YYYY-MM-DD
 DATE
 
@@ -45,8 +48,10 @@ AUTO_INCREMENT
 -- 	- Uniquely identifies a row or record 
 -- 	- Each Primary Key must be unique to the row 
 -- 	- Must be given a value when the row is created and that value can't be NULL 	
--- 	- The original value can't be changed It should be short 
+-- 	- The original value can't be changed 
+--  - It should be short
 -- 	- It's probably best to auto increment the value of the key
+--  - * Are automatically indexed
 PRIMARY KEY
 
 ------------ Numeric Types ------------

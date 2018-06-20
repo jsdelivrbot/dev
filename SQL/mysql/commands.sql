@@ -322,7 +322,7 @@ combine to make unique
 -- duplicate scores and it makes it easier to change scores
 
 -- Since neither the event or the student ids are unique on their 
--- own we are able to make them unique by combining them
+-- own we are able to make them unique by combining them (that's the reason for two primary keys)
 
 CREATE TABLE score(
 student_id INT UNSIGNED NOT NULL,
@@ -705,5 +705,10 @@ if statement
 #if statement
 SELECT IF(500<1000, "YES", "NO");
 
+/* ==========================================================================
+EXPLAIN
+========================================================================== */
 
+#provides info on the current query
+EXPLAIN
 

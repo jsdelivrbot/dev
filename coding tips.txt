@@ -77,3 +77,23 @@ than trying to remember where you were. The context will reveal it's self if you
 your technique is good and your peices are protected. In the same way, if code looks organized and easy to read and understand,
 you can be pretty sure that the functinallity is correct too. Messy code where you have a hard time understanding how it works
 is almost guaranteed to be buggy.
+
+-never look at code in it's entirety. Always look at it in it's indavidual parts. this does not usually jive with visual organization because
+they placement of the parts aren't organized in a visual way, so you have to think of it blindly.
+When building, build the components part at a time, then building other parts that may overlap ontop, in-between or below the first.
+When debuggin, disect the code part at a time, this may involve navigating to many different files.
+When working with existing code, change each part one at a time according to it's component, not it's placement in order in a file, etc.
+This requires a visual diagram in your head that doesn't correspond to what is seen on the screen.
+True you think of one thing at a time, but the one thing at a time isn't a chunk of code for example that has 3 things mixed in. The one thing could be openning tags that contain other
+code or peices of code scattered in a file or throughout other files.
+You need let this diagram in your head lead over your visual instincts. 
+
+-Once you have more than three tabs open for any given window, that's when you start to get confused. Strictly clean up after you have more than
+three tabs open.
+
+-your notepad is like an anchor for a drifting boat. You need to be able to find out where you were
+even if you think you're doing a simple task. Writting it down in a list has a sense of grounding yourself.
+No only does it provide a place to look back to when distracted, it gives you assurance that you'll be able
+to find your place again, so you can relax and not think so much about where you are. The other thing it does is
+it allows you to focus in on a specific task without being distracted by all that you have to get done. It puts on the hourse
+blinders in a way.

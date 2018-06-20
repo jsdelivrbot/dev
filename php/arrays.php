@@ -253,6 +253,15 @@ $array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
 $result = array_merge($array1, $array2);
 print_r($result);
 
+// array_merge_recursive
+// The difference between this function and the array_merge() function is when two or more array 
+// elements have the same key. Instead of override the keys, the array_merge_recursive() function 
+// makes the value as an array.
+$a1=array("a"=>"red","b"=>"green");
+$a2=array("c"=>"blue","b"=>"yellow");
+print_r(array_merge_recursive($a1,$a2));
+//Array ( [a] => red [b] => Array ( [0] => green [1] => yellow ) [c] => blue )
+
 /* ==========================================================================
 // Exchanges all keys with their associated values in an array
 ========================================================================== */
