@@ -63,3 +63,13 @@ multiselect example
 print_r($_POST['carBrands']);
 // Array ( [0] => Ford [1] => GM )
 ?>
+
+<!--  ==========================================================================
+post to an iframe
+==========================================================================  -->
+
+<!-- Post to a page then have it’s repose print to an iframe: can use this in mvc to extract some data from inner html of the iframe -->
+<form action="do_stuff.php" method="post" target="my_iframe"> <input type="submit" value="Do Stuff!" /> </form> 
+<!-- when the form is submitted, the server response will appear in this iframe -->
+<iframe name="my_iframe"></iframe>
+

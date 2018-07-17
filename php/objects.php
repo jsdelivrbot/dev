@@ -18,3 +18,28 @@ $obj = (object) array('1' => 'foo');
 ========================================================================== */
 
 get_object_vars($object)
+
+//sort object array alphabitically revised:
+usort($users, function ($a, $b) {
+	if (isset($a->first_name) && isset($b->first_name)) {
+		return strcasecmp($a->first_name, $b->first_name);
+	} else {
+		return 0;
+	}
+});
+
+/* ==========================================================================
+// sort an array alphabetically
+========================================================================== */
+
+//sort by two properties (first name, then last name)
+usort($users, function ($a, $b) {
+	if (isset($a->first_name) && isset($b->first_name)) {
+		if ($a->first_name == $b->first_name) {
+			return strcasecmp($a->last_name, $b->last_name);
+		}
+		return strcasecmp($a->first_name, $b->first_name);
+	} else {
+		return 0;
+	}
+});

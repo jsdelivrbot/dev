@@ -299,3 +299,38 @@ print_r($result);
 if (count($array1) == count(array_intersect(array_grab($array2, 'certificate_id'), $array1))) {
   //all values are contained
 }
+
+/* ==========================================================================
+// remove duplicate values in an array
+========================================================================== */
+
+array_unique($input)
+
+/* ==========================================================================
+// sort an array alphabetically
+========================================================================== */
+
+//usort takes a function that compares each item in the array.
+//the negative or positive retured int value determines the sort order of the item
+usort($users, function ($a, $b) {
+  // strcasecmp returns < 0 if str1 is less than str2; > 0 
+  // if str1 is greater than str2, and 0 if they are equal.
+  return strcasecmp($a->first_name, $b->first_name);
+});
+
+// sorts a shallow array. better to use than sort 
+// because it doesn't reset the keys
+// * it dosn't return the new array, it passes it by reference
+$myArray = ['c', 'b', 'a'];
+asort($myArray);
+print_r($myArray);
+
+/* ==========================================================================
+// return values not present in another array
+========================================================================== */
+
+//Compares array1 against one or more other arrays and returns the values in array1 that are not present in any of the other arrays.
+array_diff($array1, $array2);
+
+
+

@@ -26,3 +26,8 @@ echo json_encode($data);
 // htmlspecialchars(json_encode($json_array), ENT_QUOTES, 'UTF-8');
 // also this before sending the JSON
 // header('Content-Type: application/json')
+
+//note for json encode:
+//json_encode will only encode your PHP array as a JSON array if 
+//your PHP array is sequential - that is, if its keys are 0, 1, 2, 3, ...
+//otherwise it will wrap it as an object instead.

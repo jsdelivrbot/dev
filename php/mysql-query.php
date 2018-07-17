@@ -36,4 +36,29 @@ while ($row = mysql_fetch_assoc($result)) {
 // Free the resources associated with the result set
 // This is done automatically at the end of the script
 mysql_free_result($result);
+
+
+//handle IN statements that have no values
+'IN ('.implode(',', $ids ?: array('FALSE')).')'
+//or
+'IN ('.implode(',', $ids ?: array(0)).')'
+//if in a function can also do this first
+if (! is_array($ids)) {
+    $ids = explode(',', array_filter($ids));
+}
+
+/* ==========================================================================
+store objects in db
+========================================================================== */
+
+$person = ['name' => 'Bob', 'age' => '30'];
+$serializedObj = serialize($person);
+//insert into the database...
+$this->db->insert($serializedObj);
+//will look something like this:
+//O:6:"Person":2:{s:4:"name";s:8:"Bob";s:9:"*age";s:4:"30";}
+
+//unserialize to read it back
+$unSerializedObj = unserialize($this->db->read($some_id));
+
 ?>

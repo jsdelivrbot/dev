@@ -13,4 +13,10 @@ date('M j, Y', strtotime('now'))
 //or
 date('Y-m-d H:i:s')
 
+// date with time
+date('M, j Y \a\t g:i a', strtotime($row->timestamp));
+// Looks like:
+// Jul, 6 2018 at 10:01 am
+
+
 ?>
