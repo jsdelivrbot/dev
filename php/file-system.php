@@ -70,16 +70,41 @@ echo "data = $fileData";
 fclose($fileHandle);
 
 /* ==========================================================================
-check if file exists
+check / move / copy / rename / delete files
 ========================================================================== */
 
 //check if a file exists (returns bool)
 $fileExists = file_exists('/tmp/php_essentials.txt');
 
-/* ==========================================================================
-move / rename / delete files
-========================================================================== */
+// copy a file to another location 
+// (if file exists, it overrites it)
+copy($file, $to_file);
 
+//delete a file
+unlink($file);
+//to test unlink
+if (!unlink($file)) {
+  echo ("Error deleting $file");
+} else {
+  echo ("Deleted $file");
+}
+
+//move file
+rename('/tmp/php_essentials.bak', '/tmp/php_essentials.old');
+//won't overrite existing file on windows and produces an error. Workaround:
+function rename_win($oldfile,$newfile) {
+    if (!rename($oldfile,$newfile)) {
+        if (copy ($oldfile,$newfile)) {
+            unlink($oldfile);
+            return TRUE;
+        }
+        return FALSE;
+    }
+    return TRUE;
+}
+
+
+// example usage:
 if (file_exists('/tmp/php_essentials.txt'))
 {
     // Copy the file
@@ -93,12 +118,7 @@ if (file_exists('/tmp/php_essentials.txt'))
     unlink('/tmp/php_essentials.old'); 
 }
 
-//test unlink
-if (!unlink($file)) {
-  echo ("Error deleting $file");
-} else {
-  echo ("Deleted $file");
-}
+//
 
 /* ==========================================================================
 accessing file attributes
