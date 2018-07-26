@@ -1,0 +1,21 @@
+/* ==========================================================================
+prop() (jquery) - for storing properties in html elements
+========================================================================== */
+
+// unlike .data(), .prop(), prop is intended for setting valid HTML document properties, 
+// rather than arbitrary data.
+
+//prop(); in JS:
+$("button").click(function(){
+    var $x = $("div");
+	$x.prop("color", "FF0000");
+	$x.append("The color property: " + $x.prop("color"));
+	$x.removeProp("color");
+});
+
+// The prop() method sets or returns properties and values of the selected elements.
+// When this method is used to return the property value, it returns the value of the FIRST matched element.
+// When this method is used to set property values, it sets one or more property/value pairs for the set of matched elements.
+// Note: The prop() method should be used to retrieve property values, e.g. DOM properties (like tagName, nodeName, defaultChecked) or your own custom made properties.
+// Tip: To retrieve HTML attributes, use the attr() method instead.
+// Tip: To remove a property use the removeProp() method.
