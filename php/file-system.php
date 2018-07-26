@@ -373,6 +373,391 @@ try {
 }
 
 /* ==========================================================================
+// upload multipart/form-data data to an endpoint
+========================================================================== */
+
+<form action="/util/upload" method="post" enctype="multipart/form-data" id="swpAttachmentForm" class="uixPopupBody uixCloak" target="swpUploaderFrame">
+	<input type="hidden" name="upload_destination" value="safeworkplace/tmp" />
+	<input type="file" name="file_attachment" style="width:300px; margin-bottom:4px;" />
+	<div class="clearfix">
+		<input type="submit" value="Upload" class="button icon-upload" />
+		<span id="spUploading" style="position:relative; top:3px;"> &nbsp; <img src="/static/images/loading.gif" /> Uploading...</span>
+	</div>
+</form>
+
+
+/**
+ * Standardized upload target.
+ * Expects a destination path relative to user_content to be posted.
+ * Returns a JSON object with the resulting information.
+ */
+public function upload()
+{
+	// Get upload destination
+	$destination = $this->input->post('upload_destination');
+	if (! $destination) {
+		$destination = 'temp/uploads';
+	}
+
+	$destination = realpath(CONTENT_PATH.trim($destination, '/')).'/';
+	
+	if (strpos($destination, realpath(CONTENT_PATH)) !== 0) {
+		show_error('Invalid upload destination');
+	}
+	
+	// Build file list
+	$result = array('error' => false, 'files' => array());
+	
+	foreach ($_FILES as $field_name => $file) {
+		$file_count = is_array($_FILES[$field_name]['error'])? count($_FILES[$field_name]['error']) : 1;
+		
+		if ($file_count == 1 && $_FILES[$field_name]['error'] != UPLOAD_ERR_NO_FILE) {
+			$result['files'][$field_name] = $this->upload_transfer($destination, $field_name);
+		} elseif ($file_count > 1) {
+			for ($i=0; $i<$file_count; $i++) {
+				if ($_FILES[$field_name]['error'][$i] == UPLOAD_ERR_NO_FILE) {
+					continue;
+				}
+				
+				$result['files'][$field_name][$i] = $this->upload_transfer($destination, $field_name, $i);
+			}
+		}
+	}
+	
+	// Check for submitted files
+	if (count($result['files']) == 0) {
+		$result['error'] = 'No files provided';
+	}
+	
+	echo json_encode($result);
+}
+
+protected function upload_transfer($destination, $field_name, $index = null)
+{
+	$result = array(
+		'name'		=> ($index===null? $_FILES[$field_name]['name'] : $_FILES[$field_name]['name'][$index]),
+		'type'		=> ($index===null? $_FILES[$field_name]['type'] : $_FILES[$field_name]['type'][$index]),
+		'tmp_name'	=> ($index===null? $_FILES[$field_name]['tmp_name'] : $_FILES[$field_name]['tmp_name'][$index]),
+		'error'		=> ($index===null? $_FILES[$field_name]['error'] : $_FILES[$field_name]['error'][$index]),
+		'size'		=> ($index===null? $_FILES[$field_name]['size'] : $_FILES[$field_name]['size'][$index])
+	);
+	
+	$filename = basename($result['tmp_name']);
+	$target = $destination.$filename;
+	
+	move_uploaded_file($result['tmp_name'], $target);
+	
+	$result['tmp_name'] = $filename;
+	
+	return $result;
+}
+
+
+//get the data returned from the upload function above
+//then save to the db
+$data = [			    
+	'name' => Capital Projects,
+    'description' => ,
+    'filename' => ff_x_t20_002.jpg,
+    'filesize' => 3749087,
+    'ref_src' => health,
+    'ref_id' => 0,
+    'created_on' => 2018-07-09 14:28:18
+]
+
+// Save the data
+$new_id = $this->files->save($data, $file_id);
+
+// Finally, move the file (overwriting previous) if the file was updated
+rename("{$path}tmp/{$file->tmp_name}", "{$path}files/{$new_id}.".pathinfo($data->name, PATHINFO_EXTENSION));
+
+public function save($data, $id = null)
+{
+	//add on a hash if not exists
+	if (! array_key_exists('hash', $data) || empty($data['hash'])) {
+		$data['hash'] = md5(microtime().print_r($data, true));
+	}
+
+	//save the file data to the db
+	return parent::save($data, $id);
+}
+
+
+/* ==========================================================================
+// to download
+========================================================================== */
+
+// this is a controller hit via url like:
+//	https://site.com/download/file/f9de8244ded95c6128de7b7c6420f4c9
+// (hash is stored in the db table for the file)
+
+public function download($type = '', $id = null)
+{
+	$mimes = array(
+			'png'=>'image/png',
+			'jpg'=>'image/jpeg',
+			'jpeg'=>'image/jpeg',
+			'pjpeg'=>'image/jpeg',
+			'gif'=>'image/gif',
+			'pdf'=>'application/pdf',
+			'doc'=>'application/msword',
+			'docx'=>'application/msword',
+			'xls'=>'application/msexcel',
+			'xlsx'=>'application/msexcel',
+			'txt'=>'text/plain',
+			'xml'=>'text/xml',
+			'csv'=>'text/csv'
+	);
+
+
+	header("Cache-Control: no-cache, must-revalidate");
+	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+	switch ($type) {
+		case 'file':
+			include(APPPATH.'config/mimes.php');
+
+			$this->load->model('misc/file_model', 'files');
+
+			if ($file = $this->files->find_by_hash($id)) {
+				$ext = pathinfo(strtolower($file->filename), PATHINFO_EXTENSION);
+
+				if (array_key_exists($ext, $mimes)) {
+					header('Content-type: '.(is_array($mimes[$ext]) ? reset($mimes[$ext]) : $mimes[$ext]));
+				}
+
+				header('Content-Disposition: attachment; filename="'.$file->filename.'"');
+				readfile(CONTENT_PATH.'safeworkplace/files/'.$file->id.'.'.$ext);
+			}
+			break;
+	}
+}
+
+
+public function find_by_hash($hash, $options = array())
+{
+	$this->db->where('f.hash', $hash);
+	return $this->find_all(array('one_result' => true) + $options);
+}
+
+
+
+
+/* ==========================================================================
+// upload file or zip file to it's own folder
+========================================================================== */
+
+// Get file data from form post response send to iframe
+// then copied to input
+$file = json_decode($this->input->post($field, true));
+$file = $file->files->file_attachment;
+
+$file_path = $path.'/uploads/';
+
+if (!is_dir($file_path)) {
+	mkdir($file_path, 0777, true);
+}
+
+$file_data = array(
+	'temp_path' => $path.'tmp/',
+	'file_path' => $file_path,
+	'name' => $file->name,
+	'filename' => $file->name,
+	'tmp_name' => $file->tmp_name
+);
+
+// extract zip file to it's own directory
+$new_file = $this->file->store_zip('directory', $course_id, $file_data);
+// save file normally
+$new_file = $this->file->store('file', $course_id, $file_data);
+
+
+
+public function store($ref_src, $ref_id, $file_data)
+{
+	$parts = pathinfo($file_data['name']);
+
+	// Rename file with _### or increment
+	if (is_numeric(substr($parts['filename'], -3)) && substr($parts['filename'], -4, -3) === '_') {
+		$new_name = $this->_incriment_file_name($parts['filename']);
+	} else {
+		$new_name = $parts['filename'].'_000';
+	}
+
+	$file_data['name'] = $new_name.'.'.$parts['extension'];
+
+	// If file name exists, increment until unique
+	if (is_file($file_data['file_path'].$new_name.'.'.$parts['extension'])) {
+		$loop_file_name = $new_name;
+
+		while (is_file($file_data['file_path'].$loop_file_name.'.'.$parts['extension'])) {
+			$loop_file_name = $this->_incriment_file_name($loop_file_name);
+		}
+
+		$file_data['name'] = $loop_file_name.'.'.$parts['extension'];
+	}
+
+	// Save to db
+	$file_id = $this->save(array(
+		'ref_src' => $ref_src,
+		'ref_id' => $ref_id,
+		'name' => $file_data['name'],
+		'filename' => $file_data['filename'],
+		'filesize' => filesize($file_data['temp_path'].$file_data['tmp_name'])/1000,
+		'created_on' => date('Y-m-d H:i:s')
+	));
+
+	// Move file
+	if ($file_data['tmp_name']) {
+		rename($file_data['temp_path'].$file_data['tmp_name'], $file_data['file_path'].$file_data['name']);
+	}
+
+	$result =  array('name' => $file_data['name']) ;
+	
+	return $result;
+}
+
+// --------------------------------------------------------------------
+
+public function store_zip($ref_src, $ref_id, $file_data)
+{
+	$parts = pathinfo($file_data['name']);
+
+	// Rename file with _### or increment
+	if (is_numeric(substr($parts['filename'], -3)) && substr($parts['filename'], -4, -3) === '_') {
+		$new_name = $this->_incriment_file_name($parts['filename']);
+	} else {
+		$new_name = $parts['filename'].'_000';
+	}
+
+	$new_name = strtolower($new_name);
+	$file_data['directory'] = $new_name;
+
+	// If dir exists, increment until unique
+	if (is_dir($file_data['file_path'].$new_name)) {
+		$loop_dir_name = $new_name;
+
+		while (is_dir($file_data['file_path'].$loop_dir_name)) {
+			$loop_dir_name = $this->_incriment_file_name($loop_dir_name);
+		}
+		
+		$file_data['directory'] = $loop_dir_name;
+	}
+
+	// Save to db
+	$file_id = $this->save(array(
+		'ref_src' => $ref_src,
+		'ref_id' => $ref_id,
+		'name' => $file_data['directory'],
+		'filename' => $file_data['filename'],
+		'filesize' => filesize($file_data['temp_path'].$file_data['tmp_name'])/1000,
+		'created_on' => date('Y-m-d H:i:s')
+	));
+
+	// Move file
+	if ($file_data['tmp_name']) {
+		$new_dir = $file_data['file_path'].$file_data['directory'];
+		if (! is_dir($new_dir)) {
+			mkdir($new_dir, 0777, true);
+			$new_file = $new_dir.'/'.$file_data['name'];
+			rename($file_data['temp_path'].$file_data['tmp_name'], $new_file);
+			//Unzip into the new dir
+			$zip = new ZipArchive;
+			$res = $zip->open($new_file);
+			if ($res === TRUE) {
+			  $zip->extractTo($new_dir.'/');
+			  $zip->close();
+			}
+		}
+	}
+
+	$result = array('name' => $file_data['name'], 'directory' => $file_data['directory']) ;
+	
+	return $result;
+}
+
+// --------------------------------------------------------------------
+
+private function _incriment_file_name($file_name) 
+{
+	$counter = substr($file_name, -3) + 1;
+	$counter = str_pad($counter, 3, '0', STR_PAD_LEFT);
+	return substr($file_name, 0, -3).$counter;
+}
+
+
+/* ==========================================================================
+// clean up/delete unused files
+========================================================================== */
+// if the files in the database are deleted, move the unused physical files to a 'deleted' directory
+
+public function cleanup_files($article_id)
+{
+	$path = '/uploads';
+
+	if (!is_dir($path.'/deleted')) {
+		mkdir($path.$delete_dir.'/deleted', 0777, true);
+	}
+
+	// Get all existing files
+	$files = $this->db
+			->select('*')
+			->from('files')
+			->where('ref_id', $article_id)
+			->where('deleted_at', null)
+			->get()
+			->result();
+
+	// Get files that were in the article
+	$article_files = $this->articles->find_all(array('article_id' => $article_id, 'files_only' => true));
+	
+	$delete_files = array_diff($article_files, $files);
+
+	if (!empty($delete_files)) {
+		foreach ($delete_files as $delete_file) {
+			$this->db
+			->where('name', $delete_file)
+			->where('ref_id', $article_id)
+			->update('files', array('deleted_at' => date('Y-m-d H:i:s')));
+
+			if (is_file($path.$type.'/deleted/'.$delete_file))	{
+				// if deleted file already exists, increment it
+				rename($path.$type.'/'.$delete_file, $path.$type.'/deleted/'.(pathinfo($delete_file, PATHINFO_FILENAME )).'_'.$article_id.'.'.(pathinfo($delete_file, PATHINFO_EXTENSION)));
+			} else {
+				rename($path.$type.'/'.$delete_file, $path.$type.'/deleted/'.$delete_file);
+			}
+		}
+	}
+}
+
+
+/* ==========================================================================
+// sanitize file names
+========================================================================== */
+
+<?php
+    $string = 'Acc Inj eBase  - Storyline 122output.zip';
+    $string = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $string));
+    echo $string;
+?>
+
+
+wordpress’s
+function sanitize_file_name( $filename ) { $filename_raw = $filename; $special_chars = array("?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}"); $special_chars = apply_filters('sanitize_file_name_chars', $special_chars, $filename_raw); $filename = str_replace($special_chars, '', $filename); $filename = preg_replace('/[\s-]+/', '-', $filename); $filename = trim($filename, '.-_'); return apply_filters('sanitize_file_name', $filename, $filename_raw); }
+
+
+/* ==========================================================================
+// use @ to check if move_uploaded_file passes
+========================================================================== */
+
+$good_upload = @move_uploaded_file($_FILES['upload']['tmp_name'], $file_name);
+
+if ($good_upload) {
+	..do your stuff
+}
+
+
+/* ==========================================================================
 get image size
 ========================================================================== */
 
