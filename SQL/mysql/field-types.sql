@@ -38,9 +38,6 @@ TIMESTAMP
 # A number with decimal spaces, with a value no bigger than 1.1E38 or smaller than -1.1E38
 FLOAT
 
-# Contains a number without decimals
-INT
-
 # Generates a number automatically that is one greater then the previous row
 AUTO_INCREMENT
 
@@ -52,7 +49,31 @@ AUTO_INCREMENT
 --  - It should be short
 -- 	- It's probably best to auto increment the value of the key
 --  - * Are automatically indexed
+
+# The primary key
 PRIMARY KEY
+
+# Contains a number without decimals
+INT
+
+INT(11)
+Just means that only 11 digits will be shown when using a db client (but the actual size will be stored). Not a max stored lengh like when using varchar(x)
+Int types:
+TINYINT = 1 byte (8 bit)
+SMALLINT = 2 bytes (16 bit)
+MEDIUMINT = 3 bytes (24 bit)
+INT = 4 bytes (32 bit)
+BIGINT = 8 bytes (64 bit).
+(most of the time, just use INT)
+
+Typical sizes:
+-ID: int(10)
+-ID code: varchar(10)
+-name: varchar(100)
+-note/description: varchar(200)
+-Textbox: varchar(255)
+(255 is used because it's the largest number of characters that can be counted with an 8-bit number)
+-a true/false value: int(1)
 
 ------------ Numeric Types ------------
 
