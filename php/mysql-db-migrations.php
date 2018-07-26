@@ -109,3 +109,41 @@ public function add_enum_type()
 		echo '<p># enum types '.$new_enum_types.' for table '.$table.' already exist</p>';
 	}
 }
+
+
+/* ==========================================================================
+check for missing folders. If missing, create them
+========================================================================== */
+
+//check upload folders are in place. If not, create them.
+echo '<p>Checking upload folders...</p>';
+
+$folders = [
+	'folder1',
+	'folder1/folder2'
+];
+
+$path = $_SERVER["DOCUMENT_ROOT"].'/uploads/';
+
+foreach ($folders as $folder) {
+	if(is_dir($path.$folder))
+	  {
+	  echo ('<p>'.$path.$folder.'<br>is a directory</p>');
+	  }
+	else
+	  {
+	  mkdir($path.$folder);
+	  echo ('<p>'.$path.$folder.'<br>is not a directory. Directory created.</p>');
+
+	  }
+}
+
+echo '<p>Done.</p>';
+
+
+
+// get the absolute path to $file $path = pathinfo(realpath($file), PATHINFO_DIRNAME);
+
+Zip:
+$zip = new ZipArchive; $res = $zip->open('file.zip'); if ($res === TRUE) { $zip->extractTo('/myzips/extract_path/'); $zip->close(); echo 'woot!'; } else { echo 'doh!'; }
+
