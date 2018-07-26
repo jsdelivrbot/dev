@@ -51,14 +51,13 @@ do while loop
 ========================================================================== */
 
 // same as while, but ensure it runs at least once
+// even if expression doesn't pass
 $myVar = 1;
 do 
 {
 	echo $myVar . "\n";
 	$myVar++;
-}
-while ($myVar <= 0)
-// this will still print out 1 beause it executes
-// the one time eventhought the expression doesn't pass
+} while ($myVar <= 0);
+// this will still print out 1
 
 ?>
