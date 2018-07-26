@@ -61,4 +61,33 @@ $this->db->insert($serializedObj);
 //unserialize to read it back
 $unSerializedObj = unserialize($this->db->read($some_id));
 
+/* ==========================================================================
+traversing up hiarchy
+========================================================================== */
+
+// find parents of nested using the bottom child category as input
+// presume category table looks like:
+// id, parent_id, depth...
+
+// $in_category:
+// {'id' => 123, 'parent_id' => 456, 'depth' => 4}
+public function get_all_categories($in_category) 
+{
+	$category_ids = [$in_category->id];
+	$category = $in_category;
+	do {
+		$category = $this->find_category_parents($category->id);
+		$category_ids[] = $category->parent_id;
+	} while ($category->parent_id && ($category->depth !== 0));
+
+	print_r($category_ids);
+}
+
+private function find_category_parents($parent_id)
+{
+	$cateogory = $this->categories->where('id', $parent_id)->get();
+	return $cateogory;
+}
+
+
 ?>
