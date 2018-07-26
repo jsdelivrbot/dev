@@ -217,7 +217,24 @@ reading from a file
 // use with 'php://input' to get raw post data
 file_get_contents();
 
+/* ==========================================================================
+pathinfo (for getting file name/info)
+========================================================================== */
+
 pathinfo($path, $options);
+
+// get dirname only:
+$ext = pathinfo($path, PATHINFO_DIRNAME);
+// get filename only:
+$ext = pathinfo($path, PATHINFO_FILENAME);
+// get file extension:
+$ext = pathinfo($path, PATHINFO_EXTENSION);
+// get filename with extension:
+$ext = pathinfo($path, PATHINFO_BASENAME);
+
+// or get the parts of the file:
+$filename = '/mydir/test.txt'
+$parts = pathinfo($filename);
 
 // returns:
 // Array
@@ -226,12 +243,6 @@ pathinfo($path, $options);
 // [basename] => test.txt
 // [extension] => txt
 // )
-
-// Possible second parameter values:
-
-// PATHINFO_DIRNAME - return only dirname
-// PATHINFO_BASENAME - return only basename
-// PATHINFO_EXTENSION - return only extension
 
 /* ==========================================================================
 Move uploaded file
