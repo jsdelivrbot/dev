@@ -28,3 +28,14 @@ public function limit_size($path)
     return true;
   }
 }
+
+/* ==========================================================================
+// insert watermark
+========================================================================== */
+
+// basic
+$watermark = Image::make('public/watermark.png');
+$img->insert($watermark, 'center');
+
+// insert watermark at bottom-right corner with 10px offset
+$img->insert('public/watermark.png', 'bottom-right', 10, 10);
