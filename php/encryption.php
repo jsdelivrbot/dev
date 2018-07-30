@@ -24,6 +24,11 @@ echo uniqid('prefix_', null);
 //with more entrophy
 echo uniqid('', true);
 
+//can also use:
+bin2hex(openssl_random_pseudo_bytes(16));
+// produces:
+// 9e2d72f077918ea46f9f162b8c6cfd6e
+
 /* ==========================================================================
 //serialize
 ========================================================================== */
