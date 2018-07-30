@@ -89,5 +89,33 @@ private function find_category_parents($parent_id)
 	return $cateogory;
 }
 
+/* ==========================================================================
+traversing up hiarchy2
+========================================================================== */
+
+function get_hiarchy($category_id)
+{
+	$category = $this->get($category_id);
+	$hiarchy = [];
+
+	if ($category) {
+		$hiarchy[$category->depth] = $category;
+		
+		for ($id = $category->parent_id; $id > 0; $id = $category->parent_id) {
+			$category = $this->get($id);
+			//check for broken parent category chain
+			if ($category) {
+				$hiarchy[$category->depth] = $category;
+			} else {
+				$category->parent_id = 0;
+			}
+		}
+	}
+
+	return $hiarchy;
+	// or top down order:
+	//return array_reverse($hiarchy);
+}
+
 
 ?>
