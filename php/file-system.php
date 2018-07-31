@@ -29,6 +29,11 @@ $file = fopen("ftp://user:password@example.com/test.txt","w");
 // include_path Optional. Set this parameter to '1' if you want to search for the file in the include_path (in php.ini) as well
 // context  Optional. Specifies the context of the file handle. Context is a set of options that can modify the behavior of a stream
 
+// Check if the file can be opened
+if ($fp = @fopen($filepath, FOPEN_READ)) {
+	//file can be opened
+}
+
 /* ==========================================================================
 close files (opened from fopen)
 ========================================================================== */
@@ -751,4 +756,10 @@ getimagesize()//returns an array with the image size info
 //Index 0 and 1 contains respectively the width and the height of the image.
 list();
 list($width, $height) = getimagesize($file_name);
+
+/* ==========================================================================
+get last modified time of a file
+========================================================================== */
+
+filemtime($filename)
 
