@@ -1,6 +1,5 @@
 <?php
-
-// from https://evertpot.com/107/
+// file caching class probably use for sql queries
 
 /* ==========================================================================
 // Cache class
@@ -106,3 +105,11 @@ function getUsers()
 
 	return $data;
 }
+
+/* ==========================================================================
+// OPcache is a drop-in replacement for APC that runs on PHP 5.5 and later versions
+========================================================================== */
+
+// For PHP 5.5 and above, Zend OpCache is compiled as a shared extension by default unless you specify 
+// --disable-all when configuring. To explicitly enable it, you must specify 
+// --enable-opcache
