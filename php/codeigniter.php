@@ -391,3 +391,9 @@ if ($this->email->send()) {
 
 //if need to debug the send
 $this->email->print_debugger();
+
+/* ==========================================================================
+// delete files in a directory
+========================================================================== */
+
+delete_files('./path/to/directory/');
