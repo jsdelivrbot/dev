@@ -3,7 +3,7 @@
 open files
 ========================================================================== */
 
-//fopen(filename,mode,include_path,context)
+//fopen(filename, mode, include_path, context)
 $file = fopen("test.txt","r");
 $file = fopen("/home/test/test.txt","r");
 $file = fopen("/home/test/test.gif","wb");
@@ -26,6 +26,7 @@ $file = fopen("ftp://user:password@example.com/test.txt","w");
 // "a+" (Read/Write. Preserves file content by writing to the end of the file)
 // "x" (Write only. Creates a new file. Returns FALSE and an error if file already exists)
 // "x+" (Read/Write. Creates a new file. Returns FALSE and an error if file already exists)
+// "b" (binary - optional on end like "a+b" and only for compatability with some systems. There to indicate that you intend to treat the contents of the file as not being text.)
 // include_path Optional. Set this parameter to '1' if you want to search for the file in the include_path (in php.ini) as well
 // context  Optional. Specifies the context of the file handle. Context is a set of options that can modify the behavior of a stream
 
@@ -114,6 +115,15 @@ echo "data = $fileData";
 
 fclose($fileHandle);
 
+/* ==========================================================================
+go to beginning of file / truncate file
+========================================================================== */
+
+// go to the beginning opsition of the file
+fseek($h,0); 
+
+// truncate(cut's off) the file to a given length
+ftruncate($h,0);
 
 /* ==========================================================================
 change file permissions
