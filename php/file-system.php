@@ -62,6 +62,25 @@ if ($result)
 fclose($fileHandle);
 
 /* ==========================================================================
+creating a temp file
+========================================================================== */
+
+// make a temp file to write contents to right away
+// tempnam(dir,prefix)
+tempnam('/filepath/'. 'temp_');
+
+//example
+$temp = tempnam('/temp/', 'temp_');
+$final = '/myfile.cache';
+
+$fh = fopen($temp, 'r');
+fwrite($fh, $data);
+fclose($fh);
+
+rename($temp, $final);
+@chmod($final, 0666);
+
+/* ==========================================================================
 lock file
 ========================================================================== */
 //usually used for writting to a file without interruption (like with caching)
@@ -69,16 +88,18 @@ lock file
 $path = '/myfile.txt'
 $data = ['1', '2']
 
-$fp = fopen($path, 'wb');
-if (flock($fp, LOCK_EX)) {
-	fwrite($fp, $data);
-	flock($fp, LOCK_UN);
+$fh = fopen($path, 'wb');
+if (flock($fh, LOCK_EX)) {
+	fwrite($fh, $data);
+	flock($fh, LOCK_UN);
 } else {
 	log_message('error', "Unable to lock file at: ".$path);
 }
-fclose($fp);
+fclose($fh);
 
 //usually want to move it and change permissoin
+rename($temp_path, $cache_path);
+@chmod($cache_path, 0666);
 
 /* ==========================================================================
 reading from a file (opened from fopen)
