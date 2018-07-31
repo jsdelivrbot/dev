@@ -62,6 +62,25 @@ if ($result)
 fclose($fileHandle);
 
 /* ==========================================================================
+lock file
+========================================================================== */
+//usually used for writting to a file without interruption (like with caching)
+
+$path = '/myfile.txt'
+$data = ['1', '2']
+
+$fp = fopen($path, 'wb');
+if (flock($fp, LOCK_EX)) {
+	fwrite($fp, $data);
+	flock($fp, LOCK_UN);
+} else {
+	log_message('error', "Unable to lock file at: ".$path);
+}
+fclose($fp);
+
+//usually want to move it and change permissoin
+
+/* ==========================================================================
 reading from a file (opened from fopen)
 ========================================================================== */
 
@@ -73,6 +92,28 @@ $fileData = fread($fileHandle, 1024);
 echo "data = $fileData";
 
 fclose($fileHandle);
+
+
+/* ==========================================================================
+change file permissions
+========================================================================== */
+
+@chmod($cache_path, 0666);
+
+/* ==========================================================================
+common file permissions
+========================================================================== */
+// use the search to view permissions:
+// http://www.filepermissions.com/
+
+// readable files
+0644
+// readable/writable files
+0666
+// readable directories
+0755
+// readable/writable directories
+0777
 
 /* ==========================================================================
 check / move / copy / rename / delete files
