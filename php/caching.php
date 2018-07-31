@@ -84,7 +84,7 @@ class Cache
 }
 
 /* ==========================================================================
-// usage
+// usage (with mysql query)
 ========================================================================== */
 
 function getUsers()
@@ -105,6 +105,36 @@ function getUsers()
 
 	return $data;
 }
+
+/* ==========================================================================
+// HTML page caching (using above class)
+========================================================================== */
+
+<?php
+	$cache = new Cache();
+	$key = 'pageid_unique_key';
+
+	// check if the data is in the cache already
+	if ($data = $cache->fetch($key)) {
+		//include($cachefile);
+		readfile($cachefile);
+	 	exit;
+	}
+
+	// start output buffering (render page and capture the html)
+	ob_start();
+?>
+
+<html>
+	output all your html here.
+</html>
+
+<?php
+	// Save the cached content to a file (10 minutes lifespan)
+	$cache->store($key, ob_get_contents(), 600);
+	// send output to browser and turn off buffering
+	ob_end_flush();
+?>
 
 /* ==========================================================================
 // OPcache is a drop-in replacement for APC that runs on PHP 5.5 and later versions
