@@ -1,0 +1,108 @@
+<?php
+
+// from https://evertpot.com/107/
+
+/* ==========================================================================
+// Cache class
+========================================================================== */
+
+class Cache
+{
+	// This is the function you store information with
+	public function store($key, $data, $ttl)
+	{
+		$file_path = $this->getFileName($key);
+
+	    // Opening the file in truncate mode
+		if (! $fh = @fopen($file_path, 'w')) {
+			throw new Exception('Could not write to cache');
+		}
+
+		// Exclusive lock (writer) - released when file is closed
+		if (flock($fh, LOCK_EX)) {
+		    // Serializing along with the TTL
+			$data = serialize(array(time()+$ttl, $data));
+			if (fwrite($fh, $data) === false) {
+				throw new Exception('Could not write to cache');
+			}
+		} else {
+			throw new Exception('Cache was unable to lock file at: '.$file_path);
+			return;
+		}
+
+		fclose($fh);
+	}
+
+	// The function to fetch data returns false on failure
+	public function fetch($key)
+	{
+		$file_path = $this->getFileName($key);
+		if (! file_exists($filename) || !is_readable($filename)) {
+			return false;
+		}
+
+		if (! $fh = @fopen($file_path, 'r')) {
+			return false;
+		}
+
+		// shared lock (reader)
+		flock($fh, LOCK_SH);
+		$data = file_get_contents($file_path);
+		fclose($fh);
+
+		if (! $data = @unserialize($data)) {
+			// Unlinking the file when unserializing failed
+			unlink($file_path);
+			return false;
+		}
+
+		// checking if the data was expired
+		if (time() > $data[0]) {
+			// Unlinking
+			unlink($file_path);
+			return false;
+		}
+
+		return $data[1];
+	}
+
+	public function delete($key)
+	{
+		$filename = $this->getFileName($key);
+	    
+		if (file_exists($filename)) {
+			return unlink($filename);
+		} else {
+			return false;
+		}
+	}
+
+	// General function to find the filename for a certain key
+	private function getFileName($key)
+	{
+		return '/tmp/s_cache'.md5($key);
+	}
+}
+
+/* ==========================================================================
+// usage
+========================================================================== */
+
+function getUsers()
+{
+	$cache = new Cache();
+
+	// A somewhat unique key (use the class name in it)
+	$key = 'getUsers:selectAll';
+
+	// check if the data is not in the cache already
+	if (! $data = $cache->fetch($key)) {
+	   // there was no cache version, get fresh data
+	   $data = $this->users->get_all();
+
+	   // Storing the data in the cache for 10 minutes
+	   $cache->store($key, $data, 600);
+	}
+
+	return $data;
+}
