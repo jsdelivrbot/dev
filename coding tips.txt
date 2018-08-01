@@ -50,6 +50,18 @@ have a cutoff time in the project where no new features are added and there's ju
 -you don't have to worry about losing track. 1 because what you see helps you keep a mental hash of what it was doing, and 2 because once you sift out what's important, you can 'flatten out' the problem and forget about the dirty path you took to get there.
 Narrowing it down to one or tow variables on a few lines.
 
+-Once you have more than three tabs open for any given window, that's when you start to get confused. Strictly clean up after you have more than
+three tabs open.
+
+-your notepad is like an anchor for a drifting boat. You need to be able to find out where you were
+even if you think you're doing a simple task. Writting it down in a list has a sense of grounding yourself.
+No only does it provide a place to look back to when distracted, it gives you assurance that you'll be able
+to find your place again, so you can relax and not think so much about where you are. The other thing it does is
+it allows you to focus in on a specific task without being distracted by all that you have to get done. It puts on the hourse
+blinders in a way.
+
+-coding is not about exactness, or projecting entire setups, but a process of gradually building or gradually taking down. Think of it much like completing a sculpture, slowly chipping away at the peices until it's done. Except coding is never done...
+
 steps for debugging:
 ==========
 
@@ -86,14 +98,4 @@ When working with existing code, change each part one at a time according to it'
 This requires a visual diagram in your head that doesn't correspond to what is seen on the screen.
 True you think of one thing at a time, but the one thing at a time isn't a chunk of code for example that has 3 things mixed in. The one thing could be openning tags that contain other
 code or peices of code scattered in a file or throughout other files.
-You need let this diagram in your head lead over your visual instincts. 
-
--Once you have more than three tabs open for any given window, that's when you start to get confused. Strictly clean up after you have more than
-three tabs open.
-
--your notepad is like an anchor for a drifting boat. You need to be able to find out where you were
-even if you think you're doing a simple task. Writting it down in a list has a sense of grounding yourself.
-No only does it provide a place to look back to when distracted, it gives you assurance that you'll be able
-to find your place again, so you can relax and not think so much about where you are. The other thing it does is
-it allows you to focus in on a specific task without being distracted by all that you have to get done. It puts on the hourse
-blinders in a way.
+You need let this diagram in your head lead over your visual instincts.
