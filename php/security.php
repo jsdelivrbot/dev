@@ -61,3 +61,17 @@ if (strstr($_GET['page'], 'file://') !== false) {
 $allowed = ['home', 'blog', 'gallery', 'catalog'];
 $page = (in_array($page, $allowed)) ? $page : 'home';
 echo file_get_contents('../pages/'.$page.'.php');
+
+/* ==========================================================================
+// Command injection
+========================================================================== */
+
+// careful executing shell commands with unfiltered data
+exec('rm -rf '.$GET['path']);
+
+/* ==========================================================================
+// Code injection
+========================================================================== */
+
+// careful executing anything with eval withouth validating first
+eval('include '.$_GET['path']);
