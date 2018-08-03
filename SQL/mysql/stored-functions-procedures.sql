@@ -1,5 +1,5 @@
 -- -------------------------------------------------------------------------
-stored procedures
+stored functions
 -- -------------------------------------------------------------------------
 -- A stored function is a custom sql function that returns a single value.
 -- You can use it in SQL statements wherever an expression is used.
