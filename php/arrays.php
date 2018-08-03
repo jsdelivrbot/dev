@@ -61,6 +61,12 @@ print_r(array_map("myfunction",$a));
 array_map(function($o) { echo $o; }, $a);
 //12345
 
+// when dealing with an array of objects, use it to return a new array with just the objects
+// you want or add new ones to it, etc.
+$list = array_map(function($o) {
+	return object(['id' => $o->id, 'name' => $o->name]);
+}, $people);
+
 /* ==========================================================================
 //loop key/value pair in array
 ========================================================================== */
@@ -98,6 +104,16 @@ print_r($myString);
 /* ==========================================================================
 //array_filter
 ========================================================================== */
+
+// Iterates over each value in the array passing them to the callback function. If the callback function returns true,
+// the current value from array is returned into the result array. Array keys are preserved.
+$array1 = array("a"=>1, "b"=>2, "c"=>3, "d"=>4, "e"=>5);
+echo "Odd :\n";
+print_r(array_filter($array1, function($o) {
+    // returns whether the input integer is odd
+    return($o & 1);
+}));
+
 
 //filter out nulls from an array
 
