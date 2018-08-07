@@ -70,8 +70,9 @@ creating a temp file
 // tempnam(dir,prefix)
 tempnam('/filepath/'. 'temp_');
 
-//example
-$temp = tempnam('/temp/', 'temp_');
+// example
+// (sys_get_temp_dir() gets the temp file path)
+$temp = tempnam('sys_get_temp_dir()', 'temp_');
 $final = '/myfile.cache';
 
 $fh = fopen($temp, 'r');
