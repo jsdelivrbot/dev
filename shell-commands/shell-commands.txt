@@ -24,7 +24,7 @@ help/manual
 ---------------------
 
 #quick help
-<command> Ñhelp
+<command> Ã‘help
 
 #comprehensive help
 <command> man
@@ -86,6 +86,9 @@ cd ~
 
 #go to absolute path
 cd /home/mydir
+
+# back to previous directory (doesn't work on windows)
+cd -
 
 ---------------------
 creating/deleting
