@@ -42,4 +42,15 @@ comment out code = command + /
 open file with extension:
 View -> Syntax -> Open all with current extension as ...
 
+working with tabs
+-------------------------------
+close current tab
+cmd/ctrl + w
+
+switch tabs
+cmd/ctrl + tab
+
+reopen closed file
+cmd/ctrl + shift + t
+
 
