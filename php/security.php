@@ -12,6 +12,10 @@ echo 'Search results for '.$search;
 $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
 echo 'Search results for '.$search;
 
+// To all for html - like input like is a blog post, you can use:
+// http://pear.php.net/package/HTML_BBCodeParser2
+// example
+
 /* ==========================================================================
 // SQL injection
 ========================================================================== */
@@ -75,3 +79,99 @@ exec('rm -rf '.$GET['path']);
 
 // careful executing anything with eval withouth validating first
 eval('include '.$_GET['path']);
+
+/* ==========================================================================
+// Hide error reporting
+========================================================================== */
+
+// hide error reporting when site goes live.
+// put this at top of page
+error_reporting(0);
+// set custom error handler to log errors to protected file
+set_error_handle()
+
+/* ==========================================================================
+// Disable register globals
+========================================================================== */
+    
+// Disabling with .htaccess
+php_flag register_globals 0
+// Disabling with php.ini
+register_globals = Off
+
+/* ==========================================================================
+// Disable magic quotes
+========================================================================== */
+    
+// Disabling with .htaccess
+php_flag magic_quotes_gpc 0 
+php_flag magic_quotes_runtime 0
+// Disabling with php.ini
+magic_quotes_gpc = Off
+magic_quotes_runtime = Off
+magic_quotes_sybase = Off
+    
+/* ==========================================================================
+// Validate input
+========================================================================== */
+
+//making data valid
+    
+if ( ! preg_match( "/^[0-9]{1,2}$/", $_GET['month'] ) )
+{
+    // handle error
+}
+if ( ! preg_match( "/^[0-9]{1,2}$/", $_GET['day'] ) )
+{
+    // handle error
+}
+if ( ! preg_match( "/^[0-9]{4}$/", $_GET['year'] ) )
+{
+    // handle error
+}
+
+// or
+
+if(filter_var($address, FILTER_VALIDATE_EMAIL)) {
+ echo "Email is valid.";
+} else {
+ echo "Not valid.";
+}
+
+/* ==========================================================================
+// Sanitize output
+========================================================================== */
+
+// cleaning/removing harmful characters
+
+//Remove all characters from the email except letters, digits and !#$%&'*+-=?^_`{|}~@.[]
+echo filter_var($dirtyAddress, FILTER_SANITIZE_EMAIL);
+
+/* ==========================================================================
+// Escape output
+========================================================================== */
+
+// Convert to HTML entities to make them safe for the web browser.
+// Even if you’ve sanitized this data as it arrives, it needs to be re-sanitized
+// when it is displayed to other site visitors (right before it is sent to the web browser).
+// data can be coming from external api or a hacker may have tricked your application into creating harmful data for output.
+
+echo 'Thanks for your order. Please visit us again. You ordered '.esc_html($productName)';
+
+/* ==========================================================================
+// Disable directory browsing
+========================================================================== */
+
+// in .htaccess file:
+Options -Indexes
+
+/* ==========================================================================
+// Sanitize file uploads
+========================================================================== */
+
+sanitized the contents of the file being uploaded. Sanitize and and escape the file data 
+when saved to the filesystem
+
+
+
+    
