@@ -390,10 +390,22 @@ if ($this->email->send()) {
 }
 
 //if need to debug the send
-$this->email->print_debugger();
+dbug($this->email->print_debugger());
 
 /* ==========================================================================
 // delete files in a directory
 ========================================================================== */
 
 delete_files('./path/to/directory/');
+
+/* ==========================================================================
+// escaping sql
+========================================================================== */
+
+// This function determines the data type so that it can escape only string data. It also automatically adds single quotes around the data so you don’t have to
+$sql = "INSERT INTO table (title) VALUES(".$this->db->escape($title).")";
+
+// $this->db->escape_like_str() This method should be used when strings are to be used in LIKE conditions so that LIKE wildcards (‘%’, ‘_’) in the string are also properly escaped.
+$search = '20% raise';
+$sql = "SELECT id FROM table WHERE column LIKE '%" .
+    $this->db->escape_like_str($search)."%' ESCAPE '!'";
