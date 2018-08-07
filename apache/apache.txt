@@ -1,6 +1,35 @@
+#config:
+------------------------------------------
+
 #apache config file on Ubuntu:
 /etc/apache2/
 apache2.conf
 
 #apache config file on CentOS:
 /etc/httpd/conf/httpd.conf
+
+#troubleshooting uploading files:
+------------------------------------------
+
+#set the php temp upload directory:
+Check upload_tmp_dir in php.ini. This is directory where PHP stores temporary files while uploading.
+Example:
+upload_tmp_dir =/tmp
+
+Check open_basedir in php.ini. If defined it limits PHP read/write rights to specified path and its subdirectories. Ensure that upload_tmp_dir is inside this path.
+
+Check post_max_size in php.ini. If you want to upload 20 Mbyte files, try something a little bigger, like post_max_size = 21M. This defines largest size of POST message which you are probably using during upload.
+
+Check upload_max_filesize in php.ini. This specifies biggest file that can be uploaded.
+
+Check memory_limit in php.ini. That's the maximum amount of memory a script may consume. It's quite obvious that it can't be lower than upload size (to be honest I'm not quite sure about it-PHP is probably buffering while copying temporary files).
+
+Ensure that you're checking the right php.ini file that is one used by PHP on your webserver. The best solution is to execute script with directive described here http://php.net/manual/en/function.php-ini-loaded-file.php (php_ini_loaded_file function)
+
+Check what user php runs as (See here how to do it: How to check what user php is running as? ). I have worked on different distros and servers. Sometimes it is apache, but sometimes it can be root. Anyway, check that this user has rights for reading and writing in the temporary directory and directory that you're uploading into. Check all directories in the path in case you're uploading into subdirectory (for example /dir1/dir2/-check both dir1 and dir2.
+
+On embedded platforms you sometimes need to restrict writing to root filesystem because it is stored on flash card and this helps to extend life of this card. If you are using scripts to enable/disable file writes, ensure that you enable writing before uploading.
+
+I had serious problems with PHP >5.4 upload monitoring based on sessions (as described here http://phpmaster.com/tracking-upload-progress-with-php-and-javascript/ ) on some platforms. Try something simple at first (like here: http://www.dzone.com/snippets/very-simple-php-file-upload ). If it works, you can try more sophisticated mechanisms.
+
+** If you make any changes in php.ini remember to restart server so the configuration will be reloaded.
