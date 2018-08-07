@@ -78,4 +78,17 @@ echo $foo;
 
 $foo = $bar ? $bar : $baz;
 
+/* ==========================================================================
+null coalescing operator (double question mark)
+========================================================================== */
+
+// ??
+// same as ?: except it allows you to chain multiple conditions (available in php7)
+
+// $a is not set
+$b = 16;
+
+echo $a ?? 2; // outputs 2
+echo $a ?? $b ?? 7; // outputs 16
+
 ?>
