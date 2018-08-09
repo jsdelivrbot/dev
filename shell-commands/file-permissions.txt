@@ -1,12 +1,71 @@
----------------------
-file permissions:
----------------------
+----------------------------------------------------
+list permissions:
+----------------------------------------------------
 
-list current permissions in dir
+list permissions for a dir
 ls -alh
 
-good article on changin ownership/file permissions
-http://www.inmotionhosting.com/support/website/ssh/changing-permissions-and-ownership
+list permissions for a file:
+ls -l index.php
+
+File permissions appear in the first column of the output i.e. -rw-r--r--
+
+    The first character: - is the file type. - means regular file, d means directory.
+    The next three characters (rw-) specify permissions for the user who owns the file
+    The next three (r--) specify permissions for all members of the group that owns the file.
+    The last three characters in the column (r--) specify permissions for all other users on the system.
+    Example: rw- means read, write but cannot execute the file.
+
+Meaning:
+
+    r : Read permission.
+    w : Write permission.
+    x : Execute permission.
+    - : No permission.
+
+----------------------------------------------------
+change permission:
+----------------------------------------------------
+
+change using arconyms:
+
+u - user
+g - group
+o - other
+
+Add read, write, execute permission to user, read, execute for group, read for other:
+chmod u=rwx,g=rx,o=r myfile.txt
+
+Change using numbering:
+
+chmod 755 index.php
+
+How numbering works
+
+4 - read
+2 - write
+1 - execute
+0 - none
+
+Add the number together for each column:
+user|group|other
+4+2+1 = 7
+chmod 777
+
+----------------------------------------------------
+bulk change permissions:
+----------------------------------------------------
+
+Bulk change all directories to a permission, Bulk change all files to a permission:
+
+Directories:
+find /path/to/your/app-root/ -type d -exec chmod 755 {} \;
+Files:
+find /path/to/your/app-root/ -type f -exec chmod 644 {} \;
+
+----------------------------------------------------
+change ownership:
+----------------------------------------------------
 
 change ownership of file:
 chown user:user file
@@ -16,36 +75,6 @@ chown annettewestdrape:annettewestdrape wp-activate.php
 change ownership of entire folder:
 chown -R annettewestdrape:annettewestdrape public_html/
 
-below is the correct ownership for public_html folder:
+the correct ownership for public_html folder:
 chown -R annettewestdrape:nobody public_html/
 (theusername:nobody)
-
-list permissions for a file:
-ls -l index.php
-
-File access permissions appear in the first column of the output i.e. -rw-r--r--
-
-    The first character - is nothing but the file type. ñ means regular file and d means directory.
-    The next three characters (rw-) specify permissions for the user who owns the file
-    The next three (r--) specify permissions for all members of the group that owns the file.
-    Finally, the last three characters in the column (r--) specify permissions for all other users on the system.
-
-Each character in permission has meaning as follows:
-
-    r : Read permission.
-    w : Write permission.
-    x : Execute permission.
-    - : No permission.
-
-For example rw- permission means owner can read, write to a file but cannot execute the same.
-
-change file permissions:
-chmod 755 index.php
-
-
-For wordpress, change file permissions to proper format recursively with the following command:
-
-For Directories:
-find /path/to/your/wordpress/install/ -type d -exec chmod 755 {} \;
-For Files:
-find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
