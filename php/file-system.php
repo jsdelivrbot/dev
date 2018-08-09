@@ -474,145 +474,6 @@ try {
 }
 
 /* ==========================================================================
-// upload multipart/form-data data to an endpoint
-========================================================================== */
-
-// post to upload from form
-// <form action="/upload" method="post" enctype="multipart/form-data">
-// 	<input type="file" name="file_attachment" />
-// 	<input type="submit" value="Upload" />
-// </form>
-
-
-public function upload()
-{
-	$destination = realpath('/uploads');
-	
-	if (! $destination) {
-		echo json_encode(['error' => 'Invalid upload destination']);
-	}
-	
-	// result info list
-	$result = array('error' => false, 'files' => array());
-	
-	foreach ($_FILES as $field_name => $file) {
-		$file_count = is_array($_FILES[$field_name]['error']) ? count($_FILES[$field_name]['error']) : 1;
-		
-		if ($file_count == 1 && $_FILES[$field_name]['error'] != UPLOAD_ERR_NO_FILE) {
-            // if no errors
-			$result['files'][$field_name] = $this->upload_transfer($destination, $field_name);
-		} elseif ($file_count > 1) {
-            // if multiple errors for the file
-			for ($i=0; $i<$file_count; $i++) {
-				if ($_FILES[$field_name]['error'][$i] == UPLOAD_ERR_NO_FILE) {
-					continue;
-				}
-				//move to temp folder and return info
-				$result['files'][$field_name][$i] = $this->upload_transfer($destination, $field_name, $i);
-			}
-		}
-	}
-	
-	// Check for submitted files
-	if (count($result['files']) == 0) {
-		$result['error'] = 'No files provided';
-	}
-
-    //add on a hash
-    if (! array_key_exists('hash', $data) || empty($data['hash'])) {
-        $result['hash'] = md5(microtime().print_r($data, true));
-    }
-
-    //save the file data to the db
-    $new_id = $this->files->save($data);
-
-    // move the file to final destination
-    rename("{$path}tmp/{$file->tmp_name}", "{$path}files/{$new_id}.".pathinfo($data->name, PATHINFO_EXTENSION));
-	
-    // send back result
-	echo json_encode($result);
-}
-
-protected function upload_transfer($destination, $field_name, $index = null)
-{
-	$result = array(
-		'name'		=> ($index == null ? $_FILES[$field_name]['name'] : $_FILES[$field_name]['name'][$index]),
-		'type'		=> ($index == null ? $_FILES[$field_name]['type'] : $_FILES[$field_name]['type'][$index]),
-		'tmp_name'	=> ($index == null ? $_FILES[$field_name]['tmp_name'] : $_FILES[$field_name]['tmp_name'][$index]),
-		'error'		=> ($index == null ? $_FILES[$field_name]['error'] : $_FILES[$field_name]['error'][$index]),
-		'size'		=> ($index == null ? $_FILES[$field_name]['size'] : $_FILES[$field_name]['size'][$index])
-	);
-	
-	$filename = basename($result['tmp_name']);
-	$target = $destination.$filename;
-	
-	$ok = @move_uploaded_file($result['tmp_name'], $target);
-
-    if (! $ok) {
-        $result['error'] = 'unable to save temp file';
-    }
-	
-	$result['tmp_name'] = $filename;
-	
-	return $result;
-}
-
-
-
-/* ==========================================================================
-// to download
-========================================================================== */
-
-// this is a controller hit via url like:
-//	https://site.com/download/file/f9de8244ded95c6128de7b7c6420f4c9
-// (hash is stored in the db table for the file)
-
-public function download($id = null)
-{
-	$mimes = array(
-			'png'=>'image/png',
-			'jpg'=>'image/jpeg',
-			'jpeg'=>'image/jpeg',
-			'pjpeg'=>'image/jpeg',
-			'gif'=>'image/gif',
-			'pdf'=>'application/pdf',
-			'doc'=>'application/msword',
-			'docx'=>'application/msword',
-			'xls'=>'application/msexcel',
-			'xlsx'=>'application/msexcel',
-			'txt'=>'text/plain',
-			'xml'=>'text/xml',
-			'csv'=>'text/csv'
-	);
-
-
-	header("Cache-Control: no-cache, must-revalidate");
-	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-
-	include(APPPATH.'config/mimes.php');
-
-	if ($file = $this->files->find_by_hash($id)) {
-		$ext = pathinfo(strtolower($file->filename), PATHINFO_EXTENSION);
-
-		if (array_key_exists($ext, $mimes)) {
-			header('Content-type: '.(is_array($mimes[$ext]) ? reset($mimes[$ext]) : $mimes[$ext]));
-		}
-
-		header('Content-Disposition: attachment; filename="'.$file->filename.'"');
-		readfile('filepath/'.$file->id.'.'.$ext);
-	}
-}
-
-
-public function find_by_hash($hash, $options = array())
-{
-	return $this->files->where('hash', $hash)->get();
-}
-
-
-
-
-/* ==========================================================================
 // upload file or zip file to it's own folder
 ========================================================================== */
 
@@ -754,6 +615,76 @@ private function _incriment_file_name($file_name)
 	return substr($file_name, 0, -3).$counter;
 }
 
+/* ==========================================================================
+// to download
+========================================================================== */
+
+// this is a controller hit via url like:
+//	https://site.com/download/file/f9de8244ded95c6128de7b7c6420f4c9
+// (hash is stored in the db table for the file)
+
+public function download($id = null)
+{
+	$mimes = array(
+			'png'=>'image/png',
+			'jpg'=>'image/jpeg',
+			'jpeg'=>'image/jpeg',
+			'pjpeg'=>'image/jpeg',
+			'gif'=>'image/gif',
+			'pdf'=>'application/pdf',
+			'doc'=>'application/msword',
+			'docx'=>'application/msword',
+			'xls'=>'application/msexcel',
+			'xlsx'=>'application/msexcel',
+			'txt'=>'text/plain',
+			'xml'=>'text/xml',
+			'csv'=>'text/csv'
+	);
+
+
+	header("Cache-Control: no-cache, must-revalidate");
+	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+	include(APPPATH.'config/mimes.php');
+
+	if ($file = $this->files->find_by_hash($id)) {
+		$ext = pathinfo(strtolower($file->filename), PATHINFO_EXTENSION);
+
+		if (array_key_exists($ext, $mimes)) {
+			header('Content-type: '.(is_array($mimes[$ext]) ? reset($mimes[$ext]) : $mimes[$ext]));
+		}
+
+		header('Content-Disposition: attachment; filename="'.$file->filename.'"');
+		readfile('filepath/'.$file->id.'.'.$ext);
+	}
+}
+
+
+public function find_by_hash($hash, $options = array())
+{
+	return $this->files->where('hash', $hash)->get();
+}
+
+/* ==========================================================================
+// sanitize file names
+========================================================================== */
+
+// simple sanitize (lowercase, replace speces with underscores, etc.)
+$string = 'Acc Inj eBase  - Storyline 122output.zip';
+$string = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $string));
+
+
+//wordpress's
+function sanitize_file_name( $filename ) 
+{ 
+    $filename_raw = $filename;
+    $special_chars = array("?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}");
+    $special_chars = apply_filters('sanitize_file_name_chars', $special_chars, $filename_raw);
+    $filename = str_replace($special_chars, '', $filename);
+    $filename = preg_replace('/[\s-]+/', '-', $filename);
+    $filename = trim($filename, '.-_');
+    return apply_filters('sanitize_file_name', $filename, $filename_raw);
+}
 
 /* ==========================================================================
 // clean up/delete unused files
@@ -797,28 +728,6 @@ public function cleanup_files($article_id)
 			}
 		}
 	}
-}
-
-
-/* ==========================================================================
-// sanitize file names
-========================================================================== */
-
-// simple sanitize (lowercase, replace speces with underscores, etc.)
-$string = 'Acc Inj eBase  - Storyline 122output.zip';
-$string = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $string));
-
-
-//wordpress's
-function sanitize_file_name( $filename ) 
-{ 
-    $filename_raw = $filename;
-    $special_chars = array("?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}");
-    $special_chars = apply_filters('sanitize_file_name_chars', $special_chars, $filename_raw);
-    $filename = str_replace($special_chars, '', $filename);
-    $filename = preg_replace('/[\s-]+/', '-', $filename);
-    $filename = trim($filename, '.-_');
-    return apply_filters('sanitize_file_name', $filename, $filename_raw);
 }
 
 /* ==========================================================================
