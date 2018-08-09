@@ -83,6 +83,15 @@ rename($temp, $final);
 @chmod($final, 0666);
 
 /* ==========================================================================
+print temp directory
+========================================================================== */
+
+// print temp dir listed in php.ini
+ini_get('upload_tmp_dir');
+// print system default temp dir
+sys_get_temp_dir();
+
+/* ==========================================================================
 lock file
 ========================================================================== */
 //usually used for writting to a file without interruption (like with caching)
