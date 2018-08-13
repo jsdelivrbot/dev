@@ -1,0 +1,38 @@
+{literal}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+<script type='text/javascript' src='/images/351/js/jquery.easing.1.3.js?ver=3.8'></script>
+<script type='text/javascript' src='/images/351/js/onePixel.js?ver=3.8'></script>
+<script type='text/javascript' src='/images/351/js/jquery.mobilemenu.js?ver=3.8'></script>
+<script type='text/javascript' src='/images/351/js/modernizr.js?ver=3.8'></script>
+<script type='text/javascript' src='/images/351/js/jquery.stellar.min.js?ver=3.8'></script>
+<script type="text/javascript" src="/images/351/js/jquery.sticky.min.js"></script>
+
+<script src="http://heartcode-canvasloader.googlecode.com/files/heartcode-canvasloader-min-0.9.1.js"></script>
+
+<link rel="shortcut icon" href="/images/351/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/images/351/favicon.ico" type="image/x-icon">
+
+<script>
+$(window).load(function(){
+    $("#menu-right-wrapper").sticky({ topSpacing: 0 });
+    $('#menu-right-wrapper').on('sticky-start', function () {
+        
+        var menu = $(this).detach();
+        menu.appendTo( "#sticky-main-holder" );
+        
+        $('#sticky-main-holder').fadeIn('slow');
+
+    });
+    $('#menu-right-wrapper').on('sticky-end', function () {
+        
+        $('#sticky-main-holder').fadeOut('slow');
+        
+        var menu = $(this).detach();
+        menu.appendTo( "#menu-right-wrapper-sticky-wrapper" );
+        
+    });
+    $("#mobile-menu").sticky({ topSpacing: 0 });
+});
+</script>
+{/literal}

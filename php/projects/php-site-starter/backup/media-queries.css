@@ -1,0 +1,431 @@
+/* ============================= */
+/* ! media queries-------------  */
+/* ============================= */
+
+/*adds an initial space to the bottom of any media spacer when not in mobile mode*/
+.media-spacer-lg, .media-spacer-med, .media-spacer-sml  {
+    margin-bottom: 45px !important;
+}
+
+/* 1026px and above */
+@media screen and (min-width: 1026px) {
+    
+
+    #sidebar {
+        /*        give extra gutter on full size*/
+        padding-left: 3em;
+    }
+    
+}
+
+@media only screen and (max-width: 1060px) {
+	
+    #main {
+        margin-bottom: 0;
+    }
+    
+    #nav-secondary {
+        display: none;
+    }
+	
+}
+
+
+/*iPad Landscape Width 	1024px*/
+@media only screen and (max-width: 1025px) {
+    
+    /*flexslider----------*/
+    
+    .flex-caption-wrapper { 
+        position: absolute;
+        top: 0;
+        width: 100%
+    }
+    
+    .flex-viewport {
+        max-height: 300px;
+    }
+    
+    .text-container {
+        text-align: center;
+    }
+    
+    .loading-container-home {
+        min-height: 100px;
+    }
+    
+    header {
+        position: relative !important;
+    }
+    
+    .belowheader-menu.transparent-header .flex-direction-nav a {
+        top: 40px;
+        background: transparent none !important;
+    }
+    
+    .text-container { padding: 20px 80px; }
+    
+    /*end flexslider------*/
+    
+    
+    .transparent-header header#site-header {
+        position: relative !important;
+    }
+    
+    #nav-primary-belowheader-wrapper, #nav-primary-giant-wrapper, #nav-primary, #nav-primary-belowheader-wrapper-sticky-wrapper {
+        display: none;
+    }
+    
+    #main-wrapper {
+        margin-top: 0;
+    }
+    
+    h1.internal-page-header {
+        text-align: center;
+    }
+    
+    #mobile-menu {
+        display: block;
+    }
+    
+    
+    .belowheader-menu.transparent-header .full-width-img-internal, 
+    .inheader-menu.transparent-header .full-width-img-internal {
+        height: 120px;
+    }
+    
+    #logo-header img{
+        width: 100%;
+        height: auto;
+    }
+
+    #home-featured-bar-grad .large {
+        font-size: 18px;
+    }
+    
+    #internal-header-grad {
+        min-height: 24px;
+    }
+
+    #logo-header img{
+        width: 100%;
+        height: auto;
+    }
+    
+    #home-featured-bar-grad .large {
+        font-size: 18px;
+    }
+    
+    #logo-header img {
+        width: auto;
+    }
+    
+    
+    #header-right {
+        float: none;
+        text-align: center;
+    }
+    
+    .featured-button, .featured-button:visited {
+        margin-right: 0;
+    }
+
+    .copywright {
+        float: none;
+    }
+    
+    #footer-socials {
+        margin-right: 0;
+    }
+    
+    #footer-logo {
+        display: none;
+    }
+    
+/*-------this centers anything within a container with the "media-center-lg" class*/
+    
+    .media-center-lg {
+        text-align: center;
+    }
+    
+    .media-center-lg > * {
+        display: inline-block !important;
+        float: none !important;
+    }
+    
+/*-------end media center*/
+
+/*-------Ben - this spaces anything within a container with the "media-spacer-lg" class*/
+    
+    .media-spacer-lg > * {
+        margin-bottom: 35px;
+    }
+    
+    .media-spacer-lg > *:last-child {
+        margin-bottom: 0 !important;
+    }
+    
+/*-------end media spacer*/
+
+}
+
+/*fix for wordpress admin bar in mobile*/
+@media only screen and (max-width: 780px) {
+    .admin-bar #topnav {
+        top: 0 !important;
+    }
+}
+
+
+
+/*iPad Portrait Width 	768px*/
+@media only screen and (max-width: 767px) {
+    
+    
+    .full-width-img {
+/*    -webkit-background-size: inherit;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: initial;*/
+    }
+    
+    #nav-primary div:first-child, #nav-secondary div:first-child, .menu-custom-main-menu-container, .menu-demo-main-menu-container {
+        display: none;
+    }
+    
+    #nav-primary {
+        display: block;
+        margin-top: 20px;
+    }
+    
+    #nav-primary-giant {
+        margin-top: 10px;
+    }
+
+    #nav-primary-giant-wrapper {
+        display: none;
+    }
+    
+    #header-right, #nav-primary {
+        float: none;
+    }
+    
+    #header-grad {
+        min-height: 520px;
+    }
+    
+    #logo-header img {
+        width: auto;
+    }
+    
+   .full-width-img-internal {
+        height: 220px;
+    }
+
+    .copywright {
+        line-height: 1.5;
+        text-align: center;
+        float: none;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    #nav-footer, #nav-footer ul, #nav-footer li {
+        float: none;
+    }
+    
+    #nav-footer {
+        text-align: center;
+    }
+    
+    #footer-logo {
+        display: none;
+    }
+    
+    #homepage-feature-title-wrapper {
+        padding-top: 13%;
+    }
+    
+/*-------this centers anything within a container with the "media-center-med" class*/
+    
+    .media-center-med {
+        text-align: center;
+    }
+    
+    .media-center-med > * {
+        display: inline-block !important;
+        float: none !important;
+    }
+    
+/*-------end media center*/
+
+/*-------Ben - this spaces anything within a container with the "media-spacer-med" class*/
+    
+    .media-spacer-med > * {
+        margin-bottom: 35px;
+    }
+    
+    .media-spacer-med > *:last-child {
+        margin-bottom: 0 !important;
+    }
+    
+/*-------end media spacer*/
+    
+    #above-footer .btn,  #home-featured-bar .btn{
+        margin-top: 20px;
+    }
+    
+    #homepage-feature-title-wrapper {
+        padding-left: 20px;
+    }
+    
+    .services-circle {
+        margin: 0 auto;
+    }
+    
+    .featured-text {
+        margin-top: 0;
+    }
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    /*to fix wordpress admin bar issue from update*/
+    #wpadminbar { position: absolute; 
+    top: -46px;
+    }
+    /* flexslider*/
+    .flex-caption-wrapper {
+        height: 100%;
+    }
+
+    .flex-caption .text-container {
+        position: absolute;
+        height: 100%;
+    }
+    .flex-direction-nav {
+        display: none;
+    }
+    .text-container {
+        padding: 10px 5px;
+    }
+    
+    .text-container h1 { 
+        font-size: 50px;
+        letter-spacing: 0;
+    }
+    
+    /* end flexslider*/
+    
+
+    
+}
+
+
+/*iPhone Landscape Width 	480px*/
+@media only screen and (max-width: 479px) {
+    
+    .flex-caption .text-container {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .text-container h1 {
+        margin-bottom: 0px;
+    }
+    
+    .flex-caption p {
+        display: none;
+    }
+    #nav-footer .menu > ul {
+    display: inline-block;
+    }
+    
+    #nav-footer .menu {
+        text-align: center;
+    }
+    
+    #nav-footer ul, #nav-footer li {
+        float: none;
+        line-height: 1.5;
+    }
+    
+    #footer .row {
+        text-align: center;
+    }
+    
+    .copywright {
+        float: none;
+    }
+    
+    .gallery-item, #gallery-1 .gallery-item{
+        width: auto !important;
+    }
+    
+    .gallery{
+        width: 308px;
+        margin: 0 auto;
+    }
+    
+    .gallery-item, #gallery-1 .gallery-item{
+        text-align: left !important;
+    }
+    
+    .post-left, .post-right {
+        float: none !important;
+        width: 100% !important;
+        clear: none !important;
+        margin-bottom: 35px;
+    }
+    .divider.double {
+        display: none;
+    }
+
+    header {
+        position: relative !important;
+    }
+    
+    #home-category-boxes {
+        display: none;
+    }
+    
+    #nav-primary-giant-wrapper {
+        position: relative;
+    }
+
+}
+
+
+/*iPhone Portrait Width 	320px*/
+@media handheld, only screen and (max-width: 321px) {
+
+    #homepage-feature-title, #homepage-feature-title-wrapper h1 {
+        font-size: 55px;
+        line-height: 67px;
+        margin-bottom: 20px;
+        
+    }
+    
+    #homepage-feature-title-wrapper h2 {
+        line-height: 40px;
+        margin-bottom: 40px;
+    }
+
+}
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+
+@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-device-pixel-ratio: 2) {
+	
+	body {
+	
+	}
+	
+}
+
